@@ -5,8 +5,6 @@ In order to ease debugging of the schema and test cases you should run the follo
 
 ``` shell
 gitTools/init
-find . -iname "*.json" -delete
-git checkout --force .
 ```
 
 
