@@ -721,7 +721,7 @@
                     }
                   ]
                 },
-                "nonCompliant": {
+                "noncompliant": {
                   "oneOf": [
                     {"$ref": "#/definitions/complianceOrActions"},
                     {
