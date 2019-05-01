@@ -1,0 +1,104 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/traitsSchema.json",
+  "traits": [
+    {
+      "id": "edgeTrait",
+      "label": "Edge Trait",
+      "features": [
+        {
+          "id": "activityType",
+          "label": "Activity Type",
+          "enums": [
+            {
+              "id": "HOME",
+              "label": "Home"
+            },
+            {
+              "id": "SCHOOL",
+              "label": "School"
+            },
+            {
+              "id": "WORK",
+              "label": "Work"
+            },
+            {
+              "id": "SHOPPING",
+              "label": "Shopping"
+            },
+            {
+              "id": "OTHER",
+              "label": "other"
+            }
+          ],
+          "default": "OTHER"
+        }
+      ]
+    },
+    {
+      "id": "nodeTrait",
+      "label": "Node Trait",
+      "features": [
+        {
+          "id": "enteredIsymp",
+          "label": "Entered State Isym",
+          "enums": [
+            {
+              "id": "true",
+              "label": "true"
+            },
+            {
+              "id": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        },
+        {
+          "id": "treatment",
+          "label": "Treatment",
+          "enums": [
+            {
+              "id": "true",
+              "label": "true"
+            },
+            {
+              "id": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        },
+        {
+          "id": "prophylaxTrigger",
+          "label": "Prophylax Trigger",
+          "enums": [
+            {
+              "id": "true",
+              "label": "true"
+            },
+            {
+              "id": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        },
+        {
+          "id": "prophylax",
+          "label": "Prophylax",
+          "enums": [
+            {
+              "id": "true",
+              "label": "true"
+            },
+            {
+              "id": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        }
+      ]
+    }
+  ]
+}

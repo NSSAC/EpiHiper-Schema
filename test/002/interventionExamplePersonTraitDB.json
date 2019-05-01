@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/personTraitDB/schemas/tabular-data-resource.json",
+  "description": "Pesron trait database for Montgomery County, Va",
+  "name": "montgomery_county_va",
+  "title": "Montgomery County Virginia Person Trait DB",
+  "profile": "tabular-data-resource",
+  "path": "MontgomeryCounty.csv",
+  "schema": {
+    "fields": [
+      {
+        "title": "Person Id",
+        "name": "pid",
+        "type": "integer"
+      },
+      {
+        "title": "Household Id",
+        "name": "hid",
+        "type": "integer"
+      },
+      {
+        "title": "Age Group",
+        "name": "age_group",
+        "type": "string",
+        "constraints": {
+          "enum": [
+            "0-18",
+            "19-64",
+            "65+"
+          ]
+        }
+      }
+    ],
+    "primaryKey": ["pid"]
+  }
+}

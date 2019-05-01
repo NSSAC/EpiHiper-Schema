@@ -1,0 +1,116 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationsSchema.json",
+  "initializations": [
+    {
+      "filter": {
+        "elementType": "node",
+        "left": {
+          "table": "montgomery_county_va",
+          "field": "age_group"
+        },
+        "operator": "==",
+        "right": {"value": "0-18"}
+      },
+      "compliance": {
+        "type": "relative",
+        "number": 70,
+        "compliant": {
+          "foreach": [
+            {
+              "operations": [
+                {
+                  "target": {
+                    "node": {"property": "infectivityFactor"}
+                  },
+                  "operator": "*=",
+                  "value": {"number": 0.8}
+                },
+                {
+                  "target": {
+                    "node": {"property": "susceptibilityFactor"}
+                  },
+                  "operator": "*=",
+                  "value": {"number": 0.8}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "filter": {
+        "elementType": "node",
+        "left": {
+          "table": "montgomery_county_va",
+          "field": "age_group"
+        },
+        "operator": "==",
+        "right": {"value": "19-64"}
+      },
+      "compliance": {
+        "type": "relative",
+        "number": 30,
+        "compliant": {
+          "foreach": [
+            {
+              "operations": [
+                {
+                  "target": {
+                    "node": {"property": "infectivityFactor"}
+                  },
+                  "operator": "*=",
+                  "value": {"number": 0.8}
+                },
+                {
+                  "target": {
+                    "node": {"property": "susceptibilityFactor"}
+                  },
+                  "operator": "*=",
+                  "value": {"number": 0.8}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "filter": {
+        "elementType": "node",
+        "left": {
+          "table": "montgomery_county_va",
+          "field": "age_group"
+        },
+        "operator": "==",
+        "right": {"value": "65+"}
+      },
+      "compliance": {
+        "type": "relative",
+        "number": 50,
+        "compliant": {
+          "foreach": [
+            {
+              "operations": [
+                {
+                  "target": {
+                    "node": {"property": "infectivityFactor"}
+                  },
+                  "operator": "*=",
+                  "value": {"number": 0.8}
+                },
+                {
+                  "target": {
+                    "node": {"property": "susceptibilityFactor"}
+                  },
+                  "operator": "*=",
+                  "value": {"number": 0.8}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

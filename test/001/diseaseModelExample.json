@@ -1,0 +1,126 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/diseaseModelSchema.json",
+  "states": [
+    {
+      "id": "susceptible",
+      "label": "Susceptible",
+      "susceptibility": 1.0,
+      "infectivity": 0
+    },
+    {
+      "id": "exposed",
+      "label": "Exposed",
+      "susceptibility": 0,
+      "infectivity": 0
+    },
+    {
+      "id": "infectious",
+      "label": "Infectious",
+      "susceptibility": 0,
+      "infectivity": 0.1
+    },
+    {
+      "id": "hospitalized",
+      "label": "Hospitalized",
+      "susceptibility": 0,
+      "infectivity": 0.2
+    },
+    {
+      "id": "funeral",
+      "label": "Funeral",
+      "susceptibility": 0,
+      "infectivity": 0.2
+    },
+    {
+      "id": "removed",
+      "label": "Removed",
+      "susceptibility": 0,
+      "infectivity": 0
+    }
+  ],
+  "initialState": "susceptible",
+  "infections": [
+    {
+      "id": "contactWithInfectious",
+      "label": "Susceptible -> Exposed {Infectious}",
+      "entryState": "susceptible",
+      "exitState": "exposed",
+      "contactState": "infectious",
+      "transmissibility": 1
+    },
+    {
+      "id": "contactWithHospitalized",
+      "label": "Susceptible -> Exposed {Hospitalized}",
+      "entryState": "susceptible",
+      "exitState": "exposed",
+      "contactState": "hospitalized",
+      "transmissibility": 1
+    },
+    {
+      "id": "contactWithFuneral",
+      "label": "Susceptible -> Exposed {Funeral}",
+      "entryState": "susceptible",
+      "exitState": "exposed",
+      "contactState": "funeral",
+      "transmissibility": 1
+    }
+  ],
+  "transitions": [
+    {
+      "id": "exposed2infectious",
+      "label": "Exposed->Infectious",
+      "entryState": "exposed",
+      "exitState": "infectious",
+      "probability": 1,
+      "dwellTime": {"fixed": 3}
+    },
+    {
+      "id": "infectious2hospitalized",
+      "label": "Infectious->Hospitalized",
+      "entryState": "infectious",
+      "exitState": "hospitalized",
+      "probability": 0.1111,
+      "dwellTime": {"fixed": 2}
+    },
+    {
+      "id": "infectious2funeral",
+      "label": "Infectious->Funeral",
+      "entryState": "infectious",
+      "exitState": "funeral",
+      "probability": 0.6667,
+      "dwellTime": {"fixed": 10}
+    },
+    {
+      "id": "infectious2removed",
+      "label": "Infectious->Removed",
+      "entryState": "infectious",
+      "exitState": "removed",
+      "probability": 0.2222,
+      "dwellTime": {"fixed": 12}
+    },
+    {
+      "id": "hospitalized2funeral",
+      "label": "Hospitalized->Funeral",
+      "entryState": "hospitalized",
+      "exitState": "funeral",
+      "probability": 0.1111,
+      "dwellTime": {"fixed": 15}
+    },
+    {
+      "id": "hospitalized2removed",
+      "label": "Hospitalized->Removed",
+      "entryState": "hospitalized",
+      "exitState": "removed",
+      "probability": 0.8889,
+      "dwellTime": {"fixed": 15}
+    },
+    {
+      "id": "funeral2removed",
+      "label": "Funeral->Removed",
+      "entryState": "funeral",
+      "exitState": "removed",
+      "probability": 1,
+      "dwellTime": {"fixed": 1}
+    }
+  ]
+}

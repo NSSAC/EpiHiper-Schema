@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/runParametersSchema.json",
+  "contactNetwork": "network",
+  "diseaseModel": "/diseaseModel.json",
+  "initializations": "relative/path/interventions.json",
+  "interventions": "/full/path/interventions.json",
+  "startTick": 0,
+  "endTick": 28
+}

@@ -1,0 +1,738 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/interventionSchema.json",
+  "sets": [
+    {
+      "id": "enteredIsymp",
+      "label": "Nodes which entered state Isymp.",
+      "content": {
+        "operation": "intersection",
+        "sets": [
+          {
+            "elementType": "node",
+            "left": {
+              "node": {"property": "healthState"}
+            },
+            "operator": "==",
+            "right": {
+              "value": {"healthState": "Isymp"}
+            }
+          },
+          {
+            "elementType": "node",
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "enteredIsymp"
+              }
+            },
+            "operator": "==",
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "enteredIsymp",
+                "enum": "false"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "schoolChildrenEnteredIsymp",
+      "label": "Nodes which entered state Isymp and are going to school.",
+      "content": {
+        "operation": "intersection",
+        "sets": [
+          {
+            "set": {"idRef": "enteredIsymp"}
+          },
+          {
+            "elementType": "node",
+            "operator": "withIncomingEdgeIn",
+            "filter": {
+              "elementType": "edge",
+              "left": {
+                "edge": {
+                  "property": "targetTrait",
+                  "feature": "activityType"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "edgeTrait",
+                  "feature": "activityType",
+                  "enum": "SCHOOL"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "globalVariables": [
+    {
+      "id": "totalTreatments",
+      "label": "Total Treatments",
+      "initialValue": 0
+    },
+    {
+      "id": "dailyTreatments",
+      "label": "Daily Treatments",
+      "initialValue": 0,
+      "reset": 1
+    },
+    {
+      "id": "schoolChildrenEnteredIsympCounter",
+      "label": "School age children which are or have been infectious",
+      "initialValue": 0
+    },
+    {
+      "id": "schoolClosed",
+      "label": "A value indication whether the school has been closed",
+      "initialValue": 0
+    }
+  ],
+  "interventions": [
+    {
+      "$comment": "Count Infective School Age Children",
+      "triggers": [
+        {
+          "left": {
+            "count": {"set": "schoolChildrenEnteredIsymp"}
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
+          }
+        }
+      ],
+      "filter": {
+        "set": {"idRef": "schoolChildrenEnteredIsymp"}
+      },
+      "foreach": [
+        {
+          "operations": [
+            {
+              "target": {
+                "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+              },
+              "operator": "+=",
+              "value": {"number": 1}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$comment": "School Closure (school children)",
+      "triggers": [
+        {
+          "left": {
+            "value": {"number": 500}
+          },
+          "operator": "<=",
+          "right": {
+            "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+          }
+        }
+      ],
+      "filter": {
+        "elementType": "edge",
+        "left": {
+          "edge": {
+            "property": "targetTrait",
+            "feature": "activityType"
+          }
+        },
+        "operator": "==",
+        "right": {
+          "value": {
+            "trait": "edgeTrait",
+            "feature": "activityType",
+            "enum": "SCHOOL"
+          }
+        }
+      },
+      "once": [
+        {
+          "operations": [
+            {
+              "target": {
+                "globalVariable": {"idRef": "schoolClosed"}
+              },
+              "operator": "=",
+              "value": {"number": 1}
+            }
+          ]
+        }
+      ],
+      "foreach": [
+        {
+          "operations": [
+            {
+              "target": {
+                "edge": {"property": "active"}
+              },
+              "operator": "=",
+              "value": {"boolean": false}
+            }
+          ]
+        },
+        {
+          "delay": 14,
+          "operations": [
+            {
+              "target": {
+                "edge": {"property": "active"}
+              },
+              "operator": "=",
+              "value": {"boolean": true}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$comment": "School Closure (teacher and other employees)",
+      "triggers": [
+        {
+          "left": {
+            "value": {"number": 500}
+          },
+          "operator": "<=",
+          "right": {
+            "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+          }
+        }
+      ],
+      "filter": {
+        "elementType": "edge",
+        "left": {
+          "edge": {
+            "property": "sourceTrait",
+            "feature": "activityType"
+          }
+        },
+        "operator": "==",
+        "right": {
+          "value": {
+            "trait": "edgeTrait",
+            "feature": "activityType",
+            "enum": "SCHOOL"
+          }
+        }
+      },
+      "foreach": [
+        {
+          "operations": [
+            {
+              "target": {
+                "edge": {"property": "active"}
+              },
+              "operator": "=",
+              "value": {"boolean": false}
+            }
+          ]
+        },
+        {
+          "delay": 14,
+          "operations": [
+            {
+              "target": {
+                "edge": {"property": "active"}
+              },
+              "operator": "=",
+              "value": {"boolean": true}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$comment": "Treatment",
+      "triggers": [
+        {
+          "left": {
+            "count": {"set": "enteredIsymp"}
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
+          }
+        }
+      ],
+      "filter": {
+        "set": {"idRef": "enteredIsymp"}
+      },
+      "foreach": [
+        {
+          "operations": [
+            {
+              "target": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "enteredIsymp"
+                }
+              },
+              "operator": "=",
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "enteredIsymp",
+                "enum": "true"
+              }
+            }
+          ]
+        },
+        {
+          "delay": 1,
+          "conditions": [
+            {
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylaxTrigger"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylaxTrigger",
+                  "enum": "true"
+                }
+              }
+            }
+          ],
+          "operations": [
+            {
+              "target": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylaxTrigger"
+                }
+              },
+              "operator": "=",
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylaxTrigger",
+                "enum": "false"
+              }
+            }
+          ]
+        }
+      ],
+      "compliance": {
+        "type": "relative",
+        "number": 30,
+        "compliant": {
+          "foreach": [
+            {
+              "delay": 1,
+              "conditions": [
+                {
+                  "left": {
+                    "globalVariable": {"idRef": "dailyTreatments"}
+                  },
+                  "operator": "<",
+                  "right": {
+                    "value": {"number": 500}
+                  }
+                },
+                {
+                  "left": {
+                    "globalVariable": {"idRef": "totalTreatments"}
+                  },
+                  "operator": "<",
+                  "right": {
+                    "value": {"number": 20000}
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "target": {
+                    "globalVariable": {"idRef": "dailyTreatments"}
+                  },
+                  "operator": "+=",
+                  "value": {"number": 1}
+                },
+                {
+                  "target": {
+                    "globalVariable": {"idRef": "totalTreatments"}
+                  },
+                  "operator": "+=",
+                  "value": {"number": 1}
+                },
+                {
+                  "target": {
+                    "node": {"property": "infectivityFactor"}
+                  },
+                  "operator": "*=",
+                  "value": {"number": 0.2}
+                },
+                {
+                  "target": {
+                    "node": {
+                      "property": "nodeTrait",
+                      "feature": "treatment"
+                    }
+                  },
+                  "operator": "=",
+                  "value": {
+                    "trait": "nodeTrait",
+                    "feature": "treatment",
+                    "enum": "true"
+                  }
+                },
+                {
+                  "target": {
+                    "node": {
+                      "property": "nodeTrait",
+                      "feature": "prophylaxTrigger"
+                    }
+                  },
+                  "operator": "=",
+                  "value": {
+                    "trait": "nodeTrait",
+                    "feature": "prophylaxTrigger",
+                    "enum": "true"
+                  }
+                }
+              ]
+            },
+            {
+              "delay": 6,
+              "conditions": [
+                {
+                  "left": {
+                    "node": {
+                      "property": "nodeTrait",
+                      "feature": "treatment"
+                    }
+                  },
+                  "operator": "==",
+                  "right": {
+                    "value": {
+                      "trait": "nodeTrait",
+                      "feature": "treatemnt",
+                      "enum": "true"
+                    }
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "target": {
+                    "node": {"property": "infectivityFactor"}
+                  },
+                  "operator": "/=",
+                  "value": {"number": 0.2}
+                },
+                {
+                  "target": {
+                    "node": {
+                      "property": "nodeTrait",
+                      "feature": "treatment"
+                    }
+                  },
+                  "operator": "=",
+                  "value": {
+                    "trait": "nodeTrait",
+                    "feature": "treatment",
+                    "enum": "false"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "noncompliant": {
+          "compliance": {
+            "type": "relative",
+            "number": 20,
+            "compliant": {
+              "foreach": [
+                {
+                  "delay": 3,
+                  "conditions": [
+                    {
+                      "left": {
+                        "globalVariable": {"idRef": "dailyTreatments"}
+                      },
+                      "operator": "<",
+                      "right": {
+                        "value": {"number": 500}
+                      }
+                    },
+                    {
+                      "left": {
+                        "globalVariable": {"idRef": "totalTreatments"}
+                      },
+                      "operator": "<",
+                      "right": {
+                        "value": {"number": 20000}
+                      }
+                    }
+                  ],
+                  "operations": [
+                    {
+                      "target": {
+                        "globalVariable": {"idRef": "dailyTreatments"}
+                      },
+                      "operator": "+=",
+                      "value": {"number": 1}
+                    },
+                    {
+                      "target": {
+                        "globalVariable": {"idRef": "totalTreatments"}
+                      },
+                      "operator": "+=",
+                      "value": {"number": 1}
+                    },
+                    {
+                      "target": {
+                        "node": {"property": "infectivityFactor"}
+                      },
+                      "operator": "*=",
+                      "value": {"number": 0.2}
+                    },
+                    {
+                      "target": {
+                        "node": {
+                          "property": "nodeTrait",
+                          "feature": "treatment"
+                        }
+                      },
+                      "operator": "=",
+                      "value": {
+                        "trait": "nodeTrait",
+                        "feature": "treatment",
+                        "enum": "true"
+                      }
+                    },
+                    {
+                      "target": {
+                        "node": {
+                          "property": "nodeTrait",
+                          "feature": "prophylaxTrigger"
+                        }
+                      },
+                      "operator": "=",
+                      "value": {
+                        "trait": "nodeTrait",
+                        "feature": "prophylaxTrigger",
+                        "enum": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "delay": 8,
+                  "conditions": [
+                    {
+                      "left": {
+                        "node": {
+                          "property": "nodeTrait",
+                          "feature": "treatment"
+                        }
+                      },
+                      "operator": "==",
+                      "right": {
+                        "value": {
+                          "trait": "nodeTrait",
+                          "feature": "treatemnt",
+                          "enum": "true"
+                        }
+                      }
+                    }
+                  ],
+                  "operations": [
+                    {
+                      "target": {
+                        "node": {"property": "infectivityFactor"}
+                      },
+                      "operator": "/=",
+                      "value": {"number": 0.2}
+                    },
+                    {
+                      "target": {
+                        "node": {
+                          "property": "nodeTrait",
+                          "feature": "treatment"
+                        }
+                      },
+                      "operator": "=",
+                      "value": {
+                        "trait": "nodeTrait",
+                        "feature": "treatment",
+                        "enum": "false"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Prophylax",
+      "triggers": [
+        {
+          "left": {
+            "count": {
+              "elementType": "node",
+              "left": {
+                "property": "nodeTrait",
+                "feature": "prophylaxTrigger"
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylaxTrigger",
+                  "enum": "true"
+                }
+              }
+            }
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
+          }
+        }
+      ],
+      "filter": {
+        "elementType": "node",
+        "left": {
+          "table": "MontgomeryCounty",
+          "field": "hid"
+        },
+        "operator": "in",
+        "right": {
+          "elementType": "dbField",
+          "table": "montgomery_county_va",
+          "field": "hid",
+          "filter": {
+            "elementType": "node",
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "prophylaxTrigger"
+              }
+            },
+            "operator": "==",
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylaxTrigger",
+                "enum": "true"
+              }
+            }
+          }
+        }
+      },
+      "foreach": [
+        {
+          "conditions": [
+            {
+              "left": {
+                "node": {"property": "healthState"}
+              },
+              "operator": "==",
+              "right": {
+                "value": {"healthState": "S"}
+              }
+            },
+            {
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylax"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylax",
+                  "enum": "false"
+                }
+              }
+            }
+          ],
+          "operations": [
+            {
+              "target": {
+                "node": {"property": "susceptibilityFactor"}
+              },
+              "operator": "*=",
+              "value": {"number": 0.4}
+            },
+            {
+              "target": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylax"
+                }
+              },
+              "operator": "=",
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylax",
+                "enum": "true"
+              }
+            }
+          ]
+        },
+        {
+          "delay": 5,
+          "conditions": [
+            {
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylax"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylax",
+                  "enum": "true"
+                }
+              }
+            }
+          ],
+          "operations": [
+            {
+              "target": {
+                "node": {"property": "susceptibilityFactor"}
+              },
+              "operator": "/=",
+              "value": {"number": 0.4}
+            },
+            {
+              "target": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylax"
+                }
+              },
+              "operator": "=",
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylax",
+                "enum": "false"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

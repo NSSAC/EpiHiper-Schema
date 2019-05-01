@@ -1,0 +1,57 @@
+{
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/traitsSchema.json",
+  "traits": [
+    {
+      "id": "edgeTrait",
+      "label": "Edge Trait",
+      "features": [
+        {
+          "id": "activityType",
+          "label": "Activity Type",
+          "enums": [
+            {
+              "id": "HOME",
+              "label": "Home"
+            },
+            {
+              "id": "SCHOOL",
+              "label": "School"
+            },
+            {
+              "id": "WORK",
+              "label": "Work"
+            },
+            {
+              "id": "SHOPPING",
+              "label": "Shopping"
+            },
+            {
+              "id": "OTHER",
+              "label": "other"
+            }
+          ],
+          "default": "OTHER"
+        },
+        {
+          "id": "indoorOutdoor",
+          "label": "indoor/outdoor",
+          "enums": [
+            {
+              "id": "unknown",
+              "label": "unknown"
+            },
+            {
+              "id": "indoor",
+              "label": "indoor"
+            },
+            {
+              "id": "outdoor",
+              "label": "outdoor"
+            }
+          ],
+          "default": "unknown"
+        }
+      ]
+    }
+  ]
+}
