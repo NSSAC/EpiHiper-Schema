@@ -53,15 +53,6 @@
         "boolean": {"type": "boolean"}
       }
     },
-    "time": {
-      "$id": "#time",
-      "description": "The time property references the current simulation time.",
-      "type": "object",
-      "required": ["time"],
-      "properties": {
-        "time": {"type": "null"}
-      }
-    },
     "traitEnum": {
       "$id": "#traitEnum",
       "description": "An enumeration value of feature of traits (node traits or edge traits).",
@@ -278,26 +269,35 @@
     },
     "observable": {
       "$id": "#observable",
-      "description": "An observable (health state statistics) of the current state of the system.",
+      "description": "An observable which is always accessible within EpiHiper (time and health state statistics) of the current state of the system.",
       "type": "object",
       "required": ["observable"],
       "properties": {
         "observable": {
-          "type": "object",
-          "required": [
-            "type",
-            "healthState"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "absolute",
-                "relative"
-              ]
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "healthState",
+                "type"
+              ],
+              "properties": {
+                "healthState": {"$ref": "#/definitions/uniqueIdRef"},
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "absolute",
+                    "relative"
+                  ]
+                }
+              }
             },
-            "healthState": {"$ref": "#/definitions/uniqueIdRef"}
-          }
+            {
+              "description": "The time property references the current simulation time.",
+              "type": "string",
+              "enum": ["time"]
+            }
+          ]
         }
       }
     },
@@ -526,7 +526,6 @@
               "description": "",
               "oneOf": [
                 {"$ref": "#/definitions/value"},
-                {"$ref": "#/definitions/time"},
                 {"$ref": "#/definitions/observable"},
                 {"$ref": "#/definitions/nodeProperty"},
                 {"$ref": "#/definitions/edgeProperty"},
@@ -539,7 +538,6 @@
               "description": "",
               "oneOf": [
                 {"$ref": "#/definitions/value"},
-                {"$ref": "#/definitions/time"},
                 {"$ref": "#/definitions/observable"},
                 {"$ref": "#/definitions/nodeProperty"},
                 {"$ref": "#/definitions/edgeProperty"},
@@ -1017,7 +1015,6 @@
                   "description": "",
                   "oneOf": [
                     {"$ref": "#/definitions/dbFieldValue"},
-                    {"$ref": "#/definitions/time"},
                     {"$ref": "#/definitions/observable"}
                   ]
                 }
