@@ -4,7 +4,12 @@
 In order to ease debugging of the schema and test cases you should run the following after cloning the repository in the new created directory:
 
 ``` shell
-gitTools/init
+gitTools/localize
+```
+
+In order to revert localization execute:
+``` shell
+gitTools/localize --revert
 ```
 
 

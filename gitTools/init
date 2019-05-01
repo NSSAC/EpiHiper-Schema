@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-git config filter.localize.clean "sed -e 's?'\$(git rev-parse --show-toplevel)'?https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master?g'"
-git config filter.localize.smudge "sed -e 's?https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master?'\$(git rev-parse --show-toplevel)'?g'"
-
-find $(git rev-parse --show-toplevel) -iname "*.json" -delete
-git checkout -- $(git rev-parse --show-toplevel)
-
