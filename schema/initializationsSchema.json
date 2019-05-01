@@ -8,7 +8,7 @@
     "sets": {
       "type": "array",
       "items": [
-        {"$ref": "./typeRegistry.json#/definitions/set"}
+        {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/set"}
       ]
     },
     "initializations": {
@@ -22,10 +22,10 @@
             "type": "object",
             "required": ["filter"],
             "properties": {
-              "filter": {"$ref": "./typeRegistry.json#/definitions/setContent"}
+              "filter": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
             }
           },
-          {"$ref": "./typeRegistry.json#/definitions/complianceOrActions"}
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/complianceOrActions"}
         ]
       }
     }

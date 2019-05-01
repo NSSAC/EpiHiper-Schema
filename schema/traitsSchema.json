@@ -17,8 +17,8 @@
           "features"
         ],
         "properties": {
-          "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
-          "label": {"$ref": "./typeRegistry.json#/definitions/label"},
+          "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+          "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
           "features": {
             "description": "A list of features included in the trait",
             "type": "array",
@@ -31,8 +31,8 @@
                 "default"
               ],
               "properties": {
-                "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
-                "label": {"$ref": "./typeRegistry.json#/definitions/label"},
+                "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+                "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
                 "enums": {
                   "description": "The enumeration values allowed for the feature",
                   "type": "array",
@@ -44,12 +44,12 @@
                       "label"
                     ],
                     "properties": {
-                      "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
-                      "label": {"$ref": "./typeRegistry.json#/definitions/label"}
+                      "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+                      "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"}
                     }
                   }
                 },
-                "default": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"}
+                "default": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"}
               }
             }
           }
