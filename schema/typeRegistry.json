@@ -666,52 +666,69 @@
       "required": ["compliance"],
       "properties": {
         "compliance": {
-          "type": "object",
-          "description": "",
-          "required": [
-            "type",
-            "number",
-            "compliant",
-            "noncompliant"
-          ],
-          "additionalProperties": false,
-          "allOf": [
+          "oneOf": [
             {
-              "oneOf": [
-                {
-                  "$id": "#relativeCompliance",
-                  "description": "",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["relative"]
-                    },
-                    "number": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100
-                    }
-                  }
+              "$id": "#relativeCompliance",
+              "description": "",
+              "type": "object",
+              "required": [
+                "type",
+                "number",
+                "compliant",
+                "noncompliant"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["relative"]
                 },
-                {
-                  "$id": "#absoluteCompliance",
-                  "description": "",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["absolute"]
-                    },
-                    "number": {
-                      "type": "number",
-                      "minimum": 0,
-                      "multipleOf": 1.0
+                "number": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "compliant": {
+                  "oneOf": [
+                    {"$ref": "#/definitions/complianceOrActions"},
+                    {
+                      "type": "object",
+                      "additionalProperties": false
                     }
-                  }
+                  ]
+                },
+                "noncompliant": {
+                  "oneOf": [
+                    {"$ref": "#/definitions/complianceOrActions"},
+                    {
+                      "type": "object",
+                      "additionalProperties": false
+                    }
+                  ]
                 }
-              ]
+              }
             },
             {
+              "$id": "#absoluteCompliance",
+              "description": "",
+              "type": "object",
+              "required": [
+                "type",
+                "number",
+                "compliant",
+                "noncompliant"
+              ],
+              "additionalProperties": false,
               "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["absolute"]
+                },
+                "number": {
+                  "type": "number",
+                  "minimum": 0,
+                  "multipleOf": 1.0
+                },
                 "compliant": {
                   "oneOf": [
                     {"$ref": "#/definitions/complianceOrActions"},
@@ -752,7 +769,7 @@
           }
         },
         {
-          "description": "A list of actions to be executed once.",
+          "description": "A list of actions to be executed for each element in the filter.",
           "type": "object",
           "required": ["foreach"],
           "properties": {
