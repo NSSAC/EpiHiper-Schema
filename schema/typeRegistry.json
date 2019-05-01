@@ -673,10 +673,9 @@
               "type": "object",
               "required": [
                 "type",
-                "number",
-                "compliant",
-                "noncompliant"
+                "number"
               ],
+              "minProperties": 3,
               "additionalProperties": false,
               "properties": {
                 "type": {
@@ -688,24 +687,8 @@
                   "minimum": 0,
                   "maximum": 100
                 },
-                "compliant": {
-                  "oneOf": [
-                    {"$ref": "#/definitions/complianceOrActions"},
-                    {
-                      "type": "object",
-                      "additionalProperties": false
-                    }
-                  ]
-                },
-                "noncompliant": {
-                  "oneOf": [
-                    {"$ref": "#/definitions/complianceOrActions"},
-                    {
-                      "type": "object",
-                      "additionalProperties": false
-                    }
-                  ]
-                }
+                "compliant": {"$ref": "#/definitions/complianceOrActions"},
+                "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
               }
             },
             {
@@ -714,10 +697,9 @@
               "type": "object",
               "required": [
                 "type",
-                "number",
-                "compliant",
-                "noncompliant"
+                "number"
               ],
+              "minProperties": 3,
               "additionalProperties": false,
               "properties": {
                 "type": {
@@ -729,24 +711,8 @@
                   "minimum": 0,
                   "multipleOf": 1.0
                 },
-                "compliant": {
-                  "oneOf": [
-                    {"$ref": "#/definitions/complianceOrActions"},
-                    {
-                      "type": "object",
-                      "additionalProperties": false
-                    }
-                  ]
-                },
-                "noncompliant": {
-                  "oneOf": [
-                    {"$ref": "#/definitions/complianceOrActions"},
-                    {
-                      "type": "object",
-                      "additionalProperties": false
-                    }
-                  ]
-                }
+                "compliant": {"$ref": "#/definitions/complianceOrActions"},
+                "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
               }
             }
           ]
