@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Traits",
+  "description": "A schema for a list of traits containing enumerable features.",
+  "type": "object",
+  "required": ["traits"],
+  "properties": {
+    "traits": {
+      "description": "The traits array.",
+      "type": "array",
+      "items": {
+        "description": "A trait",
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "features"
+        ],
+        "properties": {
+          "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
+          "label": {"$ref": "./typeRegistry.json#/definitions/label"},
+          "features": {
+            "description": "A list of features included in the trait",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "label",
+                "enums",
+                "default"
+              ],
+              "properties": {
+                "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
+                "label": {"$ref": "./typeRegistry.json#/definitions/label"},
+                "enums": {
+                  "description": "The enumeration values allowed for the feature",
+                  "type": "array",
+                  "items": {
+                    "description": "An enumeration value",
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "label"
+                    ],
+                    "properties": {
+                      "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
+                      "label": {"$ref": "./typeRegistry.json#/definitions/label"}
+                    }
+                  }
+                },
+                "default": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Initializations",
+  "description": "A schema describing the initializations at the start of  EpiHiper",
+  "type": "object",
+  "required": ["initializations"],
+  "properties": {
+    "sets": {
+      "type": "array",
+      "items": [
+        {"$ref": "./typeRegistry.json#/definitions/set"}
+      ]
+    },
+    "initializations": {
+      "description": "The propertyName description",
+      "type": "array",
+      "items": {
+        "description": "",
+        "type": "object",
+        "allOf": [
+          {
+            "type": "object",
+            "required": ["filter"],
+            "properties": {
+              "filter": {"$ref": "./typeRegistry.json#/definitions/setContent"}
+            }
+          },
+          {"$ref": "./typeRegistry.json#/definitions/complianceOrActions"}
+        ]
+      }
+    }
+  }
+}
