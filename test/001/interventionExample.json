@@ -72,7 +72,7 @@
         }
       ],
       "compliance": {
-        "type": "relative",
+        "type": "individual",
         "number": 90,
         "compliant": {
           "foreach": [

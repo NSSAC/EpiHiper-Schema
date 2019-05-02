@@ -676,7 +676,10 @@
           "properties": {
             "type": {
               "type": "string",
-              "enum": ["relative"]
+              "enum": [
+                "individual",
+                "group"
+              ]
             },
             "number": {
               "type": "number",

@@ -12,7 +12,7 @@
         "right": {"value": "0-18"}
       },
       "compliance": {
-        "type": "relative",
+        "type": "individual",
         "number": 70,
         "compliant": {
           "foreach": [
@@ -49,7 +49,7 @@
         "right": {"value": "19-64"}
       },
       "compliance": {
-        "type": "relative",
+        "type": "individual",
         "number": 30,
         "compliant": {
           "foreach": [
@@ -86,7 +86,7 @@
         "right": {"value": "65+"}
       },
       "compliance": {
-        "type": "relative",
+        "type": "individual",
         "number": 50,
         "compliant": {
           "foreach": [

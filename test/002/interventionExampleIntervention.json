@@ -324,7 +324,7 @@
         }
       ],
       "compliance": {
-        "type": "relative",
+        "type": "individual",
         "number": 30,
         "compliant": {
           "foreach": [
@@ -450,7 +450,7 @@
         },
         "noncompliant": {
           "compliance": {
-            "type": "relative",
+            "type": "individual",
             "number": 20,
             "compliant": {
               "foreach": [
