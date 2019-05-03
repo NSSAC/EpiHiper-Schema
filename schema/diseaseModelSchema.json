@@ -14,20 +14,27 @@
       "type": "array",
       "description": "An array of states",
       "items": {
-        "type": "object",
-        "description": "A disease state",
-        "required": [
-          "id",
-          "label",
-          "susceptibility",
-          "infectivity"
-        ],
-        "properties": {
-          "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-          "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
-          "susceptibility": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
-          "infectivity": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"}
-        }
+        "allOf": [
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {
+            "type": "object",
+            "description": "A disease state",
+            "required": [
+              "id",
+              "susceptibility",
+              "infectivity"
+            ],
+            "properties": {
+              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+              "susceptibility": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
+              "infectivity": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"}
+            },
+            "patternProperties": {
+              "^ann:": {}
+            },
+            "additionalProperties": false
+          }
+        ]
       }
     },
     "initialState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
@@ -35,52 +42,66 @@
       "type": "array",
       "description": "An array listing possible infections due to contact with other nodes.",
       "items": {
-        "type": "object",
-        "description": "An infection",
-        "required": [
-          "id",
-          "label",
-          "entryState",
-          "exitState",
-          "contactState",
-          "transmissibility"
-        ],
-        "properties": {
-          "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-          "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
-          "entryState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-          "exitState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-          "contactState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-          "transmissibility": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
-          "susceptibilityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"},
-          "infectivityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"}
-        }
+        "allOf": [
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {
+            "type": "object",
+            "description": "An infection",
+            "required": [
+              "id",
+              "entryState",
+              "exitState",
+              "contactState",
+              "transmissibility"
+            ],
+            "properties": {
+              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+              "entryState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
+              "exitState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
+              "contactState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
+              "transmissibility": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
+              "susceptibilityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"},
+              "infectivityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"}
+            },
+            "patternProperties": {
+              "^ann:": {}
+            },
+            "additionalProperties": false
+          }
+        ]
       }
     },
     "transitions": {
       "type": "array",
       "description": "The transitions specifying the disease progression.",
       "items": {
-        "type": "object",
-        "description": "",
-        "required": [
-          "id",
-          "label",
-          "entryState",
-          "exitState",
-          "probability",
-          "dwellTime"
-        ],
-        "properties": {
-          "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-          "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
-          "entryState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-          "exitState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-          "probability": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
-          "dwellTime": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/distribution"},
-          "susceptibilityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"},
-          "infectivityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"}
-        }
+        "allOf": [
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {
+            "type": "object",
+            "description": "",
+            "required": [
+              "id",
+              "entryState",
+              "exitState",
+              "probability",
+              "dwellTime"
+            ],
+            "properties": {
+              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+              "entryState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
+              "exitState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
+              "probability": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
+              "dwellTime": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/distribution"},
+              "susceptibilityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"},
+              "infectivityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"}
+            },
+            "patternProperties": {
+              "^ann:": {}
+            },
+            "additionalProperties": false
+          }
+        ]
       }
     }
   }

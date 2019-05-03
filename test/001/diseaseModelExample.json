@@ -3,37 +3,37 @@
   "states": [
     {
       "id": "susceptible",
-      "label": "Susceptible",
+      "ann:label": "Susceptible",
       "susceptibility": 1.0,
       "infectivity": 0
     },
     {
       "id": "exposed",
-      "label": "Exposed",
+      "ann:label": "Exposed",
       "susceptibility": 0,
       "infectivity": 0
     },
     {
       "id": "infectious",
-      "label": "Infectious",
+      "ann:label": "Infectious",
       "susceptibility": 0,
       "infectivity": 0.1
     },
     {
       "id": "hospitalized",
-      "label": "Hospitalized",
+      "ann:label": "Hospitalized",
       "susceptibility": 0,
       "infectivity": 0.2
     },
     {
       "id": "funeral",
-      "label": "Funeral",
+      "ann:label": "Funeral",
       "susceptibility": 0,
       "infectivity": 0.2
     },
     {
       "id": "removed",
-      "label": "Removed",
+      "ann:label": "Removed",
       "susceptibility": 0,
       "infectivity": 0
     }
@@ -42,7 +42,7 @@
   "infections": [
     {
       "id": "contactWithInfectious",
-      "label": "Susceptible -> Exposed {Infectious}",
+      "ann:label": "Susceptible -> Exposed {Infectious}",
       "entryState": "susceptible",
       "exitState": "exposed",
       "contactState": "infectious",
@@ -50,7 +50,7 @@
     },
     {
       "id": "contactWithHospitalized",
-      "label": "Susceptible -> Exposed {Hospitalized}",
+      "ann:label": "Susceptible -> Exposed {Hospitalized}",
       "entryState": "susceptible",
       "exitState": "exposed",
       "contactState": "hospitalized",
@@ -58,7 +58,7 @@
     },
     {
       "id": "contactWithFuneral",
-      "label": "Susceptible -> Exposed {Funeral}",
+      "ann:label": "Susceptible -> Exposed {Funeral}",
       "entryState": "susceptible",
       "exitState": "exposed",
       "contactState": "funeral",
@@ -68,7 +68,7 @@
   "transitions": [
     {
       "id": "exposed2infectious",
-      "label": "Exposed->Infectious",
+      "ann:label": "Exposed->Infectious",
       "entryState": "exposed",
       "exitState": "infectious",
       "probability": 1,
@@ -76,7 +76,7 @@
     },
     {
       "id": "infectious2hospitalized",
-      "label": "Infectious->Hospitalized",
+      "ann:label": "Infectious->Hospitalized",
       "entryState": "infectious",
       "exitState": "hospitalized",
       "probability": 0.1111,
@@ -84,7 +84,7 @@
     },
     {
       "id": "infectious2funeral",
-      "label": "Infectious->Funeral",
+      "ann:label": "Infectious->Funeral",
       "entryState": "infectious",
       "exitState": "funeral",
       "probability": 0.6667,
@@ -92,7 +92,7 @@
     },
     {
       "id": "infectious2removed",
-      "label": "Infectious->Removed",
+      "ann:label": "Infectious->Removed",
       "entryState": "infectious",
       "exitState": "removed",
       "probability": 0.2222,
@@ -100,7 +100,7 @@
     },
     {
       "id": "hospitalized2funeral",
-      "label": "Hospitalized->Funeral",
+      "ann:label": "Hospitalized->Funeral",
       "entryState": "hospitalized",
       "exitState": "funeral",
       "probability": 0.1111,
@@ -108,7 +108,7 @@
     },
     {
       "id": "hospitalized2removed",
-      "label": "Hospitalized->Removed",
+      "ann:label": "Hospitalized->Removed",
       "entryState": "hospitalized",
       "exitState": "removed",
       "probability": 0.8889,
@@ -116,7 +116,7 @@
     },
     {
       "id": "funeral2removed",
-      "label": "Funeral->Removed",
+      "ann:slabel": "Funeral->Removed",
       "entryState": "funeral",
       "exitState": "removed",
       "probability": 1,

@@ -77,6 +77,17 @@
         }
       }
     },
+    "annotation": {
+      "type": "object",
+      "properties": {
+        "ann:id": {"$ref": "#/definitions/uniqueIdRef"},
+        "ann:label": {"$ref": "#/definitions/label"},
+        "ann:description": {
+          "description": "A detailed description of the object using markdown.",
+          "type": "string"
+        }
+      }
+    },
     "numericOperation": {
       "$id": "#numericOperation",
       "description": "A numeric operation apllicable to edge waits, susceptibilityFactors, and  infectivityFactors.",
@@ -98,85 +109,90 @@
       }
     },
     "distribution": {
-      "type": "object",
-      "description": "Specify distributions for sampling values.",
-      "$comment": "Note: The result may require rounding if necessary.",
-      "oneOf": [
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
         {
-          "required": ["fixed"]
-        },
-        {
-          "required": ["discrete"]
-        },
-        {
-          "required": ["uniform"]
-        },
-        {
-          "required": ["normal"]
-        }
-      ],
-      "properties": {
-        "fixed": {"$ref": "#/definitions/nonNegativeNumber"}
-      },
-      "discrete": {
-        "description": "A number is sampled from the array with each number having the same propability.",
-        "type": "array",
-        "items": {
           "type": "object",
-          "required": [
-            "probability",
-            "value"
+          "description": "Specify distributions for sampling values.",
+          "$comment": "Note: The result may require rounding if necessary.",
+          "oneOf": [
+            {
+              "required": ["fixed"]
+            },
+            {
+              "required": ["discrete"]
+            },
+            {
+              "required": ["uniform"]
+            },
+            {
+              "required": ["normal"]
+            }
           ],
           "properties": {
-            "probability": {
-              "allOf": [
-                {"$ref": "#/definitions/nonNegativeNumber"},
-                {"maximum": 1}
-              ]
-            },
-            "value": {"$ref": "#/definitions/nonNegativeNumber"}
-          }
-        }
-      },
-      "uniform": {
-        "oneOf": [
-          {
-            "type": "object",
-            "description": "A number is sampled uniformly from the given values",
-            "required": ["values"],
-            "properties": {
-              "values": {
-                "type": "array",
-                "items": {"$ref": "#/definitions/nonNegativeNumber"}
+            "fixed": {"$ref": "#/definitions/nonNegativeNumber"}
+          },
+          "discrete": {
+            "description": "A number is sampled from the array with each number having the same propability.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "probability",
+                "value"
+              ],
+              "properties": {
+                "probability": {
+                  "allOf": [
+                    {"$ref": "#/definitions/nonNegativeNumber"},
+                    {"maximum": 1}
+                  ]
+                },
+                "value": {"$ref": "#/definitions/nonNegativeNumber"}
               }
             }
           },
-          {
+          "uniform": {
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "A number is sampled uniformly from the given values",
+                "required": ["values"],
+                "properties": {
+                  "values": {
+                    "type": "array",
+                    "items": {"$ref": "#/definitions/nonNegativeNumber"}
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "description": "A number is sampled uniformly in the given intervall [min, max]",
+                "required": [
+                  "min",
+                  "max"
+                ],
+                "properties": {
+                  "min": {"$ref": "#/definitions/nonNegativeNumber"},
+                  "max": {"$ref": "#/definitions/nonNegativeNumber"}
+                }
+              }
+            ]
+          },
+          "normal": {
             "type": "object",
-            "description": "A number is sampled uniformly in the given intervall [min, max]",
+            "description": "A number is sampled from a normal or Gaussian distribution.",
             "required": [
-              "min",
-              "max"
+              "mean",
+              "standardDeviation"
             ],
             "properties": {
-              "min": {"$ref": "#/definitions/nonNegativeNumber"},
-              "max": {"$ref": "#/definitions/nonNegativeNumber"}
+              "mean": {"$ref": "#/definitions/nonNegativeNumber"},
+              "standardDeviation": {"$ref": "#/definitions/nonNegativeNumber"}
             }
           }
-        ]
-      },
-      "normal": {
-        "type": "object",
-        "description": "A number is sampled from a normal or Gaussian distribution.",
-        "required": [
-          "mean",
-          "standardDeviation"
-        ],
-        "properties": {
-          "mean": {"$ref": "#/definitions/nonNegativeNumber"},
-          "standardDeviation": {"$ref": "#/definitions/nonNegativeNumber"}
         }
-      }
+      ]
     },
     "healthState": {
       "$id": "#healthState",
@@ -371,107 +387,93 @@
     "nodeProperty": {
       "$id": "#nodeProperty",
       "description": "A property of a node.",
-      "type": "object",
-      "required": ["node"],
-      "properties": {
-        "node": {
-          "oneOf": [
-            {
-              "description": "",
-              "type": "object",
-              "required": ["property"],
-              "properties": {
-                "property": {
-                  "type": "string",
-                  "enum": [
-                    "id",
-                    "susceptibilityFactor",
-                    "infectivityFactor",
-                    "healthState"
-                  ]
-                }
-              }
-            },
-            {
-              "description": "",
-              "type": "object",
-              "required": [
-                "property",
-                "feature"
-              ],
-              "properties": {
-                "property": {
-                  "type": "string",
-                  "enum": ["nodeTrait"]
-                },
-                "feature": {"$ref": "#/definitions/uniqueIdRef"}
-              }
+      "oneOf": [
+        {
+          "description": "The node properties: id, susceptibilityFactor, infectivityFactor, and healthState",
+          "type": "object",
+          "required": ["property"],
+          "properties": {
+            "property": {
+              "type": "string",
+              "enum": [
+                "id",
+                "susceptibilityFactor",
+                "infectivityFactor",
+                "healthState"
+              ]
             }
-          ]
+          }
+        },
+        {
+          "description": "A feature of the node property nodeTrait",
+          "type": "object",
+          "required": [
+            "property",
+            "feature"
+          ],
+          "properties": {
+            "property": {
+              "type": "string",
+              "enum": ["nodeTrait"]
+            },
+            "feature": {"$ref": "#/definitions/uniqueIdRef"}
+          }
         }
-      }
+      ]
     },
     "edgeProperty": {
       "$id": "#edgeProperty",
       "description": "A property of an edge.",
-      "type": "object",
-      "required": ["edge"],
-      "properties": {
-        "edge": {
-          "oneOf": [
-            {
-              "description": "",
-              "type": "object",
-              "required": ["property"],
-              "properties": {
-                "property": {
-                  "type": "string",
-                  "enum": [
-                    "weight",
-                    "active"
-                  ]
-                }
-              }
-            },
-            {
-              "description": "",
-              "type": "object",
-              "required": [
-                "property",
-                "feature"
-              ],
-              "properties": {
-                "property": {
-                  "type": "string",
-                  "enum": [
-                    "targetTrait",
-                    "sourceTrait"
-                  ]
-                },
-                "feature": {"$ref": "#/definitions/uniqueIdRef"}
-              }
-            },
-            {
-              "description": "",
-              "type": "object",
-              "required": [
-                "property",
-                "id"
-              ],
-              "properties": {
-                "property": {
-                  "type": "string",
-                  "enum": [
-                    "targetNode",
-                    "sourceNode"
-                  ]
-                },
-                "id": {"$ref": "#/definitions/nodeProperty"}
-              }
+      "oneOf": [
+        {
+          "description": "The edge properties: weight and active",
+          "type": "object",
+          "required": ["property"],
+          "properties": {
+            "property": {
+              "type": "string",
+              "enum": [
+                "weight",
+                "active"
+              ]
             }
-          ]
+          }
+        },
+        {
+          "description": "A feature of the edge properties: targetTrait and sourceTrait",
+          "type": "object",
+          "required": [
+            "property",
+            "feature"
+          ],
+          "properties": {
+            "property": {
+              "type": "string",
+              "enum": [
+                "targetTrait",
+                "sourceTrait"
+              ]
+            },
+            "feature": {"$ref": "#/definitions/uniqueIdRef"}
+          }
+        },
+        {
+          "description": "A target node property",
+          "type": "object",
+          "required": ["targetNode"],
+          "properties": {
+            "targetNode": {"$ref": "#/definitions/nodeProperty"}
+          }
+        },
+        {
+          "description": "A source node property",
+          "type": "object",
+          "required": ["sourceNode"],
+          "properties": {
+            "targetNode": {"$ref": "#/definitions/nodeProperty"}
+          }
         }
-      }
+      ]
     },
     "globalVariableReference": {
       "$id": "#globalVariableReference",
@@ -527,8 +529,20 @@
               "oneOf": [
                 {"$ref": "#/definitions/value"},
                 {"$ref": "#/definitions/observable"},
-                {"$ref": "#/definitions/nodeProperty"},
-                {"$ref": "#/definitions/edgeProperty"},
+                {
+                  "type": "object",
+                  "required": ["node"],
+                  "properties": {
+                    "node": {"$ref": "#/definitions/nodeProperty"}
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": ["edge"],
+                  "properties": {
+                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                  }
+                },
                 {"$ref": "#/definitions/globalVariableReference"},
                 {"$ref": "#/definitions/count"}
               ]
@@ -539,8 +553,20 @@
               "oneOf": [
                 {"$ref": "#/definitions/value"},
                 {"$ref": "#/definitions/observable"},
-                {"$ref": "#/definitions/nodeProperty"},
-                {"$ref": "#/definitions/edgeProperty"},
+                {
+                  "type": "object",
+                  "required": ["node"],
+                  "properties": {
+                    "node": {"$ref": "#/definitions/nodeProperty"}
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": ["edge"],
+                  "properties": {
+                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                  }
+                },
                 {"$ref": "#/definitions/globalVariableReference"},
                 {"$ref": "#/definitions/count"}
               ]
@@ -567,8 +593,20 @@
               "type": "object",
               "description": "",
               "oneOf": [
-                {"$ref": "#/definitions/nodeProperty"},
-                {"$ref": "#/definitions/edgeProperty"}
+                {
+                  "type": "object",
+                  "required": ["node"],
+                  "properties": {
+                    "node": {"$ref": "#/definitions/nodeProperty"}
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": ["edge"],
+                  "properties": {
+                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                  }
+                }
               ]
             },
             "right": {"$ref": "#/definitions/valueList"}
@@ -579,71 +617,89 @@
     "action": {
       "$id": "#action",
       "description": "An action to be executed.",
-      "type": "object",
-      "required": ["operations"],
-      "properties": {
-        "priority": {"$ref": "#/definitions/nonNegativeNumber"},
-        "delay": {"$ref": "#/definitions/nonNegativeNumber"},
-        "conditions": {
-          "description": "",
-          "type": "array",
-          "items": {"$ref": "#/definitions/condition"}
-        },
-        "checkConditionInterval": {
-          "description": "",
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
           "type": "object",
-          "required": [
-            "min",
-            "max"
-          ],
+          "required": ["operations"],
           "properties": {
-            "min": {"$ref": "#/definitions/nonNegativeNumber"},
-            "max": {"$ref": "#/definitions/nonNegativeNumber"}
-          }
-        },
-        "operations": {
-          "description": "",
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "description": "",
-            "allOf": [
-              {
+            "priority": {"$ref": "#/definitions/nonNegativeNumber"},
+            "delay": {"$ref": "#/definitions/nonNegativeNumber"},
+            "conditions": {
+              "description": "",
+              "type": "array",
+              "items": {"$ref": "#/definitions/condition"}
+            },
+            "checkConditionInterval": {
+              "description": "",
+              "type": "object",
+              "required": [
+                "min",
+                "max"
+              ],
+              "properties": {
+                "min": {"$ref": "#/definitions/nonNegativeNumber"},
+                "max": {"$ref": "#/definitions/nonNegativeNumber"}
+              }
+            },
+            "operations": {
+              "description": "",
+              "type": "array",
+              "minItems": 1,
+              "items": {
                 "description": "",
-                "type": "object",
-                "required": ["target"],
-                "properties": {
-                  "target": {
-                    "oneOf": [
-                      {"$ref": "#/definitions/nodeProperty"},
-                      {"$ref": "#/definitions/edgeProperty"},
-                      {"$ref": "#/definitions/globalVariableReference"}
-                    ]
-                  }
-                }
-              },
-              {
-                "description": "",
-                "type": "object",
-                "required": ["operator"],
-                "properties": {
-                  "operator": {
-                    "type": "string",
-                    "enum": [
-                      "=",
-                      "*=",
-                      "/=",
-                      "+=",
-                      "-="
-                    ]
-                  }
-                }
-              },
-              {"$ref": "#/definitions/value"}
-            ]
+                "allOf": [
+                  {"$ref": "#/definitions/annotation"},
+                  {
+                    "description": "",
+                    "type": "object",
+                    "required": ["target"],
+                    "properties": {
+                      "target": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "required": ["node"],
+                            "properties": {
+                              "node": {"$ref": "#/definitions/nodeProperty"}
+                            }
+                          },
+                          {
+                            "type": "object",
+                            "required": ["edge"],
+                            "properties": {
+                              "edge": {"$ref": "#/definitions/edgeProperty"}
+                            }
+                          },
+                          {"$ref": "#/definitions/globalVariableReference"}
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "description": "",
+                    "type": "object",
+                    "required": ["operator"],
+                    "properties": {
+                      "operator": {
+                        "type": "string",
+                        "enum": [
+                          "=",
+                          "*=",
+                          "/=",
+                          "+=",
+                          "-="
+                        ]
+                      }
+                    }
+                  },
+                  {"$ref": "#/definitions/value"}
+                ]
+              }
+            }
           }
         }
-      }
+      ]
     },
     "actions": {
       "$id": "#actions",
@@ -662,57 +718,62 @@
     "compliance": {
       "$id": "#compliance",
       "description": "A compliance with actions for compliant and non compliant individuals.",
-      "oneOf": [
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
         {
-          "$id": "#relativeCompliance",
-          "description": "",
-          "type": "object",
-          "required": [
-            "type",
-            "number"
-          ],
-          "minProperties": 3,
-          "additionalProperties": false,
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "individual",
-                "group"
-              ]
+          "oneOf": [
+            {
+              "$id": "#relativeCompliance",
+              "description": "",
+              "type": "object",
+              "required": [
+                "type",
+                "number"
+              ],
+              "minProperties": 3,
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "individual",
+                    "group"
+                  ]
+                },
+                "number": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "compliant": {"$ref": "#/definitions/complianceOrActions"},
+                "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
+              }
             },
-            "number": {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 100
-            },
-            "compliant": {"$ref": "#/definitions/complianceOrActions"},
-            "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
-          }
-        },
-        {
-          "$id": "#absoluteCompliance",
-          "description": "",
-          "type": "object",
-          "required": [
-            "type",
-            "number"
-          ],
-          "minProperties": 3,
-          "additionalProperties": false,
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["absolute"]
-            },
-            "number": {
-              "type": "number",
-              "minimum": 0,
-              "multipleOf": 1.0
-            },
-            "compliant": {"$ref": "#/definitions/complianceOrActions"},
-            "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
-          }
+            {
+              "$id": "#absoluteCompliance",
+              "description": "",
+              "type": "object",
+              "required": [
+                "type",
+                "number"
+              ],
+              "minProperties": 3,
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["absolute"]
+                },
+                "number": {
+                  "type": "number",
+                  "minimum": 0,
+                  "multipleOf": 1.0
+                },
+                "compliant": {"$ref": "#/definitions/complianceOrActions"},
+                "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
+              }
+            }
+          ]
         }
       ]
     },
@@ -772,7 +833,13 @@
                     ">"
                   ]
                 },
-                "left": {"$ref": "#/definitions/edgeProperty"},
+                "left": {
+                  "type": "object",
+                  "required": ["edge"],
+                  "properties": {
+                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                  }
+                },
                 "right": {"$ref": "#/definitions/value"}
               }
             },
@@ -792,8 +859,10 @@
                 },
                 "left": {
                   "type": "object",
-                  "description": "",
-                  "$ref": "#/definitions/edgeProperty"
+                  "required": ["edge"],
+                  "properties": {
+                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                  }
                 },
                 "right": {
                   "type": "object",
@@ -854,7 +923,13 @@
                 ">"
               ]
             },
-            "left": {"$ref": "#/definitions/nodeProperty"},
+            "left": {
+              "type": "object",
+              "required": ["node"],
+              "properties": {
+                "node": {"$ref": "#/definitions/nodeProperty"}
+              }
+            },
             "right": {"$ref": "#/definitions/value"}
           }
         },
@@ -879,7 +954,13 @@
                 "not in"
               ]
             },
-            "left": {"$ref": "#/definitions/nodeProperty"},
+            "left": {
+              "type": "object",
+              "required": ["node"],
+              "properties": {
+                "node": {"$ref": "#/definitions/nodeProperty"}
+              }
+            },
             "right": {"$ref": "#/definitions/valueList"}
           }
         },
@@ -903,8 +984,10 @@
             },
             "left": {
               "type": "object",
-              "description": "",
-              "$ref": "#/definitions/nodeProperty"
+              "required": ["node"],
+              "properties": {
+                "node": {"$ref": "#/definitions/nodeProperty"}
+              }
             },
             "right": {
               "type": "object",
@@ -1068,17 +1151,24 @@
     "set": {
       "$id": "#set",
       "description": "A set of elements.",
-      "type": "object",
-      "required": [
-        "id",
-        "label",
-        "content"
-      ],
-      "properties": {
-        "id": {"$ref": "#/definitions/uniqueId"},
-        "label": {"$ref": "#/definitions/label"},
-        "content": {"$ref": "#/definitions/setContent"}
-      }
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "content"
+          ],
+          "properties": {
+            "id": {"$ref": "#/definitions/uniqueId"},
+            "content": {"$ref": "#/definitions/setContent"}
+          },
+          "patternProperties": {
+            "^ann:": {}
+          },
+          "additionalProperties": false
+        }
+      ]
     },
     "setOperation": {
       "$id": "#setOperation",

@@ -3,7 +3,7 @@
   "sets": [
     {
       "id": "enteredIsymp",
-      "label": "Nodes which entered state Isymp.",
+      "ann:label": "Nodes which entered state Isymp.",
       "content": {
         "operation": "intersection",
         "sets": [
@@ -39,7 +39,7 @@
     },
     {
       "id": "schoolChildrenEnteredIsymp",
-      "label": "Nodes which entered state Isymp and are going to school.",
+      "ann:label": "Nodes which entered state Isymp and are going to school.",
       "content": {
         "operation": "intersection",
         "sets": [
@@ -74,23 +74,23 @@
   "globalVariables": [
     {
       "id": "totalTreatments",
-      "label": "Total Treatments",
+      "ann:label": "Total Treatments",
       "initialValue": 0
     },
     {
       "id": "dailyTreatments",
-      "label": "Daily Treatments",
+      "ann:label": "Daily Treatments",
       "initialValue": 0,
       "reset": 1
     },
     {
       "id": "schoolChildrenEnteredIsympCounter",
-      "label": "School age children which are or have been infectious",
+      "ann:label": "School age children which are or have been infectious",
       "initialValue": 0
     },
     {
       "id": "schoolClosed",
-      "label": "A value indication whether the school has been closed",
+      "ann:label": "A value indication whether the school has been closed",
       "initialValue": 0
     }
   ],

@@ -15,18 +15,23 @@
       "description": "The propertyName description",
       "type": "array",
       "items": {
-        "type": "object",
-        "required": [
-          "id",
-          "label"
-        ],
-        "properties": {
-          "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-          "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
-          "intialValue": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeInteger"},
-          "reset": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeInteger"},
-          "filter": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
-        }
+        "allOf": [
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+              "initialValue": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeInteger"},
+              "reset": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeInteger"},
+              "filter": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
+            },
+            "patternProperties": {
+              "^ann:": {}
+            },
+            "additionalProperties": false
+          }
+        ]
       }
     },
     "interventions": {
@@ -36,6 +41,7 @@
         "description": "",
         "type": "object",
         "allOf": [
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
           {
             "type": "object",
             "required": ["triggers"],
@@ -52,7 +58,12 @@
             "type": "object",
             "required": ["filter"],
             "properties": {
-              "filter": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
+              "filter": {
+                "allOf": [
+                  {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+                  {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
+                ]
+              }
             }
           },
           {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/complianceOrActions"}

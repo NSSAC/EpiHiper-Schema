@@ -3,31 +3,31 @@
   "states": [
     {
       "id": "S",
-      "label": "S",
+      "ann:label": "S",
       "infectivity": 0,
       "susceptibility": 1
     },
     {
       "id": "E",
-      "label": "E",
+      "ann:label": "E",
       "infectivity": 0,
       "susceptibility": 0
     },
     {
       "id": "Isymp",
-      "label": "Isymp",
+      "ann:label": "Isymp",
       "infectivity": 1,
       "susceptibility": 0
     },
     {
       "id": "Iasymp",
-      "label": "Iasymp",
+      "ann:label": "Iasymp",
       "infectivity": 0.4,
       "susceptibility": 0
     },
     {
       "id": "R",
-      "label": "R",
+      "ann:label": "R",
       "infectivity": 0,
       "susceptibility": 0
     }
@@ -36,7 +36,7 @@
   "infections": [
     {
       "id": "invection_Isymp",
-      "label": "Invection (symptomatic)",
+      "ann:label": "Invection (symptomatic)",
       "entryState": "S",
       "exitState": "E",
       "contactState": "Isymp",
@@ -44,7 +44,7 @@
     },
     {
       "id": "invection_Iasymp",
-      "label": "Invection (asymptomatic)",
+      "ann:label": "Invection (asymptomatic)",
       "entryState": "S",
       "exitState": "E",
       "contactState": "Isymp",
@@ -54,7 +54,7 @@
   "transitions": [
     {
       "id": "E_to_Isymp",
-      "label": "Exposed to Symptomatic",
+      "ann:label": "Exposed to Symptomatic",
       "entryState": "E",
       "exitState": "Isymp",
       "probability": 0.67,
@@ -81,7 +81,7 @@
     },
     {
       "id": "E_to_Iasymp",
-      "label": "Exposed to Asymptomatic",
+      "ann:label": "Exposed to Asymptomatic",
       "entryState": "E",
       "exitState": "Iasymp",
       "probability": 0.33,
@@ -108,7 +108,7 @@
     },
     {
       "id": "Isymp_to_Recovered",
-      "label": "Isymp to Recovered",
+      "ann:label": "Isymp to Recovered",
       "entryState": "Isymp",
       "exitState": "R",
       "probability": 1,
@@ -135,7 +135,7 @@
     },
     {
       "id": "Iasymp_to_Recovered",
-      "label": "Asymptomatic to Recovered",
+      "ann:label": "Asymptomatic to Recovered",
       "entryState": "Iasymp",
       "exitState": "R",
       "probability": 1,

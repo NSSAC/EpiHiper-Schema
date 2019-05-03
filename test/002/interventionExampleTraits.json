@@ -3,31 +3,31 @@
   "traits": [
     {
       "id": "edgeTrait",
-      "label": "Edge Trait",
+      "ann:label": "Edge Trait",
       "features": [
         {
           "id": "activityType",
-          "label": "Activity Type",
+          "ann:label": "Activity Type",
           "enums": [
             {
               "id": "HOME",
-              "label": "Home"
+              "ann:label": "Home"
             },
             {
               "id": "SCHOOL",
-              "label": "School"
+              "ann:label": "School"
             },
             {
               "id": "WORK",
-              "label": "Work"
+              "ann:label": "Work"
             },
             {
               "id": "SHOPPING",
-              "label": "Shopping"
+              "ann:label": "Shopping"
             },
             {
               "id": "OTHER",
-              "label": "other"
+              "ann:label": "other"
             }
           ],
           "default": "OTHER"
@@ -36,64 +36,64 @@
     },
     {
       "id": "nodeTrait",
-      "label": "Node Trait",
+      "ann:label": "Node Trait",
       "features": [
         {
           "id": "enteredIsymp",
-          "label": "Entered State Isym",
+          "ann:label": "Entered State Isym",
           "enums": [
             {
               "id": "true",
-              "label": "true"
+              "ann:label": "true"
             },
             {
               "id": "false",
-              "label": "false"
+              "ann:label": "false"
             }
           ],
           "default": "false"
         },
         {
           "id": "treatment",
-          "label": "Treatment",
+          "ann:label": "Treatment",
           "enums": [
             {
               "id": "true",
-              "label": "true"
+              "ann:label": "true"
             },
             {
               "id": "false",
-              "label": "false"
+              "ann:label": "false"
             }
           ],
           "default": "false"
         },
         {
           "id": "prophylaxTrigger",
-          "label": "Prophylax Trigger",
+          "ann:label": "Prophylax Trigger",
           "enums": [
             {
               "id": "true",
-              "label": "true"
+              "ann:label": "true"
             },
             {
               "id": "false",
-              "label": "false"
+              "ann:label": "false"
             }
           ],
           "default": "false"
         },
         {
           "id": "prophylax",
-          "label": "Prophylax",
+          "ann:label": "Prophylax",
           "enums": [
             {
               "id": "true",
-              "label": "true"
+              "ann:label": "true"
             },
             {
               "id": "false",
-              "label": "false"
+              "ann:label": "false"
             }
           ],
           "default": "false"

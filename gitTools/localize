@@ -5,12 +5,14 @@ case $1 in
     echo revert localization
     git config --unset filter.localize.clean
     git config --unset filter.localize.smudge
+    git config --unset diff.localize
     ;;
   
   *)
     echo initialize localization
-    git config filter.localize.clean "sed -e 's?'\$(git rev-parse --show-toplevel)'?https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master?g'"
-    git config filter.localize.smudge "sed -e 's?https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master?'\$(git rev-parse --show-toplevel)'?g'"
+    git config filter.localize.clean "$(git rev-parse --show-toplevel)/gitTools/localize.py clean $(git rev-parse --show-toplevel)"
+    git config filter.localize.smudge "$(git rev-parse --show-toplevel)/gitTools/localize.py smudge $(git rev-parse --show-toplevel)"
+    git config diff.localize.textconv "$(git rev-parse --show-toplevel)/gitTools/localize.py clean $(git rev-parse --show-toplevel)"
     ;;
 esac
 

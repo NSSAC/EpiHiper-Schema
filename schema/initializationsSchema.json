@@ -18,11 +18,17 @@
         "description": "",
         "type": "object",
         "allOf": [
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
           {
             "type": "object",
             "required": ["filter"],
             "properties": {
-              "filter": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
+              "filter": {
+                "allOf": [
+                  {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+                  {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
+                ]
+              }
             }
           },
           {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/complianceOrActions"}

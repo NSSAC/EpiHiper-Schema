@@ -3,50 +3,50 @@
   "traits": [
     {
       "id": "edgeTrait",
-      "label": "Edge Trait",
+      "ann:label": "Edge Trait",
       "features": [
         {
           "id": "activityType",
-          "label": "Activity Type",
+          "ann:label": "Activity Type",
           "enums": [
             {
               "id": "HOME",
-              "label": "Home"
+              "ann:label": "Home"
             },
             {
               "id": "SCHOOL",
-              "label": "School"
+              "ann:label": "School"
             },
             {
               "id": "WORK",
-              "label": "Work"
+              "ann:label": "Work"
             },
             {
               "id": "SHOPPING",
-              "label": "Shopping"
+              "ann:label": "Shopping"
             },
             {
               "id": "OTHER",
-              "label": "other"
+              "ann:label": "other"
             }
           ],
           "default": "OTHER"
         },
         {
           "id": "indoorOutdoor",
-          "label": "indoor/outdoor",
+          "ann:label": "indoor/outdoor",
           "enums": [
             {
               "id": "unknown",
-              "label": "unknown"
+              "ann:label": "unknown"
             },
             {
               "id": "indoor",
-              "label": "indoor"
+              "ann:label": "indoor"
             },
             {
               "id": "outdoor",
-              "label": "outdoor"
+              "ann:label": "outdoor"
             }
           ],
           "default": "unknown"

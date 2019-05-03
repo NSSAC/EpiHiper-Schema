@@ -1,1 +1,1 @@
-*.json filter=localize
+*.json diff=localize filter=localize

@@ -9,51 +9,70 @@
       "description": "The traits array.",
       "type": "array",
       "items": {
-        "description": "A trait",
-        "type": "object",
-        "required": [
-          "id",
-          "label",
-          "features"
-        ],
-        "properties": {
-          "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-          "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
-          "features": {
-            "description": "A list of features included in the trait",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "id",
-                "label",
-                "enums",
-                "default"
-              ],
-              "properties": {
-                "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-                "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"},
-                "enums": {
-                  "description": "The enumeration values allowed for the feature",
-                  "type": "array",
-                  "items": {
-                    "description": "An enumeration value",
-                    "type": "object",
-                    "required": [
-                      "id",
-                      "label"
-                    ],
-                    "properties": {
-                      "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-                      "label": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/label"}
+        "allOf": [
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {
+            "description": "A trait",
+            "type": "object",
+            "required": [
+              "id",
+              "features"
+            ],
+            "properties": {
+              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+              "features": {
+                "description": "A list of features included in the trait",
+                "type": "array",
+                "items": {
+                  "allOf": [
+                    {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+                    {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "enums",
+                        "default"
+                      ],
+                      "properties": {
+                        "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+                        "enums": {
+                          "description": "The enumeration values allowed for the feature",
+                          "type": "array",
+                          "items": {
+                            "allOf": [
+                              {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+                              {
+                                "description": "An enumeration value",
+                                "type": "object",
+                                "required": ["id"],
+                                "properties": {
+                                  "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"}
+                                },
+                                "patternProperties": {
+                                  "^ann:": {}
+                                },
+                                "additionalProperties": false
+                              }
+                            ]
+                          }
+                        },
+                        "default": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"}
+                      },
+                      "patternProperties": {
+                        "^ann:": {}
+                      },
+                      "additionalProperties": false
                     }
-                  }
-                },
-                "default": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"}
+                  ]
+                }
               }
-            }
+            },
+            "patternProperties": {
+              "^ann:": {}
+            },
+            "additionalProperties": false
           }
-        }
+        ]
       }
     }
   }
