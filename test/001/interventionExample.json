@@ -14,7 +14,7 @@
           }
         }
       ],
-      "filter": {"elementType": "node"},
+      "selector": {"elementType": "node"},
       "foreach": [
         {
           "conditions": [
@@ -54,7 +54,7 @@
           }
         }
       ],
-      "filter": {
+      "selector": {
         "elementType": "node",
         "table": "Blacksburg_Highschool"
       },
@@ -71,10 +71,10 @@
           ]
         }
       ],
-      "compliance": {
+      "sampling": {
         "type": "individual",
         "number": 90,
-        "compliant": {
+        "sampled": {
           "foreach": [
             {
               "operations": [
@@ -104,7 +104,7 @@
           }
         }
       ],
-      "filter": {"elementType": "node"},
+      "selector": {"elementType": "node"},
       "foreach": [
         {
           "operations": [
@@ -190,7 +190,7 @@
           }
         }
       ],
-      "filter": {"elementType": "node"},
+      "selector": {"elementType": "node"},
       "foreach": [
         {
           "priority": 10,

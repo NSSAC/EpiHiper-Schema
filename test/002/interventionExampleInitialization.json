@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationsSchema.json",
   "initializations": [
     {
-      "filter": {
+      "selector": {
         "elementType": "node",
         "left": {
           "table": "montgomery_county_va",
@@ -11,10 +11,10 @@
         "operator": "==",
         "right": {"value": "0-18"}
       },
-      "compliance": {
+      "sampling": {
         "type": "individual",
         "number": 70,
-        "compliant": {
+        "sampled": {
           "foreach": [
             {
               "operations": [
@@ -39,7 +39,7 @@
       }
     },
     {
-      "filter": {
+      "selector": {
         "elementType": "node",
         "left": {
           "table": "montgomery_county_va",
@@ -48,10 +48,10 @@
         "operator": "==",
         "right": {"value": "19-64"}
       },
-      "compliance": {
+      "sampling": {
         "type": "individual",
         "number": 30,
-        "compliant": {
+        "sampled": {
           "foreach": [
             {
               "operations": [
@@ -76,7 +76,7 @@
       }
     },
     {
-      "filter": {
+      "selector": {
         "elementType": "node",
         "left": {
           "table": "montgomery_county_va",
@@ -85,10 +85,10 @@
         "operator": "==",
         "right": {"value": "65+"}
       },
-      "compliance": {
+      "sampling": {
         "type": "individual",
         "number": 50,
-        "compliant": {
+        "sampled": {
           "foreach": [
             {
               "operations": [

@@ -372,7 +372,7 @@
         "elementType",
         "table",
         "field",
-        "filter"
+        "selector"
       ],
       "properties": {
         "elementType": {
@@ -381,7 +381,7 @@
         },
         "table": {"$ref": "#/definitions/uniqueIdRef"},
         "field": {"$ref": "#/definitions/uniqueIdRef"},
-        "filter": {"$ref": "#/definitions/setContent"}
+        "selector": {"$ref": "#/definitions/setContent"}
       }
     },
     "nodeProperty": {
@@ -715,15 +715,15 @@
         }
       }
     },
-    "compliance": {
-      "$id": "#compliance",
-      "description": "A compliance with actions for compliant and non compliant individuals.",
+    "sampling": {
+      "$id": "#sampling",
+      "description": "Sampling within a set with actions for sampled and non-sampled individuals.",
       "allOf": [
         {"$ref": "#/definitions/annotation"},
         {
           "oneOf": [
             {
-              "$id": "#relativeCompliance",
+              "$id": "#relativeSampling",
               "description": "",
               "type": "object",
               "required": [
@@ -745,12 +745,12 @@
                   "minimum": 0,
                   "maximum": 100
                 },
-                "compliant": {"$ref": "#/definitions/complianceOrActions"},
-                "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
+                "sampled": {"$ref": "#/definitions/actionEnsemble"},
+                "nonsampled": {"$ref": "#/definitions/actionEnsemble"}
               }
             },
             {
-              "$id": "#absoluteCompliance",
+              "$id": "#absoluteSampling",
               "description": "",
               "type": "object",
               "required": [
@@ -769,15 +769,15 @@
                   "minimum": 0,
                   "multipleOf": 1.0
                 },
-                "compliant": {"$ref": "#/definitions/complianceOrActions"},
-                "noncompliant": {"$ref": "#/definitions/complianceOrActions"}
+                "sampled": {"$ref": "#/definitions/actionEnsemble"},
+                "nonsampled": {"$ref": "#/definitions/actionEnsemble"}
               }
             }
           ]
         }
       ]
     },
-    "complianceOrActions": {
+    "actionEnsemble": {
       "type": "object",
       "minProperties": 1,
       "properties": {
@@ -793,7 +793,7 @@
           "minItems": 1,
           "items": {"$ref": "#/definitions/action"}
         },
-        "compliance": {"$ref": "#/definitions/compliance"}
+        "sampling": {"$ref": "#/definitions/sampling"}
       }
     },
     "edgeElementSelector": {
@@ -876,7 +876,7 @@
               "type": "object",
               "required": [
                 "operator",
-                "filter"
+                "selector"
               ],
               "properties": {
                 "operator": {
@@ -887,7 +887,7 @@
                     "withSourceNodeIn"
                   ]
                 },
-                "filter": {"$ref": "#/definitions/setContent"}
+                "selector": {"$ref": "#/definitions/setContent"}
               }
             }
           ]
@@ -1001,7 +1001,7 @@
           "required": [
             "elementType",
             "operator",
-            "filter"
+            "selector"
           ],
           "properties": {
             "elementType": {
@@ -1013,7 +1013,7 @@
               "type": "string",
               "enum": ["withIncomingEdgeIn"]
             },
-            "filter": {"$ref": "#/definitions/setContent"}
+            "selector": {"$ref": "#/definitions/setContent"}
           }
         },
         {

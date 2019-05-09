@@ -24,7 +24,7 @@
               "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
               "initialValue": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeInteger"},
               "reset": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeInteger"},
-              "filter": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
+              "selector": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
             },
             "patternProperties": {
               "^ann:": {}
@@ -56,9 +56,9 @@
           },
           {
             "type": "object",
-            "required": ["filter"],
+            "required": ["selector"],
             "properties": {
-              "filter": {
+              "selector": {
                 "allOf": [
                   {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
                   {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/setContent"}
@@ -66,7 +66,7 @@
               }
             }
           },
-          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/complianceOrActions"}
+          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/actionEnsemble"}
         ]
       }
     }

@@ -49,7 +49,7 @@
           {
             "elementType": "node",
             "operator": "withIncomingEdgeIn",
-            "filter": {
+            "selector": {
               "elementType": "edge",
               "left": {
                 "edge": {
@@ -108,7 +108,7 @@
           }
         }
       ],
-      "filter": {
+      "selector": {
         "set": {"idRef": "schoolChildrenEnteredIsymp"}
       },
       "foreach": [
@@ -138,7 +138,7 @@
           }
         }
       ],
-      "filter": {
+      "selector": {
         "elementType": "edge",
         "left": {
           "edge": {
@@ -207,7 +207,7 @@
           }
         }
       ],
-      "filter": {
+      "selector": {
         "elementType": "edge",
         "left": {
           "edge": {
@@ -263,7 +263,7 @@
           }
         }
       ],
-      "filter": {
+      "selector": {
         "set": {"idRef": "enteredIsymp"}
       },
       "foreach": [
@@ -323,10 +323,10 @@
           ]
         }
       ],
-      "compliance": {
+      "sampling": {
         "type": "individual",
         "number": 30,
-        "compliant": {
+        "sampled": {
           "foreach": [
             {
               "delay": 1,
@@ -448,11 +448,11 @@
             }
           ]
         },
-        "noncompliant": {
-          "compliance": {
+        "nonsampled": {
+          "sampling": {
             "type": "individual",
             "number": 20,
-            "compliant": {
+            "sampled": {
               "foreach": [
                 {
                   "delay": 3,
@@ -605,7 +605,7 @@
           }
         }
       ],
-      "filter": {
+      "selector": {
         "elementType": "node",
         "left": {
           "table": "MontgomeryCounty",
@@ -616,7 +616,7 @@
           "elementType": "dbField",
           "table": "montgomery_county_va",
           "field": "hid",
-          "filter": {
+          "selector": {
             "elementType": "node",
             "left": {
               "node": {
