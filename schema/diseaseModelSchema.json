@@ -15,7 +15,7 @@
       "description": "An array of states",
       "items": {
         "allOf": [
-          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {"$ref": "./typeRegistry.json#/definitions/annotation"},
           {
             "type": "object",
             "description": "A disease state",
@@ -25,9 +25,9 @@
               "infectivity"
             ],
             "properties": {
-              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-              "susceptibility": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
-              "infectivity": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"}
+              "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
+              "susceptibility": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"},
+              "infectivity": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"}
             },
             "patternProperties": {
               "^ann:": {}
@@ -37,13 +37,13 @@
         ]
       }
     },
-    "initialState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
+    "initialState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
     "infections": {
       "type": "array",
       "description": "An array listing possible infections due to contact with other nodes.",
       "items": {
         "allOf": [
-          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {"$ref": "./typeRegistry.json#/definitions/annotation"},
           {
             "type": "object",
             "description": "An infection",
@@ -55,13 +55,13 @@
               "transmissibility"
             ],
             "properties": {
-              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-              "entryState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-              "exitState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-              "contactState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-              "transmissibility": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
-              "susceptibilityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"},
-              "infectivityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"}
+              "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
+              "entryState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
+              "exitState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
+              "contactState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
+              "transmissibility": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"},
+              "susceptibilityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"},
+              "infectivityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"}
             },
             "patternProperties": {
               "^ann:": {}
@@ -76,7 +76,7 @@
       "description": "The transitions specifying the disease progression.",
       "items": {
         "allOf": [
-          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {"$ref": "./typeRegistry.json#/definitions/annotation"},
           {
             "type": "object",
             "description": "",
@@ -88,13 +88,13 @@
               "dwellTime"
             ],
             "properties": {
-              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
-              "entryState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-              "exitState": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"},
-              "probability": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/nonNegativeNumber"},
-              "dwellTime": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/distribution"},
-              "susceptibilityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"},
-              "infectivityFactorOperation": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/numericOperation"}
+              "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
+              "entryState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
+              "exitState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
+              "probability": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"},
+              "dwellTime": {"$ref": "./typeRegistry.json#/definitions/distribution"},
+              "susceptibilityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"},
+              "infectivityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"}
             },
             "patternProperties": {
               "^ann:": {}

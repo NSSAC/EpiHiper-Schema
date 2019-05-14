@@ -10,7 +10,7 @@
       "type": "array",
       "items": {
         "allOf": [
-          {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+          {"$ref": "./typeRegistry.json#/definitions/annotation"},
           {
             "description": "A trait",
             "type": "object",
@@ -19,13 +19,13 @@
               "features"
             ],
             "properties": {
-              "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+              "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
               "features": {
                 "description": "A list of features included in the trait",
                 "type": "array",
                 "items": {
                   "allOf": [
-                    {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+                    {"$ref": "./typeRegistry.json#/definitions/annotation"},
                     {
                       "type": "object",
                       "required": [
@@ -34,19 +34,19 @@
                         "default"
                       ],
                       "properties": {
-                        "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"},
+                        "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
                         "enums": {
                           "description": "The enumeration values allowed for the feature",
                           "type": "array",
                           "items": {
                             "allOf": [
-                              {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/annotation"},
+                              {"$ref": "./typeRegistry.json#/definitions/annotation"},
                               {
                                 "description": "An enumeration value",
                                 "type": "object",
                                 "required": ["id"],
                                 "properties": {
-                                  "id": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueId"}
+                                  "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"}
                                 },
                                 "patternProperties": {
                                   "^ann:": {}
@@ -56,7 +56,7 @@
                             ]
                           }
                         },
-                        "default": {"$ref": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/typeRegistry.json#/definitions/uniqueIdRef"}
+                        "default": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"}
                       },
                       "patternProperties": {
                         "^ann:": {}
