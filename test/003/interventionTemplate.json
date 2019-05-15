@@ -1,0 +1,343 @@
+{
+  "$schema": "../../schema/interventionTemplateSchema.json",
+  "template": {
+    "sets": [
+      {
+        "id": "enteredIsymp",
+        "ann:label": "Nodes which entered state Isymp.",
+        "content": {
+          "operation": "intersection",
+          "sets": [
+            {
+              "elementType": "node",
+              "left": {
+                "node": {"property": "healthState"}
+              },
+              "operator": "==",
+              "right": {
+                "value": {"healthState": "Isymp"}
+              }
+            },
+            {
+              "elementType": "node",
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "enteredIsymp"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "enteredIsymp",
+                  "enum": "false"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "schoolChildrenEnteredIsymp",
+        "ann:label": "Nodes which entered state Isymp and are going to school.",
+        "content": {
+          "operation": "intersection",
+          "sets": [
+            {
+              "set": {"idRef": "enteredIsymp"}
+            },
+            {
+              "elementType": "node",
+              "operator": "withIncomingEdgeIn",
+              "selector": {
+                "elementType": "edge",
+                "left": {
+                  "edge": {
+                    "property": "targetTrait",
+                    "feature": "activityType"
+                  }
+                },
+                "operator": "==",
+                "right": {
+                  "value": {
+                    "trait": "edgeTrait",
+                    "feature": "activityType",
+                    "enum": "SCHOOL"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "globalVariables": [
+      {
+        "id": "schoolChildrenEnteredIsympCounter",
+        "ann:label": "School age children which are or have been infectious",
+        "initialValue": 0
+      },
+      {
+        "id": "schoolClosed",
+        "ann:label": "A value indication whether the school has been closed",
+        "initialValue": 0
+      }
+    ],
+    "interventions": [
+      {
+        "$comment": "Mark enteredIsymp true",
+        "triggers": [
+          {
+            "left": {
+              "count": {"set": "enteredIsymp"}
+            },
+            "operator": ">",
+            "right": {
+              "value": {"number": 0}
+            }
+          }
+        ],
+        "selector": {
+          "set": {"idRef": "enteredIsymp"}
+        },
+        "foreach": [
+          {
+            "operations": [
+              {
+                "target": {
+                  "node": {
+                    "property": "nodeTrait",
+                    "feature": "enteredIsymp"
+                  }
+                },
+                "operator": "=",
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "enteredIsymp",
+                  "enum": "true"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$comment": "Count Infective School Age Children",
+        "triggers": [
+          {
+            "left": {
+              "count": {"set": "schoolChildrenEnteredIsymp"}
+            },
+            "operator": ">",
+            "right": {
+              "value": {"number": 0}
+            }
+          }
+        ],
+        "selector": {
+          "set": {"idRef": "schoolChildrenEnteredIsymp"}
+        },
+        "foreach": [
+          {
+            "operations": [
+              {
+                "target": {
+                  "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+                },
+                "operator": "+=",
+                "value": {"number": 1}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$comment": "School Closure (school children)",
+        "triggers": [
+          {
+            "left": {
+              "value": {"number": 500}
+            },
+            "operator": "<=",
+            "right": {
+              "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+            }
+          }
+        ],
+        "selector": {
+          "elementType": "edge",
+          "left": {
+            "edge": {
+              "property": "targetTrait",
+              "feature": "activityType"
+            }
+          },
+          "operator": "==",
+          "right": {
+            "value": {
+              "trait": "edgeTrait",
+              "feature": "activityType",
+              "enum": "SCHOOL"
+            }
+          }
+        },
+        "once": [
+          {
+            "operations": [
+              {
+                "target": {
+                  "globalVariable": {"idRef": "schoolClosed"}
+                },
+                "operator": "=",
+                "value": {"number": 1}
+              }
+            ]
+          }
+        ],
+        "foreach": [
+          {
+            "operations": [
+              {
+                "target": {
+                  "edge": {"property": "active"}
+                },
+                "operator": "=",
+                "value": {"boolean": false}
+              }
+            ]
+          },
+          {
+            "delay": 14,
+            "operations": [
+              {
+                "target": {
+                  "edge": {"property": "active"}
+                },
+                "operator": "=",
+                "value": {"boolean": true}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$comment": "School Closure (teacher and other employees)",
+        "triggers": [
+          {
+            "left": {
+              "value": {"number": 500}
+            },
+            "operator": "<=",
+            "right": {
+              "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+            }
+          }
+        ],
+        "selector": {
+          "elementType": "edge",
+          "left": {
+            "edge": {
+              "property": "sourceTrait",
+              "feature": "activityType"
+            }
+          },
+          "operator": "==",
+          "right": {
+            "value": {
+              "trait": "edgeTrait",
+              "feature": "activityType",
+              "enum": "SCHOOL"
+            }
+          }
+        },
+        "foreach": [
+          {
+            "operations": [
+              {
+                "target": {
+                  "edge": {"property": "active"}
+                },
+                "operator": "=",
+                "value": {"boolean": false}
+              }
+            ]
+          },
+          {
+            "delay": 14,
+            "operations": [
+              {
+                "target": {
+                  "edge": {"property": "active"}
+                },
+                "operator": "=",
+                "value": {"boolean": true}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "userInput": [
+    {
+      "value": [
+        {"$ref": "/template/interventions/1/triggers/left/value/number"},
+        {"$ref": "/template/interventions/2/triggers/left/value/number"}
+      ]
+    },
+    {
+      "value": [
+        {"$ref": "/template/interventions/1/foreach/1/delay"},
+        {"$ref": "/template/interventions/2/foreach/1/delay"}
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "node": {"property": "healthState"}
+    },
+    {
+      "value": {"healthState": "Isymp"}
+    },
+    {
+      "node": {
+        "property": "nodeTrait",
+        "feature": "enteredIsymp"
+      }
+    },
+    {
+      "value": {
+        "trait": "nodeTrait",
+        "feature": "enteredIsymp",
+        "enum": "false"
+      }
+    },
+    {
+      "value": {
+        "trait": "nodeTrait",
+        "feature": "enteredIsymp",
+        "enum": "true"
+      }
+    },
+    {
+      "edge": {
+        "property": "targetTrait",
+        "feature": "activityType"
+      }
+    },
+    {
+      "edge": {
+        "property": "sourceTrait",
+        "feature": "activityType"
+      }
+    },
+    {
+      "value": {
+        "trait": "edgeTrait",
+        "feature": "activityType",
+        "enum": "SCHOOL"
+      }
+    }
+  ]
+}

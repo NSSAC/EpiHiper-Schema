@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Intervention Template",
+  "description": "Template for an intervention",
+  "type": "object",
+  "required": [
+    "template",
+    "userInput",
+    "requirements"
+  ],
+  "properties": {
+    "template": {"$ref": "./typeRegistry.json#/definitions/interventions"},
+    "userInput": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {"$ref": "./typeRegistry.json#/definitions/annotation"},
+          {
+            "type": "object",
+            "required": ["value"],
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["$ref"],
+                  "properties": {
+                    "$ref": {
+                      "description": "A JSON pointer referencing an entity in /template",
+                      "type": "string",
+                      "pattern": "^/template/.+$"
+                    }
+                  }
+                },
+                "minItems": 1
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1
+    },
+    "requirments": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["value"],
+            "properties": {
+              "value": {
+                "oneOf": [
+                  {"$ref": "./typeRegistry.json#/definitions/healthState"},
+                  {"$ref": "./typeRegistry.json#/definitions/traitEnum"}
+                ]
+              }
+            }
+          },
+          {"$ref": "./typeRegistry.json#/definitions/edgeProperty"},
+          {"$ref": "./typeRegistry.json#/definitions/nodeProperty"},
+          {"$ref": "./typeRegistry.json#/definitions/dbField"}
+        ]
+      }
+    }
+  }
+}
