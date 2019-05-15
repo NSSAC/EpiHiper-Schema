@@ -12,29 +12,54 @@
 # END: License 
 
 import os
-import a_module
 import json
 import sys
-from jsonschema import validate
+import jsonschema
 
 class Configuration:
     
     def __init__(self, runParameters):
-        self.runParameter = runParameters
-        self.schemaLocation = os.path.abspath(os.path.join(a_module.__file__, "..", "schema")) 
+        self.runParameters = runParameters
+        self.schemaLocation = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "schema")) 
         self.schemas = {
-            "runParameters": "runParametersSchema.json",
-            "traits": "traitsSchema.json",
-            "diseaseModel": "diseaseModelSchema.json",
-            "intervention": "interventionSchema.json",
-            "initialization": "initializationSchema.json",
-            "personTraitDB": "personTraitDB/schemas/tabular-data-resource.json"
+            "runParameters": os.path.join(self.schemaLocation, "runParametersSchema.json"),
+            "traits": os.path.join(self.schemaLocation, "traitsSchema.json"),
+            "diseaseModel": os.path.join(self.schemaLocation, "diseaseModelSchema.json"),
+            "intervention": os.path.join(self.schemaLocation, "interventionSchema.json"),
+            "initialization": os.path.join(self.schemaLocation, "initializationSchema.json"),
+            "personTraitDB": os.path.join(self.schemaLocation, "personTraitDB/schemas/tabular-data-resource.json")
         }
+        
+        self.data = {}
         
         return
     
+    def getData(self):
+        return self.data
+    
     def validate(self):
-        self.loadJsonFile(self.runParameter, os.path.join(self.schemaLocation, self.schemas["runParameters"]))        
+        self.data["runParameters"] = self.loadJsonFile(self.runParameters, self.schemas["runParameters"])
+        
+        self.addData("traits")
+        self.addData("diseaseModel")
+        self.addData("initialization")
+        self.addData("intervention")
+        self.addData("traits")
+        
+        self.data["personTraitDB"] = []
+        
+        if "personTraitDB" in self.data["runParameters"]:
+            for db in self.data["runParameters"]["personTraitDB"]:  
+                self.appendData(self.data["personTraitDB"], db, self.schemas["personTraitDB"])   
+    
+    def addData(self, what, schema = None):
+        if not schema:
+            schema = self.schemas[what]
+            
+        self.data[what] = self.loadJsonFile(os.path.join(os.path.dirname(self.runParameters), self.data["runParameters"][what]), schema)
+        
+    def appendData(self, to, what, schema):
+        to.append(self.loadJsonFile(os.path.join(os.path.dirname(self.runParameters), what), schema))
         
     def loadJsonFile(self, fileName, jsonSchema = None):
     
@@ -54,8 +79,9 @@ class Configuration:
                 sys.exit("ERROR: File '" + schemaFile + "' does not exist.")
                     
             schema = json.load(schemaFile)
+            resolver = jsonschema.RefResolver('file://' + os.path.dirname(jsonSchema) + '/', schema)
             schemaFile.close()
-            validate(dictionary, schema)
+            jsonschema.validate(dictionary, schema, resolver=resolver)
             
         jsonFile.close()
         return dictionary

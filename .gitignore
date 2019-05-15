@@ -2,3 +2,11 @@
 *.bak
 
 *.xpr
+
+\.settings/
+
+\.project
+
+\.pydevproject
+
+__pycache__/

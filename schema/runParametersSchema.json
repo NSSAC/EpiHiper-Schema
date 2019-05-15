@@ -16,8 +16,9 @@
   "required": [
     "contactNetwork",
     "diseaseModel",
-    "interventions",
-    "initializations",
+    "intervention",
+    "initialization",
+    "traits",
     "startTick",
     "endTick"
   ],
@@ -33,15 +34,22 @@
         {"$ref": "#/definitions/jsonFormat"}
       ]        
     },
-    "interventions": {
+    "intervention": {
       "description": "Filename of the interventions in a json file.",
       "allOf": [ 
         {"$ref": "#/definitions/localFile"},
         {"$ref": "#/definitions/jsonFormat"}
       ]        
     },
-    "initializations": {
+    "initialization": {
       "description": "Filename of the initializations in a json file.",
+      "allOf": [ 
+        {"$ref": "#/definitions/localFile"},
+        {"$ref": "#/definitions/jsonFormat"}
+      ]        
+    },
+    "traits": {
+      "description": "Filename of the json file containing node and edge traits.",
       "allOf": [ 
         {"$ref": "#/definitions/localFile"},
         {"$ref": "#/definitions/jsonFormat"}
@@ -59,7 +67,7 @@
       "minimum": 0,
       "multipleOf": 1.0
     },
-    "personTraitDBs": {
+    "personTraitDB": {
       "description": "An optional list of json files each describing a person trait database to be loaded.",
       "type": "array",
       "items": {

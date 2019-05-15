@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/runParametersSchema.json",
+  "contactNetwork": "ignoredForNow",
+  "diseaseModel": "./interventionExampleDiseaseModel.json",
+  "initialization": "./interventionExampleInitialization.json",
+  "intervention": "./interventionExampleIntervention.json",
+  "personTraitDB": ["./interventionExamplePersonTraitDB.json"],
+  "traits": "./interventionExampleTraits.json",
+  "startTick": 0,
+  "endTick": 100
+}
