@@ -1,0 +1,110 @@
+{
+  "$schema": "./jsontronRulesSchema.json",
+  "schema": {
+    "title": "Disease Model Rules",
+    "id": "DiseaseModelRules",
+    "schemaVersion": "1.0",
+    "queryBinding": "jsonpath",
+    "defatulePhase": "default",
+    "phase": [
+      {
+        "id": "default",
+        "active": [
+          "StateCheck",
+          "InitialStateCheck",
+          "InfectionCheck",
+          "TransitionCheck"
+        ]
+      }
+    ],
+    "pattern": [
+      {
+        "id": "StateCheck",
+        "title": "State Check",
+        "abstract": false,
+        "rule": [
+          {
+            "id": "StateCheck_R1",
+            "context": "$",
+            "assert": [
+              {
+                "id": "StateCheck_R1_A1",
+                "test": "jp.query(contextNode, '$..states..id').length == new Set(jp.query(contextNode, '$..states..id')).size",
+                "message": "The id of a state must be unique."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "InitialStateCheck",
+        "title": "Initial State Check",
+        "abstract": false,
+        "rule": [
+          {
+            "id": "InitialStateCheck_R1",
+            "context": "$",
+            "assert": [
+              {
+                "id": "InitialStateCheck_R1_A1",
+                "test": "jp.query(instance, '$..states..id').includes(jp.query(contextNode, '$..initialState')[0])",
+                "message": "'Initial State: The state id ' + jp.query(contextNode, '$..initialState')[0] + ' is not defined.'"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "InfectionCheck",
+        "title": "Infection Check",
+        "abstract": false,
+        "rule": [
+          {
+            "id": "InfectionCheck_R1",
+            "context": "$..infections.*",
+            "assert": [
+              {
+                "id": "InfectionCheck_R1_A1",
+                "test": "jp.query(instance, '$..states..id').includes(jp.query(contextNode, '$..entryState')[0])",
+                "message": "'Infection[' + jp.query(contextNode, '$..[\"ann:label\"]')[0] + ']: The entry state id ' + jp.query(contextNode, '$..entryState')[0] + ' is not defined.'"
+              },
+              {
+                "id": "InfectionCheck_R1_A2",
+                "test": "jp.query(instance, '$..states..id').includes(jp.query(contextNode, '$..exitState')[0])",
+                "message": "'Infection[' + jp.query(contextNode, '$..[\"ann:label\"]')[0] + ']: The entry state id ' + jp.query(contextNode, '$..exitState')[0] + ' is not defined.'"
+              },
+              {
+                "id": "InfectionCheck_R1_A3",
+                "test": "jp.query(instance, '$..states..id').includes(jp.query(contextNode, '$..contactState')[0])",
+                "message": "'Infection[' + jp.query(contextNode, '$..[\"ann:label\"]')[0] + ']: The entry state id ' + jp.query(contextNode, '$..contactState')[0] + ' is not defined.'"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "TransitionCheck",
+        "title": "Transition Check",
+        "abstract": false,
+        "rule": [
+          {
+            "id": "TransitionCheck_R1",
+            "context": "$..transitions.*",
+            "assert": [
+              {
+                "id": "TransitionCheck_R1_A1",
+                "test": "jp.query(instance, '$..states..id').includes(jp.query(contextNode, '$..entryState')[0])",
+                "message": "'Transition[' + jp.query(contextNode, '$..[\"ann:label\"]')[0] + ']: The entry state id ' + jp.query(contextNode, '$..entryState')[0] + ' is not defined.'"
+              },
+              {
+                "id": "TransitionCheck_R1_A2",
+                "test": "jp.query(instance, '$..states..id').includes(jp.query(contextNode, '$..exitState')[0])",
+                "message": "'Transition[' + jp.query(contextNode, '$..[\"ann:label\"]')[0] + ']: The exit state id ' + jp.query(contextNode, '$..exitState')[0] + ' is not defined.'"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
