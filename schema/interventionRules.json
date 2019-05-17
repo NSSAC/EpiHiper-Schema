@@ -1,0 +1,41 @@
+{
+  "$schema": "./jsontronRulesSchema.json",
+  "schema": {
+    "title": "Intervention Rules",
+    "id": "Intervention Rules",
+    "schemaVersion": "1.0",
+    "queryBinding": "jsonpath",
+    "defaultPhase": "default",
+    "phase": [
+      {
+        "id": "default",
+        "active": ["UniqueIdCheck"]
+      }
+    ],
+    "pattern": [
+      {
+        "id": "UniqueIdCheck",
+        "title": "Unique Id Check",
+        "abstract": false,
+        "rule": [
+          {
+            "id": "UniqueIdCheck_R1",
+            "context": "$",
+            "assert": [
+              {
+                "id": "UniqueIdCheck_R1_A1",
+                "test": "jp.query(contextNode, '$..sets.*.id').length == new Set(jp.query(contextNode, '$..sets.*.id')).size",
+                "message": "Global: The id of a set must be unique."
+              },
+              {
+                "id": "UniqueIdCheck_R1_A2",
+                "test": "jp.query(contextNode, '$..globalVariables.*.id').length == new Set(jp.query(contextNode, '$..globalVariables.*.id')).size",
+                "message": "Global: The id of a global variable must be unique."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
