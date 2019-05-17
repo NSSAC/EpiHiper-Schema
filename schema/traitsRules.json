@@ -5,7 +5,7 @@
     "id": "TraitsRules",
     "schemaVersion": "1.0",
     "queryBinding": "jsonpath",
-    "defatulePhase": "default",
+    "defaultPhase": "default",
     "phase": [
       {
         "id": "default",
