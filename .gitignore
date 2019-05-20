@@ -10,3 +10,5 @@
 \.pydevproject
 
 __pycache__/
+
+epiHiperValidator/node_modules/
