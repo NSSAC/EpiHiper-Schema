@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+var pkg = require("../package.json");
+var validateSchema = require("commander");
+var Ajv = require("ajv");
+var path = require('path');
+
+var currDir = process.cwd();
+var files;
+var schemas = []
+
+validateSchema 
+	.version(pkg.version)
+	.description('EpiHiper Schema Validation')
+	.usage('[options] <file ...>')
+	.option('-s --schema <schema>', 'Use the specified schema validation')
+	.option('--no-default', 'Do not add defaults for missing values')
+	.arguments('<files...>')
+	.action(function(arguments) {
+		files = arguments;
+	});
+
+validateSchema.parse(process.argv);
+
+if (!Array.isArray(files)) {
+	validateSchema.help();
+	exit(1);
+}
+
+// console.log(validateSchema);
+if (!validateSchema.schema){
+	validateSchema.schema = '$schema';
+}
+
+
+// console.log(validateSchema.default);
+// console.log(validateSchema.schema);
+// console.log(files);
+
+files.forEach(function(file){
+	var InstanceFile = path.join(currDir, file);
+	var Instance = require(InstanceFile);
+	
+	var SchemaFile = validateSchema.schema
+	var SchemaRelDir = path.dirname(InstanceFile)
+	
+	if (SchemaFile == '$schema') {
+		SchemaFile = path.join(SchemaRelDir, Instance['$schema']);
+	} else {
+		SchemaFile = path.join(currDir, SchemaFile);
+	}
+	
+	console.log(SchemaFile);
+	var SchemaInstance = require(SchemaFile);
+	
+	ajv = new Ajv();
+	validate = ajv.getSchema('file://' + SchemaFile);
+	
+	var valid = validate(Instance);
+	if (!valid) console.log(validate.errors);
+	// console.log(SchemaInstance);
+})

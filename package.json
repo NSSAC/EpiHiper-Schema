@@ -1,0 +1,45 @@
+{
+	"name": "@shoops/epiHiperValuidator",
+	"version": "0.0.1",
+	"description": "EpiHiper input validation utilities",
+	"main": "index.js",
+	"bin": {
+		"validate": "./bin/validate",
+		"validateSchema": "./bin/validateSchema",
+		"validateRules": "./bin/validateRules",
+		"merge": "./bin/merge"
+	},
+	"author": "Stefan Hoops <shoops@virginia.edu>",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"ajv": "^6.10.0",
+		"commander": "^2.20.0",
+		"@shoops/jsontron": ">=0.8.21"
+	},
+	"schemas": [
+		{
+			"id": "files://.schema/diseaseModelSchema.json"
+		},
+		{
+			"id": "files://.schema/initilizationSchema.json"
+		},
+		{
+			"id": "files://.schema/interventionSchema.json"
+		},
+		{
+			"id": "files://.schema/interventionTemplateSchema.json"
+		},
+		{
+			"id": "files://.schema/mergedSchema.json"
+		},
+		{
+			"id": "files://.schema/runParameterSchema.json"
+		},
+		{
+			"id": "files://.schema/traitsSchema.json"
+		},
+		{
+			"id": "files://.schema/typeRegistry.json"
+		}
+	]
+}
