@@ -1,0 +1,118 @@
+#!/usr/bin/env node
+
+var pkg = require("../package.json");
+var validateRules = require("commander");
+var jsontron = require('@shoops/jsontron');
+var path = require('path');
+var fs = require('fs');
+
+var files;
+
+validateRules 
+	.version(pkg.version)
+	.description('EpiHiper Schema Validation')
+	.usage('[options] <file ...>')
+	.option('-r --rules <rules>', 'Use the specified rules for validation')
+	.arguments('<files...>')
+	.action(function(arguments) {
+		files = arguments;
+	});
+
+validateRules.parse(process.argv);
+
+if (!Array.isArray(files)) {
+	validateRules.help();
+	return 1;
+}
+
+var currDir = process.cwd();
+
+var schema = [
+	{
+		"$id": "./diseaseModelSchema.json"
+	},
+	{
+		"$id": "./initializationSchema.json"
+	},
+	{
+		"$id": "./interventionSchema.json"
+	},
+	{
+		"$id": "./interventionTemplateSchema.json"
+	},
+	{
+		"$id": "./mergedSchema.json"
+	},
+	{
+		"$id": "./runParametersSchema.json"
+	},
+	{
+		"$id": "./traitsSchema.json"
+	},
+	{
+		"$id": "./typeRegistry.json"
+	},
+	{
+		"$id": "./personTraitDB/schemas/tabular-data-resource.json"
+	},
+	{
+		"$id": "./personTraitDB/schemas/dictionary.json"
+	}];
+
+var rules = {};
+
+schema.forEach(function(s){
+	RulesFile = path.join(__dirname, '..', 'schema', s['$id'].replace('Schema.json', 'Rules.json'));
+
+	if (RulesFile.endsWith('Rules.json') && fs.existsSync(RulesFile)) {
+		rules[RulesFile] = require(RulesFile);		
+	}
+})
+
+if (!validateRules.rules){
+	validateRules.rules = '$rules';
+}
+
+files.forEach(function(file){
+	var InstanceFile = path.join(currDir, file);
+	process.stdout.write('File: ' + InstanceFile);
+	var Instance = require(InstanceFile);
+	
+	var RulesFile = validateRules.rules
+	var RulesRelDir = path.dirname(InstanceFile)
+	var Rules = {}
+	
+	if (RulesFile == '$rules') {
+		RulesFile = path.join(RulesRelDir, Instance['$schema'].replace('Schema.json', 'Rules.json'));
+		if (!RulesFile.endsWith('Rules.json')) {
+			return;
+		}	
+	} else {
+	    RulesFile = path.join(currDir, RulesFile);
+	}
+
+	// Check whether we have the rules already loaded
+	var Rules = rules[RulesFile];
+
+	if (typeof Rules === 'undefined') {
+		try {
+			Rules = require(RulesFile);
+			rules[RulesFile] = Rules;
+			
+			console.log(Rules)
+		}
+		catch {
+			console.log(' no rules provided');
+			return;
+		}
+	}
+	
+	Report = jsontron.JSONTRON.validate(Instance, Rules);
+	
+	if (Report.finalValidationReport.length) {
+		console.log(' invalid');
+		console.log(Report.finalValidationReport);
+	} else {
+		console.log(' valid');
+	}
+})
