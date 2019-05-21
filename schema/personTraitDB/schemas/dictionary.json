@@ -17,9 +17,7 @@
       "type": "string",
       "pattern": "^([-a-z0-9._/])+$",
       "context": "This is ideally a url-usable and human-readable name. Name `SHOULD` be invariant, meaning it `SHOULD NOT` change when its parent descriptor is updated.",
-      "examples": [
-        "{\n  \"name\": \"my-nice-name\"\n}\n"
-      ]
+      "examples": ["{\n  \"name\": \"my-nice-name\"\n}\n"]
     },
     "id": {
       "title": "ID",
@@ -35,35 +33,27 @@
       "title": "Title",
       "description": "A human-readable title.",
       "type": "string",
-      "examples": [
-        "{\n  \"title\": \"My Package Title\"\n}\n"
-      ]
+      "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
     },
     "email": {
       "title": "Email",
       "description": "An email address.",
       "type": "string",
       "format": "email",
-      "examples": [
-        "{\n  \"email\": \"example@example.com\"\n}\n"
-      ]
+      "examples": ["{\n  \"email\": \"example@example.com\"\n}\n"]
     },
     "description": {
       "title": "Description",
       "description": "A text description. Markdown is encouraged.",
       "type": "string",
-      "examples": [
-        "{\n  \"description\": \"# My Package description\\nAll about my package.\"\n}\n"
-      ]
+      "examples": ["{\n  \"description\": \"# My Package description\\nAll about my package.\"\n}\n"]
     },
     "homepage": {
       "title": "Home Page",
       "description": "The home on the web that is related to this data package.",
       "type": "string",
       "format": "uri",
-      "examples": [
-        "{\n  \"homepage\": \"http://example.com/\"\n}\n"
-      ]
+      "examples": ["{\n  \"homepage\": \"http://example.com/\"\n}\n"]
     },
     "version": {
       "title": "Version",
@@ -95,21 +85,15 @@
       "context": "The datetime must conform to the string formats for datetime as described in [RFC3339](https://tools.ietf.org/html/rfc3339#section-5.6)",
       "type": "string",
       "format": "date-time",
-      "examples": [
-        "{\n  \"created\": \"1985-04-12T23:20:50.52Z\"\n}\n"
-      ]
+      "examples": ["{\n  \"created\": \"1985-04-12T23:20:50.52Z\"\n}\n"]
     },
     "keywords": {
       "title": "Keywords",
       "description": "A list of keywords that describe this package.",
       "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "string"
-      },
-      "examples": [
-        "{\n  \"keywords\": [\n    \"data\",\n    \"fiscal\",\n    \"transparency\"\n  ]\n}\n"
-      ]
+      "items": {"type": "string"},
+      "examples": ["{\n  \"keywords\": [\n    \"data\",\n    \"fiscal\",\n    \"transparency\"\n  ]\n}\n"]
     },
     "image": {
       "title": "Image",
@@ -147,15 +131,9 @@
       "title": "Contributor",
       "description": "A contributor to this descriptor.",
       "properties": {
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "path": {
-          "$ref": "#/definitions/path"
-        },
-        "email": {
-          "$ref": "#/definitions/email"
-        },
+        "title": {"$ref": "#/definitions/title"},
+        "path": {"$ref": "#/definitions/path"},
+        "email": {"$ref": "#/definitions/email"},
         "organisation": {
           "title": "Organization",
           "description": "An organizational affiliation for this contributor.",
@@ -173,9 +151,7 @@
           "default": "contributor"
         }
       },
-      "required": [
-        "title"
-      ],
+      "required": ["title"],
       "context": "Use of this property does not imply that the person was the original creator of, or a contributor to, the data in the descriptor, but refers to the composition of the descriptor itself."
     },
     "contributors": {
@@ -183,9 +159,7 @@
       "description": "The contributors to this descriptor.",
       "type": "array",
       "minItems": 1,
-      "items": {
-        "$ref": "#/definitions/contributor"
-      },
+      "items": {"$ref": "#/definitions/contributor"},
       "examples": [
         "{\n  \"contributors\": [\n    {\n      \"title\": \"Joe Bloggs\"\n    }\n  ]\n}\n",
         "{\n  \"contributors\": [\n    {\n      \"title\": \"Joe Bloggs\",\n      \"email\": \"joe@example.com\",\n      \"role\": \"author\"\n    }\n  ]\n}\n"
@@ -202,12 +176,8 @@
           "type": "string",
           "pattern": "^([-a-zA-Z0-9._])+$"
         },
-        "path": {
-          "$ref": "#/definitions/path"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        }
+        "path": {"$ref": "#/definitions/path"},
+        "title": {"$ref": "#/definitions/title"}
       },
       "context": "Use of this property does not imply that the person was the original creator of, or a contributor to, the data in the descriptor, but refers to the composition of the descriptor itself."
     },
@@ -216,31 +186,19 @@
       "description": "The license(s) under which this package is published.",
       "type": "array",
       "minItems": 1,
-      "items": {
-        "$ref": "#/definitions/license"
-      },
+      "items": {"$ref": "#/definitions/license"},
       "context": "This property is not legally binding and does not guarantee that the package is licensed under the terms defined herein.",
-      "examples": [
-        "{\n  \"licenses\": [\n    {\n      \"name\": \"odc-pddl-1.0\",\n      \"path\": \"http://opendatacommons.org/licenses/pddl/\",\n      \"title\": \"Open Data Commons Public Domain Dedication and License v1.0\"\n    }\n  ]\n}\n"
-      ]
+      "examples": ["{\n  \"licenses\": [\n    {\n      \"name\": \"odc-pddl-1.0\",\n      \"path\": \"http://opendatacommons.org/licenses/pddl/\",\n      \"title\": \"Open Data Commons Public Domain Dedication and License v1.0\"\n    }\n  ]\n}\n"]
     },
     "source": {
       "title": "Source",
       "description": "A source file.",
       "type": "object",
-      "required": [
-        "title"
-      ],
+      "required": ["title"],
       "properties": {
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "path": {
-          "$ref": "#/definitions/path"
-        },
-        "email": {
-          "$ref": "#/definitions/email"
-        }
+        "title": {"$ref": "#/definitions/title"},
+        "path": {"$ref": "#/definitions/path"},
+        "email": {"$ref": "#/definitions/email"}
       }
     },
     "sources": {
@@ -248,12 +206,8 @@
       "description": "The raw sources for this resource.",
       "type": "array",
       "minItems": 0,
-      "items": {
-        "$ref": "#/definitions/source"
-      },
-      "examples": [
-        "{\n  \"sources\": [\n    {\n      \"title\": \"World Bank and OECD\",\n      \"path\": \"http://data.worldbank.org/indicator/NY.GDP.MKTP.CD\"\n    }\n  ]\n}\n"
-      ]
+      "items": {"$ref": "#/definitions/source"},
+      "examples": ["{\n  \"sources\": [\n    {\n      \"title\": \"World Bank and OECD\",\n      \"path\": \"http://data.worldbank.org/indicator/NY.GDP.MKTP.CD\"\n    }\n  ]\n}\n"]
     },
     "fiscalMeasure": {
       "title": "Measure",
@@ -264,19 +218,13 @@
         "currency"
       ],
       "properties": {
-        "source": {
-          "type": "string"
-        },
-        "resource": {
-          "type": "string"
-        },
+        "source": {"type": "string"},
+        "resource": {"type": "string"},
         "currency": {
           "type": "string",
           "pattern": "^[A-Z]{3}$"
         },
-        "factor": {
-          "type": "number"
-        },
+        "factor": {"type": "number"},
         "direction": {
           "title": "Direction of the spending",
           "description": "A keyword that represents the direction of the spend, either expenditure or revenue.",
@@ -317,32 +265,18 @@
             "^\\w+": {
               "type": "object",
               "properties": {
-                "source": {
-                  "type": "string"
-                },
-                "resource": {
-                  "type": "string"
-                },
+                "source": {"type": "string"},
+                "resource": {"type": "string"},
                 "constant": {
                   "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "number"
-                    }
+                    {"type": "string"},
+                    {"type": "number"}
                   ]
                 },
-                "parent": {
-                  "type": "string"
-                },
-                "labelfor": {
-                  "type": "string"
-                }
+                "parent": {"type": "string"},
+                "labelfor": {"type": "string"}
               },
-              "required": [
-                "source"
-              ]
+              "required": ["source"]
             }
           }
         },
@@ -350,15 +284,11 @@
           "title": "Primary Key",
           "description": "Either an array of strings corresponding to the name attributes in a set of field objects in the fields array or a single string corresponding to one of these names. The value of primaryKey indicates the primary key or primary keys for the dimension.",
           "oneOf": [
-            {
-              "type": "string"
-            },
+            {"type": "string"},
             {
               "type": "array",
               "minItems": 1,
-              "items": {
-                "type": "string"
-              }
+              "items": {"type": "string"}
             }
           ]
         },
@@ -401,9 +331,7 @@
           "description": "Measures are numerical and correspond to financial amounts in the source data.",
           "type": "object",
           "patternProperties": {
-            "^\\w+": {
-              "$ref": "#/definitions/fiscalMeasure"
-            }
+            "^\\w+": {"$ref": "#/definitions/fiscalMeasure"}
           }
         },
         "dimensions": {
@@ -411,9 +339,7 @@
           "description": "Dimensions are groups of related fields. Dimensions cover all items other than the measure.",
           "type": "object",
           "patternProperties": {
-            "^\\w+": {
-              "$ref": "#/definitions/fiscalDimension"
-            }
+            "^\\w+": {"$ref": "#/definitions/fiscalDimension"}
           }
         }
       }
@@ -427,36 +353,16 @@
         "doubleQuote"
       ],
       "properties": {
-        "csvddfVersion": {
-          "$ref": "#/definitions/csvddfVersion"
-        },
-        "delimiter": {
-          "$ref": "#/definitions/delimiter"
-        },
-        "doubleQuote": {
-          "$ref": "#/definitions/doubleQuote"
-        },
-        "lineTerminator": {
-          "$ref": "#/definitions/lineTerminator"
-        },
-        "nullSequence": {
-          "$ref": "#/definitions/nullSequence"
-        },
-        "quoteChar": {
-          "$ref": "#/definitions/quoteChar"
-        },
-        "escapeChar": {
-          "$ref": "#/definitions/escapeChar"
-        },
-        "skipInitialSpace": {
-          "$ref": "#/definitions/skipInitialSpace"
-        },
-        "header": {
-          "$ref": "#/definitions/header"
-        },
-        "caseSensitiveHeader": {
-          "$ref": "#/definitions/caseSensitiveHeader"
-        }
+        "csvddfVersion": {"$ref": "#/definitions/csvddfVersion"},
+        "delimiter": {"$ref": "#/definitions/delimiter"},
+        "doubleQuote": {"$ref": "#/definitions/doubleQuote"},
+        "lineTerminator": {"$ref": "#/definitions/lineTerminator"},
+        "nullSequence": {"$ref": "#/definitions/nullSequence"},
+        "quoteChar": {"$ref": "#/definitions/quoteChar"},
+        "escapeChar": {"$ref": "#/definitions/escapeChar"},
+        "skipInitialSpace": {"$ref": "#/definitions/skipInitialSpace"},
+        "header": {"$ref": "#/definitions/header"},
+        "caseSensitiveHeader": {"$ref": "#/definitions/caseSensitiveHeader"}
       },
       "examples": [
         "{\n  \"dialect\": {\n    \"delimiter\": \";\"\n  }\n}\n",
@@ -468,9 +374,7 @@
       "description": "A number to indicate the schema version of CSV Dialect. Version 1.0 was named CSV Dialect Description Format and used different field names.",
       "type": "number",
       "default": 1.2,
-      "examples:": [
-        "{\n  \"csvddfVersion\": \"1.2\"\n}  \n"
-      ]
+      "examples:": ["{\n  \"csvddfVersion\": \"1.2\"\n}  \n"]
     },
     "delimiter": {
       "title": "Delimiter",
@@ -488,9 +392,7 @@
       "context": "If Double Quote is set to true, two consecutive quotes must be interpreted as one.",
       "type": "boolean",
       "default": true,
-      "examples": [
-        "{\n  \"doubleQuote\": true\n}\n"
-      ]
+      "examples": ["{\n  \"doubleQuote\": true\n}\n"]
     },
     "lineTerminator": {
       "title": "Line Terminator",
@@ -506,44 +408,34 @@
       "title": "Null Sequence",
       "description": "Specifies the null sequence, for example, `\\N`.",
       "type": "string",
-      "examples": [
-        "{\n  \"nullSequence\": \"\\N\"\n}\n"
-      ]
+      "examples": ["{\n  \"nullSequence\": \"\\N\"\n}\n"]
     },
     "quoteChar": {
       "title": "Quote Character",
       "description": "Specifies a one-character string to use as the quoting character.",
       "type": "string",
       "default": "\"",
-      "examples": [
-        "{\n  \"quoteChar\": \"'\"\n}\n"
-      ]
+      "examples": ["{\n  \"quoteChar\": \"'\"\n}\n"]
     },
     "escapeChar": {
       "title": "Escape Character",
       "description": "Specifies a one-character string to use as the escape character.",
       "type": "string",
-      "examples": [
-        "{\n  \"escapeChar\": \"\\\\\"\n}\n"
-      ]
+      "examples": ["{\n  \"escapeChar\": \"\\\\\"\n}\n"]
     },
     "skipInitialSpace": {
       "title": "Skip Initial Space",
       "description": "Specifies the interpretation of whitespace immediately following a delimiter. If false, whitespace immediately after a delimiter should be treated as part of the subsequent field.",
       "type": "boolean",
       "default": true,
-      "examples": [
-        "{\n  \"skipInitialSpace\": true\n}\n"
-      ]
+      "examples": ["{\n  \"skipInitialSpace\": true\n}\n"]
     },
     "header": {
       "title": "Header",
       "description": "Specifies if the file includes a header row, always as the first row in the file.",
       "type": "boolean",
       "default": true,
-      "examples": [
-        "{\n  \"header\": true\n}\n"
-      ]
+      "examples": ["{\n  \"header\": true\n}\n"]
     },
     "caseSensitiveHeader": {
       "title": "Case Sensitive Header",
@@ -551,17 +443,13 @@
       "context": "Use of case in source CSV files is not always an intentional decision. For example, should \"CAT\" and \"Cat\" be considered to have the same meaning.",
       "type": "boolean",
       "default": false,
-      "examples": [
-        "{\n  \"caseSensitiveHeader\": true\n}\n"
-      ]
+      "examples": ["{\n  \"caseSensitiveHeader\": true\n}\n"]
     },
     "dataPackage": {
       "title": "Data Package",
       "description": "Data Package",
       "type": "object",
-      "required": [
-        "resources"
-      ],
+      "required": ["resources"],
       "properties": {
         "profile": {
           "$ref": "#/definitions/profile",
@@ -616,9 +504,7 @@
         "sources": {
           "$ref": "#/definitions/sources",
           "propertyOrder": 200,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         }
       }
     },
@@ -633,9 +519,7 @@
       "properties": {
         "profile": {
           "$ref": "#/definitions/profile",
-          "enum": [
-            "tabular-data-package"
-          ],
+          "enum": ["tabular-data-package"],
           "propertyOrder": 10
         },
         "name": {
@@ -686,9 +570,7 @@
         "sources": {
           "$ref": "#/definitions/sources",
           "propertyOrder": 200,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         }
       }
     },
@@ -697,24 +579,16 @@
       "description": "An `array` of Data Resource objects, each compliant with the [Data Resource](/data-resource/) specification.",
       "type": "array",
       "minItems": 1,
-      "items": {
-        "$ref": "#/definitions/dataResource"
-      },
-      "examples": [
-        "{\n  \"resources\": [\n    {\n      \"name\": \"my-data\",\n      \"data\": [\n        \"data.csv\"\n      ],\n      \"mediatype\": \"text/csv\"\n    }\n  ]\n}\n"
-      ]
+      "items": {"$ref": "#/definitions/dataResource"},
+      "examples": ["{\n  \"resources\": [\n    {\n      \"name\": \"my-data\",\n      \"data\": [\n        \"data.csv\"\n      ],\n      \"mediatype\": \"text/csv\"\n    }\n  ]\n}\n"]
     },
     "tabularDataResources": {
       "title": "Tabular Data Resources",
       "description": "An `array` of Tabular Data Resource objects, each compliant with the [Tabular Data Resource](/tabular-data-resource/) specification.",
       "type": "array",
       "minItems": 1,
-      "items": {
-        "$ref": "#/definitions/tabularDataResource"
-      },
-      "examples": [
-        "{\n  \"resources\": [\n    {\n      \"name\": \"my-data\",\n      \"data\": [\n        \"data.csv\"\n      ],\n      \"schema\": \"tableschema.json\",\n      \"mediatype\": \"text/csv\"\n    }\n  ]\n}\n"
-      ]
+      "items": {"$ref": "#/definitions/tabularDataResource"},
+      "examples": ["{\n  \"resources\": [\n    {\n      \"name\": \"my-data\",\n      \"data\": [\n        \"data.csv\"\n      ],\n      \"schema\": \"tableschema.json\",\n      \"mediatype\": \"text/csv\"\n    }\n  ]\n}\n"]
     },
     "dataResource": {
       "title": "Data Resource",
@@ -772,17 +646,13 @@
         "sources": {
           "$ref": "#/definitions/sources",
           "propertyOrder": 140,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         },
         "licenses": {
           "$ref": "#/definitions/licenses",
           "description": "The license(s) under which the resource is published.",
           "propertyOrder": 150,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         },
         "format": {
           "$ref": "#/definitions/format",
@@ -799,16 +669,12 @@
         "bytes": {
           "$ref": "#/definitions/bytes",
           "propertyOrder": 110,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         },
         "hash": {
           "$ref": "#/definitions/hash",
           "propertyOrder": 120,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         }
       }
     },
@@ -837,9 +703,6 @@
       "properties": {
         "profile": {
           "$ref": "#/definitions/profile",
-          "enum": [
-            "tabular-data-resource"
-          ],
           "propertyOrder": 10
         },
         "name": {
@@ -864,8 +727,7 @@
         },
         "description": {
           "$ref": "#/definitions/description",
-          "propertyOrder": 60,
-          "format": "textarea"
+          "propertyOrder": 60
         },
         "homepage": {
           "$ref": "#/definitions/homepage",
@@ -874,17 +736,13 @@
         "sources": {
           "$ref": "#/definitions/sources",
           "propertyOrder": 140,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         },
         "licenses": {
           "$ref": "#/definitions/licenses",
           "description": "The license(s) under which the resource is published.",
           "propertyOrder": 150,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         },
         "dialect": {
           "$ref": "#/definitions/csvDialect",
@@ -905,25 +763,19 @@
         "bytes": {
           "$ref": "#/definitions/bytes",
           "propertyOrder": 110,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         },
         "hash": {
           "$ref": "#/definitions/hash",
           "propertyOrder": 120,
-          "options": {
-            "hidden": true
-          }
+          "options": {"hidden": true}
         }
       }
     },
     "pathArray": {
       "type": "array",
       "minItems": 1,
-      "items": {
-        "$ref": "#/definitions/path"
-      },
+      "items": {"$ref": "#/definitions/path"},
       "examples": [
         "[ \"file.csv\" ]\n",
         "[ \"http://example.com/file.csv\" ]\n"
@@ -933,12 +785,8 @@
       "title": "Path",
       "description": "A reference to the data for this resource, as either a path as a string, or an array of paths as strings. of valid URIs.",
       "oneOf": [
-        {
-          "$ref": "#/definitions/path"
-        },
-        {
-          "$ref": "#/definitions/pathArray"
-        }
+        {"$ref": "#/definitions/path"},
+        {"$ref": "#/definitions/pathArray"}
       ],
       "context": "The dereferenced value of each referenced data source in `path` `MUST` be commensurate with a native, dereferenced representation of the data the resource describes. For example, in a *Tabular* Data Resource, this means that the dereferenced value of `path` `MUST` be an array.",
       "examples": [
@@ -952,35 +800,27 @@
       "description": "The file format of this resource.",
       "context": "`csv`, `xls`, `json` are examples of common formats.",
       "type": "string",
-      "examples": [
-        "{\n  \"format\": \"xls\"\n}\n"
-      ]
+      "examples": ["{\n  \"format\": \"xls\"\n}\n"]
     },
     "mediatype": {
       "title": "Media Type",
       "description": "The media type of this resource. Can be any valid media type listed with [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml).",
       "type": "string",
       "pattern": "^(.+)/(.+)$",
-      "examples": [
-        "{\n  \"mediatype\": \"text/csv\"\n}\n"
-      ]
+      "examples": ["{\n  \"mediatype\": \"text/csv\"\n}\n"]
     },
     "encoding": {
       "title": "Encoding",
       "description": "The file encoding of this resource.",
       "type": "string",
       "default": "utf-8",
-      "examples": [
-        "{\n  \"encoding\": \"utf-8\"\n}\n"
-      ]
+      "examples": ["{\n  \"encoding\": \"utf-8\"\n}\n"]
     },
     "bytes": {
       "title": "Bytes",
       "description": "The size of this resource in bytes.",
       "type": "integer",
-      "examples": [
-        "{\n  \"bytes\": 2082\n}\n"
-      ]
+      "examples": ["{\n  \"bytes\": 2082\n}\n"]
     },
     "hash": {
       "title": "Hash",
@@ -1001,93 +841,51 @@
       "title": "Table Schema",
       "description": "A Table Schema for this resource, compliant with the [Table Schema](/tableschema/) specification.",
       "type": "object",
-      "required": [
-        "fields"
-      ],
+      "required": ["fields"],
       "properties": {
         "fields": {
           "type": "array",
           "minItems": 1,
-          "items": {
-            "$ref": "#/definitions/tableSchemaField"
-          },
+          "items": {"$ref": "#/definitions/tableSchemaField"},
           "description": "An `array` of Table Schema Field objects.",
           "examples": [
             "{\n  \"fields\": [\n    {\n      \"name\": \"my-field-name\"\n    }\n  ]\n}\n",
             "{\n  \"fields\": [\n    {\n      \"name\": \"my-field-name\",\n      \"type\": \"number\"\n    },\n    {\n      \"name\": \"my-field-name-2\",\n      \"type\": \"string\",\n      \"format\": \"email\"\n    }\n  ]\n}\n"
           ]
         },
-        "primaryKey": {
-          "$ref": "#/definitions/tableSchemaPrimaryKey"
-        },
+        "primaryKey": {"$ref": "#/definitions/tableSchemaPrimaryKey"},
         "foreignKeys": {
           "type": "array",
           "minItems": 1,
-          "items": {
-            "$ref": "#/definitions/tableSchemaForeignKey"
-          },
+          "items": {"$ref": "#/definitions/tableSchemaForeignKey"},
           "examples": [
             "{\n  \"foreignKeys\": [\n    {\n      \"fields\": \"state\",\n      \"reference\": {\n        \"resource\": \"the-resource\",\n        \"fields\": \"state_id\"\n      }\n    }\n  ]\n}\n",
             "{\n  \"foreignKeys\": [\n    {\n      \"fields\": \"state\",\n      \"reference\": {\n        \"resource\": \"\",\n        \"fields\": \"id\"\n      }\n    }\n  ]\n}\n"
           ]
         },
-        "missingValues": {
-          "$ref": "#/definitions/tableSchemaMissingValues"
-        }
+        "missingValues": {"$ref": "#/definitions/tableSchemaMissingValues"}
       },
-      "examples": [
-        "{\n  \"schema\": {\n    \"fields\": [\n      {\n        \"name\": \"first_name\",\n        \"type\": \"string\"\n        \"constraints\": {\n          \"required\": true\n        }\n      },\n      {\n        \"name\": \"age\",\n        \"type\": \"integer\"\n      },\n    ],\n    \"primaryKey\": [\n      \"name\"\n    ]\n  }\n}\n"
-      ]
+      "examples": ["{\n  \"schema\": {\n    \"fields\": [\n      {\n        \"name\": \"first_name\",\n        \"type\": \"string\"\n        \"constraints\": {\n          \"required\": true\n        }\n      },\n      {\n        \"name\": \"age\",\n        \"type\": \"integer\"\n      },\n    ],\n    \"primaryKey\": [\n      \"name\"\n    ]\n  }\n}\n"]
     },
     "tableSchemaField": {
       "title": "Table Schema Field",
       "type": "object",
       "anyOf": [
-        {
-          "$ref": "#/definitions/tableSchemaFieldString"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldNumber"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldInteger"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldDate"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldTime"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldDateTime"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldYear"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldYearMonth"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldBoolean"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldObject"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldGeoPoint"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldGeoJSON"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldArray"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldDuration"
-        },
-        {
-          "$ref": "#/definitions/tableSchemaFieldAny"
-        }
+        {"$ref": "#/definitions/tableSchemaFieldString"},
+        {"$ref": "#/definitions/tableSchemaFieldNumber"},
+        {"$ref": "#/definitions/tableSchemaFieldInteger"},
+        {"$ref": "#/definitions/tableSchemaFieldDate"},
+        {"$ref": "#/definitions/tableSchemaFieldTime"},
+        {"$ref": "#/definitions/tableSchemaFieldDateTime"},
+        {"$ref": "#/definitions/tableSchemaFieldYear"},
+        {"$ref": "#/definitions/tableSchemaFieldYearMonth"},
+        {"$ref": "#/definitions/tableSchemaFieldBoolean"},
+        {"$ref": "#/definitions/tableSchemaFieldObject"},
+        {"$ref": "#/definitions/tableSchemaFieldGeoPoint"},
+        {"$ref": "#/definitions/tableSchemaFieldGeoJSON"},
+        {"$ref": "#/definitions/tableSchemaFieldArray"},
+        {"$ref": "#/definitions/tableSchemaFieldDuration"},
+        {"$ref": "#/definitions/tableSchemaFieldAny"}
       ]
     },
     "tableSchemaPrimaryKey": {
@@ -1096,13 +894,9 @@
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
+          "items": {"type": "string"}
         },
-        {
-          "type": "string"
-        }
+        {"type": "string"}
       ],
       "description": "A primary key is a field name or an array of field names, whose values `MUST` uniquely identify each row in the table.",
       "context": "Field name in the `primaryKey` `MUST` be unique, and `MUST` match a field name in the associated table. It is acceptable to have an array with a single value, indicating that the value of a single field is the primary key.",
@@ -1144,9 +938,7 @@
                 },
                 "fields": {
                   "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
+                  "items": {"type": "string"},
                   "minItems": 1,
                   "uniqueItems": true
                 }
@@ -1171,9 +963,7 @@
                   "type": "string",
                   "default": ""
                 },
-                "fields": {
-                  "type": "string"
-                }
+                "fields": {"type": "string"}
               }
             }
           }
@@ -1183,9 +973,7 @@
     "tableSchemaTrueValues": {
       "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "string"
-      },
+      "items": {"type": "string"},
       "default": [
         "true",
         "True",
@@ -1196,9 +984,7 @@
     "tableSchemaFalseValues": {
       "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "string"
-      },
+      "items": {"type": "string"},
       "default": [
         "false",
         "False",
@@ -1208,12 +994,8 @@
     },
     "tableSchemaMissingValues": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "default": [
-        ""
-      ],
+      "items": {"type": "string"},
+      "default": [""],
       "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
       "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
       "examples": [
@@ -1225,24 +1007,14 @@
       "type": "object",
       "title": "String Field",
       "description": "The field contains strings, that is, sequences of characters.",
-      "required": [
-        "name"
-      ],
+      "required": ["name"],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `string`.",
-          "enum": [
-            "string"
-          ]
+          "enum": ["string"]
         },
         "format": {
           "description": "The format keyword options for `string` are `default`, `email`, `uri`, `binary`, and `uuid`.",
@@ -1261,29 +1033,15 @@
           "description": "The following constraints are supported for `string` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "pattern": {
-              "$ref": "#/definitions/tableSchemaConstraintPattern"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumString"
-            },
-            "minLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMinLength"
-            },
-            "maxLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMaxLength"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "pattern": {"$ref": "#/definitions/tableSchemaConstraintPattern"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+            "minLength": {"$ref": "#/definitions/tableSchemaConstraintMinLength"},
+            "maxLength": {"$ref": "#/definitions/tableSchemaConstraintMaxLength"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"name\",\n  \"type\": \"string\"\n}\n",
@@ -1300,47 +1058,27 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `boolean`.",
-          "enum": [
-            "boolean"
-          ]
+          "enum": ["boolean"]
         },
-        "trueValues": {
-          "$ref": "#/definitions/tableSchemaTrueValues"
-        },
-        "falseValues": {
-          "$ref": "#/definitions/tableSchemaFalseValues"
-        },
+        "trueValues": {"$ref": "#/definitions/tableSchemaTrueValues"},
+        "falseValues": {"$ref": "#/definitions/tableSchemaFalseValues"},
         "constraints": {
           "title": "Constraints",
           "description": "The following constraints are supported for `boolean` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumBoolean"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumBoolean"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
-      "examples": [
-        "{\n  \"name\": \"registered\",\n  \"type\": \"boolean\"\n}\n"
-      ]
+      "examples": ["{\n  \"name\": \"registered\",\n  \"type\": \"boolean\"\n}\n"]
     },
     "tableSchemaFieldInteger": {
       "type": "object",
@@ -1352,119 +1090,71 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `integer`.",
-          "enum": [
-            "integer"
-          ]
+          "enum": ["integer"]
         },
         "format": {
           "description": "There are no format keyword options for `integer`: only `default` is allowed.",
-          "enum": [
-            "default"
-          ],
+          "enum": ["default"],
           "default": "default"
         },
-        "bareNumber": {
-          "$ref": "#/definitions/tableSchemaBareNumber"
-        },
+        "bareNumber": {"$ref": "#/definitions/tableSchemaBareNumber"},
         "constraints": {
           "title": "Constraints",
           "description": "The following constraints are supported for `integer` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "pattern": {
-              "$ref": "#/definitions/tableSchemaConstraintPattern"
-            },
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "pattern": {"$ref": "#/definitions/tableSchemaConstraintPattern"},
             "enum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumInteger"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumInteger"}
               ]
             },
             "minimum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMinimumInteger"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintMinimumInteger"}
               ]
             },
             "maximum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMaximumInteger"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintMaximumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintMaximumInteger"}
               ]
             }
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
-      "examples": [
-        "{\n  \"name\": \"age\",\n  \"type\": \"integer\",\n  \"constraints\": {\n    \"unique\": true,\n    \"minimum\": 100,\n    \"maximum\": 9999\n  }\n}\n"
-      ]
+      "examples": ["{\n  \"name\": \"age\",\n  \"type\": \"integer\",\n  \"constraints\": {\n    \"unique\": true,\n    \"minimum\": 100,\n    \"maximum\": 9999\n  }\n}\n"]
     },
     "tableSchemaFieldNumber": {
       "type": "object",
       "title": "Number Field",
       "description": "The field contains numbers of any kind including decimals.",
       "context": "The lexical formatting follows that of decimal in [XMLSchema](https://www.w3.org/TR/xmlschema-2/#decimal): a non-empty finite-length sequence of decimal digits separated by a period as a decimal indicator. An optional leading sign is allowed. If the sign is omitted, '+' is assumed. Leading and trailing zeroes are optional. If the fractional part is zero, the period and following zero(es) can be omitted. For example: '-1.23', '12678967.543233', '+100000.00', '210'.\n\nThe following special string values are permitted (case does not need to be respected):\n  - NaN: not a number\n  - INF: positive infinity\n  - -INF: negative infinity\n\nA number `MAY` also have a trailing:\n  - exponent: this `MUST` consist of an E followed by an optional + or - sign followed by one or more decimal digits (0-9)\n  - percentage: the percentage sign: `%`. In conversion percentages should be divided by 100.\n\nIf both exponent and percentages are present the percentage `MUST` follow the exponent e.g. '53E10%' (equals 5.3).",
-      "required": [
-        "name"
-      ],
+      "required": ["name"],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `number`.",
-          "enum": [
-            "number"
-          ]
+          "enum": ["number"]
         },
         "format": {
           "description": "There are no format keyword options for `number`: only `default` is allowed.",
-          "enum": [
-            "default"
-          ],
+          "enum": ["default"],
           "default": "default"
         },
-        "bareNumber": {
-          "$ref": "#/definitions/tableSchemaBareNumber"
-        },
+        "bareNumber": {"$ref": "#/definitions/tableSchemaBareNumber"},
         "decimalChar": {
           "type": "string",
           "description": "A string whose value is used to represent a decimal point within the number. The default value is `.`."
@@ -1478,50 +1168,30 @@
           "description": "The following constraints are supported for `number` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "pattern": {
-              "$ref": "#/definitions/tableSchemaConstraintPattern"
-            },
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "pattern": {"$ref": "#/definitions/tableSchemaConstraintPattern"},
             "enum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumNumber"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumNumber"}
               ]
             },
             "minimum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMinimumNumber"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintMinimumNumber"}
               ]
             },
             "maximum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMaximumNumber"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintMaximumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintMaximumNumber"}
               ]
             }
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"field-name\",\n  \"type\": \"number\"\n}\n",
@@ -1537,20 +1207,12 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `date`.",
-          "enum": [
-            "date"
-          ]
+          "enum": ["date"]
         },
         "format": {
           "description": "The format keyword options for `date` are `default`, `any`, and `{PATTERN}`.",
@@ -1562,26 +1224,14 @@
           "description": "The following constraints are supported for `date` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumString"
-            },
-            "minimum": {
-              "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-            },
-            "maximum": {
-              "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+            "minimum": {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+            "maximum": {"$ref": "#/definitions/tableSchemaConstraintMaximumString"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"date_of_birth\",\n  \"type\": \"date\"\n}\n",
@@ -1598,20 +1248,12 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `time`.",
-          "enum": [
-            "time"
-          ]
+          "enum": ["time"]
         },
         "format": {
           "description": "The format keyword options for `time` are `default`, `any`, and `{PATTERN}`.",
@@ -1623,26 +1265,14 @@
           "description": "The following constraints are supported for `time` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumString"
-            },
-            "minimum": {
-              "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-            },
-            "maximum": {
-              "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+            "minimum": {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+            "maximum": {"$ref": "#/definitions/tableSchemaConstraintMaximumString"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"appointment_start\",\n  \"type\": \"time\"\n}\n",
@@ -1658,20 +1288,12 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `datetime`.",
-          "enum": [
-            "datetime"
-          ]
+          "enum": ["datetime"]
         },
         "format": {
           "description": "The format keyword options for `datetime` are `default`, `any`, and `{PATTERN}`.",
@@ -1683,26 +1305,14 @@
           "description": "The following constraints are supported for `datetime` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumString"
-            },
-            "minimum": {
-              "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-            },
-            "maximum": {
-              "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+            "minimum": {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+            "maximum": {"$ref": "#/definitions/tableSchemaConstraintMaximumString"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"timestamp\",\n  \"type\": \"datetime\"\n}\n",
@@ -1718,26 +1328,16 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `year`.",
-          "enum": [
-            "year"
-          ]
+          "enum": ["year"]
         },
         "format": {
           "description": "There are no format keyword options for `year`: only `default` is allowed.",
-          "enum": [
-            "default"
-          ],
+          "enum": ["default"],
           "default": "default"
         },
         "constraints": {
@@ -1745,47 +1345,29 @@
           "description": "The following constraints are supported for `year` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
             "enum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumInteger"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumInteger"}
               ]
             },
             "minimum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMinimumInteger"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintMinimumInteger"}
               ]
             },
             "maximum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintMaximumInteger"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintMaximumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintMaximumInteger"}
               ]
             }
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"year\",\n  \"type\": \"year\"\n}\n",
@@ -1801,26 +1383,16 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `yearmonth`.",
-          "enum": [
-            "yearmonth"
-          ]
+          "enum": ["yearmonth"]
         },
         "format": {
           "description": "There are no format keyword options for `yearmonth`: only `default` is allowed.",
-          "enum": [
-            "default"
-          ],
+          "enum": ["default"],
           "default": "default"
         },
         "constraints": {
@@ -1828,29 +1400,15 @@
           "description": "The following constraints are supported for `yearmonth` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "pattern": {
-              "$ref": "#/definitions/tableSchemaConstraintPattern"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumString"
-            },
-            "minimum": {
-              "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-            },
-            "maximum": {
-              "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "pattern": {"$ref": "#/definitions/tableSchemaConstraintPattern"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+            "minimum": {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+            "maximum": {"$ref": "#/definitions/tableSchemaConstraintMaximumString"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"month\",\n  \"type\": \"yearmonth\"\n}\n",
@@ -1867,26 +1425,16 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `duration`.",
-          "enum": [
-            "duration"
-          ]
+          "enum": ["duration"]
         },
         "format": {
           "description": "There are no format keyword options for `duration`: only `default` is allowed.",
-          "enum": [
-            "default"
-          ],
+          "enum": ["default"],
           "default": "default"
         },
         "constraints": {
@@ -1894,30 +1442,16 @@
           "description": "The following constraints are supported for `duration` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumString"
-            },
-            "minimum": {
-              "$ref": "#/definitions/tableSchemaConstraintMinimumString"
-            },
-            "maximum": {
-              "$ref": "#/definitions/tableSchemaConstraintMaximumString"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+            "minimum": {"$ref": "#/definitions/tableSchemaConstraintMinimumString"},
+            "maximum": {"$ref": "#/definitions/tableSchemaConstraintMaximumString"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
-      "examples": [
-        "{\n  \"name\": \"period\"\n  \"type\": \"duration\"\n}\n"
-      ]
+      "examples": ["{\n  \"name\": \"period\"\n  \"type\": \"duration\"\n}\n"]
     },
     "tableSchemaFieldObject": {
       "type": "object",
@@ -1928,26 +1462,16 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `object`.",
-          "enum": [
-            "object"
-          ]
+          "enum": ["object"]
         },
         "format": {
           "description": "There are no format keyword options for `object`: only `default` is allowed.",
-          "enum": [
-            "default"
-          ],
+          "enum": ["default"],
           "default": "default"
         },
         "constraints": {
@@ -1955,37 +1479,21 @@
           "description": "The following constraints apply for `object` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
             "enum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumObject"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumObject"}
               ]
             },
-            "minLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMinLength"
-            },
-            "maxLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMaxLength"
-            }
+            "minLength": {"$ref": "#/definitions/tableSchemaConstraintMinLength"},
+            "maxLength": {"$ref": "#/definitions/tableSchemaConstraintMaxLength"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
-      "examples": [
-        "{\n  \"name\": \"extra\"\n  \"type\": \"object\"\n}\n"
-      ]
+      "examples": ["{\n  \"name\": \"extra\"\n  \"type\": \"object\"\n}\n"]
     },
     "tableSchemaFieldArray": {
       "type": "object",
@@ -1996,26 +1504,16 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `array`.",
-          "enum": [
-            "array"
-          ]
+          "enum": ["array"]
         },
         "format": {
           "description": "There are no format keyword options for `array`: only `default` is allowed.",
-          "enum": [
-            "default"
-          ],
+          "enum": ["default"],
           "default": "default"
         },
         "constraints": {
@@ -2023,37 +1521,21 @@
           "description": "The following constraints apply for `array` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
             "enum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumArray"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumArray"}
               ]
             },
-            "minLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMinLength"
-            },
-            "maxLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMaxLength"
-            }
+            "minLength": {"$ref": "#/definitions/tableSchemaConstraintMinLength"},
+            "maxLength": {"$ref": "#/definitions/tableSchemaConstraintMaxLength"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
-      "examples": [
-        "{\n  \"name\": \"options\"\n  \"type\": \"array\"\n}\n"
-      ]
+      "examples": ["{\n  \"name\": \"options\"\n  \"type\": \"array\"\n}\n"]
     },
     "tableSchemaFieldGeoJSON": {
       "type": "object",
@@ -2064,20 +1546,12 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `geojson`.",
-          "enum": [
-            "geojson"
-          ]
+          "enum": ["geojson"]
         },
         "format": {
           "description": "The format keyword options for `geojson` are `default` and `topojson`.",
@@ -2093,33 +1567,19 @@
           "description": "The following constraints are supported for `geojson` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
             "enum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumObject"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumObject"}
               ]
             },
-            "minLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMinLength"
-            },
-            "maxLength": {
-              "$ref": "#/definitions/tableSchemaConstraintMaxLength"
-            }
+            "minLength": {"$ref": "#/definitions/tableSchemaConstraintMinLength"},
+            "maxLength": {"$ref": "#/definitions/tableSchemaConstraintMaxLength"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"city_limits\",\n  \"type\": \"geojson\"\n}\n",
@@ -2135,27 +1595,17 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `geopoint`.",
-          "enum": [
-            "geopoint"
-          ]
+          "enum": ["geopoint"]
         },
         "format": {
           "description": "The format keyword options for `geopoint` are `default`,`array`, and `object`.",
           "context": "The following `format` options are supported:\n  * **default**: A string of the pattern 'lon, lat', where `lon` is the longitude and `lat` is the latitude.\n  * **array**: An array of exactly two items, where each item is either a number, or a string parsable as a number, and the first item is `lon` and the second item is `lat`.\n  * **object**: A JSON object with exactly two keys, `lat` and `lon`",
-          "notes": [
-            "Implementations `MUST` strip all white space in the default format of `lon, lat`."
-          ],
+          "notes": ["Implementations `MUST` strip all white space in the default format of `lon, lat`."],
           "enum": [
             "default",
             "array",
@@ -2168,30 +1618,18 @@
           "description": "The following constraints are supported for `geopoint` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
             "enum": {
               "oneOf": [
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumString"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumArray"
-                },
-                {
-                  "$ref": "#/definitions/tableSchemaConstraintEnumObject"
-                }
+                {"$ref": "#/definitions/tableSchemaConstraintEnumString"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumArray"},
+                {"$ref": "#/definitions/tableSchemaConstraintEnumObject"}
               ]
             }
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
       "examples": [
         "{\n  \"name\": \"post_office\",\n  \"type\": \"geopoint\"\n}\n",
@@ -2207,44 +1645,26 @@
         "type"
       ],
       "properties": {
-        "name": {
-          "$ref": "#/definitions/tableSchemaFieldName"
-        },
-        "title": {
-          "$ref": "#/definitions/title"
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
+        "name": {"$ref": "#/definitions/tableSchemaFieldName"},
+        "title": {"$ref": "#/definitions/title"},
+        "description": {"$ref": "#/definitions/description"},
         "type": {
           "description": "The type keyword, which `MUST` be a value of `any`.",
-          "enum": [
-            "any"
-          ]
+          "enum": ["any"]
         },
         "constraints": {
           "title": "Constraints",
           "description": "The following constraints apply to `any` fields.",
           "type": "object",
           "properties": {
-            "required": {
-              "$ref": "#/definitions/tableSchemaConstraintRequired"
-            },
-            "unique": {
-              "$ref": "#/definitions/tableSchemaConstraintUnique"
-            },
-            "enum": {
-              "$ref": "#/definitions/tableSchemaConstraintEnumAny"
-            }
+            "required": {"$ref": "#/definitions/tableSchemaConstraintRequired"},
+            "unique": {"$ref": "#/definitions/tableSchemaConstraintUnique"},
+            "enum": {"$ref": "#/definitions/tableSchemaConstraintEnumAny"}
           }
         },
-        "rdfType": {
-          "$ref": "#/definitions/tableSchemaRdfType"
-        }
+        "rdfType": {"$ref": "#/definitions/tableSchemaRdfType"}
       },
-      "examples": [
-        "{\n  \"name\": \"notes\",\n  \"type\": \"any\"\n"
-      ]
+      "examples": ["{\n  \"name\": \"notes\",\n  \"type\": \"any\"\n"]
     },
     "tableSchemaConstraintRequired": {
       "type": "boolean",
@@ -2264,49 +1684,37 @@
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {
-        "type": "string"
-      }
+      "items": {"type": "string"}
     },
     "tableSchemaConstraintEnumBoolean": {
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {
-        "type": "boolean"
-      }
+      "items": {"type": "boolean"}
     },
     "tableSchemaConstraintEnumInteger": {
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {
-        "type": "integer"
-      }
+      "items": {"type": "integer"}
     },
     "tableSchemaConstraintEnumNumber": {
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {
-        "type": "number"
-      }
+      "items": {"type": "number"}
     },
     "tableSchemaConstraintEnumArray": {
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {
-        "type": "array"
-      }
+      "items": {"type": "array"}
     },
     "tableSchemaConstraintEnumObject": {
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {
-        "type": "object"
-      }
+      "items": {"type": "object"}
     },
     "tableSchemaConstraintEnumAny": {
       "type": "array",
@@ -2321,36 +1729,16 @@
       "type": "integer",
       "description": "An integer that specifies the maximum length of a value."
     },
-    "tableSchemaConstraintMinimumString": {
-      "type": "string"
-    },
-    "tableSchemaConstraintMinimumInteger": {
-      "type": "integer"
-    },
-    "tableSchemaConstraintMinimumNumber": {
-      "type": "number"
-    },
-    "tableSchemaConstraintMinimumArray": {
-      "type": "array"
-    },
-    "tableSchemaConstraintMinimumObject": {
-      "type": "object"
-    },
-    "tableSchemaConstraintMaximumString": {
-      "type": "string"
-    },
-    "tableSchemaConstraintMaximumInteger": {
-      "type": "integer"
-    },
-    "tableSchemaConstraintMaximumNumber": {
-      "type": "number"
-    },
-    "tableSchemaConstraintMaximumArray": {
-      "type": "array"
-    },
-    "tableSchemaConstraintMaximumObject": {
-      "type": "object"
-    },
+    "tableSchemaConstraintMinimumString": {"type": "string"},
+    "tableSchemaConstraintMinimumInteger": {"type": "integer"},
+    "tableSchemaConstraintMinimumNumber": {"type": "number"},
+    "tableSchemaConstraintMinimumArray": {"type": "array"},
+    "tableSchemaConstraintMinimumObject": {"type": "object"},
+    "tableSchemaConstraintMaximumString": {"type": "string"},
+    "tableSchemaConstraintMaximumInteger": {"type": "integer"},
+    "tableSchemaConstraintMaximumNumber": {"type": "number"},
+    "tableSchemaConstraintMaximumArray": {"type": "array"},
+    "tableSchemaConstraintMaximumObject": {"type": "object"},
     "tableSchemaRdfType": {
       "type": "string",
       "description": "The RDF type for this field."
@@ -2358,7 +1746,7 @@
     "tableSchemaBareNumber": {
       "type": "boolean",
       "title": "bareNumber",
-      "description": "a boolean field with a default of `true`. If `true` the physical contents of this field must follow the formatting constraints already set out. If `false` the contents of this field may contain leading and/or trailing non-numeric characters (which implementors MUST therefore strip). The purpose of `bareNumber` is to allow publishers to publish numeric data that contains trailing characters such as percentages e.g. `95%` or leading characters such as currencies e.g. `€95` or `EUR 95`. Note that it is entirely up to implementors what, if anything, they do with stripped text.",
+      "description": "a boolean field with a default of `true`. If `true` the physical contents of this field must follow the formatting constraints already set out. If `false` the contents of this field may contain leading and/or trailing non-numeric characters (which implementors MUST therefore strip). The purpose of `bareNumber` is to allow publishers to publish numeric data that contains trailing characters such as percentages e.g. `95%` or leading characters such as currencies e.g. `\u20ac95` or `EUR 95`. Note that it is entirely up to implementors what, if anything, they do with stripped text.",
       "default": true
     }
   }

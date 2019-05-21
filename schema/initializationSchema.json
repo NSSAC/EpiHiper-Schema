@@ -5,12 +5,7 @@
   "type": "object",
   "required": ["initializations"],
   "properties": {
-    "sets": {
-      "type": "array",
-      "items": [
-        {"$ref": "./typeRegistry.json#/definitions/set"}
-      ]
-    },
+    "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
     "initializations": {
       "description": "The propertyName description",
       "type": "array",
@@ -19,18 +14,7 @@
         "type": "object",
         "allOf": [
           {"$ref": "./typeRegistry.json#/definitions/annotation"},
-          {
-            "type": "object",
-            "required": ["selector"],
-            "properties": {
-              "selector": {
-                "allOf": [
-                  {"$ref": "./typeRegistry.json#/definitions/annotation"},
-                  {"$ref": "./typeRegistry.json#/definitions/setContent"}
-                ]
-              }
-            }
-          },
+          {"$ref": "./typeRegistry.json#/definitions/selector"},
           {"$ref": "./typeRegistry.json#/definitions/actionEnsemble"}
         ]
       }
