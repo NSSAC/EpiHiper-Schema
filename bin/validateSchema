@@ -5,9 +5,7 @@ var validateSchema = require("commander");
 var Ajv = require("ajv");
 var path = require('path');
 
-var currDir = process.cwd();
 var files;
-var schemas = []
 
 validateSchema 
 	.version(pkg.version)
@@ -24,21 +22,59 @@ validateSchema.parse(process.argv);
 
 if (!Array.isArray(files)) {
 	validateSchema.help();
-	exit(1);
+	return 1;
 }
 
-// console.log(validateSchema);
+var currDir = process.cwd();
+var ajv = new Ajv({schemaId: 'auto'});
+ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
+
+var schema = [
+	{
+		"$id": "./diseaseModelSchema.json"
+	},
+	{
+		"$id": "./initializationSchema.json"
+	},
+	{
+		"$id": "./interventionSchema.json"
+	},
+	{
+		"$id": "./interventionTemplateSchema.json"
+	},
+	{
+		"$id": "./mergedSchema.json"
+	},
+	{
+		"$id": "./runParametersSchema.json"
+	},
+	{
+		"$id": "./traitsSchema.json"
+	},
+	{
+		"$id": "./typeRegistry.json"
+	},
+	{
+		"$id": "./personTraitDB/schemas/tabular-data-resource.json"
+	},
+	{
+		"$id": "./personTraitDB/schemas/dictionary.json"
+	}];
+
+
+schema.forEach(function(s){
+	var sInstance = require(path.join(__dirname, '..', 'schema', s['$id']));
+	sInstance['$id'] = 'file://' + s['$id'];
+	ajv.addSchema(sInstance);
+})
+
 if (!validateSchema.schema){
 	validateSchema.schema = '$schema';
 }
 
-
-// console.log(validateSchema.default);
-// console.log(validateSchema.schema);
-// console.log(files);
-
 files.forEach(function(file){
 	var InstanceFile = path.join(currDir, file);
+	process.stdout.write('File: ' + InstanceFile);
 	var Instance = require(InstanceFile);
 	
 	var SchemaFile = validateSchema.schema
@@ -47,16 +83,20 @@ files.forEach(function(file){
 	if (SchemaFile == '$schema') {
 		SchemaFile = path.join(SchemaRelDir, Instance['$schema']);
 	} else {
-		SchemaFile = path.join(currDir, SchemaFile);
+	    SchemaFile = path.join(currDir, SchemaFile);
 	}
+
+	// Check whether we have the schema already loaded
+	Id = 'file://' + SchemaFile.replace(path.join(__dirname, '..', 'schema'), '.');
 	
-	console.log(SchemaFile);
-	var SchemaInstance = require(SchemaFile);
+	var validate = ajv.getSchema(Id);
+	var valid = validate(Instance); 
 	
-	ajv = new Ajv();
-	validate = ajv.getSchema('file://' + SchemaFile);
-	
-	var valid = validate(Instance);
-	if (!valid) console.log(validate.errors);
+	if (!valid) {
+		console.log(' invalid');
+		console.log(validate.errors);
+	} else {
+		console.log(' valid');
+	}
 	// console.log(SchemaInstance);
 })

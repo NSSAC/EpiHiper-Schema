@@ -865,8 +865,6 @@
                   }
                 },
                 "right": {
-                  "type": "object",
-                  "description": "",
                   "$ref": "#/definitions/valueList"
                 }
               }
@@ -990,8 +988,6 @@
               }
             },
             "right": {
-              "type": "object",
-              "description": "",
               "$ref": "#/definitions/valueList"
             }
           }
