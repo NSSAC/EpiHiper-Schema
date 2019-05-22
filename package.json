@@ -1,5 +1,5 @@
 {
-	"name": "@shoops/epiHiperValuidator",
+	"name": "@shoops/epi-hiper-validator",
 	"version": "0.0.1",
 	"description": "EpiHiper input validation utilities",
 	"main": "index.js",
