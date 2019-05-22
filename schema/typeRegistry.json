@@ -526,6 +526,19 @@
         "sizeOf": {"$ref": "#/definitions/setContent"}
       }
     },
+    "comparisonOperator": {
+      "$id": "#comparisonOperator",
+      "description": "Comparison operators",
+      "type": "string",
+      "enum": [
+        "==",
+        "!=",
+        "<=",
+        "<",
+        ">=",
+        ">"
+      ]
+    },
     "condition": {
       "$id": "#condition",
       "description": "A condition used in evaluating triggers and action conditions.",
@@ -538,18 +551,7 @@
             "right"
           ],
           "properties": {
-            "operator": {
-              "description": "",
-              "type": "string",
-              "enum": [
-                "==",
-                "!=",
-                "<=",
-                "<",
-                ">=",
-                ">"
-              ]
-            },
+            "operator": {"$ref": "#/definitions/comparisonOperator"},
             "left": {
               "type": "object",
               "description": "",
@@ -848,18 +850,7 @@
                 "right"
               ],
               "properties": {
-                "operator": {
-                  "description": "",
-                  "type": "string",
-                  "enum": [
-                    "==",
-                    "!=",
-                    "<=",
-                    "<",
-                    ">=",
-                    ">"
-                  ]
-                },
+                "operator": {"$ref": "#/definitions/comparisonOperator"},
                 "left": {
                   "type": "object",
                   "required": ["edge"],
@@ -934,18 +925,7 @@
               "type": "string",
               "enum": ["node"]
             },
-            "operator": {
-              "description": "",
-              "type": "string",
-              "enum": [
-                "==",
-                "!=",
-                "<=",
-                "<",
-                ">=",
-                ">"
-              ]
-            },
+            "operator": {"$ref": "#/definitions/comparisonOperator"},
             "left": {
               "type": "object",
               "required": ["node"],
@@ -1067,18 +1047,7 @@
                   "type": "string",
                   "enum": ["node"]
                 },
-                "operator": {
-                  "description": "",
-                  "type": "string",
-                  "enum": [
-                    "==",
-                    "!=",
-                    "<=",
-                    "<",
-                    ">=",
-                    ">"
-                  ]
-                },
+                "operator": {"$ref": "#/definitions/comparisonOperator"},
                 "left": {"$ref": "#/definitions/dbField"},
                 "right": {
                   "type": "object",
