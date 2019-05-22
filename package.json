@@ -15,5 +15,9 @@
 		"ajv": "^6.10.0",
 		"commander": "^2.20.0",
 		"@shoops/jsontron": ">=0.8.21"
+	},
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"eslint-config-google": "^0.13.0"
 	}
 }

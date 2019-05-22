@@ -16,3 +16,9 @@ epiHiperValidator/node_modules/
 node_modules/
 
 package-lock\.json
+
+\.vscode/
+
+\.classpath
+
+\.eslintrc\.js
