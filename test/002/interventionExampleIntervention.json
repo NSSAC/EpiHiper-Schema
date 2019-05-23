@@ -97,10 +97,12 @@
   "interventions": [
     {
       "$comment": "Count Infective School Age Children",
-      "triggers": [
+      "trigger": [
         {
           "left": {
-            "count": {"set": "schoolChildrenEnteredIsymp"}
+            "sizeof": {
+              "set": {"idRef": "schoolChildrenEnteredIsymp"}
+            }
           },
           "operator": ">",
           "right": {
@@ -127,7 +129,7 @@
     },
     {
       "$comment": "School Closure (school children)",
-      "triggers": [
+      "trigger": [
         {
           "left": {
             "value": {"number": 500}
@@ -196,7 +198,7 @@
     },
     {
       "$comment": "School Closure (teacher and other employees)",
-      "triggers": [
+      "trigger": [
         {
           "left": {
             "value": {"number": 500}
@@ -252,10 +254,12 @@
     },
     {
       "$comment": "Treatment",
-      "triggers": [
+      "trigger": [
         {
           "left": {
-            "count": {"set": "enteredIsymp"}
+            "sizeof": {
+              "set": {"idRef": "enteredIsymp"}
+            }
           },
           "operator": ">",
           "right": {
@@ -580,14 +584,16 @@
     },
     {
       "$comment": "Prophylax",
-      "triggers": [
+      "trigger": [
         {
           "left": {
-            "count": {
+            "sizeof": {
               "elementType": "node",
               "left": {
-                "property": "nodeTrait",
-                "feature": "prophylaxTrigger"
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylaxTrigger"
+                }
               },
               "operator": "==",
               "right": {

@@ -1,23 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Initializations",
-  "description": "A schema describing the initializations at the start of  EpiHiper",
+  "title": "Initialization File",
+  "$id": "#initializationFile",
+  "description": "A schema describing the contents of an initialization file for EpiHiper",
   "type": "object",
   "required": ["initializations"],
   "properties": {
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
-    "initializations": {
-      "description": "The propertyName description",
-      "type": "array",
-      "items": {
-        "description": "",
-        "type": "object",
-        "allOf": [
-          {"$ref": "./typeRegistry.json#/definitions/annotation"},
-          {"$ref": "./typeRegistry.json#/definitions/selector"},
-          {"$ref": "./typeRegistry.json#/definitions/actionEnsemble"}
-        ]
-      }
-    }
+    "initializations": {"$ref": "./typeRegistry.json#/definitions/initializations"}
   }
 }

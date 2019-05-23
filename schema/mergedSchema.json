@@ -5,19 +5,21 @@
   "type": "object",
   "required": [
     "diseaseModel",
-    "initialization"
+    "sets",
+    "globalVariables",
+    "initialization",
+    "interventions",
+    "traits",
+    "personTraitDBs"
   ],
   "properties": {
     "diseaseModel": {"$ref": "./diseaseModelSchema.json"},
-    "initialization": {"$ref": "./initializationSchema.json"},
-    "intervention": {"$ref": "./interventionSchema.json"},
+    "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
+    "globalVariables": {"$ref": "./typeRegistry.json#/definitions/globalVariables"},
+    "initializations": {"$ref": "./typeRegistry.json#/definitions/initializations"},
+    "interventions": {"$ref": "./typeRegistry.json#/definitions/interventions"},
     "traits": {"$ref": "./typeRegistry.json#/definitions/traits"},
-    "personTraitDBs": {
-      "type": "array",
-      "items": {
-        "$ref": "./personTraitDB/schemas/tabular-data-resource.json"
-      }
-    },
+    "personTraitDBs": {"$ref": "./typeRegistry.json#/definitions/personTraitDBs"},
     "runParameters": {"$ref": "./runParametersSchema.json"}
   }
 }

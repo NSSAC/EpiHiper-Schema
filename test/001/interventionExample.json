@@ -3,7 +3,7 @@
   "interventions": [
     {
       "$comment": "if the health state is severe put the individual into hospital but only if there are less that 100 individuals in the hospital",
-      "triggers": [
+      "trigger": [
         {
           "operator": "==",
           "left": {
@@ -45,7 +45,7 @@
     },
     {
       "$comment": "90% of student in Blacksburg highschool are vaccinated.",
-      "triggers": [
+      "trigger": [
         {
           "left": {"observable": "time"},
           "operator": "==",
@@ -93,7 +93,7 @@
     },
     {
       "$comments": "If a person becomes infective treat it for 10 days with a red pill",
-      "triggers": [
+      "trigger": [
         {
           "left": {
             "node": {"property": "healthState"}
@@ -179,7 +179,7 @@
     },
     {
       "$comments": "If a person becomes severely think infective treat it for 15 days with a blue pill. The blue is incompatible with the read pill.",
-      "triggers": [
+      "trigger": [
         {
           "operator": "==",
           "left": {

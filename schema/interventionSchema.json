@@ -1,5 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Interventions",
-  "$ref": "./typeRegistry.json#/definitions/interventions"
+  "title": "Intervention File",
+  "$id": "#interventionFile",
+  "description": "A schema describing the contents of an intervention file for EpiHiper",
+  "type": "object",
+  "required": ["interventions"],
+  "properties": {
+    "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
+    "globalVariables": {"$ref": "./typeRegistry.json#/definitions/globalVariables"},
+    "interventions": {"$ref": "./typeRegistry.json#/definitions/interventions"}
+  }
 }

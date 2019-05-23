@@ -517,13 +517,13 @@
         }
       }
     },
-    "count": {
-      "$id": "#count",
+    "sizeof": {
+      "$id": "#sizeof",
       "description": "The count of the elements in a set.",
       "type": "object",
-      "required": ["count"],
+      "required": ["sizeof"],
       "properties": {
-        "sizeOf": {"$ref": "#/definitions/setContent"}
+        "sizeof": {"$ref": "#/definitions/setContent"}
       }
     },
     "comparisonOperator": {
@@ -573,7 +573,7 @@
                   }
                 },
                 {"$ref": "#/definitions/globalVariableReference"},
-                {"$ref": "#/definitions/count"}
+                {"$ref": "#/definitions/sizeof"}
               ]
             },
             "right": {
@@ -597,7 +597,7 @@
                   }
                 },
                 {"$ref": "#/definitions/globalVariableReference"},
-                {"$ref": "#/definitions/count"}
+                {"$ref": "#/definitions/sizeof"}
               ]
             }
           }
@@ -1203,40 +1203,48 @@
       },
       "additionalProperties": false
     },
+    "initialization": {
+      "$id": "#initialization",
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {"$ref": "#/definitions/selector"},
+        {"$ref": "#/definitions/actionEnsemble"}
+      ]
+    },
+    "initializations": {
+      "description": "The propertyName description",
+      "type": "array",
+      "items": {"$ref": "#/definitions/initialization"}
+    },
+    "intervention": {
+      "$id": "#intervention",
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "type": "object",
+          "required": ["trigger"],
+          "properties": {
+            "trigger": {
+              "description": "",
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/definitions/condition"}
+            }
+          }
+        },
+        {"$ref": "#/definitions/selector"},
+        {"$ref": "#/definitions/actionEnsemble"}
+      ]
+    },
     "interventions": {
       "$id": "#interventions",
-      "description": "A schema describing the interventions allowed in EpiHiper",
-      "type": "object",
-      "required": ["interventions"],
-      "properties": {
-        "sets": {"$ref": "#/definitions/sets"},
-        "globalVariables": {"$ref": "#/definitions/globalVariables"},
-        "interventions": {
-          "description": "The propertyName description",
-          "type": "array",
-          "items": {
-            "description": "",
-            "type": "object",
-            "allOf": [
-              {"$ref": "#/definitions/annotation"},
-              {
-                "type": "object",
-                "required": ["triggers"],
-                "properties": {
-                  "triggers": {
-                    "description": "",
-                    "type": "array",
-                    "minItems": 1,
-                    "items": {"$ref": "#/definitions/condition"}
-                  }
-                }
-              },
-              {"$ref": "#/definitions/selector"},
-              {"$ref": "#/definitions/actionEnsemble"}
-            ]
-          }
-        }
-      }
+      "description": "A list of interventions",
+      "type": "array",
+      "items": {"$ref": "#/definitions/intervention"}
     },
     "featureEnum": {
       "$id": "#featureEnum",
@@ -1321,6 +1329,11 @@
       "description": "The traits array.",
       "type": "array",
       "items": {"$ref": "#/definitions/trait"}
+    },
+    "personTraitDB": {"$ref": "./personTraitDB/schemas/dictionary.json#/definitions/tabularDataResource"},
+    "personTraitDBs": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/personTraitDB"}
     }
   }
 }

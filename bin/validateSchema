@@ -13,75 +13,44 @@
 // END: License
 
 const pkg = require('../package.json');
-const validateSchema = require('commander');
+const cfg = require('../config.json');
+const commander = require('commander');
 const Ajv = require('ajv');
 const path = require('path');
+const fs = require('fs');
 
 let files;
 
-validateSchema
+commander
     .version(pkg.version)
     .description('EpiHiper Schema Validation')
     .usage('[options] <file ...>')
     .option('-s --schema <schema>', 'Use the specified schema validation')
     .option('--no-default', 'Do not add defaults for missing values')
     .arguments('<files...>')
-    .action(function(file) {
-      files = file;
+    .action(function(_files) {
+      files = _files;
     });
 
-validateSchema.parse(process.argv);
+commander.parse(process.argv);
 
 if (!Array.isArray(files)) {
-  validateSchema.help();
-  applicationCache.exit(1);
+  commander.help();
+  app.exit(1);
 }
 
 const currDir = process.cwd();
 const ajv = new Ajv({schemaId: 'auto'});
 ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
 
-const schema = [
-  {
-    '$id': './diseaseModelSchema.json',
-  },
-  {
-    '$id': './initializationSchema.json',
-  },
-  {
-    '$id': './interventionSchema.json',
-  },
-  {
-    '$id': './interventionTemplateSchema.json',
-  },
-  {
-    '$id': './mergedSchema.json',
-  },
-  {
-    '$id': './runParametersSchema.json',
-  },
-  {
-    '$id': './traitsSchema.json',
-  },
-  {
-    '$id': './typeRegistry.json',
-  },
-  {
-    '$id': './personTraitDB/schemas/tabular-data-resource.json',
-  },
-  {
-    '$id': './personTraitDB/schemas/dictionary.json',
-  }];
-
-
-schema.forEach(function(s) {
-  const sInstance = require(path.join(__dirname, '..', 'schema', s['$id']));
-  sInstance['$id'] = 'file://' + s['$id'];
+cfg.schema.forEach(function(s) {
+  const sInstance = require(path.join(__dirname, '..', 'schema', s));
+  sInstance['$id'] = 'file://' + s;
   ajv.addSchema(sInstance);
 });
 
-if (!validateSchema.schema) {
-  validateSchema.schema = '$schema';
+if (!commander.schema) {
+  commander.schema = '$schema';
 }
 
 files.forEach(function(file) {
@@ -89,7 +58,7 @@ files.forEach(function(file) {
   process.stdout.write('File: ' + InstanceFile);
   const Instance = require(InstanceFile);
 
-  let SchemaFile = validateSchema.schema;
+  let SchemaFile = commander.schema;
   const SchemaRelDir = path.dirname(InstanceFile);
 
   if (SchemaFile == '$schema') {
@@ -101,7 +70,26 @@ files.forEach(function(file) {
   // Check whether we have the schema already loaded
   Id = 'file://' + SchemaFile.replace(path.join(__dirname, '..', 'schema'), '.');
 
-  const validate = ajv.getSchema(Id);
+  let validate = ajv.getSchema(Id);
+
+  if (typeof validate === 'undefined') {
+    console.log(SchemaFile);
+
+    if (!fs.existsSync(SchemaFile)) {
+      throw new Error('Schema: ' + SchemaFile + ' not found.');
+    }
+
+    const sInstance = require(SchemaFile);
+    sInstance['$id'] = Id;
+    ajv.addSchema(sInstance);
+
+    validate = ajv.getSchema(Id);
+
+    if (typeof validate === 'undefined') {
+      throw new Error('Schema: ' + SchemaFile + ' invalid');
+    }
+  }
+
   const valid = validate(Instance);
 
   if (!valid) {

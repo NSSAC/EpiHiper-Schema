@@ -13,77 +13,45 @@
 // END: License
 
 const pkg = require('../package.json');
-const validateRules = require('commander');
+const cfg = require('../config.json');
+const commander = require('commander');
 const jsontron = require('@shoops/jsontron');
 const path = require('path');
 const fs = require('fs');
 
 let files;
 
-validateRules
+commander
     .version(pkg.version)
     .description('EpiHiper Schema Validation')
     .usage('[options] <file ...>')
     .option('-r --rules <rules>', 'Use the specified rules for validation')
     .arguments('<files...>')
-    .action(function(file) {
-      files = file;
+    .action(function(_files) {
+      files = _files;
     });
 
-validateRules.parse(process.argv);
+commander.parse(process.argv);
 
 if (!Array.isArray(files)) {
-  validateRules.help();
-  applicationCache.exit(1);
+  commander.help();
+  app.exit(1);
 }
 
 const currDir = process.cwd();
-
-const schema = [
-  {
-    '$id': './diseaseModelSchema.json',
-  },
-  {
-    '$id': './initializationSchema.json',
-  },
-  {
-    '$id': './interventionSchema.json',
-  },
-  {
-    '$id': './interventionTemplateSchema.json',
-  },
-  {
-    '$id': './mergedSchema.json',
-  },
-  {
-    '$id': './runParametersSchema.json',
-  },
-  {
-    '$id': './traitsSchema.json',
-  },
-  {
-    '$id': './typeRegistry.json',
-  },
-  {
-    '$id': './personTraitDB/schemas/tabular-data-resource.json',
-  },
-  {
-    '$id': './personTraitDB/schemas/dictionary.json',
-  }];
-
 const rules = {};
 
-schema.forEach(function(s) {
+cfg.schema.forEach(function(s) {
   RulesFile = path.join(__dirname, '..', 'schema',
-      s['$id'].replace('Schema.json', 'Rules.json'));
+      s.replace('Schema.json', 'Rules.json'));
 
   if (RulesFile.endsWith('Rules.json') && fs.existsSync(RulesFile)) {
     rules[RulesFile] = require(RulesFile);
   }
 });
 
-if (!validateRules.rules) {
-  validateRules.rules = '$rules';
+if (!commander.rules) {
+  commander.rules = '$rules';
 }
 
 files.forEach(function(file) {
@@ -91,7 +59,7 @@ files.forEach(function(file) {
   process.stdout.write('File: ' + InstanceFile);
   const Instance = require(InstanceFile);
 
-  let RulesFile = validateRules.rules;
+  let RulesFile = commander.rules;
   const RulesRelDir = path.dirname(InstanceFile);
 
   if (RulesFile == '$rules') {

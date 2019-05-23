@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // BEGIN: Copyright 
 // Copyright (C) 2019 Rector and Visitors of the University of Virginia 
 // All rights reserved 
@@ -10,3 +12,148 @@
 //   http://www.apache.org/licenses/LICENSE-2.0 
 // END: License 
 
+const pkg = require('../package.json');
+const cfg = require('../config.json');
+const commander = require('commander');
+const Ajv = require('ajv');
+const path = require('path');
+
+let files;
+
+commander
+    .version(pkg.version)
+    .description('EpiHiper Schema Validation')
+    .usage('[options] <file ...>')
+    .option('--no-default', 'Do not add defaults for missing values')
+    .arguments('<files...>')
+    .action(function(_files) {
+      files = _files;
+    });
+
+commander.parse(process.argv);
+
+if (!Array.isArray(files)) {
+  commander.help();
+  app.exit(1);
+}
+
+const currDir = process.cwd();
+const ajv = new Ajv({schemaId: 'auto'});
+ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
+
+cfg.schema.forEach(function(s) {
+  const sInstance = require(path.join(__dirname, '..', 'schema', s));
+  sInstance['$id'] = 'file://' + s;
+  ajv.addSchema(sInstance);
+});
+
+let merged = {};
+merged.diseaseModel = {};
+merged.sets = [];
+merged.globalVariables = [];
+merged.initialization = [];
+merged.interventions = [];
+merged.traits = [];
+merged.personTraitDBs = [];
+merged.runParameters = {};
+
+files.forEach(function(file) {
+  const InstanceFile = path.join(currDir, file);
+  process.stdout.write('File: ' + InstanceFile);
+  const Instance = require(InstanceFile);
+
+  let SchemaFile = commander.schema;
+  const SchemaRelDir = path.dirname(InstanceFile);
+
+  SchemaFile = path.join(SchemaRelDir, Instance['$schema']);
+
+  Id = 'file://' + SchemaFile.replace(path.join(__dirname, '..', 'schema'), '.');
+  // Check whether we have the schema already loaded
+
+  const validate = ajv.getSchema(Id);
+
+  if (typeof validate === 'undefined') {
+    throw new Error('Schema: ' + SchemaFile + ' invalid');
+  }
+
+  const valid = validate(Instance);
+
+  if (!valid) {
+    console.log(' invalid');
+    console.log(validate.errors);
+  } else {
+    console.log(' valid');
+  }
+  // console.log(SchemaInstance);
+});
+/**
+ * Adds the disease model to the merged EpiHiper input.
+ * @param {object} diseaseModel
+ * @return {void}
+ */
+function addDiseaseModel(diseaseModel) {
+  merged.diseaseModel = diseaseModel;
+};
+
+/**
+ * Adds the disease model to the merged EpiHiper input.
+ * @param {object} diseaseModel
+ * @return {void}
+ */
+function addSets(sets) {
+
+};
+
+/**
+ * Adds sets to the merged EpiHiper input.
+ * @param {object} sets
+ * @return {void}
+ */
+function addGlobalVariables(gobalVariables) {
+
+};
+
+/**
+ * Adds initializations to the merged EpiHiper input.
+ * @param {object} initializations
+ * @return {void}
+ */
+function addInitializations(initializations) {
+
+};
+
+/**
+ * Adds interventions to the merged EpiHiper input.
+ * @param {object} interventions
+ * @return {void}
+ */
+function addInterventions(interventions) {
+
+};
+
+/**
+ * Adds traits to the merged EpiHiper input.
+ * @param {object} traits
+ * @return {void}
+ */
+function addTraits(traits) {
+
+};
+
+/**
+ * Adds personTraitDBs to the merged EpiHiper input.
+ * @param {object} personTraitDBs
+ * @return {void}
+ */
+function addPersonTraitDBs(personTraitDBs) {
+
+};
+
+/**
+ * Adds the run parameters to the merged EpiHiper input.
+ * @param {object} runParameters
+ * @return {void}
+ */
+function addRunParameters(runParameters) {
+
+};
