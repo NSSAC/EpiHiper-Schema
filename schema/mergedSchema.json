@@ -11,7 +11,7 @@
     "diseaseModel": {"$ref": "./diseaseModelSchema.json"},
     "initialization": {"$ref": "./initializationSchema.json"},
     "intervention": {"$ref": "./interventionSchema.json"},
-    "traits": {"$ref": "./traitsSchema.json"},
+    "traits": {"$ref": "./typeRegistry.json#/definitions/traits"},
     "personTraitDBs": {
       "type": "array",
       "items": {

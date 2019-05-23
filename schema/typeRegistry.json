@@ -1237,6 +1237,90 @@
           }
         }
       }
+    },
+    "featureEnum": {
+      "$id": "#featureEnum",
+      "description": "An enumeration value allowed for a feature",
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "description": "An enumeration value",
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": {"$ref": "#/definitions/uniqueId"}
+          },
+          "patternProperties": {
+            "^ann:": {}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "featureEnums": {
+      "$id": "#featureEnums",
+      "description": "The enumeration values allowed for the feature",
+      "type": "array",
+      "items": {"$ref": "#/definitions/featureEnum"}
+    },
+    "traitFeature": {
+      "$id": "#traitFeature",
+      "description": "A feature of a trait",
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "enums",
+            "default"
+          ],
+          "properties": {
+            "id": {"$ref": "#/definitions/uniqueId"},
+            "enums": {"$ref": "#/definitions/featureEnums"},
+            "default": {"$ref": "#/definitions/uniqueIdRef"}
+          },
+          "patternProperties": {
+            "^ann:": {}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "traitFeatures": {
+      "$id": "#traitFeatures",
+      "description": "A list of features included in a trait",
+      "type": "array",
+      "items": {"$ref": "#/definitions/traitFeature"}
+    },
+    "trait": {
+      "$id": "#trait",
+      "description": "A trait.",
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "description": "A trait",
+          "type": "object",
+          "required": [
+            "id",
+            "features"
+          ],
+          "properties": {
+            "id": {"$ref": "#/definitions/uniqueId"},
+            "features": {"$ref": "#/definitions/traitFeatures"}
+          },
+          "patternProperties": {
+            "^ann:": {}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "traits": {
+      "$id": "#traits",
+      "description": "The traits array.",
+      "type": "array",
+      "items": {"$ref": "#/definitions/trait"}
     }
   }
 }
