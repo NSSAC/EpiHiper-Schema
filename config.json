@@ -1,15 +1,15 @@
 {
 	"schema": [
-		"./diseaseModelSchema.json",
-		"./initializationSchema.json",
-		"./interventionSchema.json",
-		"./interventionTemplateSchema.json",
-		"./mergedSchema.json",
-		"./personTraitDBSchema.json",
-		"./runParametersSchema.json",
-		"./traitsSchema.json",
-		"./typeRegistry.json",
-		"./personTraitDB/schemas/tabular-data-resource.json",
-		"./personTraitDB/schemas/dictionary.json"
+		"diseaseModelSchema.json",
+		"initializationSchema.json",
+		"interventionSchema.json",
+		"interventionTemplateSchema.json",
+		"mergedSchema.json",
+		"personTraitDBSchema.json",
+		"runParametersSchema.json",
+		"traitsSchema.json",
+		"typeRegistry.json",
+		"personTraitDB/schemas/tabular-data-resource.json",
+		"personTraitDB/schemas/dictionary.json"
 	]
 }

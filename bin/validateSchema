@@ -36,7 +36,7 @@ commander.parse(process.argv);
 
 if (!Array.isArray(files)) {
   commander.help();
-  app.exit(1);
+  process.exit(1);
 }
 
 const currDir = process.cwd();
@@ -45,7 +45,7 @@ ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
 
 cfg.schema.forEach(function(s) {
   const sInstance = require(path.join(__dirname, '..', 'schema', s));
-  sInstance['$id'] = 'file://' + s;
+  sInstance['$id'] = 'file://./' + s;
   ajv.addSchema(sInstance);
 });
 
@@ -98,5 +98,4 @@ files.forEach(function(file) {
   } else {
     console.log(' valid');
   }
-  // console.log(SchemaInstance);
 });

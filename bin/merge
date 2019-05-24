@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-// BEGIN: Copyright 
-// Copyright (C) 2019 Rector and Visitors of the University of Virginia 
-// All rights reserved 
-// END: Copyright 
+// BEGIN: Copyright
+// Copyright (C) 2019 Rector and Visitors of the University of Virginia
+// All rights reserved
+// END: Copyright
 
-// BEGIN: License 
-// Licensed under the Apache License, Version 2.0 (the "License"); 
-// you may not use this file except in compliance with the License. 
-// You may obtain a copy of the License at 
-//   http://www.apache.org/licenses/LICENSE-2.0 
-// END: License 
+// BEGIN: License
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//   http://www.apache.org/licenses/LICENSE-2.0
+// END: License
 
 const pkg = require('../package.json');
 const cfg = require('../config.json');
@@ -34,7 +34,7 @@ commander.parse(process.argv);
 
 if (!Array.isArray(files)) {
   commander.help();
-  app.exit(1);
+  process.exit(1);
 }
 
 const currDir = process.cwd();
@@ -43,11 +43,11 @@ ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
 
 cfg.schema.forEach(function(s) {
   const sInstance = require(path.join(__dirname, '..', 'schema', s));
-  sInstance['$id'] = 'file://' + s;
+  sInstance['$id'] = 'file://./' + s;
   ajv.addSchema(sInstance);
 });
 
-let merged = {};
+const merged = {};
 merged.diseaseModel = {};
 merged.sets = [];
 merged.globalVariables = [];
@@ -62,12 +62,10 @@ files.forEach(function(file) {
   process.stdout.write('File: ' + InstanceFile);
   const Instance = require(InstanceFile);
 
-  let SchemaFile = commander.schema;
   const SchemaRelDir = path.dirname(InstanceFile);
+  const SchemaFile = path.join(SchemaRelDir, Instance['$schema']);
 
-  SchemaFile = path.join(SchemaRelDir, Instance['$schema']);
-
-  Id = 'file://' + SchemaFile.replace(path.join(__dirname, '..', 'schema'), '.');
+  const Id = 'file://' + SchemaFile.replace(path.join(__dirname, '..', 'schema'), '.');
   // Check whether we have the schema already loaded
 
   const validate = ajv.getSchema(Id);
@@ -81,27 +79,101 @@ files.forEach(function(file) {
   if (!valid) {
     console.log(' invalid');
     console.log(validate.errors);
+    return;
   } else {
     console.log(' valid');
   }
-  // console.log(SchemaInstance);
+
+  switch (path.basename(Id)) {
+    case 'diseaseModelSchema.json':
+      addDiseaseModel(Instance);
+      break;
+
+    case 'initializationSchema.json':
+      addSets(Instance.sets);
+      addInitializations(Instance.initializations);
+      break;
+
+    case 'interventionSchema.json':
+      addSets(Instance.sets);
+      addGlobalVariables(Instance.globalVariables);
+      addInterventions(Instance.interventions);
+      break;
+
+    case 'interventionTemplateSchema.json':
+      break;
+
+    case 'mergedSchema.json':
+      addDiseaseModel(Instance.diseaseModel);
+      addSets(Instance.sets);
+      addGlobalVariables(Instance.globalVariables);
+      addInitializations(Instance.initializations);
+      addInterventions(Instance.interventions);
+      addTraits(Instance.traits);
+      addPersonTraitDBs(Instance.personTraitDBs);
+      addRunParameters(Instance.runParameters);
+      break;
+
+    case 'personTraitDBSchema.json':
+      addPersonTraitDBs([Instance]);
+      break;
+
+    case 'runParametersSchema.json':
+      addRunParameters(Instance);
+      break;
+
+    case 'traitsSchema.json':
+      addTraits(Instance.traits);
+      break;
+
+    case 'typeRegistry.json':
+      break;
+
+    case 'personTraitDB/schemas/tabular-data-resource.json':
+      break;
+
+    case 'personTraitDB/schemas/dictionary.json':
+      break;
+  }
 });
+
+process.stdout.write('Merged Instance');
+validate = ajv.getSchema('file://./mergedSchema.json');
+
+valid = validate(merged);
+
+if (!valid) {
+  console.log(' invalid');
+  console.log(validate.errors);
+} else {
+  console.log(' valid');
+}
+
+console.log(merged);
+
+process.exit(0);
+
+/**
+ * Check whether the given object is empty.
+ * @param {object} obj
+ * @return {Boolean} isEmpty
+ */
+function isEmpty(obj) {
+  return (Object.keys(obj).length === 0 && obj.constructor === Object);
+}
 /**
  * Adds the disease model to the merged EpiHiper input.
  * @param {object} diseaseModel
  * @return {void}
  */
 function addDiseaseModel(diseaseModel) {
+  if (typeof diseaseModel === 'undefined') return;
+
+  if (! isEmpty(merged.diseaseModel)) {
+    throw new Error('Merging of disease model is not supported.');
+  }
+
   merged.diseaseModel = diseaseModel;
-};
-
-/**
- * Adds the disease model to the merged EpiHiper input.
- * @param {object} diseaseModel
- * @return {void}
- */
-function addSets(sets) {
-
 };
 
 /**
@@ -109,8 +181,25 @@ function addSets(sets) {
  * @param {object} sets
  * @return {void}
  */
-function addGlobalVariables(gobalVariables) {
+function addSets(sets) {
+  if (!Array.isArray(sets)) return;
 
+  sets.forEach(function(set) {
+    merged.sets.push(set);
+  });
+};
+
+/**
+ * Adds gobalVariables to the merged EpiHiper input.
+ * @param {object} gobalVariables
+ * @return {void}
+ */
+function addGlobalVariables(gobalVariables) {
+  if (!Array.isArray(gobalVariables)) return;
+
+  gobalVariables.forEach(function(gobalVariable) {
+    merged.gobalVariables.push(gobalVariable);
+  });
 };
 
 /**
@@ -119,7 +208,11 @@ function addGlobalVariables(gobalVariables) {
  * @return {void}
  */
 function addInitializations(initializations) {
+  if (!Array.isArray(initializations)) return;
 
+  initializations.forEach(function(initialization) {
+    merged.initializations.push(initialization);
+  });
 };
 
 /**
@@ -128,7 +221,11 @@ function addInitializations(initializations) {
  * @return {void}
  */
 function addInterventions(interventions) {
+  if (!Array.isArray(interventions)) return;
 
+  interventions.forEach(function(intervention) {
+    merged.interventions.push(intervention);
+  });
 };
 
 /**
@@ -137,7 +234,11 @@ function addInterventions(interventions) {
  * @return {void}
  */
 function addTraits(traits) {
+  if (!Array.isArray(traits)) return;
 
+  traits.forEach(function(trait) {
+    merged.traits.push(trait);
+  });
 };
 
 /**
@@ -146,7 +247,11 @@ function addTraits(traits) {
  * @return {void}
  */
 function addPersonTraitDBs(personTraitDBs) {
+  if (!Array.isArray(personTraitDBs)) return;
 
+  personTraitDBs.forEach(function(personTraitDB) {
+    merged.personTraitDBs.push(personTraitDB);
+  });
 };
 
 /**
@@ -155,5 +260,11 @@ function addPersonTraitDBs(personTraitDBs) {
  * @return {void}
  */
 function addRunParameters(runParameters) {
+  if (typeof runParameters === 'undefined') return;
 
+  if (! isEmpty(merged.runParameters)) {
+    throw new Error('Merging of run parameters is not supported.');
+  }
+
+  merged.runParameters = runParameters;
 };

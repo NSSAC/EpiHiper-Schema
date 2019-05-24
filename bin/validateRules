@@ -35,7 +35,7 @@ commander.parse(process.argv);
 
 if (!Array.isArray(files)) {
   commander.help();
-  app.exit(1);
+  process.exit(1);
 }
 
 const currDir = process.cwd();
