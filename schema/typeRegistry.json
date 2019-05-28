@@ -44,15 +44,6 @@
         "number": {"$ref": "#/definitions/nonNegativeNumber"}
       }
     },
-    "boolean": {
-      "$id": "#boolean",
-      "description": "A boolean property.",
-      "type": "object",
-      "required": ["boolean"],
-      "properties": {
-        "boolean": {"type": "boolean"}
-      }
-    },
     "traitEnum": {
       "$id": "#traitEnum",
       "description": "An enumeration value of feature of traits (node traits or edge traits).",
@@ -211,7 +202,14 @@
       "properties": {
         "value": {
           "oneOf": [
-            {"$ref": "#/definitions/boolean"},
+            {
+              "description": "A boolean property.",
+              "type": "object",
+              "required": ["boolean"],
+              "properties": {
+                "boolean": {"type": "boolean"}
+              }
+            },
             {"$ref": "#/definitions/number"},
             {"$ref": "#/definitions/healthState"},
             {"$ref": "#/definitions/traitEnum"}
@@ -525,6 +523,53 @@
       "properties": {
         "sizeof": {"$ref": "#/definitions/setContent"}
       }
+    },
+    "boolean": {
+      "$id": "#boolean",
+      "description": "A boolean value.",
+      "type": "object",
+      "oneOf": [
+        {"type": "boolean"},
+        {"$ref": "#/definitions/booleanNot"},
+        {"$ref": "#/definitions/booleanOperation"},
+        {"$ref": "#/definitions/condition"}
+      ]
+    },
+    "booleanNot": {
+      "$id": "#booleanNot",
+      "description": "Negates the boolean value",
+      "type": "object",
+      "required": ["not"],
+      "properties": {
+        "not": {"$ref": "#/definitions/boolean"}
+      }
+    },
+    "booleanOperation": {
+      "$id": "#booleanOperation",
+      "description": "A Boolean operation applied to multiple Boolean values which can be 'and' or 'or'.",
+      "type": "object",
+      "oneOf": [
+        {
+          "required": ["and"],
+          "properties": {
+            "and": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/boolean"}
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "required": ["or"],
+          "properties": {
+            "or": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/boolean"}
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
     },
     "comparisonOperator": {
       "$id": "#comparisonOperator",
@@ -1204,20 +1249,28 @@
       "additionalProperties": false
     },
     "trigger": {
+      "$id": "#trigger",
+      "description": "A trigger evaluating to true or false.",
       "type": "object",
-      "required": ["trigger"],
-      "properties": {
-        "trigger": {
-          "description": "",
-          "type": "array",
-          "minItems": 1,
-          "items": {"$ref": "#/definitions/condition"}
-        },
-        "interventionIds": {
-          "type": "array",
-          "items": {"$ref": "#/definitions/uniqueId"}
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "required": ["trigger"],
+          "properties": {
+            "trigger": {"$ref": "#/definitions/boolean"},
+            "interventionIds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/uniqueIdRef"
+              }
+            }
+          },
+          "patternProperties": {
+            "^ann:": {}
+          },
+          "additionalProperties": false
         }
-      }
+      ]
     },
     "triggers": {
       "type": "array",

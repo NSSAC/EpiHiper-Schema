@@ -96,83 +96,75 @@
   ],
   "triggers": [
     {
-      "trigger": [
-        {
-          "left": {
-            "sizeof": {
-              "set": {"idRef": "schoolChildrenEnteredIsymp"}
-            }
-          },
-          "operator": ">",
-          "right": {
-            "value": {"number": 0}
+      "trigger": {
+        "left": {
+          "sizeof": {
+            "set": {"idRef": "schoolChildrenEnteredIsymp"}
           }
+        },
+        "operator": ">",
+        "right": {
+          "value": {"number": 0}
         }
-      ],
+      },
       "interventionIds": ["intervention_0"]
     },
     {
-      "trigger": [
-        {
-          "left": {
-            "value": {"number": 500}
-          },
-          "operator": "<=",
-          "right": {
-            "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
-          }
+      "trigger": {
+        "left": {
+          "value": {"number": 500}
+        },
+        "operator": "<=",
+        "right": {
+          "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
         }
-      ],
+      },
       "interventionIds": [
         "intervention_1",
         "intervention_2"
       ]
     },
     {
-      "trigger": [
-        {
-          "left": {
-            "sizeof": {
-              "set": {"idRef": "enteredIsymp"}
-            }
-          },
-          "operator": ">",
-          "right": {
-            "value": {"number": 0}
+      "trigger": {
+        "left": {
+          "sizeof": {
+            "set": {"idRef": "enteredIsymp"}
           }
+        },
+        "operator": ">",
+        "right": {
+          "value": {"number": 0}
         }
-      ],
+      },
       "interventionIds": ["intervention_3"]
     },
     {
-      "trigger": [
-        {
-          "left": {
-            "sizeof": {
-              "elementType": "node",
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylaxTrigger"
-                }
-              },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylaxTrigger",
-                  "enum": "true"
-                }
+      "trigger": {
+        "left": {
+          "sizeof": {
+            "elementType": "node",
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "prophylaxTrigger"
+              }
+            },
+            "operator": "==",
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylaxTrigger",
+                "enum": "true"
               }
             }
-          },
-          "operator": ">",
-          "right": {
-            "value": {"number": 0}
           }
+        },
+        "operator": ">",
+        "right": {
+          "value": {"number": 0}
         }
-      ],
-      "interventionIds": ["intervention_5"]
+      },
+      "interventionIds": ["intervention_4"]
     }
   ],
   "interventions": [

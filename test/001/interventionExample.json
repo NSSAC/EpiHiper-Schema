@@ -2,46 +2,40 @@
   "$schema": "../../schema/interventionSchema.json",
   "triggers": [
     {
-      "trigger": [
-        {
-          "operator": "==",
-          "left": {
-            "node": {"property": "healthState"}
-          },
-          "right": {
-            "value": {"healthState": "severe"}
-          }
+      "trigger": {
+        "operator": "==",
+        "left": {
+          "node": {"property": "healthState"}
+        },
+        "right": {
+          "value": {"healthState": "severe"}
         }
-      ],
+      },
       "interventionIds": [
         "intervention_0",
         "intervention_3"
       ]
     },
     {
-      "trigger": [
-        {
-          "left": {"observable": "time"},
-          "operator": "==",
-          "right": {
-            "value": {"number": 10}
-          }
+      "trigger": {
+        "left": {"observable": "time"},
+        "operator": "==",
+        "right": {
+          "value": {"number": 10}
         }
-      ],
+      },
       "interventionIds": ["intervention_1"]
     },
     {
-      "trigger": [
-        {
-          "left": {
-            "node": {"property": "healthState"}
-          },
-          "operator": "==",
-          "right": {
-            "value": {"healthState": "infectious"}
-          }
+      "trigger": {
+        "left": {
+          "node": {"property": "healthState"}
+        },
+        "operator": "==",
+        "right": {
+          "value": {"healthState": "infectious"}
         }
-      ],
+      },
       "interventionIds": ["intervention_2"]
     }
   ],
