@@ -94,9 +94,8 @@
       "initialValue": 0
     }
   ],
-  "interventions": [
+  "triggers": [
     {
-      "$comment": "Count Infective School Age Children",
       "trigger": [
         {
           "left": {
@@ -110,6 +109,76 @@
           }
         }
       ],
+      "interventionIds": ["intervention_0"]
+    },
+    {
+      "trigger": [
+        {
+          "left": {
+            "value": {"number": 500}
+          },
+          "operator": "<=",
+          "right": {
+            "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+          }
+        }
+      ],
+      "interventionIds": [
+        "intervention_1",
+        "intervention_2"
+      ]
+    },
+    {
+      "trigger": [
+        {
+          "left": {
+            "sizeof": {
+              "set": {"idRef": "enteredIsymp"}
+            }
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
+          }
+        }
+      ],
+      "interventionIds": ["intervention_3"]
+    },
+    {
+      "trigger": [
+        {
+          "left": {
+            "sizeof": {
+              "elementType": "node",
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylaxTrigger"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylaxTrigger",
+                  "enum": "true"
+                }
+              }
+            }
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
+          }
+        }
+      ],
+      "interventionIds": ["intervention_5"]
+    }
+  ],
+  "interventions": [
+    {
+      "$comment": "Count Infective School Age Children",
+      "id": "intervention_0",
       "selector": {
         "set": {"idRef": "schoolChildrenEnteredIsymp"}
       },
@@ -129,17 +198,7 @@
     },
     {
       "$comment": "School Closure (school children)",
-      "trigger": [
-        {
-          "left": {
-            "value": {"number": 500}
-          },
-          "operator": "<=",
-          "right": {
-            "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
-          }
-        }
-      ],
+      "id": "intervention_1",
       "selector": {
         "elementType": "edge",
         "left": {
@@ -198,17 +257,7 @@
     },
     {
       "$comment": "School Closure (teacher and other employees)",
-      "trigger": [
-        {
-          "left": {
-            "value": {"number": 500}
-          },
-          "operator": "<=",
-          "right": {
-            "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
-          }
-        }
-      ],
+      "id": "intervention_2",
       "selector": {
         "elementType": "edge",
         "left": {
@@ -254,19 +303,7 @@
     },
     {
       "$comment": "Treatment",
-      "trigger": [
-        {
-          "left": {
-            "sizeof": {
-              "set": {"idRef": "enteredIsymp"}
-            }
-          },
-          "operator": ">",
-          "right": {
-            "value": {"number": 0}
-          }
-        }
-      ],
+      "id": "intervention_3",
       "selector": {
         "set": {"idRef": "enteredIsymp"}
       },
@@ -584,33 +621,7 @@
     },
     {
       "$comment": "Prophylax",
-      "trigger": [
-        {
-          "left": {
-            "sizeof": {
-              "elementType": "node",
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylaxTrigger"
-                }
-              },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylaxTrigger",
-                  "enum": "true"
-                }
-              }
-            }
-          },
-          "operator": ">",
-          "right": {
-            "value": {"number": 0}
-          }
-        }
-      ],
+      "id": "intervention_4",
       "selector": {
         "elementType": "node",
         "left": {

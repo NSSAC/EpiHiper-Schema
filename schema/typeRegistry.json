@@ -1203,9 +1203,29 @@
       },
       "additionalProperties": false
     },
-    "initialization": {
-      "$id": "#initialization",
-      "description": "",
+    "trigger": {
+      "type": "object",
+      "required": ["trigger"],
+      "properties": {
+        "trigger": {
+          "description": "",
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/definitions/condition"}
+        },
+        "interventionIds": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/uniqueId"}
+        }
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/trigger"}
+    },
+    "assignmentSet": {
+      "$id": "#assignmentSet",
+      "description": "A set of object with an associated action ensemble",
       "type": "object",
       "allOf": [
         {"$ref": "#/definitions/annotation"},
@@ -1214,30 +1234,24 @@
       ]
     },
     "initializations": {
-      "description": "The propertyName description",
+      "$id": "#initializations",
+      "description": "A list of initializations to be executed before the simulation starts.",
       "type": "array",
-      "items": {"$ref": "#/definitions/initialization"}
+      "items": {"$ref": "#/definitions/assignmentSet"}
     },
     "intervention": {
       "$id": "#intervention",
       "description": "",
       "type": "object",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
         {
           "type": "object",
-          "required": ["trigger"],
+          "required": ["id"],
           "properties": {
-            "trigger": {
-              "description": "",
-              "type": "array",
-              "minItems": 1,
-              "items": {"$ref": "#/definitions/condition"}
-            }
+            "id": {"$ref": "#/definitions/uniqueId"}
           }
         },
-        {"$ref": "#/definitions/selector"},
-        {"$ref": "#/definitions/actionEnsemble"}
+        {"$ref": "#/definitions/assignmentSet"}
       ]
     },
     "interventions": {

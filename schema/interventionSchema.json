@@ -4,10 +4,14 @@
   "$id": "#interventionFile",
   "description": "A schema describing the contents of an intervention file for EpiHiper",
   "type": "object",
-  "required": ["interventions"],
+  "required": [
+    "triggers",
+    "interventions"
+  ],
   "properties": {
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
     "globalVariables": {"$ref": "./typeRegistry.json#/definitions/globalVariables"},
+    "triggers": {"$ref": "./typeRegistry.json#/definitions/triggers"},
     "interventions": {"$ref": "./typeRegistry.json#/definitions/interventions"}
   }
 }

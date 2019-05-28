@@ -3,31 +3,31 @@
   "states": [
     {
       "id": "S",
-      "ann:label": "S",
+      "ann:label": "Susceptible",
       "infectivity": 0,
       "susceptibility": 1
     },
     {
       "id": "E",
-      "ann:label": "E",
+      "ann:label": "Exposed",
       "infectivity": 0,
       "susceptibility": 0
     },
     {
       "id": "Isymp",
-      "ann:label": "Isymp",
+      "ann:label": "Infectious (symptomatic)",
       "infectivity": 1,
       "susceptibility": 0
     },
     {
       "id": "Iasymp",
-      "ann:label": "Iasymp",
+      "ann:label": "Infectious (asymptomatic)",
       "infectivity": 0.4,
       "susceptibility": 0
     },
     {
       "id": "R",
-      "ann:label": "R",
+      "ann:label": "Recovered",
       "infectivity": 0,
       "susceptibility": 0
     }
@@ -35,16 +35,16 @@
   "initialState": "S",
   "infections": [
     {
-      "id": "invection_Isymp",
-      "ann:label": "Invection (symptomatic)",
+      "id": "infection_Isymp",
+      "ann:label": "Infection (symptomatic)",
       "entryState": "S",
       "exitState": "E",
       "contactState": "Isymp",
       "transmissibility": 1
     },
     {
-      "id": "invection_Iasymp",
-      "ann:label": "Invection (asymptomatic)",
+      "id": "infection_Iasymp",
+      "ann:label": "Infection (asymptomatic)",
       "entryState": "S",
       "exitState": "E",
       "contactState": "Isymp",
@@ -107,7 +107,7 @@
       }
     },
     {
-      "id": "Isymp_to_Recovered",
+      "id": "Isymp_to_R",
       "ann:label": "Isymp to Recovered",
       "entryState": "Isymp",
       "exitState": "R",
@@ -134,7 +134,7 @@
       }
     },
     {
-      "id": "Iasymp_to_Recovered",
+      "id": "Iasymp_to_R",
       "ann:label": "Asymptomatic to Recovered",
       "entryState": "Iasymp",
       "exitState": "R",

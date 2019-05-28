@@ -1,8 +1,7 @@
 {
   "$schema": "../../schema/interventionSchema.json",
-  "interventions": [
+  "triggers": [
     {
-      "$comment": "if the health state is severe put the individual into hospital but only if there are less that 100 individuals in the hospital",
       "trigger": [
         {
           "operator": "==",
@@ -14,6 +13,42 @@
           }
         }
       ],
+      "interventionIds": [
+        "intervention_0",
+        "intervention_3"
+      ]
+    },
+    {
+      "trigger": [
+        {
+          "left": {"observable": "time"},
+          "operator": "==",
+          "right": {
+            "value": {"number": 10}
+          }
+        }
+      ],
+      "interventionIds": ["intervention_1"]
+    },
+    {
+      "trigger": [
+        {
+          "left": {
+            "node": {"property": "healthState"}
+          },
+          "operator": "==",
+          "right": {
+            "value": {"healthState": "infectious"}
+          }
+        }
+      ],
+      "interventionIds": ["intervention_2"]
+    }
+  ],
+  "interventions": [
+    {
+      "$comment": "if the health state is severe put the individual into hospital but only if there are less that 100 individuals in the hospital",
+      "id": "intervention_0",
       "selector": {"elementType": "node"},
       "foreach": [
         {
@@ -45,15 +80,7 @@
     },
     {
       "$comment": "90% of student in Blacksburg highschool are vaccinated.",
-      "trigger": [
-        {
-          "left": {"observable": "time"},
-          "operator": "==",
-          "right": {
-            "value": {"number": 10}
-          }
-        }
-      ],
+      "id": "intervention_1",
       "selector": {
         "elementType": "node",
         "table": "Blacksburg_Highschool"
@@ -93,17 +120,7 @@
     },
     {
       "$comments": "If a person becomes infective treat it for 10 days with a red pill",
-      "trigger": [
-        {
-          "left": {
-            "node": {"property": "healthState"}
-          },
-          "operator": "==",
-          "right": {
-            "value": {"healthState": "infectious"}
-          }
-        }
-      ],
+      "id": "intervention_2",
       "selector": {"elementType": "node"},
       "foreach": [
         {
@@ -179,17 +196,7 @@
     },
     {
       "$comments": "If a person becomes severely think infective treat it for 15 days with a blue pill. The blue is incompatible with the read pill.",
-      "trigger": [
-        {
-          "operator": "==",
-          "left": {
-            "node": {"property": "healthState"}
-          },
-          "right": {
-            "value": {"healthState": "severe"}
-          }
-        }
-      ],
+      "id": "intervention_3",
       "selector": {"elementType": "node"},
       "foreach": [
         {
