@@ -33,7 +33,7 @@
     }
   ],
   "initialState": "S",
-  "infections": [
+  "transmissions": [
     {
       "id": "infection_Isymp",
       "ann:label": "Infection (symptomatic)",

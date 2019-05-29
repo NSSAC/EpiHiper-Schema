@@ -39,7 +39,7 @@
     }
   ],
   "initialState": "susceptible",
-  "infections": [
+  "transmissions": [
     {
       "id": "contactWithInfectious",
       "ann:label": "Susceptible -> Exposed {Infectious}",

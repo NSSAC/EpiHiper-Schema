@@ -9,7 +9,10 @@
     "phase": [
       {
         "id": "default",
-        "active": ["UniqueIdCheck"]
+        "active": [
+          "UniqueIdCheck",
+          "IdReferenceCheck"
+        ]
       }
     ],
     "pattern": [
@@ -31,6 +34,77 @@
                 "id": "UniqueIdCheck_R1_A2",
                 "test": "jp.query(contextNode, '$..globalVariables.*.id').length == new Set(jp.query(contextNode, '$..globalVariables.*.id')).size",
                 "message": "Global: The id of a global variable must be unique."
+              },
+              {
+                "id": "UniqueIdCheck_R1_A3",
+                "test": "jp.query(contextNode, '$..interventions.*.id').length == new Set(jp.query(contextNode, '$..interventions.*.id')).size",
+                "message": "Global: The id of an intervention must be unique."
+              },
+              {
+                "id": "UniqueIdCheck_R1_A1",
+                "test": "jp.query(contextNode, '$..traits.*.id').length == new Set(jp.query(contextNode, '$..traits.*.id')).size",
+                "message": "Global: The id of a trait must be unique."
+              }
+            ]
+          },
+          {
+            "id": "UniqueIdCheck_R2",
+            "context": "$..traits.*",
+            "assert": [
+              {
+                "id": "UniqueIdCheck_R2_A1",
+                "test": "jp.query(contextNode, '$..features.*.id').length == new Set(jp.query(contextNode, '$..features.*.id')).size",
+                "message": "'Trait [' + jp.query(contextNode, '$.*.id') + ']: The id of a feature must be unique.'"
+              }
+            ]
+          },
+          {
+            "id": "UniqueIdCheck_R3",
+            "context": "$..features.*",
+            "assert": [
+              {
+                "id": "UniqueIdCheck_R3_A1",
+                "test": "jp.query(contextNode, '$..enums.*.id').length == new Set(jp.query(contextNode, '$..enums.*.id')).size",
+                "message": "'Feature [' + jp.query(contextNode, '$.*.id') + ']: The id of an enum must be unique.'"
+              }
+            ]
+          },
+          {
+            "id": "UniqueIdCheck_R4",
+            "context": "$..diseaseModel",
+            "assert": [
+              {
+                "id": "UniqueIdCheck_R4_A1",
+                "test": "jp.query(contextNode, '$..states.*.id').length == new Set(jp.query(contextNode, '$..states.*.id')).size",
+                "message": "Disease Model: The id of a state must be unique."
+              },
+              {
+                "id": "UniqueIdCheck_R4_A2",
+                "test": "jp.query(contextNode, '$..transmissions.*.id').length == new Set(jp.query(contextNode, '$..transmissions.*.id')).size",
+                "message": "Disease Model: The id of an transmission must be unique."
+              },
+              {
+                "id": "UniqueIdCheck_R4_A3",
+                "test": "jp.query(contextNode, '$..transitions.*.id').length == new Set(jp.query(contextNode, '$..transitions.*.id')).size",
+                "message": "Disease Model: The id of a transition must be unique."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "IdReferenceCheck",
+        "title": "Check whether all referenced id are defined.",
+        "abstract": false,
+        "rule": [
+          {
+            "id": "IdReferenceCheck_R1",
+            "context": "$..features.*",
+            "assert": [
+              {
+                "id": "IdReferenceCheck_R1_A1",
+                "test": "jp.query(contextNode, '$..enums.*.id').includes(jp.query(contextNode, '$.*.default')[0])",
+                "message": "'Feature [' + jp.query(contextNode, '$.*.id') + ']: The default ' + jp.query(contextNode, '$.*.default')[0] + ' is not defined.'"
               }
             ]
           }

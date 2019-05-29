@@ -34,8 +34,8 @@
               },
               {
                 "id": "UniqueIdCheck_R1_A2",
-                "test": "jp.query(contextNode, '$..infections.*.id').length == new Set(jp.query(contextNode, '$..infections.*.id')).size",
-                "message": "Global: The id of an infection must be unique."
+                "test": "jp.query(contextNode, '$..transmissions.*.id').length == new Set(jp.query(contextNode, '$..transmissions.*.id')).size",
+                "message": "Global: The id of an transmission must be unique."
               },
               {
                 "id": "UniqueIdCheck_R1_A3",
@@ -71,7 +71,7 @@
         "rule": [
           {
             "id": "InfectionCheck_R1",
-            "context": "$..infections.*",
+            "context": "$..transmissions.*",
             "assert": [
               {
                 "id": "InfectionCheck_R1_A1",

@@ -2,12 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "diseaseModel",
   "title": "Disease Model",
-  "description": "The disease model describes the possible disease state changes within an individual including infection.",
+  "description": "The disease model describes the possible disease state changes within an individual including transmission.",
   "type": "object",
   "required": [
     "states",
     "initialState",
-    "infections",
+    "transmissions",
     "transitions"
   ],
   "properties": {
@@ -39,15 +39,15 @@
       }
     },
     "initialState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
-    "infections": {
+    "transmissions": {
       "type": "array",
-      "description": "An array listing possible infections due to contact with other nodes.",
+      "description": "An array listing possible transmissions due to contact with other nodes.",
       "items": {
         "allOf": [
           {"$ref": "./typeRegistry.json#/definitions/annotation"},
           {
             "type": "object",
-            "description": "An infection",
+            "description": "A transmission",
             "required": [
               "id",
               "entryState",
