@@ -46,20 +46,18 @@
       "target": {"elementType": "node"},
       "foreach": [
         {
-          "conditions": [
-            {
-              "operator": "<",
-              "left": {
-                "observable": {
-                  "type": "absolute",
-                  "healthState": "hospital"
-                }
-              },
-              "right": {
-                "value": {"number": 100}
+          "condition": {
+            "operator": "<",
+            "left": {
+              "observable": {
+                "type": "absolute",
+                "healthState": "hospital"
               }
+            },
+            "right": {
+              "value": {"number": 100}
             }
-          ],
+          },
           "operations": [
             {
               "target": {
@@ -144,24 +142,22 @@
         },
         {
           "delay": 10,
-          "conditions": [
-            {
-              "operator": "==",
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "treatment"
-                }
-              },
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "treatment",
-                  "enum": "redPill"
-                }
+          "condition": {
+            "operator": "==",
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "treatment"
+              }
+            },
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "treatment",
+                "enum": "redPill"
               }
             }
-          ],
+          },
           "operations": [
             {
               "target": {
@@ -195,24 +191,22 @@
       "foreach": [
         {
           "priority": 10,
-          "conditions": [
-            {
-              "operator": "==",
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "treatment"
-                }
-              },
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "treatment",
-                  "enum": "redPill"
-                }
+          "condition": {
+            "operator": "==",
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "treatment"
+              }
+            },
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "treatment",
+                "enum": "redPill"
               }
             }
-          ],
+          },
           "operations": [
             {
               "target": {
@@ -264,24 +258,22 @@
         },
         {
           "delay": 15,
-          "conditions": [
-            {
-              "operator": "==",
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "treatment"
-                }
-              },
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "treatment",
-                  "enum": "bluePill"
-                }
+          "condition": {
+            "operator": "==",
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "treatment"
+              }
+            },
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "treatment",
+                "enum": "bluePill"
               }
             }
-          ],
+          },
           "operations": [
             {
               "target": {

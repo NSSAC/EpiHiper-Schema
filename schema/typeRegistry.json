@@ -700,11 +700,7 @@
           "properties": {
             "priority": {"$ref": "#/definitions/nonNegativeNumber"},
             "delay": {"$ref": "#/definitions/nonNegativeNumber"},
-            "conditions": {
-              "description": "",
-              "type": "array",
-              "items": {"$ref": "#/definitions/condition"}
-            },
+            "condition": {"$ref": "#/definitions/boolean"},
             "checkConditionInterval": {
               "description": "",
               "type": "object",
@@ -772,7 +768,11 @@
                 ]
               }
             }
-          }
+          },
+          "patternProperties": {
+            "^ann:": {}
+          },
+          "additionalProperties": false
         }
       ]
     },

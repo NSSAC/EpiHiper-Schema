@@ -292,24 +292,22 @@
         },
         {
           "delay": 1,
-          "conditions": [
-            {
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylaxTrigger"
-                }
-              },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylaxTrigger",
-                  "enum": "true"
-                }
+          "condition": {
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "prophylaxTrigger"
+              }
+            },
+            "operator": "==",
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylaxTrigger",
+                "enum": "true"
               }
             }
-          ],
+          },
           "operations": [
             {
               "target": {
@@ -335,26 +333,28 @@
           "foreach": [
             {
               "delay": 1,
-              "conditions": [
-                {
-                  "left": {
-                    "globalVariable": {"idRef": "dailyTreatments"}
+              "condition": {
+                "and": [
+                  {
+                    "left": {
+                      "globalVariable": {"idRef": "dailyTreatments"}
+                    },
+                    "operator": "<",
+                    "right": {
+                      "value": {"number": 500}
+                    }
                   },
-                  "operator": "<",
-                  "right": {
-                    "value": {"number": 500}
+                  {
+                    "left": {
+                      "globalVariable": {"idRef": "totalTreatments"}
+                    },
+                    "operator": "<",
+                    "right": {
+                      "value": {"number": 20000}
+                    }
                   }
-                },
-                {
-                  "left": {
-                    "globalVariable": {"idRef": "totalTreatments"}
-                  },
-                  "operator": "<",
-                  "right": {
-                    "value": {"number": 20000}
-                  }
-                }
-              ],
+                ]
+              },
               "operations": [
                 {
                   "target": {
@@ -409,24 +409,22 @@
             },
             {
               "delay": 6,
-              "conditions": [
-                {
-                  "left": {
-                    "node": {
-                      "property": "nodeTrait",
-                      "feature": "treatment"
-                    }
-                  },
-                  "operator": "==",
-                  "right": {
-                    "value": {
-                      "trait": "nodeTrait",
-                      "feature": "treatemnt",
-                      "enum": "true"
-                    }
+              "condition": {
+                "left": {
+                  "node": {
+                    "property": "nodeTrait",
+                    "feature": "treatment"
+                  }
+                },
+                "operator": "==",
+                "right": {
+                  "value": {
+                    "trait": "nodeTrait",
+                    "feature": "treatemnt",
+                    "enum": "true"
                   }
                 }
-              ],
+              },
               "operations": [
                 {
                   "target": {
@@ -461,26 +459,28 @@
               "foreach": [
                 {
                   "delay": 3,
-                  "conditions": [
-                    {
-                      "left": {
-                        "globalVariable": {"idRef": "dailyTreatments"}
+                  "condition": {
+                    "and": [
+                      {
+                        "left": {
+                          "globalVariable": {"idRef": "dailyTreatments"}
+                        },
+                        "operator": "<",
+                        "right": {
+                          "value": {"number": 500}
+                        }
                       },
-                      "operator": "<",
-                      "right": {
-                        "value": {"number": 500}
+                      {
+                        "left": {
+                          "globalVariable": {"idRef": "totalTreatments"}
+                        },
+                        "operator": "<",
+                        "right": {
+                          "value": {"number": 20000}
+                        }
                       }
-                    },
-                    {
-                      "left": {
-                        "globalVariable": {"idRef": "totalTreatments"}
-                      },
-                      "operator": "<",
-                      "right": {
-                        "value": {"number": 20000}
-                      }
-                    }
-                  ],
+                    ]
+                  },
                   "operations": [
                     {
                       "target": {
@@ -535,24 +535,22 @@
                 },
                 {
                   "delay": 8,
-                  "conditions": [
-                    {
-                      "left": {
-                        "node": {
-                          "property": "nodeTrait",
-                          "feature": "treatment"
-                        }
-                      },
-                      "operator": "==",
-                      "right": {
-                        "value": {
-                          "trait": "nodeTrait",
-                          "feature": "treatemnt",
-                          "enum": "true"
-                        }
+                  "condition": {
+                    "left": {
+                      "node": {
+                        "property": "nodeTrait",
+                        "feature": "treatment"
+                      }
+                    },
+                    "operator": "==",
+                    "right": {
+                      "value": {
+                        "trait": "nodeTrait",
+                        "feature": "treatemnt",
+                        "enum": "true"
                       }
                     }
-                  ],
+                  },
                   "operations": [
                     {
                       "target": {
@@ -642,33 +640,35 @@
       },
       "foreach": [
         {
-          "conditions": [
-            {
-              "left": {
-                "node": {"property": "healthState"}
-              },
-              "operator": "==",
-              "right": {
-                "value": {"healthState": "S"}
-              }
-            },
-            {
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylax"
+          "condition": {
+            "and": [
+              {
+                "left": {
+                  "node": {"property": "healthState"}
+                },
+                "operator": "==",
+                "right": {
+                  "value": {"healthState": "S"}
                 }
               },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylax",
-                  "enum": "false"
+              {
+                "left": {
+                  "node": {
+                    "property": "nodeTrait",
+                    "feature": "prophylax"
+                  }
+                },
+                "operator": "==",
+                "right": {
+                  "value": {
+                    "trait": "nodeTrait",
+                    "feature": "prophylax",
+                    "enum": "false"
+                  }
                 }
               }
-            }
-          ],
+            ]
+          },
           "operations": [
             {
               "target": {
@@ -695,24 +695,22 @@
         },
         {
           "delay": 5,
-          "conditions": [
-            {
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylax"
-                }
-              },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylax",
-                  "enum": "true"
-                }
+          "condition": {
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "prophylax"
+              }
+            },
+            "operator": "==",
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylax",
+                "enum": "true"
               }
             }
-          ],
+          },
           "operations": [
             {
               "target": {
