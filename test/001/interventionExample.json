@@ -43,7 +43,7 @@
     {
       "$comment": "if the health state is severe put the individual into hospital but only if there are less that 100 individuals in the hospital",
       "id": "intervention_0",
-      "selector": {"elementType": "node"},
+      "target": {"elementType": "node"},
       "foreach": [
         {
           "conditions": [
@@ -75,7 +75,7 @@
     {
       "$comment": "90% of student in Blacksburg highschool are vaccinated.",
       "id": "intervention_1",
-      "selector": {
+      "target": {
         "elementType": "node",
         "table": "Blacksburg_Highschool"
       },
@@ -115,7 +115,7 @@
     {
       "$comments": "If a person becomes infective treat it for 10 days with a red pill",
       "id": "intervention_2",
-      "selector": {"elementType": "node"},
+      "target": {"elementType": "node"},
       "foreach": [
         {
           "operations": [
@@ -191,7 +191,7 @@
     {
       "$comments": "If a person becomes severely think infective treat it for 15 days with a blue pill. The blue is incompatible with the read pill.",
       "id": "intervention_3",
-      "selector": {"elementType": "node"},
+      "target": {"elementType": "node"},
       "foreach": [
         {
           "priority": 10,

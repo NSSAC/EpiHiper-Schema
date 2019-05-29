@@ -143,7 +143,7 @@
     {
       "$comment": "Count Infective School Age Children",
       "id": "intervention_0",
-      "selector": {
+      "target": {
         "set": {"idRef": "schoolChildrenEnteredIsymp"}
       },
       "foreach": [
@@ -163,7 +163,7 @@
     {
       "$comment": "School Closure (school children)",
       "id": "intervention_1",
-      "selector": {
+      "target": {
         "elementType": "edge",
         "left": {
           "edge": {
@@ -222,7 +222,7 @@
     {
       "$comment": "School Closure (teacher and other employees)",
       "id": "intervention_2",
-      "selector": {
+      "target": {
         "elementType": "edge",
         "left": {
           "edge": {
@@ -268,7 +268,7 @@
     {
       "$comment": "Treatment",
       "id": "intervention_3",
-      "selector": {
+      "target": {
         "set": {"idRef": "enteredIsymp"}
       },
       "foreach": [
@@ -610,7 +610,7 @@
           "value": {"number": 0}
         }
       },
-      "selector": {
+      "target": {
         "elementType": "node",
         "left": {
           "table": "MontgomeryCounty",

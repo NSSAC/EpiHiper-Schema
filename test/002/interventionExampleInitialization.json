@@ -2,7 +2,7 @@
   "$schema": "../../schema/initializationSchema.json",
   "initializations": [
     {
-      "selector": {
+      "target": {
         "elementType": "node",
         "left": {
           "table": "montgomery_county_va",
@@ -39,7 +39,7 @@
       }
     },
     {
-      "selector": {
+      "target": {
         "elementType": "node",
         "left": {
           "table": "montgomery_county_va",
@@ -76,7 +76,7 @@
       }
     },
     {
-      "selector": {
+      "target": {
         "elementType": "node",
         "left": {
           "table": "montgomery_county_va",

@@ -1212,13 +1212,13 @@
         {"$ref": "#/definitions/set"}
       ]
     },
-    "selector": {
-      "$id": "#selector",
-      "description": "Selector for set content",
+    "target": {
+      "$id": "#target",
+      "description": "Target for set content",
       "type": "object",
-      "required": ["selector"],
+      "required": ["target"],
       "properties": {
-        "selector": {
+        "target": {
           "allOf": [
             {"$ref": "#/definitions/annotation"},
             {"$ref": "#/definitions/setContent"}
@@ -1281,7 +1281,7 @@
       "type": "object",
       "allOf": [
         {"$ref": "#/definitions/annotation"},
-        {"$ref": "#/definitions/selector"},
+        {"$ref": "#/definitions/target"},
         {"$ref": "#/definitions/actionEnsemble"}
       ]
     },
