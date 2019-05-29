@@ -167,14 +167,14 @@
         "elementType": "edge",
         "left": {
           "edge": {
-            "property": "targetTrait",
+            "property": "targetActivity",
             "feature": "activityType"
           }
         },
         "operator": "==",
         "right": {
           "value": {
-            "trait": "edgeTrait",
+            "trait": "activityTrait",
             "feature": "activityType",
             "enum": "SCHOOL"
           }
@@ -226,14 +226,14 @@
         "elementType": "edge",
         "left": {
           "edge": {
-            "property": "sourceTrait",
+            "property": "sourceActivity",
             "feature": "activityType"
           }
         },
         "operator": "==",
         "right": {
           "value": {
-            "trait": "edgeTrait",
+            "trait": "activityTrait",
             "feature": "activityType",
             "enum": "SCHOOL"
           }

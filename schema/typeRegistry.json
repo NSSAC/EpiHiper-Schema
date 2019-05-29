@@ -438,7 +438,7 @@
           }
         },
         {
-          "description": "A feature of the edge properties: targetTrait and sourceTrait",
+          "description": "A feature of the edge properties: targetActivity, sourceActivity, and edgeTrait",
           "type": "object",
           "required": [
             "property",
@@ -448,8 +448,8 @@
             "property": {
               "type": "string",
               "enum": [
-                "targetTrait",
-                "sourceTrait",
+                "targetActivity",
+                "sourceActivity",
                 "edgeTrait"
               ]
             },
@@ -590,6 +590,7 @@
       "description": "A condition used in evaluating triggers and action conditions.",
       "oneOf": [
         {
+          "description": "Comparing values of nodes, edges, global variables, set sizes, and fixed values",
           "type": "object",
           "required": [
             "operator",
@@ -649,6 +650,7 @@
           }
         },
         {
+          "description": "Checking whether a node or edge property is in or not in a gicen value list.",
           "type": "object",
           "required": [
             "operator",
