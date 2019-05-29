@@ -35,7 +35,7 @@
               {
                 "id": "UniqueIdCheck_R1_A2",
                 "test": "jp.query(contextNode, '$..transmissions.*.id').length == new Set(jp.query(contextNode, '$..transmissions.*.id')).size",
-                "message": "Global: The id of an transmission must be unique."
+                "message": "Global: The id of a transmission must be unique."
               },
               {
                 "id": "UniqueIdCheck_R1_A3",

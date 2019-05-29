@@ -137,34 +137,6 @@
         }
       },
       "interventionIds": ["intervention_3"]
-    },
-    {
-      "trigger": {
-        "left": {
-          "sizeof": {
-            "elementType": "node",
-            "left": {
-              "node": {
-                "property": "nodeTrait",
-                "feature": "prophylaxTrigger"
-              }
-            },
-            "operator": "==",
-            "right": {
-              "value": {
-                "trait": "nodeTrait",
-                "feature": "prophylaxTrigger",
-                "enum": "true"
-              }
-            }
-          }
-        },
-        "operator": ">",
-        "right": {
-          "value": {"number": 0}
-        }
-      },
-      "interventionIds": ["intervention_4"]
     }
   ],
   "interventions": [
@@ -613,7 +585,31 @@
     },
     {
       "$comment": "Prophylax",
-      "id": "intervention_4",
+      "trigger": {
+        "left": {
+          "sizeof": {
+            "elementType": "node",
+            "left": {
+              "node": {
+                "property": "nodeTrait",
+                "feature": "prophylaxTrigger"
+              }
+            },
+            "operator": "==",
+            "right": {
+              "value": {
+                "trait": "nodeTrait",
+                "feature": "prophylaxTrigger",
+                "enum": "true"
+              }
+            }
+          }
+        },
+        "operator": ">",
+        "right": {
+          "value": {"number": 0}
+        }
+      },
       "selector": {
         "elementType": "node",
         "left": {

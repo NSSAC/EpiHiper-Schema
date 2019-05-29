@@ -81,7 +81,7 @@
               {
                 "id": "UniqueIdCheck_R4_A2",
                 "test": "jp.query(contextNode, '$..transmissions.*.id').length == new Set(jp.query(contextNode, '$..transmissions.*.id')).size",
-                "message": "Disease Model: The id of an transmission must be unique."
+                "message": "Disease Model: The id of a transmission must be unique."
               },
               {
                 "id": "UniqueIdCheck_R4_A3",
@@ -105,6 +105,65 @@
                 "id": "IdReferenceCheck_R1_A1",
                 "test": "jp.query(contextNode, '$..enums.*.id').includes(jp.query(contextNode, '$.*.default')[0])",
                 "message": "'Feature [' + jp.query(contextNode, '$.*.id') + ']: The default ' + jp.query(contextNode, '$.*.default')[0] + ' is not defined.'"
+              }
+            ]
+          },
+          {
+            "id": "IdReferenceCheck_R2",
+            "context": "$..diseaseModel",
+            "assert": [
+              {
+                "id": "IdReferenceCheck_R2_A1",
+                "test": "jp.query(contextNode, '$..states.*.id').includes(jp.query(contextNode, '$.*.initialState')[0])",
+                "message": "'Initial State: The state id ' + jp.query(contextNode, '$.*.initialState') + ' is not defined.'"
+              }
+            ]
+          },
+          {
+            "id": "IdReferenceCheck_R3",
+            "context": "$..diseaseModel.transmissions.*",
+            "assert": [
+              {
+                "id": "IdReferenceCheck_R3_A1",
+                "test": "jp.query(documentRoot, '$..diseaseModel.states.*.id').includes(jp.query(contextNode, '$.*.entryState')[0])",
+                "message": "'Infection[' + jp.query(contextNode, '$.*.id') + ']: The entry state id ' + jp.query(contextNode, '$.*.entryState')[0] + ' is not defined.'"
+              },
+              {
+                "id": "IdReferenceCheck_R3_A2",
+                "test": "jp.query(documentRoot, '$..diseaseModel.states.*.id').includes(jp.query(contextNode, '$.*.exitState')[0])",
+                "message": "'Infection[' + jp.query(contextNode, '$.*.id') + ']: The exit state id ' + jp.query(contextNode, '$.*.exitState')[0] + ' is not defined.'"
+              },
+              {
+                "id": "IdReferenceCheck_R3_A3",
+                "test": "jp.query(documentRoot, '$..diseaseModel.states.*.id').includes(jp.query(contextNode, '$.*.contactState')[0])",
+                "message": "'Infection[' + jp.query(contextNode, '$.*.id') + ']: The contact state id ' + jp.query(contextNode, '$.*.contactState')[0] + ' is not defined.'"
+              }
+            ]
+          },
+          {
+            "id": "IdReferenceCheck_R4",
+            "context": "$..diseaseModel.transitions.*",
+            "assert": [
+              {
+                "id": "IdReferenceCheck_R4_A1",
+                "test": "jp.query(documentRoot, '$..diseaseModel.states.*.id').includes(jp.query(contextNode, '$.*.entryState')[0])",
+                "message": "'Transition[' + jp.query(contextNode, '$.*.id') + ']: The entry state id ' + jp.query(contextNode, '$.*.entryState')[0] + ' is not defined.'"
+              },
+              {
+                "id": "IdReferenceCheck_R4_A2",
+                "test": "jp.query(documentRoot, '$..diseaseModel.states.*.id').includes(jp.query(contextNode, '$.*.exitState')[0])",
+                "message": "'Transition[' + jp.query(contextNode, '$.*.id') + ']: The exit state id ' + jp.query(contextNode, '$.*.exitState')[0] + ' is not defined.'"
+              }
+            ]
+          },
+          {
+            "id": "IdReferenceCheck_R5",
+            "context": "$..triggers.*.interventionIds.*",
+            "assert": [
+              {
+                "id": "IdReferenceCheck_R5_A1",
+                "test": "jp.query(documentRoot, '$..interventions.*.id').includes(contextNode[0])",
+                "message": "'Trigger interventionId: The intervention id ' + contextNode[0] + ' is not defined.'"
               }
             ]
           }
