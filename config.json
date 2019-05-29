@@ -5,6 +5,7 @@
 		"interventionSchema.json",
 		"interventionTemplateSchema.json",
 		"mergedSchema.json",
+		"networkSchema.json",
 		"personTraitDBSchema.json",
 		"runParametersSchema.json",
 		"traitsSchema.json",

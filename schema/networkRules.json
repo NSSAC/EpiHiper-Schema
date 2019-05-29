@@ -1,8 +1,8 @@
 {
   "$schema": "./jsontronRulesSchema.json",
   "schema": {
-    "title": "Traits Rules",
-    "id": "TraitsRules",
+    "title": "Network Rules",
+    "id": "NetworkRules",
     "schemaVersion": "1.0",
     "queryBinding": "jsonpath",
     "defaultPhase": "default",
@@ -21,17 +21,6 @@
         "title": "Unique Id Check",
         "abstract": false,
         "rule": [
-          {
-            "id": "UniqueIdCheck_R1",
-            "context": "$",
-            "assert": [
-              {
-                "id": "UniqueIdCheck_R1_A1",
-                "test": "jp.query(contextNode, '$..traits.*.id').length == new Set(jp.query(contextNode, '$..traits.*.id')).size",
-                "message": "Global: The id of a trait must be unique."
-              }
-            ]
-          },
           {
             "id": "UniqueIdCheck_R2",
             "context": "$..traits.*",

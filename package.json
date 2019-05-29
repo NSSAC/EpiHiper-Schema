@@ -14,7 +14,7 @@
 	"dependencies": {
 		"ajv": "^6.10.0",
 		"commander": "^2.20.0",
-		"@shoops/jsontron": ">=0.8.21"
+		"@shoops/jsontron": ">=0.8.22"
 	},
 	"devDependencies": {
 		"eslint": "^5.16.0",

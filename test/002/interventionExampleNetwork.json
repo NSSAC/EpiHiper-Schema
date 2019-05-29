@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schema/networkSchema.json",
+  "sizeofPID": 8,
+  "numberOfNodes": 100000,
+  "numberOfEdges": 1000000,
+  "accumulationTime": "24 hours",
+  "timeResolution": 86400,
+  "activityEncoding": {
+    "id": "activityTrait",
+    "features": [
+      {
+        "id": "activityType",
+        "ann:label": "Activity Type",
+        "enums": [
+          {
+            "id": "HOME",
+            "ann:label": "Home"
+          },
+          {
+            "id": "SCHOOL",
+            "ann:label": "School"
+          },
+          {
+            "id": "WORK",
+            "ann:label": "Work"
+          },
+          {
+            "id": "SHOPPING",
+            "ann:label": "Shopping"
+          },
+          {
+            "id": "OTHER",
+            "ann:label": "other"
+          }
+        ],
+        "default": "OTHER"
+      }
+    ]
+  },
+  "sizeofActivity": 4,
+  "edgeTraitEncoding": {
+    "id": "edgeTrait",
+    "features": []
+  },
+  "sizeofEdgeTrait": 0,
+  "hasActiveField": false,
+  "hasWeightField": false
+}

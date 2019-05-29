@@ -449,7 +449,8 @@
               "type": "string",
               "enum": [
                 "targetTrait",
-                "sourceTrait"
+                "sourceTrait",
+                "edgeTrait"
               ]
             },
             "feature": {"$ref": "#/definitions/uniqueIdRef"}

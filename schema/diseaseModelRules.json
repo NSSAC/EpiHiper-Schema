@@ -57,7 +57,7 @@
             "assert": [
               {
                 "id": "InitialStateCheck_R1_A1",
-                "test": "jp.query(instance, '$..states.*.id').includes(jp.query(contextNode, '$.*.initialState')[0])",
+                "test": "jp.query(documentRoot, '$..states.*.id').includes(jp.query(contextNode, '$.*.initialState')[0])",
                 "message": "'Initial State: The state id ' + jp.query(contextNode, '$.*.initialState') + ' is not defined.'"
               }
             ]
@@ -75,17 +75,17 @@
             "assert": [
               {
                 "id": "InfectionCheck_R1_A1",
-                "test": "jp.query(instance, '$..states.*.id').includes(jp.query(contextNode, '$.*.entryState')[0])",
+                "test": "jp.query(documentRoot, '$..states.*.id').includes(jp.query(contextNode, '$.*.entryState')[0])",
                 "message": "'Infection[' + jp.query(contextNode, '$.*.id') + ']: The entry state id ' + jp.query(contextNode, '$.*.entryState')[0] + ' is not defined.'"
               },
               {
                 "id": "InfectionCheck_R1_A2",
-                "test": "jp.query(instance, '$..states.*.id').includes(jp.query(contextNode, '$.*.exitState')[0])",
+                "test": "jp.query(documentRoot, '$..states.*.id').includes(jp.query(contextNode, '$.*.exitState')[0])",
                 "message": "'Infection[' + jp.query(contextNode, '$.*.id') + ']: The exit state id ' + jp.query(contextNode, '$.*.exitState')[0] + ' is not defined.'"
               },
               {
                 "id": "InfectionCheck_R1_A3",
-                "test": "jp.query(instance, '$..states.*.id').includes(jp.query(contextNode, '$.*.contactState')[0])",
+                "test": "jp.query(documentRoot, '$..states.*.id').includes(jp.query(contextNode, '$.*.contactState')[0])",
                 "message": "'Infection[' + jp.query(contextNode, '$.*.id') + ']: The contact state id ' + jp.query(contextNode, '$.*.contactState')[0] + ' is not defined.'"
               }
             ]
@@ -103,12 +103,12 @@
             "assert": [
               {
                 "id": "TransitionCheck_R1_A1",
-                "test": "jp.query(instance, '$..states.*.id').includes(jp.query(contextNode, '$.*.entryState')[0])",
+                "test": "jp.query(documentRoot, '$..states.*.id').includes(jp.query(contextNode, '$.*.entryState')[0])",
                 "message": "'Transition[' + jp.query(contextNode, '$.*.id') + ']: The entry state id ' + jp.query(contextNode, '$.*.entryState')[0] + ' is not defined.'"
               },
               {
                 "id": "TransitionCheck_R1_A2",
-                "test": "jp.query(instance, '$..states.*.id').includes(jp.query(contextNode, '$.*.exitState')[0])",
+                "test": "jp.query(documentRoot, '$..states.*.id').includes(jp.query(contextNode, '$.*.exitState')[0])",
                 "message": "'Transition[' + jp.query(contextNode, '$.*.id') + ']: The exit state id ' + jp.query(contextNode, '$.*.exitState')[0] + ' is not defined.'"
               }
             ]
