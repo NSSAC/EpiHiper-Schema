@@ -1,0 +1,5 @@
+.*
+*.xpr
+gitTools/
+bin/merge
+bin/validate

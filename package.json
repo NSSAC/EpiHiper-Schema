@@ -1,13 +1,10 @@
 {
 	"name": "@shoops/epi-hiper-validator",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "EpiHiper input validation utilities",
-	"main": "index.js",
 	"bin": {
-		"validate": "./bin/validate",
-		"validateSchema": "./bin/validateSchema",
-		"validateRules": "./bin/validateRules",
-		"merge": "./bin/merge"
+		"epiHiperValidateSchema": "./bin/epiHiperValidateSchema",
+		"epiHiperValidateRules": "./bin/epiHiperValidateRules"
 	},
 	"author": "Stefan Hoops <shoops@virginia.edu>",
 	"license": "Apache-2.0",
@@ -19,5 +16,21 @@
 	"devDependencies": {
 		"eslint": "^5.16.0",
 		"eslint-config-google": "^0.13.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NSSAC/EpiHiper-Schema.git"
+	},
+	"keywords": [
+		"jsonschema",
+		"schematron",
+		"json",
+		"json-validator",
+		"semantic-validator",
+		"rules-engine",
+		"EpiHiper"
+	],
+	"bugs": {
+		"url": "https://github.com/NSSAC/EpiHiper-Schema/issues"
 	}
 }

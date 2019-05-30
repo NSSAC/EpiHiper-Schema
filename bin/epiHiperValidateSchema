@@ -17,7 +17,6 @@ const cfg = require('../config.json');
 const commander = require('commander');
 const Ajv = require('ajv');
 const path = require('path');
-const fs = require('fs');
 
 let files;
 
@@ -25,8 +24,8 @@ commander
     .version(pkg.version)
     .description('EpiHiper Schema Validation')
     .usage('[options] <file ...>')
-    .option('-s --schema <schema>', 'Use the specified schema validation')
-    .option('--no-default', 'Do not add defaults for missing values')
+    .option('--schema-dir <schema-dir>', 'Use the schemas in the provided directory instead of the internal ones.')
+    // .option('--no-default', 'Do not add defaults for missing values')
     .arguments('<files...>')
     .action(function(_files) {
       files = _files;
@@ -43,51 +42,29 @@ const currDir = process.cwd();
 const ajv = new Ajv({schemaId: 'auto'});
 ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
 
+if (!commander.schemaDir) {
+  commander.schemaDir = path.join(__dirname, '..', 'schema');
+}
+
 cfg.schema.forEach(function(s) {
-  const sInstance = require(path.join(__dirname, '..', 'schema', s));
+  const sInstance = require(path.join(commander.schemaDir, s));
   sInstance['$id'] = 'file://./' + s;
   ajv.addSchema(sInstance);
 });
 
-if (!commander.schema) {
-  commander.schema = '$schema';
-}
 
 files.forEach(function(file) {
   const InstanceFile = path.join(currDir, file);
   process.stdout.write('File: ' + InstanceFile);
   const Instance = require(InstanceFile);
 
-  let SchemaFile = commander.schema;
-  const SchemaRelDir = path.dirname(InstanceFile);
-
-  if (SchemaFile == '$schema') {
-    SchemaFile = path.join(SchemaRelDir, Instance['$schema']);
-  } else {
-    SchemaFile = path.join(currDir, SchemaFile);
-  }
+  const Id = 'file://./' + path.basename(Instance['$schema']);
 
   // Check whether we have the schema already loaded
-  Id = 'file://' + SchemaFile.replace(path.join(__dirname, '..', 'schema'), '.');
-
-  let validate = ajv.getSchema(Id);
+  const validate = ajv.getSchema(Id);
 
   if (typeof validate === 'undefined') {
-    console.log(SchemaFile);
-
-    if (!fs.existsSync(SchemaFile)) {
-      throw new Error('Schema: ' + SchemaFile + ' not found.');
-    }
-
-    const sInstance = require(SchemaFile);
-    sInstance['$id'] = Id;
-    ajv.addSchema(sInstance);
-
-    validate = ajv.getSchema(Id);
-
-    if (typeof validate === 'undefined') {
-      throw new Error('Schema: ' + SchemaFile + ' invalid');
-    }
+    throw new Error('Schema: ' + Instance['$schema'] + ' not found.');
   }
 
   const valid = validate(Instance);
