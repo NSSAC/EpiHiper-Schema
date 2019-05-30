@@ -13,7 +13,8 @@
           "UniqueIdCheck",
           "InitialStateCheck",
           "InfectionCheck",
-          "TransitionCheck"
+          "TransitionCheck",
+          "ProbabilityCheck"
         ]
       }
     ],
@@ -110,6 +111,24 @@
                 "id": "TransitionCheck_R1_A2",
                 "test": "jp.query(documentRoot, '$..states.*.id').includes(jp.query(contextNode, '$.*.exitState')[0])",
                 "message": "'Transition[' + jp.query(contextNode, '$.*.id') + ']: The exit state id ' + jp.query(contextNode, '$.*.exitState')[0] + ' is not defined.'"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ProbabilityCheck",
+        "title": "Probability Check",
+        "abstract": false,
+        "rule": [
+          {
+            "id": "ProbabilityCheck_R1",
+            "context": "$..states.*.id",
+            "assert": [
+              {
+                "id": "ProbabilityCheck_R1_A1",
+                "test": "const Q = '$..transitions[?(@.entryState == \"' + contextNode[0] + '\")].probability';const T = eval(jp.query(documentRoot, Q).join('+')); typeof T === 'undefined' || T == 1",
+                "message": "'State[' + contextNode[0] + ']: The sum of the probability of all exit transitions must be 1.'"
               }
             ]
           }
