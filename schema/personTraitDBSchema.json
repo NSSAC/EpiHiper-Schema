@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "personTraitDatabaseDescription File",
+  "$id": "personTraitDatabaseDescriptionFile",
   "title": "Person Trait Database Description File",
   "description": "A schema for a list of traits containing enumerable features.",
   "$ref": "./typeRegistry.json#/definitions/personTraitDB"

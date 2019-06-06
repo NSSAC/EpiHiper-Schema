@@ -32,6 +32,10 @@
             "failed"
           ]
         },
+        "statusDetail": {
+          "description": "A human readable description of the current state of the job.",
+          "type": "string"
+        },
         "subprocesses": {
           "type": "array",
           "items": {

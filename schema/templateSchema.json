@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Intervention Template",
-  "description": "Template for an intervention",
+  "title": "Template Schema",
+  "description": "Template for a disease model",
   "type": "object",
   "required": [
     "template",
@@ -9,7 +9,14 @@
     "requirements"
   ],
   "properties": {
-    "template": {"$ref": "./typeRegistry.json#/definitions/interventions"},
+    "template": {
+      "oneOf": [
+        {"$ref": "./diseaseModelSchema.json"},
+        {"$ref": "./interventionSchema.json"},
+        {"$ref": "./initializationSchema.json"},
+        {"$ref": "./personTraitDBSchema.json"}
+      ]
+    },
     "userInput": {
       "type": "array",
       "items": {
@@ -22,17 +29,20 @@
               "value": {
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "required": ["$ref"],
-                  "properties": {
-                    "$ref": {
-                      "description": "A JSON pointer referencing an entity in /template",
-                      "type": "string",
-                      "pattern": "^/template/.+$"
-                    }
-                  }
-                },
-                "minItems": 1
+                  "description": "A JSON pointer referencing an entity in /template",
+                  "type": "string",
+                  "pattern": "^/template/.+$"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["exceads"],
+            "properties": {
+              "exceads": {
+                "description": "Information used within EXCEADS",
+                "$ref": "./exceadsSchema.json"
               }
             }
           }
@@ -61,6 +71,10 @@
           {"$ref": "./typeRegistry.json#/definitions/dbField"}
         ]
       }
+    },
+    "exceads": {
+      "description": "Information used within EXCEADS",
+      "$ref": "./exceadsSchema.json"
     }
   }
 }

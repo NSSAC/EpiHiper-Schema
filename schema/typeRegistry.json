@@ -1263,7 +1263,8 @@
             "trigger": {"$ref": "#/definitions/boolean"},
             "interventionIds": {
               "type": "array",
-              "items": {"$ref": "#/definitions/uniqueIdRef"}
+              "items": {"$ref": "#/definitions/uniqueIdRef"},
+              "uniqueItems": true
             }
           },
           "patternProperties": {
