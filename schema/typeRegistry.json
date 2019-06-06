@@ -474,19 +474,32 @@
         }
       ]
     },
-    "globalVariable": {
-      "$id": "#globalVariable",
-      "description": "A global variable",
+    "scope": {
+      "$id": "#scope",
+      "description": "The context in which the value is computed",
+      "type": "string",
+      "enum": [
+        "global",
+        "local"
+      ]
+    },
+    "variable": {
+      "$id": "#variable",
+      "description": "A variable",
       "allOf": [
         {"$ref": "#/definitions/annotation"},
         {
           "type": "object",
-          "required": ["id"],
+          "required": [
+            "id",
+            "initialValue",
+            "scope"
+          ],
           "properties": {
             "id": {"$ref": "#/definitions/uniqueId"},
             "initialValue": {"$ref": "#/definitions/nonNegativeInteger"},
-            "reset": {"$ref": "#/definitions/nonNegativeInteger"},
-            "selector": {"$ref": "#/definitions/setContent"}
+            "scope": {"$ref": "#/definitions/scope"},
+            "reset": {"$ref": "#/definitions/nonNegativeInteger"}
           },
           "patternProperties": {
             "^ann:": {}
@@ -495,19 +508,19 @@
         }
       ]
     },
-    "globalVariables": {
-      "$id": "#globalVariables",
-      "description": "A list of global variables",
+    "variables": {
+      "$id": "#variables",
+      "description": "A list of variables",
       "type": "array",
-      "items": {"$ref": "#/definitions/globalVariable"}
+      "items": {"$ref": "#/definitions/variable"}
     },
-    "globalVariableReference": {
-      "$id": "#globalVariableReference",
-      "description": "A global variable reference.",
+    "variableReference": {
+      "$id": "#variableReference",
+      "description": "A variable reference.",
       "type": "object",
-      "required": ["globalVariable"],
+      "required": ["variable"],
       "properties": {
-        "globalVariable": {
+        "variable": {
           "type": "object",
           "required": ["idRef"],
           "properties": {
@@ -590,7 +603,7 @@
       "description": "A condition used in evaluating triggers and action conditions.",
       "oneOf": [
         {
-          "description": "Comparing values of nodes, edges, global variables, set sizes, and fixed values",
+          "description": "Comparing values of nodes, edges, variables, set sizes, and fixed values",
           "type": "object",
           "required": [
             "operator",
@@ -619,7 +632,7 @@
                     "edge": {"$ref": "#/definitions/edgeProperty"}
                   }
                 },
-                {"$ref": "#/definitions/globalVariableReference"},
+                {"$ref": "#/definitions/variableReference"},
                 {"$ref": "#/definitions/sizeof"}
               ]
             },
@@ -643,7 +656,7 @@
                     "edge": {"$ref": "#/definitions/edgeProperty"}
                   }
                 },
-                {"$ref": "#/definitions/globalVariableReference"},
+                {"$ref": "#/definitions/variableReference"},
                 {"$ref": "#/definitions/sizeof"}
               ]
             }
@@ -744,7 +757,7 @@
                               "edge": {"$ref": "#/definitions/edgeProperty"}
                             }
                           },
-                          {"$ref": "#/definitions/globalVariableReference"}
+                          {"$ref": "#/definitions/variableReference"}
                         ]
                       }
                     }
@@ -1193,11 +1206,13 @@
           "type": "object",
           "required": [
             "id",
-            "content"
+            "content",
+            "scope"
           ],
           "properties": {
             "id": {"$ref": "#/definitions/uniqueId"},
-            "content": {"$ref": "#/definitions/setContent"}
+            "content": {"$ref": "#/definitions/setContent"},
+            "scope": {"$ref": "#/definitions/scope"}
           },
           "patternProperties": {
             "^ann:": {}

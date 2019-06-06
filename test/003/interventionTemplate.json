@@ -1,10 +1,11 @@
 {
-  "$schema": "../../schema/interventionTemplateSchema.json",
+  "$schema": "../../schema/templateSchema.json",
   "template": {
     "sets": [
       {
         "id": "enteredIsymp",
         "ann:label": "Nodes which entered state Isymp.",
+        "scope": "local",
         "content": {
           "operation": "intersection",
           "sets": [
@@ -72,14 +73,17 @@
         }
       }
     ],
-    "globalVariables": [
+    "triggers": [],
+    "variables": [
       {
         "id": "schoolChildrenEnteredIsympCounter",
         "ann:label": "School age children which are or have been infectious",
+        "scope": "global",
         "initialValue": 0
       },
       {
         "id": "schoolClosed",
+        "scope": "global",
         "ann:label": "A value indication whether the school has been closed",
         "initialValue": 0
       }
@@ -87,18 +91,18 @@
     "interventions": [
       {
         "$comment": "Mark enteredIsymp true",
-        "triggers": [
-          {
-            "left": {
-              "count": {"set": "enteredIsymp"}
-            },
-            "operator": ">",
-            "right": {
-              "value": {"number": 0}
+        "trigger": {
+          "left": {
+            "sizeof": {
+              "set": {"idRef": "enteredIsymp"}
             }
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
           }
-        ],
-        "selector": {
+        },
+        "target": {
           "set": {"idRef": "enteredIsymp"}
         },
         "foreach": [
@@ -124,18 +128,18 @@
       },
       {
         "$comment": "Count Infective School Age Children",
-        "triggers": [
-          {
-            "left": {
-              "count": {"set": "schoolChildrenEnteredIsymp"}
-            },
-            "operator": ">",
-            "right": {
-              "value": {"number": 0}
+        "trigger": {
+          "left": {
+            "sizeof": {
+              "set": {"idRef": "schoolChildrenEnteredIsymp"}
             }
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
           }
-        ],
-        "selector": {
+        },
+        "target": {
           "set": {"idRef": "schoolChildrenEnteredIsymp"}
         },
         "foreach": [
@@ -143,7 +147,7 @@
             "operations": [
               {
                 "target": {
-                  "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
+                  "variable": {"idRef": "schoolChildrenEnteredIsympCounter"}
                 },
                 "operator": "+=",
                 "value": {"number": 1}
@@ -154,29 +158,27 @@
       },
       {
         "$comment": "School Closure (school children)",
-        "triggers": [
-          {
-            "left": {
-              "value": {"number": 500}
-            },
-            "operator": "<=",
-            "right": {
-              "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
-            }
+        "trigger": {
+          "left": {
+            "value": {"number": 500}
+          },
+          "operator": "<=",
+          "right": {
+            "variable": {"idRef": "schoolChildrenEnteredIsympCounter"}
           }
-        ],
-        "selector": {
+        },
+        "target": {
           "elementType": "edge",
           "left": {
             "edge": {
-              "property": "targetTrait",
+              "property": "targetActivity",
               "feature": "activityType"
             }
           },
           "operator": "==",
           "right": {
             "value": {
-              "trait": "edgeTrait",
+              "trait": "targetActivity",
               "feature": "activityType",
               "enum": "SCHOOL"
             }
@@ -187,7 +189,7 @@
             "operations": [
               {
                 "target": {
-                  "globalVariable": {"idRef": "schoolClosed"}
+                  "variable": {"idRef": "schoolClosed"}
                 },
                 "operator": "=",
                 "value": {"number": 1}
@@ -223,29 +225,27 @@
       },
       {
         "$comment": "School Closure (teacher and other employees)",
-        "triggers": [
-          {
-            "left": {
-              "value": {"number": 500}
-            },
-            "operator": "<=",
-            "right": {
-              "globalVariable": {"idRef": "schoolChildrenEnteredIsympCounter"}
-            }
+        "trigger": {
+          "left": {
+            "value": {"number": 500}
+          },
+          "operator": "<=",
+          "right": {
+            "variable": {"idRef": "schoolChildrenEnteredIsympCounter"}
           }
-        ],
-        "selector": {
+        },
+        "target": {
           "elementType": "edge",
           "left": {
             "edge": {
-              "property": "sourceTrait",
+              "property": "sourceActivity",
               "feature": "activityType"
             }
           },
           "operator": "==",
           "right": {
             "value": {
-              "trait": "edgeTrait",
+              "trait": "sourceActivity",
               "feature": "activityType",
               "enum": "SCHOOL"
             }
@@ -282,14 +282,14 @@
   "userInput": [
     {
       "value": [
-        {"$ref": "/template/interventions/1/triggers/left/value/number"},
-        {"$ref": "/template/interventions/2/triggers/left/value/number"}
+        "/template/interventions/1/triggers/left/value/number",
+        "/template/interventions/2/triggers/left/value/number"
       ]
     },
     {
       "value": [
-        {"$ref": "/template/interventions/1/foreach/1/delay"},
-        {"$ref": "/template/interventions/2/foreach/1/delay"}
+        "/template/interventions/1/foreach/1/delay",
+        "/template/interventions/2/foreach/1/delay"
       ]
     }
   ],

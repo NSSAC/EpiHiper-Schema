@@ -3,7 +3,7 @@
 		"diseaseModelSchema.json",
 		"initializationSchema.json",
 		"interventionSchema.json",
-		"interventionTemplateSchema.json",
+		"templateSchema.json",
 		"mergedSchema.json",
 		"networkSchema.json",
 		"personTraitDBSchema.json",
@@ -11,6 +11,7 @@
 		"traitsSchema.json",
 		"typeRegistry.json",
 		"personTraitDB/schemas/tabular-data-resource.json",
-		"personTraitDB/schemas/dictionary.json"
+		"personTraitDB/schemas/dictionary.json",
+		"exceadsSchema.json"
 	]
 }

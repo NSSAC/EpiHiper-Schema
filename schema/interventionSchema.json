@@ -10,7 +10,7 @@
   ],
   "properties": {
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
-    "globalVariables": {"$ref": "./typeRegistry.json#/definitions/globalVariables"},
+    "variables": {"$ref": "./typeRegistry.json#/definitions/variables"},
     "triggers": {"$ref": "./typeRegistry.json#/definitions/triggers"},
     "interventions": {"$ref": "./typeRegistry.json#/definitions/interventions"}
   }
