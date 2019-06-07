@@ -31,8 +31,11 @@
         "name": "contact_pid",
         "bareNumber": true,
         "type": "integer",
-        "constraints": {"required": false}
+        "constraints": {"required": true}
       }
+    ],
+    "missingValues": [
+      "-1"
     ]
   }
 }
