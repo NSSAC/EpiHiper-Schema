@@ -14,7 +14,7 @@
         {"$ref": "./diseaseModelSchema.json"},
         {"$ref": "./interventionSchema.json"},
         {"$ref": "./initializationSchema.json"},
-        {"$ref": "./personTraitDBSchema.json"}
+        {"$ref": "./csvDataResourceSchema.json"}
       ]
     },
     "userInput": {

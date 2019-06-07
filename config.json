@@ -6,7 +6,7 @@
 		"templateSchema.json",
 		"mergedSchema.json",
 		"networkSchema.json",
-		"personTraitDBSchema.json",
+		"csvDataResourceSchema.json",
 		"runParametersSchema.json",
 		"traitsSchema.json",
 		"typeRegistry.json",

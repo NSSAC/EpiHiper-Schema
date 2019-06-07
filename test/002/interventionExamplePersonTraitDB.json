@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schema/personTraitDBSchema.json",
+  "$schema": "../../schema/csvDataResourceSchema.json",
   "description": "Person trait database for Montgomery County, Va",
   "name": "montgomery_county_va",
   "title": "Montgomery County Virginia Person Trait DB",

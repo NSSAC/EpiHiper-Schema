@@ -3,5 +3,5 @@
   "$id": "personTraitDatabaseDescriptionFile",
   "title": "Person Trait Database Description File",
   "description": "A schema for a list of traits containing enumerable features.",
-  "$ref": "./typeRegistry.json#/definitions/personTraitDB"
+  "$ref": "./typeRegistry.json#/definitions/csvDataResource"
 }

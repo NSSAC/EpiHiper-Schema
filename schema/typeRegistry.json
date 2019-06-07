@@ -1425,10 +1425,10 @@
       "type": "array",
       "items": {"$ref": "#/definitions/trait"}
     },
-    "personTraitDB": {"$ref": "./personTraitDB/schemas/dictionary.json#/definitions/tabularDataResource"},
-    "personTraitDBs": {
+    "csvDataResource": {"$ref": "./personTraitDB/schemas/dictionary.json#/definitions/tabularDataResource"},
+    "csvDataResources": {
       "type": "array",
-      "items": {"$ref": "#/definitions/personTraitDB"}
+      "items": {"$ref": "#/definitions/csvDataResource"}
     }
   }
 }
