@@ -12,11 +12,12 @@
 //   http://www.apache.org/licenses/LICENSE-2.0
 // END: License
 
+/* eslint-disable max-len */
+
 const pkg = require('../package.json');
-const cfg = require('../config.json');
 const commander = require('commander');
-const Ajv = require('ajv');
 const path = require('path');
+const EpiHiperValidator = require('../lib/epiHiperValidator');
 
 let files;
 
@@ -39,40 +40,13 @@ if (!Array.isArray(files)) {
 }
 
 const currDir = process.cwd();
-const ajv = new Ajv({schemaId: 'auto'});
-ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
+const epiHiperValidator = new EpiHiperValidator(commander.schemaDir);
 
-if (!commander.schemaDir) {
-  commander.schemaDir = path.join(__dirname, '..', 'schema');
-}
-
-cfg.schema.forEach(function(s) {
-  const sInstance = require(path.join(commander.schemaDir, s));
-  sInstance['$id'] = 'file://./' + s;
-  ajv.addSchema(sInstance);
-});
-
+let success = true;
 
 files.forEach(function(file) {
-  const InstanceFile = path.join(currDir, file);
-  process.stdout.write('File: ' + InstanceFile);
-  const Instance = require(InstanceFile);
-
-  const Id = 'file://./' + path.basename(Instance['$schema']);
-
-  // Check whether we have the schema already loaded
-  const validate = ajv.getSchema(Id);
-
-  if (typeof validate === 'undefined') {
-    throw new Error('Schema: ' + Instance['$schema'] + ' not found.');
-  }
-
-  const valid = validate(Instance);
-
-  if (!valid) {
-    console.log(' invalid');
-    console.log(validate.errors);
-  } else {
-    console.log(' valid');
-  }
+  success &= epiHiperValidator.validateSchema(path.join(currDir, file));
 });
+
+process.exit(success ? 0 : 1);
+

@@ -25,6 +25,7 @@ commander
     .description('EpiHiper Schema Validation')
     .usage('[options] <file ...>')
     .option('--no-default', 'Do not add defaults for missing values')
+    .option('--recursive', 'Process files referenced in run parameters')
     .arguments('<files...>')
     .action(function(_files) {
       files = _files;

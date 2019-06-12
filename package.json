@@ -1,10 +1,11 @@
 {
 	"name": "@shoops/epi-hiper-validator",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "EpiHiper input validation utilities",
 	"bin": {
 		"epiHiperValidateSchema": "./bin/epiHiperValidateSchema",
-		"epiHiperValidateRules": "./bin/epiHiperValidateRules"
+		"epiHiperValidateRules": "./bin/epiHiperValidateRules",
+		"epiHiperStatus": "./bin/epiHiperStatus"
 	},
 	"author": "Stefan Hoops <shoops@virginia.edu>",
 	"license": "Apache-2.0",

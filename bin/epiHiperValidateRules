@@ -12,12 +12,12 @@
 //   http://www.apache.org/licenses/LICENSE-2.0
 // END: License
 
+/* eslint-disable max-len */
+
 const pkg = require('../package.json');
-const cfg = require('../config.json');
 const commander = require('commander');
-const jsontron = require('@shoops/jsontron');
 const path = require('path');
-const fs = require('fs');
+const EpiHiperValidator = require('../lib/epiHiperValidator');
 
 let files;
 
@@ -38,42 +38,14 @@ if (!Array.isArray(files)) {
   process.exit(1);
 }
 
-if (!commander.rulesDir) {
-  commander.rulesDir = path.join(__dirname, '..', 'schema');
-}
-
 const currDir = process.cwd();
-const rules = {};
+const epiHiperValidator = new EpiHiperValidator(commander.rulesDir);
 
-cfg.schema.forEach(function(s) {
-  const RulesFile = path.join(commander.rulesDir,
-      s.replace('Schema.json', 'Rules.json'));
-
-  if (RulesFile.endsWith('Rules.json') && fs.existsSync(RulesFile)) {
-    rules[s.replace('Schema.json', 'Rules.json')] = require(RulesFile);
-  }
-});
+let success = true;
 
 files.forEach(function(file) {
-  const InstanceFile = path.join(currDir, file);
-  const Instance = require(InstanceFile);
-
-  const RulesFile = path.basename(Instance['$schema'].replace('Schema.json', 'Rules.json'));
-
-  // Check whether we have the rules already loaded
-  const Rules = rules[RulesFile];
-
-  if (typeof Rules === 'undefined') {
-    console.log('File: ' + InstanceFile + ' no rules provided');
-    return;
-  }
-
-  Report = jsontron.JSONTRON.validate(Instance, Rules);
-
-  if (Report.finalValidationReport.length) {
-    console.log('File: ' + InstanceFile + ' invalid');
-    console.log(Report.finalValidationReport);
-  } else {
-    console.log('File: ' + InstanceFile + ' valid');
-  }
+  success &= epiHiperValidator.validateRules(path.join(currDir, file));
 });
+
+
+process.exit(success ? 0 : 1);
