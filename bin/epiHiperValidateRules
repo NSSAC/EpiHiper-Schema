@@ -38,13 +38,12 @@ if (!Array.isArray(files)) {
   process.exit(1);
 }
 
-const currDir = process.cwd();
 const epiHiperValidator = new EpiHiperValidator(commander.rulesDir);
 
 let success = true;
 
 files.forEach(function(file) {
-  success &= epiHiperValidator.validateRules(path.join(currDir, file));
+  success &= epiHiperValidator.validateRules(file);
 });
 
 

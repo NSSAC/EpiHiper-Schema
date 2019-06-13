@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable max-len */
+
 const commander = require('commander');
 const fs = require('fs');
 
@@ -32,6 +34,7 @@ commander
     .arguments('<file>')
     .action(function(_file) {
       commander.file = _file;
+      console.log(_file);
     });
 
 commander.parse(process.argv);
@@ -50,7 +53,7 @@ try {
   if (!commander.id ||
       !commander.name ||
       !commander.status ||
-      !commander.progress) {
+      typeof commander.progress === 'undefined') {
     console.log('ERROR: Id, name, status, and progress are required.');
 
     process.exit(1);
@@ -60,7 +63,7 @@ try {
   status.name = commander.name;
   status.status = commander.status;
   status.progress = commander.progress;
-  action = 'created';
+  action = 'has been created';
 }
 
 if (commander.id &&
@@ -77,7 +80,7 @@ if (commander.name &&
 if (commander.status &&
     status.status != commander.status) {
   if (status.status != 'running') {
-    console.log('ERROR: Thestatus of a fininshed job may not be changed.');
+    console.log('ERROR: The status of a finished job may not be changed.');
   }
 
   status.status = commander.status;
@@ -95,7 +98,7 @@ if (commander.progress &&
 }
 
 if (commander.detail &&
-  status.progress != commander.progress) {
+    status.detail != commander.detail) {
   status.detail = commander.detail;
   action = 'has been modified';
 } 
