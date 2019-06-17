@@ -34,7 +34,6 @@ commander
     .arguments('<file>')
     .action(function(_file) {
       commander.file = _file;
-      console.log(_file);
     });
 
 commander.parse(process.argv);
@@ -46,6 +45,7 @@ if (typeof commander.file === 'undefined') {
 
 let status = {};
 let action = '';
+
 try {
   status = require(commander.file);
   action = 'has not been modified';
