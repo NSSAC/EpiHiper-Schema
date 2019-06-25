@@ -3,56 +3,19 @@
   "title": "EpiHiper run parameters",
   "description": "A schema describing the run parameters for EpiHiper",
   "definitions": {
-    "localFile": {
-      "type": "string",
-      "pattern": "^(([a-z]|[A-Z]:/)|/)?([^/]+/)*[^/]+$"
-    },
-    "jsonFormat": {
-      "type": "string",
-      "pattern": "^.*\\.json$"
-    }
   },
   "type": "object",
   "required": [
-    "contactNetwork",
-    "diseaseModel",
-    "intervention",
-    "initialization",
-    "traits",
+    "modelScenario",
     "startTick",
     "endTick"
   ],
   "properties": {
-    "contactNetwork": {
-      "description": "Filename of the contact network",
-      "$ref": "#/definitions/localFile"
-    },
-    "diseaseModel": {
+    "modelScenario": {
       "description": "Filename of the disease model in a json file.",
       "allOf": [ 
-        {"$ref": "#/definitions/localFile"},
-        {"$ref": "#/definitions/jsonFormat"}
-      ]        
-    },
-    "intervention": {
-      "description": "Filename of the interventions in a json file.",
-      "allOf": [ 
-        {"$ref": "#/definitions/localFile"},
-        {"$ref": "#/definitions/jsonFormat"}
-      ]        
-    },
-    "initialization": {
-      "description": "Filename of the initializations in a json file.",
-      "allOf": [ 
-        {"$ref": "#/definitions/localFile"},
-        {"$ref": "#/definitions/jsonFormat"}
-      ]        
-    },
-    "traits": {
-      "description": "Filename of the json file containing node and edge traits.",
-      "allOf": [ 
-        {"$ref": "#/definitions/localFile"},
-        {"$ref": "#/definitions/jsonFormat"}
+        {"$ref": "./typeRegistry.json#/definitions/localPath"},
+        {"$ref": "./typeRegistry.json#/definitions/jsonFormat"}
       ]        
     },
     "startTick": {
@@ -67,16 +30,9 @@
       "minimum": 0,
       "multipleOf": 1.0
     },
-    "personTraitDB": {
-      "description": "An optional list of json files each describing a person trait database to be loaded.",
-      "type": "array",
-      "items": {
-        "description": "Filename of a person trait database description in a json file.",
-        "allOf": [ 
-          {"$ref": "#/definitions/localFile"},
-          {"$ref": "#/definitions/jsonFormat"}
-        ]
-      }
+    "output": {
+      "description": "Filename of the output file",
+      "$ref": "./typeRegistry.json#/definitions/localPath"
     }
   }
 }

@@ -12,6 +12,7 @@
 		"typeRegistry.json",
 		"personTraitDB/schemas/tabular-data-resource.json",
 		"personTraitDB/schemas/dictionary.json",
-		"exceadsSchema.json"
+		"exceadsSchema.json",
+		"modelScenarioSchema.json"
 	]
 }

@@ -1,10 +1,6 @@
 {
   "$schema": "../../schema/runParametersSchema.json",
-  "contactNetwork": "network",
-  "diseaseModel": "./diseaseModelExample.json",
-  "initialization": "./initilizationExample.json",
-  "intervention": "./interventionExample.json",
-  "traits": "./traitsExample.json",
+  "modelScenario": "self://./modelScenarioExample.json",
   "startTick": 0,
   "endTick": 28
 }

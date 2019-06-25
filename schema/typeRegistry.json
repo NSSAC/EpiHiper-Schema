@@ -146,15 +146,9 @@
           "uniform": {
             "oneOf": [
               {
-                "type": "object",
+                "type": "array",
                 "description": "A number is sampled uniformly from the given values",
-                "required": ["values"],
-                "properties": {
-                  "values": {
-                    "type": "array",
-                    "items": {"$ref": "#/definitions/nonNegativeNumber"}
-                  }
-                }
+                "items": {"$ref": "#/definitions/nonNegativeNumber"}
               },
               {
                 "type": "object",
@@ -1429,6 +1423,27 @@
     "csvDataResources": {
       "type": "array",
       "items": {"$ref": "#/definitions/csvDataResource"}
+    },
+    "localPath": {
+      "type": "string",
+      "oneOf": [
+        {
+          "description": "Absolute Path",
+          "pattern": "^([a-zA-Z]:)?/([^/]+/)*[^/]+$"
+        },
+        {
+          "description": "Self relative, i.e., relative to the current path",
+          "pattern": "^self://([^/]+/)*[^/]+$"
+        },
+        {
+          "description": "Relative to pressent working directory",
+          "pattern": "^([^/]+/)*[^/]+$"
+        }
+      ]
+    },
+    "jsonFormat": {
+      "type": "string",
+      "pattern": "^.*\\.json$"
     }
   }
 }

@@ -1,12 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/runParametersSchema.json",
-  "contactNetwork": "/sfs/qumulo/qproject/biocomplexity/EpiHiper/data/va_montgomery_2009.txt",
-  "diseaseModel": "./interventionExampleDiseaseModel.json",
-  "initialization": "./interventionExampleInitialization.json",
-  "intervention": "./interventionExampleIntervention.json",
-  "personTraitDB": ["./interventionExamplePersonTraitDB.json"],
-  "traits": "./interventionExampleTraits.json",
-  "outputFile": "interventionExampleOutput.txt",
+  "$schema": "../../schema/runParametersSchema.json",
+  "modelScenario": "self://./interventionExampleModelScenario.json",
+  "output": "./interventionExampleOutput.txt",
   "startTick": 0,
   "endTick": 28
 }

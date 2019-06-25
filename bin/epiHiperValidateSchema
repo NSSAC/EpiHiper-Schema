@@ -16,7 +16,6 @@
 
 const pkg = require('../package.json');
 const commander = require('commander');
-const path = require('path');
 const EpiHiperValidator = require('../lib/epiHiperValidator');
 
 let files;

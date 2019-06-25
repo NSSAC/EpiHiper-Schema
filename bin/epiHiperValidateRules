@@ -16,7 +16,6 @@
 
 const pkg = require('../package.json');
 const commander = require('commander');
-const path = require('path');
 const EpiHiperValidator = require('../lib/epiHiperValidator');
 
 let files;
@@ -45,6 +44,5 @@ let success = true;
 files.forEach(function(file) {
   success &= epiHiperValidator.validateRules(file);
 });
-
 
 process.exit(success ? 0 : 1);
