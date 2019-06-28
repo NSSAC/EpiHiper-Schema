@@ -2,39 +2,6 @@
   "$schema": "../../schema/traitsSchema.json",
   "traits": [
     {
-      "id": "edgeTrait",
-      "ann:label": "Edge Trait",
-      "features": [
-        {
-          "id": "activityType",
-          "ann:label": "Activity Type",
-          "enums": [
-            {
-              "id": "HOME",
-              "ann:label": "Home"
-            },
-            {
-              "id": "SCHOOL",
-              "ann:label": "School"
-            },
-            {
-              "id": "WORK",
-              "ann:label": "Work"
-            },
-            {
-              "id": "SHOPPING",
-              "ann:label": "Shopping"
-            },
-            {
-              "id": "OTHER",
-              "ann:label": "other"
-            }
-          ],
-          "default": "OTHER"
-        }
-      ]
-    },
-    {
       "id": "nodeTrait",
       "ann:label": "Node Trait",
       "features": [

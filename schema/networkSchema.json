@@ -4,6 +4,7 @@
   "description": "Description of the schema",
   "type": "object",
   "required": [
+    "encoding",
     "numberOfNodes",
     "numberOfEdges",
     "sizeofPID",
@@ -17,6 +18,14 @@
     "hasWeightField"
   ],
   "properties": {
+    "encoding": {
+      "description": "Encoding used for the network edges",
+      "type": "string",
+      "enum": [
+        "binary",
+        "text"
+      ]
+    },
     "numberOfNodes": {
       "description": "The number of nodes in the network",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
