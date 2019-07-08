@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schema/templateSchema.json",
+  "ann:id": "PercentOfInfectedPopulation",
+  "ann:label": "The percentage of the initially infected population",
+  "ann:description": "Bryan, Srini please provide a description.",
+  "template": {
+    "initializations": [
+      {
+        "target": {"elementType": "node"},
+        "sampling": {
+          "type": "group",
+          "number": 2,
+          "sampled": {
+            "foreach": [
+              {
+                "operations": [
+                  {
+                    "target": {
+                      "node": {"property": "healthState"}
+                    },
+                    "operator": "=",
+                    "value": {"healthState": "Isymp"}
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "userInput": [
+    {
+      "ann:id": "PercentOfInfectedPopulation",
+      "ann:label": "The percentage of the initially infected population",
+      "ann:description": "",
+      "value": ["/template/initializations/1/sampling/number"]
+    }
+  ],
+  "requirements": [
+    {
+      "value": {"healthState": "Isymp"}
+    }
+  ],
+  "exceads": {}
+}

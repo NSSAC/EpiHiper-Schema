@@ -2,78 +2,82 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Template Schema",
   "description": "Template for a disease model",
-  "type": "object",
-  "required": [
-    "template",
-    "userInput",
-    "requirements"
-  ],
-  "properties": {
-    "template": {
-      "oneOf": [
-        {"$ref": "./diseaseModelSchema.json"},
-        {"$ref": "./interventionSchema.json"},
-        {"$ref": "./initializationSchema.json"},
-        {"$ref": "./csvDataResourceSchema.json"}
-      ]
-    },
-    "userInput": {
-      "type": "array",
-      "items": {
-        "allOf": [
-          {"$ref": "./typeRegistry.json#/definitions/annotation"},
-          {
-            "type": "object",
-            "required": ["value"],
-            "properties": {
-              "value": {
-                "type": "array",
-                "items": {
-                  "description": "A JSON pointer referencing an entity in /template",
-                  "type": "string",
-                  "pattern": "^/template/.+$"
+  "allOf": [
+    {"$ref": "./typeRegistry.json#/definitions/annotation"},
+    {
+      "type": "object",
+      "required": [
+        "template",
+        "userInput",
+        "requirements"
+      ],
+      "properties": {
+        "template": {
+          "oneOf": [
+            {"$ref": "./diseaseModelSchema.json"},
+            {"$ref": "./interventionSchema.json"},
+            {"$ref": "./initializationSchema.json"},
+            {"$ref": "./csvDataResourceSchema.json"}
+          ]
+        },
+        "userInput": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {"$ref": "./typeRegistry.json#/definitions/annotation"},
+              {
+                "type": "object",
+                "required": ["value"],
+                "properties": {
+                  "value": {
+                    "type": "array",
+                    "items": {
+                      "description": "A JSON pointer referencing an entity in /template",
+                      "type": "string",
+                      "pattern": "^/template/.+$"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "exceads": {
+                    "description": "Information used within EXCEADS",
+                    "$ref": "./exceadsSchema.json"
+                  }
                 }
               }
-            }
-          },
-          {
-            "type": "object",
-            "properties": {
-              "exceads": {
-                "description": "Information used within EXCEADS",
-                "$ref": "./exceadsSchema.json"
-              }
-            }
+            ]
           }
-        ]
-      },
-      "minItems": 1
-    },
-    "requirments": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "type": "object",
-            "required": ["value"],
-            "properties": {
-              "value": {
-                "oneOf": [
-                  {"$ref": "./typeRegistry.json#/definitions/healthState"},
-                  {"$ref": "./typeRegistry.json#/definitions/traitEnum"}
-                ]
-              }
-            }
-          },
-          {"$ref": "./typeRegistry.json#/definitions/edgeProperty"},
-          {"$ref": "./typeRegistry.json#/definitions/nodeProperty"},
-          {"$ref": "./typeRegistry.json#/definitions/dbField"}
-        ]
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": ["value"],
+                "properties": {
+                  "value": {
+                    "oneOf": [
+                      {"$ref": "./typeRegistry.json#/definitions/healthState"},
+                      {"$ref": "./typeRegistry.json#/definitions/traitEnum"}
+                    ]
+                  }
+                }
+              },
+              {"$ref": "./typeRegistry.json#/definitions/edgeProperty"},
+              {"$ref": "./typeRegistry.json#/definitions/nodeProperty"},
+              {"$ref": "./typeRegistry.json#/definitions/dbField"}
+            ]
+          }
+        },
+        "exceads": {
+          "description": "Information used within EXCEADS",
+          "$ref": "./exceadsSchema.json"
+        }
       }
-    },
-    "exceads": {
-      "description": "Information used within EXCEADS",
-      "$ref": "./exceadsSchema.json"
     }
-  }
+  ]
 }

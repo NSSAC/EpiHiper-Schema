@@ -1,0 +1,161 @@
+{
+  "$schema": "../../schema/templateSchema.json",
+  "ann:id": "FlueVacination",
+  "ann:label": "Flue Vacination by Age Group",
+  "ann:description": "Bryan, Srini please provide a description.",
+  "template": {
+    "initializations": [
+      {
+        "target": {
+          "elementType": "node",
+          "left": {
+            "table": "montgomery_county_va",
+            "field": "age_group"
+          },
+          "operator": "==",
+          "right": {"value": "0-18"}
+        },
+        "sampling": {
+          "type": "individual",
+          "number": 70,
+          "sampled": {
+            "foreach": [
+              {
+                "operations": [
+                  {
+                    "target": {
+                      "node": {"property": "infectivityFactor"}
+                    },
+                    "operator": "*=",
+                    "value": {"number": 0.8}
+                  },
+                  {
+                    "target": {
+                      "node": {"property": "susceptibilityFactor"}
+                    },
+                    "operator": "*=",
+                    "value": {"number": 0.8}
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target": {
+          "elementType": "node",
+          "left": {
+            "table": "montgomery_county_va",
+            "field": "age_group"
+          },
+          "operator": "==",
+          "right": {"value": "19-64"}
+        },
+        "sampling": {
+          "type": "individual",
+          "number": 30,
+          "sampled": {
+            "foreach": [
+              {
+                "operations": [
+                  {
+                    "target": {
+                      "node": {"property": "infectivityFactor"}
+                    },
+                    "operator": "*=",
+                    "value": {"number": 0.8}
+                  },
+                  {
+                    "target": {
+                      "node": {"property": "susceptibilityFactor"}
+                    },
+                    "operator": "*=",
+                    "value": {"number": 0.8}
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target": {
+          "elementType": "node",
+          "left": {
+            "table": "montgomery_county_va",
+            "field": "age_group"
+          },
+          "operator": "==",
+          "right": {"value": "65+"}
+        },
+        "sampling": {
+          "type": "individual",
+          "number": 50,
+          "sampled": {
+            "foreach": [
+              {
+                "operations": [
+                  {
+                    "target": {
+                      "node": {"property": "infectivityFactor"}
+                    },
+                    "operator": "*=",
+                    "value": {"number": 0.8}
+                  },
+                  {
+                    "target": {
+                      "node": {"property": "susceptibilityFactor"}
+                    },
+                    "operator": "*=",
+                    "value": {"number": 0.8}
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "userInput": [
+    {
+      "ann:id": "VaccinationRate0_18",
+      "ann:label": "Vaccination Rate for Age Group 0-18",
+      "ann:description": "",
+      "value": ["/template/initializations/1/sampling/number"]
+    },
+    {
+      "ann:id": "VaccinationRate19_64",
+      "ann:label": "Vaccination Rate for Age Group 19-64",
+      "ann:description": "",
+      "value": ["/template/initializations/2/sampling/number"]
+    },
+    {
+      "ann:id": "VaccinationRate65_",
+      "ann:label": "Vaccination Rate for Age Group 65+",
+      "ann:description": "",
+      "value": ["/template/initializations/3/sampling/number"]
+    },
+    {
+      "ann:id": "VaccineEffectiveness",
+      "ann:label": "Effectiveness of the vaccine",
+      "ann:description": "A number with which the current infectivities and succebtibilites of vaccinated individuals are multiplied",
+      "value": [
+        "/template/initializations/1/sampling/sampled/foreach/operations/1/value/number",
+        "/template/initializations/1/sampling/sampled/foreach/operations/2/value/number",
+        "/template/initializations/2/sampling/sampled/foreach/operations/1/value/number",
+        "/template/initializations/2/sampling/sampled/foreach/operations/2/value/number",
+        "/template/initializations/3/sampling/sampled/foreach/operations/1/value/number",
+        "/template/initializations/3/sampling/sampled/foreach/operations/2/value/number"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "table": "montgomery_county_va",
+      "field": "age_group"
+    }
+  ],
+  "exceads": {}
+}

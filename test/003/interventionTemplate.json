@@ -294,17 +294,13 @@
     }
   ],
   "requirements": [
-    {
-      "node": {"property": "healthState"}
-    },
+    {"property": "healthState"},
     {
       "value": {"healthState": "Isymp"}
     },
     {
-      "node": {
-        "property": "nodeTrait",
-        "feature": "enteredIsymp"
-      }
+      "property": "nodeTrait",
+      "feature": "enteredIsymp"
     },
     {
       "value": {
@@ -321,16 +317,12 @@
       }
     },
     {
-      "edge": {
-        "property": "targetTrait",
-        "feature": "activityType"
-      }
+      "property": "targetActivity",
+      "feature": "activityType"
     },
     {
-      "edge": {
-        "property": "sourceTrait",
-        "feature": "activityType"
-      }
+      "property": "sourceActivity",
+      "feature": "activityType"
     },
     {
       "value": {

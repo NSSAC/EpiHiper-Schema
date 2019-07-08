@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schema/templateSchema.json",
+  "ann:id": "NumberInitialInfections",
+  "ann:label": "The number of initially infected individuals",
+  "ann:description": "Bryan, Srini please provide a description.",
+  "template": {
+    "initializations": [
+      {
+        "target": {"elementType": "node"},
+        "sampling": {
+          "type": "absolute",
+          "number": 70,
+          "sampled": {
+            "foreach": [
+              {
+                "operations": [
+                  {
+                    "target": {
+                      "node": {"property": "healthState"}
+                    },
+                    "operator": "=",
+                    "value": {"healthState": "Isymp"}
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "userInput": [
+    {
+      "ann:id": "NumberOfIndividuals",
+      "ann:label": "Number of infected Individuals",
+      "ann:description": "",
+      "value": ["/template/initializations/1/sampling/number"]
+    }
+  ],
+  "requirements": [
+    {
+      "value": {"healthState": "Isymp"}
+    }
+  ],
+  "exceads": {}
+}
