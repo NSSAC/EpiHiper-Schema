@@ -1,8 +1,8 @@
 {
   "$schema": "../../schema/templateSchema.json",
-  "ann:id": "FlueVacination",
-  "ann:label": "Flue Vacination by Age Group",
-  "ann:description": "Bryan, Srini please provide a description.",
+  "ann:id": "FluVacination",
+  "ann:label": "Flu Vacination by Age Group",
+  "ann:description": "Seasonal influenza vaccination and age-specific effectiveness.",
   "template": {
     "initializations": [
       {
