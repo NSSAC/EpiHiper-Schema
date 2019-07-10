@@ -10,35 +10,11 @@
     "interventions": [
       {
         "$comment": "Prophylax",
-        "trigger": {
-          "left": {
-            "sizeof": {
-              "elementType": "node",
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylaxTrigger"
-                }
-              },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylaxTrigger",
-                  "enum": "true"
-                }
-              }
-            }
-          },
-          "operator": ">",
-          "right": {
-            "value": {"number": 0}
-          }
-        },
+        "id": "interventionTemplate3_1",
         "target": {
           "elementType": "node",
           "left": {
-            "table": "MontgomeryCounty",
+            "table": "montgomery_county_va",
             "field": "hid"
           },
           "operator": "in",
@@ -47,21 +23,7 @@
             "table": "montgomery_county_va",
             "field": "hid",
             "selector": {
-              "elementType": "node",
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylaxTrigger"
-                }
-              },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylaxTrigger",
-                  "enum": "true"
-                }
-              }
+              "set": {"idRef": "triggerTemplate4_prophylaxTrue"}
             }
           }
         },
@@ -189,9 +151,11 @@
       ],
       "exceads": {}
     }
-
   ],
   "requirements": [
+    {
+      "set": {"idRef": "triggerTemplate4_prophylaxTrue"}
+    },
     {
       "property": "nodeTrait",
       "feature": "prophylax"
@@ -209,7 +173,36 @@
         "feature": "prophylax",
         "enum": "false"
       }
+    },
+    {
+      "table": "montgomery_county_va",
+      "field": "hid"
+    },
+    {
+      "property": "nodeTrait",
+      "feature": "prophylaxTrigger"
+    },
+    {
+      "value": {
+        "trait": "nodeTrait",
+        "feature": "prophylaxTrigger",
+        "enum": "true"
+      }
     }
   ],
-  "exceads": {}
+  "exceads": {
+    "input": [
+      {
+        "ann:id": "HouseholdIfTable",
+        "ann:label": "Table containing Household",
+        "ann:description": "",
+        "value": [
+          "/template/internentions/1/target/left/table",
+          "/template/internentions/1/target/right/table",
+          "/requirements/4/table"
+        ],
+        "exceads": {}
+      }
+    ]
+  }
 }

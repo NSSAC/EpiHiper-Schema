@@ -6,7 +6,7 @@
   "template": {
     "sets": [
       {
-        "id": "enteredIsymp",
+        "id": "triggerTemplate1_enteredIsymp",
         "ann:label": "Nodes which entered state Isymp.",
         "scope": "local",
         "content": {
@@ -48,7 +48,7 @@
         "trigger": {
           "left": {
             "sizeof": {
-              "set": {"idRef": "enteredIsymp"}
+              "set": {"idRef": "triggerTemplate1_enteredIsymp"}
             }
           },
           "operator": ">",
@@ -65,7 +65,7 @@
         "trigger": {
           "left": {
             "sizeof": {
-              "set": {"idRef": "enteredIsymp"}
+              "set": {"idRef": "triggerTemplate1_enteredIsymp"}
             }
           },
           "operator": ">",
@@ -74,7 +74,7 @@
           }
         },
         "target": {
-          "set": {"idRef": "enteredIsymp"}
+          "set": {"idRef": "triggerTemplate1_enteredIsymp"}
         },
         "foreach": [
           {

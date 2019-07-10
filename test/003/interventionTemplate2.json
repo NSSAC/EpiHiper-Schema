@@ -23,47 +23,10 @@
     "interventions": [
       {
         "$comment": "Treatment",
-        "id": "treatment_1",
+        "id": "interventionTemplate2_1",
         "target": {
           "set": {"idRef": "enteredIsymp"}
         },
-        "foreach": [
-          {
-            "delay": 1,
-            "condition": {
-              "left": {
-                "node": {
-                  "property": "nodeTrait",
-                  "feature": "prophylaxTrigger"
-                }
-              },
-              "operator": "==",
-              "right": {
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylaxTrigger",
-                  "enum": "true"
-                }
-              }
-            },
-            "operations": [
-              {
-                "target": {
-                  "node": {
-                    "property": "nodeTrait",
-                    "feature": "prophylaxTrigger"
-                  }
-                },
-                "operator": "=",
-                "value": {
-                  "trait": "nodeTrait",
-                  "feature": "prophylaxTrigger",
-                  "enum": "false"
-                }
-              }
-            ]
-          }
-        ],
         "sampling": {
           "type": "individual",
           "number": 30,

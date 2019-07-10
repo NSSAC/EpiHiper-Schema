@@ -5,7 +5,7 @@
   "ann:description": "",
   "template": {
     "sets": [
-       {
+      {
         "id": "schoolChildrenEnteredIsymp",
         "ann:label": "Nodes which entered state Isymp and are going to school.",
         "scope": "local",
@@ -13,7 +13,7 @@
           "operation": "intersection",
           "sets": [
             {
-              "set": {"idRef": "enteredIsymp"}
+              "set": {"idRef": "triggerTemplate1_enteredIsymp"}
             },
             {
               "elementType": "node",
@@ -105,6 +105,9 @@
     }
   ],
   "requirements": [
+    {
+      "set": {"idRef": "triggerTemplate1_enteredIsymp"}
+    },
     {
       "value": {"healthState": "Isymp"}
     },

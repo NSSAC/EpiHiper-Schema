@@ -22,8 +22,8 @@
   },
   "userInput": [
     {
-      "ann:id": "ThresholdInfectedSchoolChildren",
-      "ann:label": "Threshold of Infected School Children",
+      "ann:id": "TriggerDay",
+      "ann:label": "TriggerDay",
       "ann:description": "",
       "value": ["/template/triggers/1/trigger/right/value/number"],
       "exceads": {}
