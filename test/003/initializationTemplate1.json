@@ -123,19 +123,22 @@
       "ann:id": "VaccinationRate0_18",
       "ann:label": "Vaccination Rate for Age Group 0-18",
       "ann:description": "",
-      "value": ["/template/initializations/1/sampling/number"]
+      "value": ["/template/initializations/1/sampling/number"],
+      "exceads": {}
     },
     {
       "ann:id": "VaccinationRate19_64",
       "ann:label": "Vaccination Rate for Age Group 19-64",
       "ann:description": "",
-      "value": ["/template/initializations/2/sampling/number"]
+      "value": ["/template/initializations/2/sampling/number"],
+      "exceads": {}
     },
     {
       "ann:id": "VaccinationRate65_",
       "ann:label": "Vaccination Rate for Age Group 65+",
       "ann:description": "",
-      "value": ["/template/initializations/3/sampling/number"]
+      "value": ["/template/initializations/3/sampling/number"],
+      "exceads": {}
     },
     {
       "ann:id": "VaccineEffectiveness",
@@ -148,7 +151,8 @@
         "/template/initializations/2/sampling/sampled/foreach/operations/2/value/number",
         "/template/initializations/3/sampling/sampled/foreach/operations/1/value/number",
         "/template/initializations/3/sampling/sampled/foreach/operations/2/value/number"
-      ]
+      ],
+      "exceads": {}
     }
   ],
   "requirements": [

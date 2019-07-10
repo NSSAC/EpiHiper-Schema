@@ -1,0 +1,215 @@
+{
+  "$schema": "../../schema/templateSchema.json",
+  "ann:id": "Prophylax",
+  "ann:label": "Prophylax Treatment of Househols Memebers",
+  "ann:description": "",
+  "template": {
+    "sets": [],
+    "variables": [],
+    "triggers": [],
+    "interventions": [
+      {
+        "$comment": "Prophylax",
+        "trigger": {
+          "left": {
+            "sizeof": {
+              "elementType": "node",
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylaxTrigger"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylaxTrigger",
+                  "enum": "true"
+                }
+              }
+            }
+          },
+          "operator": ">",
+          "right": {
+            "value": {"number": 0}
+          }
+        },
+        "target": {
+          "elementType": "node",
+          "left": {
+            "table": "MontgomeryCounty",
+            "field": "hid"
+          },
+          "operator": "in",
+          "right": {
+            "elementType": "dbField",
+            "table": "montgomery_county_va",
+            "field": "hid",
+            "selector": {
+              "elementType": "node",
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylaxTrigger"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylaxTrigger",
+                  "enum": "true"
+                }
+              }
+            }
+          }
+        },
+        "foreach": [
+          {
+            "condition": {
+              "and": [
+                {
+                  "left": {
+                    "node": {"property": "healthState"}
+                  },
+                  "operator": "in",
+                  "right": {
+                    "valueList": {
+                      "healthState": [
+                        "S",
+                        "E"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "left": {
+                    "node": {
+                      "property": "nodeTrait",
+                      "feature": "prophylax"
+                    }
+                  },
+                  "operator": "==",
+                  "right": {
+                    "value": {
+                      "trait": "nodeTrait",
+                      "feature": "prophylax",
+                      "enum": "false"
+                    }
+                  }
+                }
+              ]
+            },
+            "operations": [
+              {
+                "target": {
+                  "node": {"property": "susceptibilityFactor"}
+                },
+                "operator": "*=",
+                "value": {"number": 0.4}
+              },
+              {
+                "target": {
+                  "node": {
+                    "property": "nodeTrait",
+                    "feature": "prophylax"
+                  }
+                },
+                "operator": "=",
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylax",
+                  "enum": "true"
+                }
+              }
+            ]
+          },
+          {
+            "delay": 5,
+            "condition": {
+              "left": {
+                "node": {
+                  "property": "nodeTrait",
+                  "feature": "prophylax"
+                }
+              },
+              "operator": "==",
+              "right": {
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylax",
+                  "enum": "true"
+                }
+              }
+            },
+            "operations": [
+              {
+                "target": {
+                  "node": {"property": "susceptibilityFactor"}
+                },
+                "operator": "/=",
+                "value": {"number": 0.4}
+              },
+              {
+                "target": {
+                  "node": {
+                    "property": "nodeTrait",
+                    "feature": "prophylax"
+                  }
+                },
+                "operator": "=",
+                "value": {
+                  "trait": "nodeTrait",
+                  "feature": "prophylax",
+                  "enum": "false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "userInput": [
+    {
+      "ann:id": "DaysTreatment",
+      "ann:label": "Days of Treatment",
+      "ann:description": "",
+      "value": ["/template/internentions/1/foreach/2/delay"],
+      "exceads": {}
+    },
+    {
+      "ann:id": "ProphylaxEffectiveness",
+      "ann:label": "Effectiveness of Treatment",
+      "ann:description": "",
+      "value": [
+        "/template/internentions/1/foreach/1/operations/1/value/number",
+        "/template/internentions/1/foreach/2/operations/1/value/number"
+      ],
+      "exceads": {}
+    }
+
+  ],
+  "requirements": [
+    {
+      "property": "nodeTrait",
+      "feature": "prophylax"
+    },
+    {
+      "value": {
+        "trait": "nodeTrait",
+        "feature": "prophylax",
+        "enum": "true"
+      }
+    },
+    {
+      "value": {
+        "trait": "nodeTrait",
+        "feature": "prophylax",
+        "enum": "false"
+      }
+    }
+  ],
+  "exceads": {}
+}

@@ -34,7 +34,8 @@
       "ann:id": "NumberOfIndividuals",
       "ann:label": "Number of infected Individuals",
       "ann:description": "",
-      "value": ["/template/initializations/1/sampling/number"]
+      "value": ["/template/initializations/1/sampling/number"],
+      "exceads": {}
     }
   ],
   "requirements": [

@@ -657,7 +657,7 @@
           }
         },
         {
-          "description": "Checking whether a node or edge property is in or not in a gicen value list.",
+          "description": "Checking whether a node or edge property is in or not in a given value list.",
           "type": "object",
           "required": [
             "operator",

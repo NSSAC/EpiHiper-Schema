@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/templateSchema.json",
-  "ann:id": "ThresholdInfectedSchoolChildren",
-  "ann:label": "Threshold of Infected School Children",
+  "ann:id": "NewlySymptomaticIndividuals",
+  "ann:label": "Newly Symptomatic Individuals",
   "ann:description": "",
   "template": {
     "sets": [
@@ -41,48 +41,6 @@
             }
           ]
         }
-      },
-      {
-        "id": "schoolChildrenEnteredIsymp",
-        "ann:label": "Nodes which entered state Isymp and are going to school.",
-        "scope": "local",
-        "content": {
-          "operation": "intersection",
-          "sets": [
-            {
-              "set": {"idRef": "enteredIsymp"}
-            },
-            {
-              "elementType": "node",
-              "operator": "withIncomingEdgeIn",
-              "selector": {
-                "elementType": "edge",
-                "left": {
-                  "edge": {
-                    "property": "edgeTrait",
-                    "feature": "activityType"
-                  }
-                },
-                "operator": "==",
-                "right": {
-                  "value": {
-                    "trait": "edgeTrait",
-                    "feature": "activityType",
-                    "enum": "SCHOOL"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    ],
-    "variables": [
-      {
-        "id": "schoolChildrenEnteredIsympCounter",
-        "ann:label": "School age children which are or have been infectious",
-        "scope": "global",
-        "initialValue": 0
       }
     ],
     "triggers": [
@@ -90,7 +48,7 @@
         "trigger": {
           "left": {
             "sizeof": {
-              "set": {"idRef": "schoolChildrenEnteredIsymp"}
+              "set": {"idRef": "enteredIsymp"}
             }
           },
           "operator": ">",
@@ -98,42 +56,10 @@
             "value": {"number": 0}
           }
         },
-        "interventionIds": ["intervention_0"]
-      },
-      {
-        "trigger": {
-          "left": {
-            "value": {"number": 500}
-          },
-          "operator": "<=",
-          "right": {
-            "variable": {"idRef": "schoolChildrenEnteredIsympCounter"}
-          }
-        },
         "interventionIds": []
       }
     ],
     "interventions": [
-      {
-        "$comment": "Count Infective School Age Children",
-        "id": "intervention_internal_0",
-        "target": {
-          "set": {"idRef": "schoolChildrenEnteredIsymp"}
-        },
-        "foreach": [
-          {
-            "operations": [
-              {
-                "target": {
-                  "variable": {"idRef": "schoolChildrenEnteredIsympCounter"}
-                },
-                "operator": "+=",
-                "value": {"number": 1}
-              }
-            ]
-          }
-        ]
-      },
       {
         "$comment": "Mark indiviudal as having entered previously",
         "trigger": {
@@ -173,28 +99,10 @@
       }
     ]
   },
-  "userInput": [
-    {
-      "ann:id": "ThresholdInfectedSchoolChildren",
-      "ann:label": "Threshold of Infected School Children",
-      "ann:description": "",
-      "value": ["/template/triggers/2/trigger/left/value/number"]
-    }
-  ],
+  "userInput": [],
   "requirements": [
     {
       "value": {"healthState": "Isymp"}
-    },
-    {
-      "property": "edgeTrait",
-      "feature": "activityType"
-    },
-    {
-      "value": {
-        "trait": "edgeTrait",
-        "feature": "activityType",
-        "enum": "SCHOOL"
-      }
     },
     {
       "property": "nodeTrait",
@@ -202,9 +110,16 @@
     },
     {
       "value": {
-        "trait": "edgeTrait",
-        "feature": "activityType",
-        "enum": "SCHOOL"
+        "trait": "nodeTrait",
+        "feature": "enteredIsymp",
+        "enum": "true"
+      }
+    },
+    {
+      "value": {
+        "trait": "nodeTrait",
+        "feature": "enteredIsymp",
+        "enum": "false"
       }
     }
   ],

@@ -67,6 +67,34 @@
                   }
                 }
               },
+              {
+                "type": "object",
+                "oneOf": [
+                  {
+                    "required": ["set"]
+                  },
+                  {
+                    "required": ["variable"]
+                  }
+                ],
+                "properties": {
+                  "set": {
+                    "type": "object",
+                    "required": ["idRef"],
+                    "properties": {
+                      "idRef": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"}
+                    }
+                  },
+                  "variable": {
+                    "type": "object",
+                    "required": ["idRef"],
+                    "properties": {
+                      "idRef": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"}
+                    }
+                  }
+                },
+                "maxProperties": 1
+              },
               {"$ref": "./typeRegistry.json#/definitions/edgeProperty"},
               {"$ref": "./typeRegistry.json#/definitions/nodeProperty"},
               {"$ref": "./typeRegistry.json#/definitions/dbField"}

@@ -34,7 +34,8 @@
       "ann:id": "PercentOfInfectedPopulation",
       "ann:label": "The percentage of the initially infected population",
       "ann:description": "",
-      "value": ["/template/initializations/1/sampling/number"]
+      "value": ["/template/initializations/1/sampling/number"],
+      "exceads": {}
     }
   ],
   "requirements": [
