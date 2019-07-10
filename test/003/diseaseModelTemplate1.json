@@ -196,6 +196,20 @@
         "minValue": 0,
         "maxValue": 1
       }
+    }, 
+    {
+      "ann:id": "ProbabilityOfAsymptomaticProgression",
+      "ann:label": "Probability of Asymptomatic Progression",
+      "ann:description": "",
+      "value": ["/template/transitions/2/probability"],
+      "exceads": {
+        "minValue": 0,
+        "maxValue": 1,
+        "autoAdjust": {
+          "target": ["/template/transitions/1/probability"],
+          "value": "1.0 - /template/transitions/2/probability"
+        }
+      }
     }
   ],
   "requirements": [],

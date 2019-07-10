@@ -90,46 +90,11 @@
         }
       },
       {
-        "id": "H_to_F",
-        "ann:label": "Hospital to Funeral",
-        "entryState": "H",
+        "id": "I_to_F",
+        "ann:label": "Infectious to Funeral",
+        "entryState": "I",
         "exitState": "F",
-        "probability": 0.33,
-        "dwellTime": {
-          "discrete": [
-            {
-              "probability": 0,
-              "value": 0
-            },
-            {
-              "probability": 0,
-              "value": 1
-            },
-            {
-              "probability": 0.7,
-              "value": 2
-            },
-            {
-              "probability": 0.1,
-              "value": 3
-            },
-            {
-              "probability": 0.1,
-              "value": 4
-            },
-            {
-              "probability": 0.1,
-              "value": 5
-            }
-          ]
-        }
-      },
-      {
-        "id": "F_to_R",
-        "ann:label": "Funeral to Removal",
-        "entryState": "F",
-        "exitState": "R",
-        "probability": 0.85,
+        "probability": 0.64,
         "dwellTime": {
           "discrete": [
             {
@@ -145,15 +110,15 @@
               "value": 2
             },
             {
-              "probability": 0.6,
+              "probability": 0,
               "value": 3
             },
             {
-              "probability": 0.3,
+              "probability": 0,
               "value": 4
             },
             {
-              "probability": 0.1,
+              "probability": 1,
               "value": 5
             }
           ]
@@ -195,11 +160,46 @@
         }
       },
       {
-        "id": "I_to_F",
-        "ann:label": "Infectious to Funeral",
-        "entryState": "I",
+        "id": "H_to_F",
+        "ann:label": "Hospital to Funeral",
+        "entryState": "H",
         "exitState": "F",
-        "probability": 0.64,
+        "probability": 0.33,
+        "dwellTime": {
+          "discrete": [
+            {
+              "probability": 0,
+              "value": 0
+            },
+            {
+              "probability": 0,
+              "value": 1
+            },
+            {
+              "probability": 0.7,
+              "value": 2
+            },
+            {
+              "probability": 0.1,
+              "value": 3
+            },
+            {
+              "probability": 0.1,
+              "value": 4
+            },
+            {
+              "probability": 0.1,
+              "value": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": "H_to_R",
+        "ann:label": "Hospital to Removed",
+        "entryState": "H",
+        "exitState": "R",
+        "probability": 0.67,
         "dwellTime": {
           "discrete": [
             {
@@ -230,11 +230,11 @@
         }
       },
       {
-        "id": "H_to_R",
-        "ann:label": "Hospital to Removal",
-        "entryState": "H",
+        "id": "F_to_R",
+        "ann:label": "Funeral to Removed",
+        "entryState": "F",
         "exitState": "R",
-        "probability": 0.78,
+        "probability": 1.0,
         "dwellTime": {
           "discrete": [
             {
@@ -250,15 +250,15 @@
               "value": 2
             },
             {
-              "probability": 0,
+              "probability": 0.6,
               "value": 3
             },
             {
-              "probability": 0,
+              "probability": 0.3,
               "value": 4
             },
             {
-              "probability": 1,
+              "probability": 0.1,
               "value": 5
             }
           ]
@@ -269,7 +269,7 @@
         "ann:label": "Exposed to Infectious",
         "entryState": "E",
         "exitState": "I",
-        "probability": 0.78,
+        "probability": 1.0,
         "dwellTime": {
           "discrete": [
             {
@@ -301,7 +301,7 @@
       }
     ]
   },
-  "userInput": [
+   "userInput": [
     {
       "ann:id": "Sucscebtibility",
       "ann:label": "Sucscebtibility",
@@ -320,6 +320,76 @@
       "exceads": {
         "minValue": 0,
         "maxValue": 1
+      }
+    },
+    {
+      "ann:id": "ProbabilityOfInfectiousToHospital",
+      "ann:label": "Probability of Infectious to Hospital",
+      "ann:description": "",
+      "value": ["/template/transitions/1/probability"],
+      "exceads": {
+        "minValue": 0,
+        "maxValue": 1,
+        "autoAdjust": {
+          "target": ["/template/transitions/2/probability"],
+          "value": "1.0 - /template/transitions/1/probability - /template/transitions/3/probability"
+        }
+      }
+    },
+    {
+      "ann:id": "ProbabilityOfInfectiousToFuneral",
+      "ann:label": "Probability of Infectious to Funeral",
+      "ann:description": "",
+      "value": ["/template/transitions/2/probability"],
+      "exceads": {
+        "minValue": 0,
+        "maxValue": 1,
+        "autoAdjust": {
+          "target": ["/template/transitions/3/probability"],
+          "value": "1.0 - /template/transitions/1/probability - /template/transitions/2/probability"
+        }
+      }
+    },
+    {
+      "ann:id": "ProbabilityOfInfectiousToRemoved",
+      "ann:label": "Probability of Infectious to Removed",
+      "ann:description": "",
+      "value": ["/template/transitions/3/probability"],
+      "exceads": {
+        "minValue": 0,
+        "maxValue": 1,
+        "autoAdjust": {
+          "target": ["/template/transitions/1/probability"],
+          "value": "1.0 - /template/transitions/2/probability - /template/transitions/3/probability"
+        }
+      }
+    },
+    {
+      "ann:id": "ProbabilityOfHospitalToFuneral",
+      "ann:label": "Probability of Hospital to Funeral",
+      "ann:description": "",
+      "value": ["/template/transitions/4/probability"],
+      "exceads": {
+        "minValue": 0,
+        "maxValue": 1,
+        "autoAdjust": {
+          "target": ["/template/transitions/5/probability"],
+          "value": "1.0 - /template/transitions/4/probability"
+        }
+      }
+    },
+    {
+      "ann:id": "ProbabilityOfHospitalToRemoved",
+      "ann:label": "Probability of Hospital to Removed",
+      "ann:description": "",
+      "value": ["/template/transitions/5/probability"],
+      "exceads": {
+        "minValue": 0,
+        "maxValue": 1,
+        "autoAdjust": {
+          "target": ["/template/transitions/4/probability"],
+          "value": "1.0 - /template/transitions/5/probability"
+        }
       }
     }
   ],
