@@ -47,7 +47,7 @@
       "ann:label": "Infection (asymptomatic)",
       "entryState": "S",
       "exitState": "E",
-      "contactState": "Isymp",
+      "contactState": "Iasymp",
       "transmissibility": 1
     }
   ],
