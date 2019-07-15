@@ -3,3 +3,5 @@
 gitTools/
 bin/merge
 bin/validate
+bin/epiHiper.sh
+test/
