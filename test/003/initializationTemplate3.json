@@ -43,5 +43,9 @@
       "value": {"healthState": "Isymp"}
     }
   ],
-  "exceads": {}
+  "exceads": {
+    "requires": {
+      "allOf": ["diseaseModelTemplate1.json"]
+    }
+  }
 }

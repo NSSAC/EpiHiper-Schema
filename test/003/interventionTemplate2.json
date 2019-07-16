@@ -361,5 +361,9 @@
       }
     }
   ],
-  "exceads": {}
+  "exceads": {
+    "requires": {
+      "allOf": ["triggerTemplate1.json"]
+    }
+  }
 }

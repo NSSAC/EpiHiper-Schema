@@ -203,6 +203,14 @@
         ],
         "exceads": {}
       }
-    ]
+    ],
+    "exceads": {
+      "requires": {
+        "allOf": [
+          "interventionTemplate2.json",
+          "montgomery_county_va.json"
+        ]
+      }
+    }
   }
 }

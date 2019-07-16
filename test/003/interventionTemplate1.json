@@ -80,7 +80,7 @@
           "elementType": "edge",
           "left": {
             "edge": {
-              "property": "targetActivity",
+              "property": "sourceActivity",
               "feature": "activityType"
             }
           },
@@ -146,5 +146,22 @@
       }
     }
   ],
-  "exceads": {}
+  "exceads": {
+    "requires": {
+      "allOff": [
+        {
+          "oneOf": [
+            "montgomery_county_2009.txt",
+            "montgomery_county_2009.bin"
+          ]
+        },
+        {
+          "oneOf": [
+            "interventionTemplate1.json",
+            "interventionTemplate2.json"
+          ]
+        }
+      ]
+    }
+  }
 }

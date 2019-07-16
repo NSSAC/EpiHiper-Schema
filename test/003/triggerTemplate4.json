@@ -95,5 +95,9 @@
       }
     }
   ],
-  "exceads": {}
+  "exceads": {
+    "requires": {
+      "allOf": ["nodeTraits.json"]
+    }
+  }
 }

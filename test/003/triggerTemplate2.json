@@ -123,5 +123,12 @@
       }
     }
   ],
-  "exceads": {}
+  "exceads": {
+    "requires": {
+      "allOf": [
+        "nodeTraits.json",
+        "triggerTemplate1.json"
+      ]
+    }
+  }
 }

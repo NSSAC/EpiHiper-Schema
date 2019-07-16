@@ -161,5 +161,9 @@
       "field": "age_group"
     }
   ],
-  "exceads": {}
+  "exceads": {
+    "requires": {
+      "allOf": ["montgomery_county_va.json"]
+    }
+  }
 }
