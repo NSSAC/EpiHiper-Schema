@@ -1,8 +1,8 @@
 {
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "ThresholdInfectedSchoolChildren",
-  "ann:label": "Threshold of Infected School Children",
-  "ann:description": "",
+  "ann:label": "Infected School Children - Number",
+  "ann:description": "Trigger on a the number of symptomatic school children.",
   "template": {
     "sets": [
       {
@@ -98,8 +98,8 @@
   "userInput": [
     {
       "ann:id": "ThresholdInfectedSchoolChildren",
-      "ann:label": "Threshold of Infected School Children",
-      "ann:description": "",
+      "ann:label": "Infected School Children - Number",
+      "ann:description": "Number school children that are symptomatic.",
       "value": ["/template/triggers/2/trigger/left/value/number"],
       "exceads": {}
     }
