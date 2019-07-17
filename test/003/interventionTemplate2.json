@@ -1,8 +1,8 @@
 {
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "Treatment",
-  "ann:label": "Treatment of Symptomatic Individual",
-  "ann:description": "",
+  "ann:label": "Treatment of Symptomatic Individuals",
+  "ann:description": "Treatment for individuals, both early health care seekers and late health care seekers, with limits on total doses per day and overall supply",
   "template": {
     "variables": [
       {
@@ -288,21 +288,21 @@
     {
       "ann:id": "EarlyTreatmentResponseRate",
       "ann:label": "Early Treatment Response Rate",
-      "ann:description": "",
+      "ann:description": "Proportion of symptomatic individuals that seek care and get treatments as soon as they are infectious",
       "value": ["/template/interventions/1/sampling/number"],
       "exceads": {}
     },
     {
       "ann:id": "LateTreatmentResponseRate",
       "ann:label": "Late Treatment Response Rate",
-      "ann:description": "",
+      "ann:description": "Poportion of symptomatic individuals who didn't seek early care that get it 3 days after becoming infectious",
       "value": ["/template/interventions/1/sampling/nonsampled/sampling/number"],
       "exceads": {}
     },
     {
       "ann:id": "DailyAvailableTreatment",
-      "ann:label": "Daily Available Treatment",
-      "ann:description": "",
+      "ann:label": "Daily Available Treatment Regimens",
+      "ann:description": "Number of treatment regimens that can be dispensed in a single day",
       "value": [
         "/template/interventions/1/sampling/sampled/foreach/condition/and/1/right/value/number",
         "/template/interventions/1/sampling/nonsampled/sampling/sampled/foreach/condition/and/1/right/value/number"
@@ -312,7 +312,7 @@
     {
       "ann:id": "TotalAvailableTreatment",
       "ann:label": "Total Available Treatment",
-      "ann:description": "",
+      "ann:description": "Total treatment regimens available throughout the course of the simulation",
       "value": [
         "/template/interventions/1/sampling/sampled/foreach/condition/and/2/right/value/number",
         "/template/interventions/1/sampling/nonsampled/sampling/sampled/foreach/condition/and/2/right/value/number"
