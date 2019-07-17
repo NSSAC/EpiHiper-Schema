@@ -2,7 +2,7 @@
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "SchoolClosure",
   "ann:label": "School Closure",
-  "ann:description": "",
+  "ann:description": "School closure for a given time which removes interactions that occur at the school",
   "template": {
     "variables": [
       {
@@ -124,8 +124,8 @@
   "userInput": [
     {
       "ann:id": "DaysSchoolClosed",
-      "ann:label": "Days of School Closure",
-      "ann:description": "",
+      "ann:label": "Duration of School Closure",
+      "ann:description": "Number of days the schools remain closed",
       "value": [
         "/template/interventions/1/foreach/2/delay",
         "/template/interventions/2/foreach/2/delay"
