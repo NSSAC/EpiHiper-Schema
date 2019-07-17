@@ -1,8 +1,8 @@
 {
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "NumberInitialInfections",
-  "ann:label": "The number of initially infected individuals",
-  "ann:description": "Bryan, Srini please provide a description.",
+  "ann:label": "Initial Infections - number",
+  "ann:description": "Initially infect the specified number of individuals.",
   "template": {
     "initializations": [
       {
@@ -32,8 +32,8 @@
   "userInput": [
     {
       "ann:id": "NumberOfIndividuals",
-      "ann:label": "Number of infected Individuals",
-      "ann:description": "",
+      "ann:label": "Number of individuals to initially infect",
+      "ann:description": "Number of individuals that will be infected at the start of the simulation",
       "value": ["/template/initializations/1/sampling/number"],
       "exceads": {}
     }
