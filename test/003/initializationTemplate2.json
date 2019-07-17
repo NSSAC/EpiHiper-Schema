@@ -32,7 +32,7 @@
   "userInput": [
     {
       "ann:id": "PercentOfInfectedPopulation",
-      "ann:label": "The percentage of the initially infected population",
+      "ann:label": "Precent of population to initially infect",
       "ann:description": "Percentage of population that will be infected at the start of the simulation.",
       "value": ["/template/initializations/1/sampling/number"],
       "exceads": {}
