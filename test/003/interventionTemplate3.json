@@ -1,8 +1,8 @@
 {
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "Prophylax",
-  "ann:label": "Prophylax Treatment of Househols Memebers",
-  "ann:description": "",
+  "ann:label": "Prophylax Treatment of Household Members",
+  "ann:description": "For identified cases provide prophylactic treatment to their household members",
   "template": {
     "sets": [],
     "variables": [],
@@ -40,7 +40,8 @@
                     "valueList": {
                       "healthState": [
                         "S",
-                        "E"
+                        "E",
+                        "I"
                       ]
                     }
                   }
@@ -137,17 +138,17 @@
     {
       "ann:id": "DaysTreatment",
       "ann:label": "Days of Treatment",
-      "ann:description": "",
+      "ann:description": "Number days for the prophylactic treatment",
       "value": ["/template/internentions/1/foreach/2/delay"],
       "exceads": {}
     },
     {
       "ann:id": "ProphylaxEffectiveness",
       "ann:label": "Effectiveness of Treatment",
-      "ann:description": "",
+      "ann:description": "The effectiveness of the prophylactic treatment",
       "value": [
-        "/template/internentions/1/foreach/1/operations/1/value/number",
-        "/template/internentions/1/foreach/2/operations/1/value/number"
+        "/template/interventions/1/foreach/1/operations/1/value/number",
+        "/template/interventions/1/foreach/2/operations/1/value/number"
       ],
       "exceads": {}
     }
@@ -195,10 +196,10 @@
       {
         "ann:id": "HouseholdIfTable",
         "ann:label": "Table containing Household",
-        "ann:description": "",
+        "ann:description": "??",
         "value": [
-          "/template/internentions/1/target/left/table",
-          "/template/internentions/1/target/right/table",
+          "/template/interventions/1/target/left/table",
+          "/template/interventions/1/target/right/table",
           "/requirements/4/table"
         ],
         "exceads": {}
