@@ -2,12 +2,12 @@
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "ProphylaxTrigger",
   "ann:label": "Trigger Prophylax for Household Memebers",
-  "ann:description": "",
+  "ann:description": "Helper trigger for accounting who should be prophylaxed?",
   "template": {
     "sets": [
       {
         "id": "triggerTemplate4_prophylaxTrue",
-        "ann:label": "Nodes fow which trigger prohylax is true.",
+        "ann:label": "Nodes for which trigger prohylax is true.",
         "scope": "local",
         "content": {
           "elementType": "node",
