@@ -1,7 +1,7 @@
 {
     "$schema": "../../schema/templateSchema.json",
     "ann:id": "EbolaModel",
-    "ann:label": "Ebola",
+    "ann:label": "Ebola Virus Disease",
     "ann:description": "Expanding on Legrand model to accommodate separate states for Dead and Recovered. Also capturing Safe Burials and Community Burials differently. Most dwell times taken from WHO-ERT_NEJM_2014. Otherwise from Legrand_EpiInf_2002",
     "template": {
         "states": [
@@ -49,7 +49,7 @@
             },
             {
                 "id": "Rr",
-                "ann:label": "RemovedRcovered",
+                "ann:label": "RemovedRecovered",
                 "infectivity": 0,
                 "susceptibility": 0
             }
@@ -131,7 +131,7 @@
                 "id": "I_to_Rr",
                 "ann:label": "Infectious to RemovedRecovered",
                 "entryState": "I",
-                "exitState": "R",
+                "exitState": "Rr",
                 "probability": 0.1,
                 "dwellTime": {
                     "normal": [
@@ -161,7 +161,7 @@
                 "id": "H_to_Rr",
                 "ann:label": "Hospital to RemovedRecovered",
                 "entryState": "H",
-                "exitState": "R",
+                "exitState": "Rr",
                 "probability": 0.36,
                 "dwellTime": {
                     "normal": [
@@ -198,7 +198,7 @@
         {
             "ann:id": "FuneralCommunityInfectivity",
             "ann:label": "Infectivity of FuneralCommunity",
-            "ann:description": "",
+            "ann:description": "Infectivity of the deceased while they await burial in the community",
             "value": ["/template/states/4/infectivity"],
             "exceads": {
                 "minValue": 0,
@@ -208,7 +208,7 @@
         {
             "ann:id": "HospitalInfectivity",
             "ann:label": "Infectivity of Hospital",
-            "ann:description": "",
+            "ann:description": "Infectivity of individuals that are hospitalized",
             "value": ["/template/states/5/infectivity"],
             "exceads": {
                 "minValue": 0,
@@ -218,7 +218,7 @@
         {
             "ann:id": "ProbabilityOfInfectiousToHospital",
             "ann:label": "Probability of Infectious to Hospital",
-            "ann:description": "",
+            "ann:description": "Probability or Proportion of infectious individuals that are hospitalized.",
             "value": ["/template/transitions/2/probability"],
             "exceads": {
                 "minValue": 0,
@@ -232,7 +232,7 @@
         {
             "ann:id": "ProbabilityOfInfectiousToFuneralCommunity",
             "ann:label": "Probability of Infectious to FuneralCommunity",
-            "ann:description": "",
+            "ann:description": "Probability or Proportion of individuals that are infectious who die and are buried in the community.",
             "value": ["/template/transitions/3/probability"],
             "exceads": {
                 "minValue": 0,
@@ -246,7 +246,7 @@
         {
             "ann:id": "ProbabilityOfInfectiousToRemovedRecovered",
             "ann:label": "Probability of Infectious to RemovedRecovered",
-            "ann:description": "",
+            "ann:description": "Probability or Proportion of infectious individuals that recover from the disease, without hospitalization",
             "value": ["/template/transitions/4/probability"],
             "exceads": {
                 "minValue": 0,
@@ -260,7 +260,7 @@
         {
             "ann:id": "ProbabilityOfHospitalToFuneralHospital",
             "ann:label": "Probability of Hospital to FuneralHospital",
-            "ann:description": "",
+            "ann:description": "Probability or Proportion of hospitalized individuals who die, and are given a *safe and dignified* burial",
             "value": ["/template/transitions/5/probability"],
             "exceads": {
                 "minValue": 0,
@@ -274,7 +274,7 @@
         {
             "ann:id": "ProbabilityOfHospitalToRemovedRecovered",
             "ann:label": "Probability of Hospital to RemovedRecovered",
-            "ann:description": "",
+            "ann:description": "Probability or Proportion of hospitalized individuals who recover and are discharged from the hospital.",
             "value": ["/template/transitions/6/probability"],
             "exceads": {
                 "minValue": 0,
@@ -288,7 +288,7 @@
     ],
     "requirements": [],
     "exceads": {
-        "name": "Ebola Disease Model",
-        "shortName": "S-E-I-H-F-R"
+        "name": "Ebola Virus Disease Model",
+        "shortName": "Ebola"
     }
 }
