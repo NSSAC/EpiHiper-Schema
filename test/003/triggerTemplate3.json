@@ -2,7 +2,7 @@
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "DayTrigger",
   "ann:label": "Trigger at a specified Day",
-  "ann:description": "",
+  "ann:description": "Trigger based on a specific day of the simulation.",
   "template": {
     "triggers": [
       {
@@ -23,8 +23,8 @@
   "userInput": [
     {
       "ann:id": "TriggerDay",
-      "ann:label": "TriggerDay",
-      "ann:description": "",
+      "ann:label": "Day",
+      "ann:description": "Specific simulation day to trigger the intervention.",
       "value": ["/template/triggers/1/trigger/right/value/number"],
       "exceads": {}
     }
