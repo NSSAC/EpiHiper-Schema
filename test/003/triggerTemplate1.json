@@ -2,7 +2,7 @@
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "NewlySymptomaticIndividuals",
   "ann:label": "Newly Symptomatic Individuals",
-  "ann:description": "",
+  "ann:description": "Helper trigger for counting and tagging people entering Isymp",
   "template": {
     "sets": [
       {
