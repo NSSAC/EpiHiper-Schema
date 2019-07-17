@@ -1,8 +1,8 @@
 {
   "$schema": "../../schema/templateSchema.json",
   "ann:id": "PercentOfInfectedPopulation",
-  "ann:label": "The percentage of the initially infected population",
-  "ann:description": "Bryan, Srini please provide a description.",
+  "ann:label": "Initial infections - percentage",
+  "ann:description": "Initially infect the specified percentage of the population.",
   "template": {
     "initializations": [
       {
@@ -33,7 +33,7 @@
     {
       "ann:id": "PercentOfInfectedPopulation",
       "ann:label": "The percentage of the initially infected population",
-      "ann:description": "",
+      "ann:description": "Percentage of population that will be infected at the start of the simulation.",
       "value": ["/template/initializations/1/sampling/number"],
       "exceads": {}
     }
