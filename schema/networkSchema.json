@@ -4,6 +4,7 @@
   "description": "Description of the schema",
   "type": "object",
   "required": [
+    "epiHiperSchema",
     "encoding",
     "numberOfNodes",
     "numberOfEdges",
@@ -18,6 +19,10 @@
     "hasWeightField"
   ],
   "properties": {
+    "epiHiperSchema": {
+      "type": "string",
+      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/networkSchema.json"]
+    },
     "encoding": {
       "description": "Encoding used for the network edges",
       "type": "string",
@@ -57,9 +62,7 @@
     "activityEncoding": {
       "description": "The features and their valid values encoded in the target and source activities",
       "allOf": [
-        {
-          "$ref": "./typeRegistry.json#/definitions/trait"
-        },
+        {"$ref": "./typeRegistry.json#/definitions/trait"},
         {
           "type": "object",
           "properties": {
@@ -77,9 +80,7 @@
     "edgeTraitEncoding": {
       "description": "The features and their valid values encoded in the edge trait",
       "allOf": [
-        {
-          "$ref": "./typeRegistry.json#/definitions/trait"
-        },
+        {"$ref": "./typeRegistry.json#/definitions/trait"},
         {
           "type": "object",
           "properties": {

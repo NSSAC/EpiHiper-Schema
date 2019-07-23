@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "NumberInitialInfections",
   "ann:label": "Initial Infections - number",
   "ann:description": "Initially infect the specified number of individuals.",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/initializationSchema.json",
     "initializations": [
       {
         "target": {"elementType": "node"},

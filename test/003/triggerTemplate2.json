@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "ThresholdInfectedSchoolChildren",
   "ann:label": "Infected School Children - Number",
   "ann:description": "Trigger on a the number of symptomatic school children.",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
     "sets": [
       {
         "id": "schoolChildrenEnteredIsymp",

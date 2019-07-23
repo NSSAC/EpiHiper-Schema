@@ -1,5 +1,6 @@
 {
   "$schema": "../../schema/diseaseModelSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/diseaseModelSchema.json",
   "states": [
     {
       "id": "susceptible",

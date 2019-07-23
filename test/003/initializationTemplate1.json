@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "FluVacination",
   "ann:label": "Flu Vacination by Age Group",
   "ann:description": "Seasonal influenza vaccination and age-specific effectiveness.",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/initializationSchema.json",
     "initializations": [
       {
         "target": {

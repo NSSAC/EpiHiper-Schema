@@ -4,8 +4,15 @@
   "$id": "#initializationFile",
   "description": "A schema describing the contents of an initialization file for EpiHiper",
   "type": "object",
-  "required": ["initializations"],
+  "required": [
+    "epiHiperSchema",
+    "initializations"
+  ],
   "properties": {
+    "epiHiperSchema": {
+      "type": "string",
+      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/initializationSchema.json"]
+    },
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
     "initializations": {"$ref": "./typeRegistry.json#/definitions/initializations"}
   }

@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "NewlySymptomaticIndividuals",
   "ann:label": "Newly Symptomatic Individuals",
   "ann:description": "Helper trigger for counting and tagging people entering Isymp",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
     "sets": [
       {
         "id": "triggerTemplate1_enteredIsymp",

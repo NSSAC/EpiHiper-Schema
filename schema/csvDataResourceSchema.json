@@ -3,5 +3,17 @@
   "$id": "personTraitDatabaseDescriptionFile",
   "title": "Person Trait Database Description File",
   "description": "A schema for a list of traits containing enumerable features.",
-  "$ref": "./typeRegistry.json#/definitions/csvDataResource"
+  "allOf": [
+    {
+      "type": "object",
+      "required": ["epiHiperSchema"],
+      "properties": {
+        "epiHiperSchema": {
+          "type": "string",
+          "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/csvDataResourceSchema.json"]
+        }
+      }
+    },
+    {"$ref": "./typeRegistry.json#/definitions/csvDataResource"}
+  ]
 }

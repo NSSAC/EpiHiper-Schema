@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "Prophylax",
   "ann:label": "Prophylax Treatment of Household Members",
   "ann:description": "For identified cases provide prophylactic treatment to their household members",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
     "sets": [],
     "variables": [],
     "triggers": [],

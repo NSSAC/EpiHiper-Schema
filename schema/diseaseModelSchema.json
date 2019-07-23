@@ -5,12 +5,17 @@
   "description": "The disease model describes the possible disease state changes within an individual including transmission.",
   "type": "object",
   "required": [
+    "epiHiperSchema",
     "states",
     "initialState",
     "transmissions",
     "transitions"
   ],
   "properties": {
+    "epiHiperSchema": {
+      "type": "string",
+      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/diseaseModelSchema.json"]
+    },
     "states": {
       "type": "array",
       "description": "An array of states",

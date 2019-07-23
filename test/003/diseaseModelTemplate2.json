@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "EbolaModel",
   "ann:label": "Ebola Virus Disease",
   "ann:description": "Expanding on Legrand model to accommodate separate states for Dead and Recovered. Also capturing Safe Burials and Community Burials differently. Most dwell times taken from WHO-ERT_NEJM_2014. Otherwise from Legrand_EpiInf_2002",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/diseaseModelSchema.json",
     "states": [
       {
         "id": "S",
@@ -179,7 +181,7 @@
         "exitState": "Rd",
         "probability": 1,
         "dwellTime": {
-          "fixed": [2]
+          "fixed": 2
         }
       },
       {
@@ -189,7 +191,7 @@
         "exitState": "Rd",
         "probability": 1,
         "dwellTime": {
-          "fixed": [1]
+          "fixed": 1
         }
       }
     ]

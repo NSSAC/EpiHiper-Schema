@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "Treatment",
   "ann:label": "Treatment of Symptomatic Individuals",
   "ann:description": "Treatment for individuals, both early health care seekers and late health care seekers, with limits on total doses per day and overall supply",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
     "variables": [
       {
         "id": "totalTreatments",

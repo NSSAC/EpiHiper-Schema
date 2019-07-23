@@ -1,5 +1,6 @@
 {
   "$schema": "../../schema/interventionSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
   "triggers": [
     {
       "trigger": {

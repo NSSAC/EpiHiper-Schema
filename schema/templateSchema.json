@@ -7,11 +7,16 @@
     {
       "type": "object",
       "required": [
+        "epiHiperSchema",
         "template",
         "userInput",
         "requirements"
       ],
       "properties": {
+        "epiHiperSchema": {
+          "type": "string",
+          "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json"]
+        },
         "template": {
           "oneOf": [
             {"$ref": "./diseaseModelSchema.json"},

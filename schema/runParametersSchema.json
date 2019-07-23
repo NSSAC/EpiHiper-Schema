@@ -2,21 +2,25 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "EpiHiper run parameters",
   "description": "A schema describing the run parameters for EpiHiper",
-  "definitions": {
-  },
+  "definitions": {},
   "type": "object",
   "required": [
+    "epiHiperSchema",
     "modelScenario",
     "startTick",
     "endTick"
   ],
   "properties": {
+    "epiHiperSchema": {
+      "type": "string",
+      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/runParametersSchema.json"]
+    },
     "modelScenario": {
       "description": "Filename of the disease model in a json file.",
-      "allOf": [ 
+      "allOf": [
         {"$ref": "./typeRegistry.json#/definitions/localPath"},
         {"$ref": "./typeRegistry.json#/definitions/jsonFormat"}
-      ]        
+      ]
     },
     "startTick": {
       "description": "The start tick for the simulation run",

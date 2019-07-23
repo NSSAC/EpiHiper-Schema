@@ -4,6 +4,7 @@
   "description": "Schema for all inputs for EpiHiper",
   "type": "object",
   "required": [
+    "epiHiperSchema",
     "diseaseModel",
     "sets",
     "globalVariables",
@@ -13,13 +14,17 @@
     "personTraitDBs"
   ],
   "properties": {
+    "epiHiperSchema": {
+      "type": "string",
+      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/mergedSchema.json"]
+    },
     "diseaseModel": {"$ref": "./diseaseModelSchema.json"},
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
-    "globalVariables": {"$ref": "./typeRegistry.json#/definitions/globalVariables"},
+    "globalVariables": {"$ref": "./typeRegistry.json#/definitions/variables"},
     "initializations": {"$ref": "./typeRegistry.json#/definitions/initializations"},
     "interventions": {"$ref": "./typeRegistry.json#/definitions/interventions"},
     "traits": {"$ref": "./typeRegistry.json#/definitions/traits"},
-    "personTraitDBs": {"$ref": "./typeRegistry.json#/definitions/personTraitDBs"},
+    "personTraitDBs": {"$ref": "./typeRegistry.json#/definitions/csvDataResource"},
     "runParameters": {"$ref": "./runParametersSchema.json"}
   }
 }

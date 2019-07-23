@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "PercentOfInfectedPopulation",
   "ann:label": "Initial infections - percentage",
   "ann:description": "Initially infect the specified percentage of the population.",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/initializationSchema.json",
     "initializations": [
       {
         "target": {"elementType": "node"},

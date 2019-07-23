@@ -1,9 +1,11 @@
 {
   "$schema": "../../schema/templateSchema.json",
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
   "ann:id": "ProphylaxTrigger",
   "ann:label": "Trigger Prophylax for Household Memebers",
   "ann:description": "Helper trigger for accounting who should be prophylaxed?",
   "template": {
+    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
     "sets": [
       {
         "id": "triggerTemplate4_prophylaxTrue",
