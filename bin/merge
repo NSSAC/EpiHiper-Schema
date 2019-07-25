@@ -13,17 +13,16 @@
 // END: License
 
 const pkg = require('../package.json');
-const cfg = require('../config.json');
 const commander = require('commander');
-const Ajv = require('ajv');
-const path = require('path');
+const EpiHiperMerger = require('../lib/epiHiperMerger');
 
 let files;
 
 commander
     .version(pkg.version)
-    .description('EpiHiper Schema Validation')
+    .description('EpiHiper Merge Files')
     .usage('[options] <file ...>')
+    .option('-o --output <output>', 'Save result in the output file instead to std::out.')
     .option('--no-default', 'Do not add defaults for missing values')
     .option('--recursive', 'Process files referenced in run parameters')
     .arguments('<files...>')
@@ -38,15 +37,7 @@ if (!Array.isArray(files)) {
   process.exit(1);
 }
 
-const currDir = process.cwd();
-const ajv = new Ajv({schemaId: 'auto'});
-ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
-
-cfg.schema.forEach(function(s) {
-  const sInstance = require(path.join(__dirname, '..', 'schema', s));
-  sInstance['$id'] = 'file://./' + s;
-  ajv.addSchema(sInstance);
-});
+const epiHiperMerger = new EpiHiperMerger(commander.rulesDir);
 
 const merged = {};
 merged.diseaseModel = {};
@@ -59,83 +50,7 @@ merged.personTraitDBs = [];
 merged.runParameters = {};
 
 files.forEach(function(file) {
-  const InstanceFile = path.join(currDir, file);
-  process.stdout.write('File: ' + InstanceFile);
-  const Instance = require(InstanceFile);
-
-  const SchemaRelDir = path.dirname(InstanceFile);
-  const SchemaFile = path.join(SchemaRelDir, Instance['$schema']);
-
-  const Id = 'file://' + SchemaFile.replace(path.join(__dirname, '..', 'schema'), '.');
-  // Check whether we have the schema already loaded
-
-  const validate = ajv.getSchema(Id);
-
-  if (typeof validate === 'undefined') {
-    throw new Error('Schema: ' + SchemaFile + ' invalid');
-  }
-
-  const valid = validate(Instance);
-
-  if (!valid) {
-    console.log(' invalid');
-    console.log(validate.errors);
-    return;
-  } else {
-    console.log(' valid');
-  }
-
-  switch (path.basename(Id)) {
-    case 'diseaseModelSchema.json':
-      addDiseaseModel(Instance);
-      break;
-
-    case 'initializationSchema.json':
-      addSets(Instance.sets);
-      addInitializations(Instance.initializations);
-      break;
-
-    case 'interventionSchema.json':
-      addSets(Instance.sets);
-      addGlobalVariables(Instance.globalVariables);
-      addInterventions(Instance.interventions);
-      break;
-
-    case 'interventionTemplateSchema.json':
-      break;
-
-    case 'mergedSchema.json':
-      addDiseaseModel(Instance.diseaseModel);
-      addSets(Instance.sets);
-      addGlobalVariables(Instance.globalVariables);
-      addInitializations(Instance.initializations);
-      addInterventions(Instance.interventions);
-      addTraits(Instance.traits);
-      addPersonTraitDBs(Instance.personTraitDBs);
-      addRunParameters(Instance.runParameters);
-      break;
-
-    case 'personTraitDBSchema.json':
-      addPersonTraitDBs([Instance]);
-      break;
-
-    case 'runParametersSchema.json':
-      addRunParameters(Instance);
-      break;
-
-    case 'traitsSchema.json':
-      addTraits(Instance.traits);
-      break;
-
-    case 'typeRegistry.json':
-      break;
-
-    case 'personTraitDB/schemas/tabular-data-resource.json':
-      break;
-
-    case 'personTraitDB/schemas/dictionary.json':
-      break;
-  }
+  epiHiperMerger.merge(epiHiperMerger.epiHiperValidator.load(file));
 });
 
 process.stdout.write('Merged Instance');

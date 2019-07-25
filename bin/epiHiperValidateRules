@@ -42,7 +42,7 @@ const epiHiperValidator = new EpiHiperValidator(commander.rulesDir);
 let success = true;
 
 files.forEach(function(file) {
-  success &= epiHiperValidator.validateRules(file);
+  success &= epiHiperValidator.validateRules(epiHiperValidator.load(file));
 });
 
 process.exit(success ? 0 : 1);

@@ -43,7 +43,7 @@ const epiHiperValidator = new EpiHiperValidator(commander.schemaDir);
 let success = true;
 
 files.forEach(function(file) {
-  success &= epiHiperValidator.validateSchema(file);
+  success &= epiHiperValidator.validateSchema(epiHiperValidator.load(file));
 });
 
 process.exit(success ? 0 : 1);
