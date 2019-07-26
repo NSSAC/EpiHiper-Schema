@@ -39,10 +39,9 @@ if (!Array.isArray(files)) {
 
 const epiHiperValidator = new EpiHiperValidator(commander.rulesDir);
 
-let success = true;
+epiHiperValidator
+    .processFiles(epiHiperValidator.validateRules.bind(epiHiperValidator), files)
+    .then((result) => {
+      process.exit(result ? 0 : 1);
+    });
 
-files.forEach(function(file) {
-  success &= epiHiperValidator.validateRules(epiHiperValidator.load(file));
-});
-
-process.exit(success ? 0 : 1);

@@ -16,16 +16,17 @@
 
 const pkg = require('../package.json');
 const commander = require('commander');
-const EpiHiperValidator = require('../lib/epiHiperValidator');
+const EpiHiperMerger = require('../lib/epiHiperMerger');
 
 let files;
 
 commander
     .version(pkg.version)
-    .description('EpiHiper Schema Validation')
+    .description('EpiHiper Merge Files')
     .usage('[options] <file ...>')
-    .option('--schema-dir <schema-dir>', 'Use the schemas in the provided directory instead of the internal ones.')
-    // .option('--no-default', 'Do not add defaults for missing values')
+    .option('-o --output <output>', 'Save result in the output file instead to std::out.')
+    .option('--no-default', 'Do not add defaults for missing values')
+    .option('--recursive', 'Process files referenced in run parameters')
     .arguments('<files...>')
     .action(function(_files) {
       files = _files;
@@ -38,10 +39,12 @@ if (!Array.isArray(files)) {
   process.exit(1);
 }
 
-const epiHiperValidator = new EpiHiperValidator(commander.schemaDir);
+const epiHiperMerger = new EpiHiperMerger(commander.rulesDir);
+const epiHiperValidator = epiHiperMerger.epiHiperValidator;
 
 epiHiperValidator
-    .processFiles(epiHiperValidator.validateSchema.bind(epiHiperValidator), files)
+    .processFiles(epiHiperMerger.merge.bind(epiHiperMerger), files)
     .then((result) => {
       process.exit(result ? 0 : 1);
     });
+
