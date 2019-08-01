@@ -1443,7 +1443,7 @@
     },
     "jsonFormat": {
       "type": "string",
-      "pattern": "^.*\\.json$"
+      "pattern": "^.*(\\.json)?$"
     }
   }
 }
