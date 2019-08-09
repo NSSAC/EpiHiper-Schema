@@ -449,22 +449,6 @@
             },
             "feature": {"$ref": "#/definitions/uniqueIdRef"}
           }
-        },
-        {
-          "description": "A target node property",
-          "type": "object",
-          "required": ["targetNode"],
-          "properties": {
-            "targetNode": {"$ref": "#/definitions/nodeProperty"}
-          }
-        },
-        {
-          "description": "A source node property",
-          "type": "object",
-          "required": ["sourceNode"],
-          "properties": {
-            "targetNode": {"$ref": "#/definitions/nodeProperty"}
-          }
         }
       ]
     },
@@ -897,7 +881,7 @@
         {
           "oneOf": [
             {
-              "description": "",
+              "description": "Select edges were the edge property value comparison with the provided value is true",
               "type": "object",
               "required": [
                 "operator",
@@ -917,7 +901,7 @@
               }
             },
             {
-              "description": "",
+              "description": "Select edges were the edge property value in in the provided list",
               "type": "object",
               "required": [
                 "operator",
@@ -941,7 +925,7 @@
               }
             },
             {
-              "description": "",
+              "description": "Select edges were either target or source node is in the given set of nodes.",
               "type": "object",
               "required": [
                 "operator",
@@ -989,37 +973,6 @@
               }
             },
             "right": {"$ref": "#/definitions/value"}
-          }
-        },
-        {
-          "description": "",
-          "required": [
-            "elementType",
-            "operator",
-            "left",
-            "right"
-          ],
-          "properties": {
-            "elementType": {
-              "type": "string",
-              "enum": ["node"]
-            },
-            "operator": {
-              "description": "",
-              "type": "string",
-              "enum": [
-                "in",
-                "not in"
-              ]
-            },
-            "left": {
-              "type": "object",
-              "required": ["node"],
-              "properties": {
-                "node": {"$ref": "#/definitions/nodeProperty"}
-              }
-            },
-            "right": {"$ref": "#/definitions/valueList"}
           }
         },
         {
