@@ -37,6 +37,34 @@
     "output": {
       "description": "Filename of the output file",
       "$ref": "./typeRegistry.json#/definitions/localPath"
+    },
+    "seed": {
+      "description": "The seed for the random number generator",
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 1.0
+    },
+    "replicate": {
+      "description": "The number of the replicate created with the job",
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 1.0
+    },
+    "dbName": {
+      "description": "The name of the data base",
+      "type": "string"
+    },
+    "dbHost": {
+      "description": "The host of the database (including optional port)",
+      "type": "string"
+    },
+    "dbUser": {
+      "description": "The database user",
+      "type": "string"
+    },
+    "dbPassword": {
+      "description": "The password of the DB user",
+      "type": "string"
     }
   }
 }
