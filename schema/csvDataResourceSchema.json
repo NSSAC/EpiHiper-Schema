@@ -11,7 +11,8 @@
         "epiHiperSchema": {
           "type": "string",
           "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/csvDataResourceSchema.json"]
-        }
+        },
+        "facets": {"$ref": "./typeRegistry.json#/definitions/facets"}
       }
     },
     {"$ref": "./typeRegistry.json#/definitions/csvDataResource"}

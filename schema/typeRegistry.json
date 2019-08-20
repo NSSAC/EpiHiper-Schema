@@ -1397,6 +1397,34 @@
     "jsonFormat": {
       "type": "string",
       "pattern": "^.*(\\.json)?$"
+    },
+    "facet": {
+      "$id": "#facet",
+      "description": "A facet of the object.",
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "value"
+          ],
+          "properties": {
+            "id": {"$ref": "#/definitions/uniqueId"},
+            "value": {
+              "oneOf": [
+                {"type": "string"},
+                {"type": "number"}
+              ]
+            },
+            "unit": {"type": "string"}
+          }
+        }
+      ]
+    },
+    "facets": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/facet"}
     }
   }
 }

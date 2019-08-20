@@ -50,5 +50,27 @@
       }
     ],
     "primaryKey": ["pid"]
-  }
+  },
+  "facets": [
+    {
+      "id": "0_18",
+      "ann:label": "Age Group 0-18",
+      "value": 15527
+    },
+    {
+      "id": "19_64",
+      "ann:label": "Age Group 19-64",
+      "value": 52239
+    },
+    {
+      "id": "65_",
+      "ann:label": "Age Group 65+",
+      "value": 10054
+    },
+    {
+      "id": "total",
+      "ann:label": "Total population",
+      "value": 77820
+    }
+  ]
 }
