@@ -8,7 +8,10 @@
     "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/initializationSchema.json",
     "initializations": [
       {
-        "target": {"elementType": "node"},
+        "target": {
+          "elementType": "node",
+          "scope": "local"
+        },
         "sampling": {
           "type": "absolute",
           "number": 70,

@@ -15,6 +15,7 @@
         "id": "interventionTemplate3_1",
         "target": {
           "elementType": "node",
+          "scope": "local",
           "left": {
             "table": "montgomery_county_va",
             "field": "hid"

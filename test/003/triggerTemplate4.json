@@ -13,6 +13,7 @@
         "scope": "local",
         "content": {
           "elementType": "node",
+          "scope": "local",
           "left": {
             "node": {
               "property": "nodeTrait",

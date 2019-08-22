@@ -10,6 +10,7 @@
       {
         "target": {
           "elementType": "node",
+          "scope": "local",
           "left": {
             "table": "montgomery_county_va",
             "field": "age_group"
@@ -47,6 +48,7 @@
       {
         "target": {
           "elementType": "node",
+          "scope": "local",
           "left": {
             "table": "montgomery_county_va",
             "field": "age_group"
@@ -84,6 +86,7 @@
       {
         "target": {
           "elementType": "node",
+          "scope": "local",
           "left": {
             "table": "montgomery_county_va",
             "field": "age_group"

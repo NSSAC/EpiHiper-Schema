@@ -76,6 +76,7 @@
       "id": "intervention_1",
       "target": {
         "elementType": "node",
+        "scope": "local",
         "table": "Blacksburg_Highschool"
       },
       "foreach": [

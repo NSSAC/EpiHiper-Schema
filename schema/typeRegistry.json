@@ -951,153 +951,144 @@
       "$id": "#nodeElementSelector",
       "description": "The specification of node elements of a set.",
       "type": "object",
-      "oneOf": [
+      "allOf": [
         {
+          "type": "object",
           "required": [
             "elementType",
-            "operator",
-            "left",
-            "right"
+            "scope"
           ],
           "properties": {
             "elementType": {
               "type": "string",
               "enum": ["node"]
             },
-            "operator": {"$ref": "#/definitions/comparisonOperator"},
-            "left": {
-              "type": "object",
-              "required": ["node"],
-              "properties": {
-                "node": {"$ref": "#/definitions/nodeProperty"}
-              }
-            },
-            "right": {"$ref": "#/definitions/value"}
+            "scope": {
+              "type": "string",
+              "enum": [
+                "local",
+                "global"
+              ]
+            }
           }
         },
         {
-          "description": "",
-          "required": [
-            "elementType",
-            "operator",
-            "left",
-            "right"
-          ],
-          "properties": {
-            "elementType": {
-              "type": "string",
-              "enum": ["node"]
-            },
-            "operator": {
-              "description": "",
-              "type": "string",
-              "enum": ["withPropertyIn"]
-            },
-            "left": {
-              "type": "object",
-              "required": ["node"],
-              "properties": {
-                "node": {"$ref": "#/definitions/nodeProperty"}
-              }
-            },
-            "right": {"$ref": "#/definitions/valueList"}
-          }
-        },
-        {
-          "description": "",
-          "required": [
-            "elementType",
-            "operator",
-            "selector"
-          ],
-          "properties": {
-            "elementType": {
-              "type": "string",
-              "enum": ["node"]
-            },
-            "operator": {
-              "description": "",
-              "type": "string",
-              "enum": ["withIncomingEdgeIn"]
-            },
-            "selector": {"$ref": "#/definitions/setContent"}
-          }
-        },
-        {
-          "description": "A filter selecting nodes from the external person trait database.",
           "oneOf": [
             {
-              "description": "A table in the external person trait database.",
-              "type": "object",
               "required": [
-                "elementType",
-                "table"
-              ],
-              "additionalProperties": false,
-              "properties": {
-                "elementType": {
-                  "type": "string",
-                  "enum": ["node"]
-                },
-                "table": {"$ref": "#/definitions/uniqueIdRef"}
-              }
-            },
-            {
-              "description": "A filter returining nodes if the result of comparing left and right values with the operator is true.",
-              "required": [
-                "elementType",
                 "operator",
                 "left",
                 "right"
               ],
               "properties": {
-                "elementType": {
-                  "type": "string",
-                  "enum": ["node"]
-                },
                 "operator": {"$ref": "#/definitions/comparisonOperator"},
-                "left": {"$ref": "#/definitions/dbField"},
-                "right": {
+                "left": {
                   "type": "object",
-                  "description": "",
-                  "oneOf": [
-                    {"$ref": "#/definitions/dbFieldValue"},
-                    {"$ref": "#/definitions/observable"}
-                  ]
-                }
+                  "required": ["node"],
+                  "properties": {
+                    "node": {"$ref": "#/definitions/nodeProperty"}
+                  }
+                },
+                "right": {"$ref": "#/definitions/value"}
               }
             },
             {
-              "description": "A filter returining nodes if the left field value is or is not in the right list.",
+              "description": "",
               "required": [
-                "elementType",
                 "operator",
                 "left",
                 "right"
               ],
               "properties": {
-                "elementType": {
-                  "type": "string",
-                  "enum": ["node"]
-                },
                 "operator": {
                   "description": "",
                   "type": "string",
-                  "enum": [
-                    "in",
-                    "not in"
-                  ]
+                  "enum": ["withPropertyIn"]
                 },
-                "left": {"$ref": "#/definitions/dbField"},
-                "right": {
+                "left": {
                   "type": "object",
-                  "description": "",
-                  "oneOf": [
-                    {"$ref": "#/definitions/dbFieldValueList"},
-                    {"$ref": "#/definitions/dbFieldValueSelector"}
-                  ]
-                }
+                  "required": ["node"],
+                  "properties": {
+                    "node": {"$ref": "#/definitions/nodeProperty"}
+                  }
+                },
+                "right": {"$ref": "#/definitions/valueList"}
               }
+            },
+            {
+              "description": "",
+              "required": [
+                "operator",
+                "selector"
+              ],
+              "properties": {
+                "operator": {
+                  "description": "",
+                  "type": "string",
+                  "enum": ["withIncomingEdgeIn"]
+                },
+                "selector": {"$ref": "#/definitions/setContent"}
+              }
+            },
+            {
+              "description": "A filter selecting nodes from the external person trait database.",
+              "oneOf": [
+                {
+                  "description": "A table in the external person trait database.",
+                  "type": "object",
+                  "required": ["table"],
+                  "properties": {
+                    "table": {"$ref": "#/definitions/uniqueIdRef"}
+                  }
+                },
+                {
+                  "description": "A filter returining nodes if the result of comparing left and right values with the operator is true.",
+                  "required": [
+                    "operator",
+                    "left",
+                    "right"
+                  ],
+                  "properties": {
+                    "operator": {"$ref": "#/definitions/comparisonOperator"},
+                    "left": {"$ref": "#/definitions/dbField"},
+                    "right": {
+                      "type": "object",
+                      "description": "",
+                      "oneOf": [
+                        {"$ref": "#/definitions/dbFieldValue"},
+                        {"$ref": "#/definitions/observable"}
+                      ]
+                    }
+                  }
+                },
+                {
+                  "description": "A filter returning nodes if the left field value is or is not in the right list.",
+                  "required": [
+                    "operator",
+                    "left",
+                    "right"
+                  ],
+                  "properties": {
+                    "operator": {
+                      "description": "",
+                      "type": "string",
+                      "enum": [
+                        "in",
+                        "not in"
+                      ]
+                    },
+                    "left": {"$ref": "#/definitions/dbField"},
+                    "right": {
+                      "type": "object",
+                      "description": "",
+                      "oneOf": [
+                        {"$ref": "#/definitions/dbFieldValueList"},
+                        {"$ref": "#/definitions/dbFieldValueSelector"}
+                      ]
+                    }
+                  }
+                }
+              ]
             }
           ]
         }
@@ -1119,9 +1110,28 @@
           "properties": {
             "elementType": {
               "type": "string",
+              "enum": ["edge"]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "description": "Either all nodes or all edges",
+          "type": "object",
+          "required": [
+            "elementType",
+            "scope"
+          ],
+          "properties": {
+            "elementType": {
+              "type": "string",
+              "enum": ["node"]
+            },
+            "scope": {
+              "type": "string",
               "enum": [
-                "node",
-                "edge"
+                "local",
+                "global"
               ]
             }
           },
@@ -1405,9 +1415,7 @@
         {"$ref": "#/definitions/annotation"},
         {
           "type": "object",
-          "required": [
-            "value"
-          ],
+          "required": ["value"],
           "properties": {
             "value": {
               "oneOf": [

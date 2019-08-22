@@ -16,6 +16,7 @@
           "sets": [
             {
               "elementType": "node",
+              "scope": "local",
               "left": {
                 "node": {"property": "healthState"}
               },
@@ -26,6 +27,7 @@
             },
             {
               "elementType": "node",
+              "scope": "local",
               "left": {
                 "node": {
                   "property": "nodeTrait",

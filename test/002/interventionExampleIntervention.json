@@ -5,12 +5,13 @@
     {
       "id": "enteredIsymp",
       "ann:label": "Nodes which entered state Isymp.",
-      "scope": "local", 
+      "scope": "local",
       "content": {
         "operation": "intersection",
         "sets": [
           {
             "elementType": "node",
+            "scope": "local",
             "left": {
               "node": {"property": "healthState"}
             },
@@ -21,6 +22,7 @@
           },
           {
             "elementType": "node",
+            "scope": "local",
             "left": {
               "node": {
                 "property": "nodeTrait",
@@ -42,7 +44,7 @@
     {
       "id": "schoolChildrenEnteredIsymp",
       "ann:label": "Nodes which entered state Isymp and are going to school.",
-      "scope": "local", 
+      "scope": "local",
       "content": {
         "operation": "intersection",
         "sets": [
@@ -51,6 +53,7 @@
           },
           {
             "elementType": "node",
+            "scope": "local",
             "operator": "withIncomingEdgeIn",
             "selector": {
               "elementType": "edge",
@@ -78,26 +81,26 @@
     {
       "id": "totalTreatments",
       "ann:label": "Total Treatments",
-      "scope": "global", 
+      "scope": "global",
       "initialValue": 0
     },
     {
       "id": "dailyTreatments",
       "ann:label": "Daily Treatments",
-      "scope": "global", 
+      "scope": "global",
       "initialValue": 0,
       "reset": 1
     },
     {
       "id": "schoolChildrenEnteredIsympCounter",
       "ann:label": "School age children which are or have been infectious",
-      "scope": "global", 
+      "scope": "global",
       "initialValue": 0
     },
     {
       "id": "schoolClosed",
       "ann:label": "A value indication whether the school has been closed",
-      "scope": "global", 
+      "scope": "global",
       "initialValue": 0
     }
   ],
@@ -594,6 +597,7 @@
         "left": {
           "sizeof": {
             "elementType": "node",
+            "scope": "local",
             "left": {
               "node": {
                 "property": "nodeTrait",
@@ -617,6 +621,7 @@
       },
       "target": {
         "elementType": "node",
+        "scope": "local",
         "left": {
           "table": "MontgomeryCounty",
           "field": "hid"
@@ -628,6 +633,7 @@
           "field": "hid",
           "selector": {
             "elementType": "node",
+            "scope": "local",
             "left": {
               "node": {
                 "property": "nodeTrait",

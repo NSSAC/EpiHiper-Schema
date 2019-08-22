@@ -19,6 +19,7 @@
             },
             {
               "elementType": "node",
+              "scope": "local",
               "operator": "withIncomingEdgeIn",
               "selector": {
                 "elementType": "edge",
