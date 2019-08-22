@@ -32,7 +32,7 @@
       },
       {
         "title": "Home Location Longitude",
-        "name": "homex",
+        "name": "home_longitude",
         "type": "number",
         "constraints": {
           "minimum": -180,
@@ -41,7 +41,7 @@
       },
       {
         "title": "Home Location Latitude",
-        "name": "homey",
+        "name": "home_latitude",
         "type": "number",
         "constraints": {
           "minimum": -90,
@@ -53,22 +53,28 @@
   },
   "facets": [
     {
-      "id": "0_18",
-      "ann:label": "Age Group 0-18",
-      "value": 15527
+      "ann:id": "AgeGroup",
+      "ann:label": "Age Group",
+      "facets": [
+        {
+          "ann:id": "0_18",
+          "ann:label": "0-18",
+          "value": 15527
+        },
+        {
+          "ann:id": "19_64",
+          "ann:label": "19-64",
+          "value": 52239
+        },
+        {
+          "ann:id": "65_",
+          "ann:label": "65+",
+          "value": 10054
+        }
+      ]
     },
     {
-      "id": "19_64",
-      "ann:label": "Age Group 19-64",
-      "value": 52239
-    },
-    {
-      "id": "65_",
-      "ann:label": "Age Group 65+",
-      "value": 10054
-    },
-    {
-      "id": "total",
+      "ann:id": "total",
       "ann:label": "Total population",
       "value": 77820
     }

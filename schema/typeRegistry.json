@@ -1406,11 +1406,9 @@
         {
           "type": "object",
           "required": [
-            "id",
             "value"
           ],
           "properties": {
-            "id": {"$ref": "#/definitions/uniqueId"},
             "value": {
               "oneOf": [
                 {"type": "string"},
@@ -1422,9 +1420,26 @@
         }
       ]
     },
+    "facetGroup": {
+      "allOf": [
+        {"$ref": "#/definitions/annotation"},
+        {
+          "type": "object",
+          "required": ["facets"],
+          "properties": {
+            "facets": {"$ref": "#/definitions/facets"}
+          }
+        }
+      ]
+    },
     "facets": {
       "type": "array",
-      "items": {"$ref": "#/definitions/facet"}
+      "items": {
+        "oneOf": [
+          {"$ref": "#/definitions/facet"},
+          {"$ref": "#/definitions/facetGroup"}
+        ]
+      }
     }
   }
 }

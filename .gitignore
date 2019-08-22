@@ -22,3 +22,5 @@ package-lock\.json
 \.classpath
 
 \.eslintrc\.js
+
+test/sciduct/
