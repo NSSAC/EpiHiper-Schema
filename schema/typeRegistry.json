@@ -475,7 +475,7 @@
           ],
           "properties": {
             "id": {"$ref": "#/definitions/uniqueId"},
-            "initialValue": {"$ref": "#/definitions/nonNegativeInteger"},
+            "initialValue": {"$ref": "#/definitions/nonNegativeNumber"},
             "scope": {"$ref": "#/definitions/scope"},
             "reset": {"$ref": "#/definitions/nonNegativeInteger"}
           },

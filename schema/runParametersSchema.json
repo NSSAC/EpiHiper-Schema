@@ -35,8 +35,19 @@
       "multipleOf": 1.0
     },
     "output": {
-      "description": "Filename of the output file",
+      "description": "Path + name of the output file",
       "$ref": "./typeRegistry.json#/definitions/localPath"
+    },
+    "summaryOutput": {
+      "description": "Path + name of the summary output file",
+      "$ref": "./typeRegistry.json#/definitions/localPath"
+    },
+    "status": {
+      "description": "Path + name of the output SciDuct status file",
+      "allOf": [
+        {"$ref": "./typeRegistry.json#/definitions/localPath"},
+        {"$ref": "./typeRegistry.json#/definitions/jsonFormat"}
+      ]
     },
     "seed": {
       "description": "The seed for the random number generator",
