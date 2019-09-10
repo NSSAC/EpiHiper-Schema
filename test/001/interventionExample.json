@@ -44,7 +44,10 @@
     {
       "$comment": "if the health state is severe put the individual into hospital but only if there are less that 100 individuals in the hospital",
       "id": "intervention_0",
-      "target": {"elementType": "node"},
+      "target": {
+        "elementType": "node",
+        "scope": "local"
+      },
       "foreach": [
         {
           "condition": {
@@ -115,7 +118,10 @@
     {
       "$comments": "If a person becomes infective treat it for 10 days with a red pill",
       "id": "intervention_2",
-      "target": {"elementType": "node"},
+      "target": {
+        "elementType": "node",
+        "scope": "local"
+      },
       "foreach": [
         {
           "operations": [
@@ -189,7 +195,10 @@
     {
       "$comments": "If a person becomes severely think infective treat it for 15 days with a blue pill. The blue is incompatible with the read pill.",
       "id": "intervention_3",
-      "target": {"elementType": "node"},
+      "target": {
+        "elementType": "node",
+        "scope": "local"
+      },
       "foreach": [
         {
           "priority": 10,

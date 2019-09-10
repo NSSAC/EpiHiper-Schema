@@ -121,59 +121,59 @@
             }
           ],
           "properties": {
-            "fixed": {"$ref": "#/definitions/nonNegativeNumber"}
-          },
-          "discrete": {
-            "description": "A number is sampled from the array with each number having the same propability.",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "probability",
-                "value"
-              ],
-              "properties": {
-                "probability": {
-                  "allOf": [
-                    {"$ref": "#/definitions/nonNegativeNumber"},
-                    {"maximum": 1}
-                  ]
-                },
-                "value": {"$ref": "#/definitions/nonNegativeNumber"}
-              }
-            }
-          },
-          "uniform": {
-            "oneOf": [
-              {
-                "type": "array",
-                "description": "A number is sampled uniformly from the given values",
-                "items": {"$ref": "#/definitions/nonNegativeNumber"}
-              },
-              {
+            "fixed": {"$ref": "#/definitions/nonNegativeNumber"},
+            "discrete": {
+              "description": "A number is sampled from the array with each number having the same propability.",
+              "type": "array",
+              "items": {
                 "type": "object",
-                "description": "A number is sampled uniformly in the given intervall [min, max]",
                 "required": [
-                  "min",
-                  "max"
+                  "probability",
+                  "value"
                 ],
                 "properties": {
-                  "min": {"$ref": "#/definitions/nonNegativeNumber"},
-                  "max": {"$ref": "#/definitions/nonNegativeNumber"}
+                  "probability": {
+                    "allOf": [
+                      {"$ref": "#/definitions/nonNegativeNumber"},
+                      {"maximum": 1}
+                    ]
+                  },
+                  "value": {"$ref": "#/definitions/nonNegativeNumber"}
                 }
               }
-            ]
-          },
-          "normal": {
-            "type": "object",
-            "description": "A number is sampled from a normal or Gaussian distribution.",
-            "required": [
-              "mean",
-              "standardDeviation"
-            ],
-            "properties": {
-              "mean": {"$ref": "#/definitions/nonNegativeNumber"},
-              "standardDeviation": {"$ref": "#/definitions/nonNegativeNumber"}
+            },
+            "uniform": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "description": "A number is sampled uniformly from the given values",
+                  "items": {"$ref": "#/definitions/nonNegativeNumber"}
+                },
+                {
+                  "type": "object",
+                  "description": "A number is sampled uniformly in the given intervall [min, max]",
+                  "required": [
+                    "min",
+                    "max"
+                  ],
+                  "properties": {
+                    "min": {"$ref": "#/definitions/nonNegativeNumber"},
+                    "max": {"$ref": "#/definitions/nonNegativeNumber"}
+                  }
+                }
+              ]
+            },
+            "normal": {
+              "type": "object",
+              "description": "A number is sampled from a normal or Gaussian distribution.",
+              "required": [
+                "mean",
+                "standardDeviation"
+              ],
+              "properties": {
+                "mean": {"$ref": "#/definitions/nonNegativeNumber"},
+                "standardDeviation": {"$ref": "#/definitions/nonNegativeNumber"}
+              }
             }
           }
         }

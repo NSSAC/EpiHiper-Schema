@@ -91,12 +91,10 @@
         "exitState": "I",
         "probability": 1,
         "dwellTime": {
-          "normal": [
-            {
-              "mean": 9.4,
-              "standardDeviation": 7.4
-            }
-          ]
+          "normal": {
+            "mean": 9.4,
+            "standardDeviation": 7.4
+          }
         }
       },
       {
@@ -106,12 +104,10 @@
         "exitState": "H",
         "probability": 0.6,
         "dwellTime": {
-          "normal": [
-            {
-              "mean": 5,
-              "standardDeviation": 4.7
-            }
-          ]
+          "normal": {
+            "mean": 5,
+            "standardDeviation": 4.7
+          }
         }
       },
       {
@@ -121,12 +117,10 @@
         "exitState": "Fc",
         "probability": 0.3,
         "dwellTime": {
-          "normal": [
-            {
-              "mean": 7.5,
-              "standardDeviation": 6.8
-            }
-          ]
+          "normal": {
+            "mean": 7.5,
+            "standardDeviation": 6.8
+          }
         }
       },
       {
@@ -136,12 +130,10 @@
         "exitState": "Rr",
         "probability": 0.1,
         "dwellTime": {
-          "normal": [
-            {
-              "mean": 10,
-              "standardDeviation": 5
-            }
-          ]
+          "normal": {
+            "mean": 10,
+            "standardDeviation": 5
+          }
         }
       },
       {
@@ -151,12 +143,10 @@
         "exitState": "F",
         "probability": 0.64,
         "dwellTime": {
-          "normal": [
-            {
-              "mean": 4.2,
-              "standardDeviation": 6.4
-            }
-          ]
+          "normal": {
+            "mean": 4.2,
+            "standardDeviation": 6.4
+          }
         }
       },
       {
@@ -166,12 +156,10 @@
         "exitState": "Rr",
         "probability": 0.36,
         "dwellTime": {
-          "normal": [
-            {
-              "mean": 11.8,
-              "standardDeviation": 6.1
-            }
-          ]
+          "normal": {
+            "mean": 11.8,
+            "standardDeviation": 6.1
+          }
         }
       },
       {
@@ -180,9 +168,7 @@
         "entryState": "Fc",
         "exitState": "Rd",
         "probability": 1,
-        "dwellTime": {
-          "fixed": 2
-        }
+        "dwellTime": {"fixed": 2}
       },
       {
         "id": "Fh_to_Rd",
@@ -190,9 +176,7 @@
         "entryState": "Fh",
         "exitState": "Rd",
         "probability": 1,
-        "dwellTime": {
-          "fixed": 1
-        }
+        "dwellTime": {"fixed": 1}
       }
     ]
   },
