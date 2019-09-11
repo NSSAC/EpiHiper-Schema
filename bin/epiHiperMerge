@@ -25,8 +25,6 @@ commander
     .description('EpiHiper Merge Files')
     .usage('[options] <file ...>')
     .option('-o --output <output>', 'Save result in the output file instead to std::out.')
-    .option('--no-default', 'Do not add defaults for missing values')
-    .option('--recursive', 'Process files referenced in run parameters')
     .arguments('<files...>')
     .action(function(_files) {
       files = _files;
@@ -39,12 +37,10 @@ if (!Array.isArray(files)) {
   process.exit(1);
 }
 
-const epiHiperMerger = new EpiHiperMerger(commander.rulesDir);
-const epiHiperValidator = epiHiperMerger.epiHiperValidator;
+const epiHiperMerger = new EpiHiperMerger(commander);
 
-epiHiperValidator
-    .processFiles(epiHiperMerger.merge.bind(epiHiperMerger), files)
+epiHiperMerger
+    .process(files, commander.output)
     .then((result) => {
       process.exit(result ? 0 : 1);
     });
-
