@@ -1,0 +1,23 @@
+{
+  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
+  "triggers": [
+    {
+      "trigger": {
+        "left": {
+          "observable": "time"
+        },
+        "operator": "==",
+        "right": {
+          "value": {
+            "number": 20
+          }
+        }
+      },
+      "interventionIds": [
+        "intervention_1",
+        "intervention_2"
+      ]
+    }
+  ],
+  "interventions": []
+}
