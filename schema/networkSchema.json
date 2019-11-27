@@ -94,6 +94,38 @@
     "sizeofEdgeTrait": {
       "description": "The size of the edge trait in bytes",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+    },
+    "partition": {
+      "type": "object",
+      "required": [
+        "numberOfNodes",
+        "numberOfEdges",
+        "numberOfParts",
+        "firstLocalNode",
+        "beyondLocalNode"
+      ],
+      "properties": {
+        "numberOfNodes": {
+          "description": "The number of nodes in the network",
+          "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+        },
+        "numberOfEdges": {
+          "description": "The number of edges in the network",
+          "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+        },
+        "numberOfParts": {
+          "description": "The number of partitions of the network",
+          "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+        },
+        "firstLocalNode": {
+          "description": "The number of the first local node",
+          "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+        },
+        "beyondLocalNode": {
+          "description": "The number of the first node beyond the local nodes",
+          "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+        }
+      }
     }
   }
 }

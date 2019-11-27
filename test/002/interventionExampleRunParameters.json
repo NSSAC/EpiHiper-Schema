@@ -2,7 +2,6 @@
   "$schema": "../../schema/runParametersSchema.json",
   "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/runParametersSchema.json",
   "modelScenario": "self://./interventionExampleModelScenario.json",
-  "output": "./interventionExampleOutput.txt",
   "startTick": 0,
   "endTick": 28
 }

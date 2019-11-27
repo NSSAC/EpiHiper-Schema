@@ -27,6 +27,4 @@ test/sciduct/
 
 test/002/MontgomeryCounty.csv
 
-test/002/va_montgomery_2009.bin
-
-test/002/va_montgomery_2009.txt
+test/002/va_montgomery_2009.*

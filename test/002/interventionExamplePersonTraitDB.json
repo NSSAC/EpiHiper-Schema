@@ -2,7 +2,7 @@
   "$schema": "../../schema/csvDataResourceSchema.json",
   "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/csvDataResourceSchema.json",
   "description": "Person trait database for Montgomery County, Va",
-  "name": "montgomery_county_va",
+  "name": "montgomery_va",
   "title": "Montgomery County Virginia Person Trait DB",
   "profile": "tabular-data-resource",
   "path": "MontgomeryCounty.csv",
@@ -57,19 +57,19 @@
       "ann:label": "Age Group",
       "facets": [
         {
-          "ann:id": "0_18",
-          "ann:label": "0-18",
+          "ann:id": "0to18",
+          "ann:label": "Children (0-18)",
           "value": 15527
         },
         {
-          "ann:id": "19_64",
-          "ann:label": "19-64",
-          "value": 52239
+          "ann:id": "19to64",
+          "ann:label": "Adults (19-64)",
+          "value": 54958
         },
         {
-          "ann:id": "65_",
-          "ann:label": "65+",
-          "value": 10054
+          "ann:id": "65plus",
+          "ann:label": "Seniors (65+)",
+          "value": 7335
         }
       ]
     },

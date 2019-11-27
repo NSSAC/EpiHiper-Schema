@@ -521,11 +521,20 @@
       "description": "A boolean value.",
       "type": "object",
       "oneOf": [
-        {"type": "boolean"},
+        {"$ref": "#/definitions/booleanValue"},
         {"$ref": "#/definitions/booleanNot"},
         {"$ref": "#/definitions/booleanOperation"},
-        {"$ref": "#/definitions/condition"}
+        {"$ref": "#/definitions/comparison"}
       ]
+    },
+    "booleanValue": {
+      "$id": "#booleanValue",
+      "description": "A fixed boolean value",
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": {"type": "boolean"}
+      }
     },
     "booleanNot": {
       "$id": "#booleanNot",
@@ -576,9 +585,9 @@
         ">"
       ]
     },
-    "condition": {
-      "$id": "#condition",
-      "description": "A condition used in evaluating triggers and action conditions.",
+    "comparison": {
+      "$id": "#comparison",
+      "description": "A comparison used in evaluating triggers and action conditions.",
       "oneOf": [
         {
           "description": "Comparing values of nodes, edges, variables, set sizes, and fixed values",
