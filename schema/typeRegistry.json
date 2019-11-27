@@ -314,7 +314,6 @@
       "description": " A field in a table in the external person trait database.",
       "type": "object",
       "required": [
-        "table",
         "field"
       ],
       "properties": {
@@ -362,7 +361,6 @@
       "type": "object",
       "required": [
         "elementType",
-        "table",
         "field",
         "selector"
       ],
