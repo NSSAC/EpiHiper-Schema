@@ -17,13 +17,11 @@
           "elementType": "node",
           "scope": "local",
           "left": {
-            "table": "montgomery_county_va",
             "field": "hid"
           },
           "operator": "in",
           "right": {
             "elementType": "dbField",
-            "table": "montgomery_county_va",
             "field": "hid",
             "selector": {
               "set": {"idRef": "triggerTemplate4_prophylaxTrue"}
@@ -179,7 +177,6 @@
       }
     },
     {
-      "table": "montgomery_county_va",
       "field": "hid"
     },
     {

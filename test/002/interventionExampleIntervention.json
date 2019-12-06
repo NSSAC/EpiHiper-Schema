@@ -59,16 +59,16 @@
               "elementType": "edge",
               "left": {
                 "edge": {
-                  "property": "edgeTrait",
+                  "property": "targetActivity",
                   "feature": "activityType"
                 }
               },
               "operator": "==",
               "right": {
                 "value": {
-                  "trait": "edgeTrait",
+                  "trait": "activityTrait",
                   "feature": "activityType",
-                  "enum": "SCHOOL"
+                  "enum": "school"
                 }
               }
             }
@@ -186,7 +186,7 @@
           "value": {
             "trait": "activityTrait",
             "feature": "activityType",
-            "enum": "SCHOOL"
+            "enum": "school"
           }
         }
       },
@@ -245,7 +245,7 @@
           "value": {
             "trait": "activityTrait",
             "feature": "activityType",
-            "enum": "SCHOOL"
+            "enum": "school"
           }
         }
       },
@@ -621,15 +621,13 @@
       },
       "target": {
         "elementType": "node",
-        "scope": "local",
+        "scope": "global",
         "left": {
-          "table": "MontgomeryCounty",
           "field": "hid"
         },
         "operator": "in",
         "right": {
           "elementType": "dbField",
-          "table": "montgomery_county_va",
           "field": "hid",
           "selector": {
             "elementType": "node",

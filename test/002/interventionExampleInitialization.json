@@ -7,7 +7,6 @@
         "elementType": "node",
         "scope": "local",
         "left": {
-          "table": "montgomery_va",
           "field": "age_group"
         },
         "operator": "==",
@@ -45,7 +44,6 @@
         "elementType": "node",
         "scope": "local",
         "left": {
-          "table": "montgomery_va",
           "field": "age_group"
         },
         "operator": "==",
@@ -83,7 +81,6 @@
         "elementType": "node",
         "scope": "local",
         "left": {
-          "table": "montgomery_va",
           "field": "age_group"
         },
         "operator": "==",

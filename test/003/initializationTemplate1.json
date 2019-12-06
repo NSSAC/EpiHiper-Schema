@@ -12,7 +12,6 @@
           "elementType": "node",
           "scope": "local",
           "left": {
-            "table": "montgomery_county_va",
             "field": "age_group"
           },
           "operator": "==",
@@ -50,7 +49,6 @@
           "elementType": "node",
           "scope": "local",
           "left": {
-            "table": "montgomery_county_va",
             "field": "age_group"
           },
           "operator": "==",
@@ -88,7 +86,6 @@
           "elementType": "node",
           "scope": "local",
           "left": {
-            "table": "montgomery_county_va",
             "field": "age_group"
           },
           "operator": "==",
@@ -162,7 +159,6 @@
   ],
   "requirements": [
     {
-      "table": "montgomery_county_va",
       "field": "age_group"
     }
   ],
