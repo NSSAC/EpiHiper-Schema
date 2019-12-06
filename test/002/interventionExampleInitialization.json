@@ -115,6 +115,31 @@
           ]
         }
       }
+    },
+    {
+      "target": {
+        "elementType": "node",
+        "scope": "local"
+      },
+      "sampling": {
+        "type": "absolute",
+        "number": 100,
+        "sampled": {
+          "foreach": [
+            {
+              "operations": [
+                {
+                  "target": {
+                    "node": {"property": "healthState"}
+                  },
+                  "operator": "=",
+                  "value": {"healthState": "E"}
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }
