@@ -313,9 +313,7 @@
       "$id": "#dbField",
       "description": " A field in a table in the external person trait database.",
       "type": "object",
-      "required": [
-        "field"
-      ],
+      "required": ["field"],
       "properties": {
         "table": {"$ref": "#/definitions/uniqueIdRef"},
         "field": {"$ref": "#/definitions/uniqueIdRef"}
@@ -739,7 +737,24 @@
                             "type": "object",
                             "required": ["edge"],
                             "properties": {
-                              "edge": {"$ref": "#/definitions/edgeProperty"}
+                              "edge": {
+                                "allOf": [
+                                  {"$ref": "#/definitions/edgeProperty"},
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "property": {
+                                        "type": "string",
+                                        "enum": [
+                                          "weight",
+                                          "active",
+                                          "edgeTrait"
+                                        ]
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
                             }
                           },
                           {"$ref": "#/definitions/variableReference"}
