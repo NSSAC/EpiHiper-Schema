@@ -14,6 +14,7 @@
       "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/initializationSchema.json"]
     },
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
+    "traits": {"$ref": "./typeRegistry.json#/definitions/traits"},
     "initializations": {"$ref": "./typeRegistry.json#/definitions/initializations"}
   }
 }

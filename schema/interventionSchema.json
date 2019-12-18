@@ -16,6 +16,7 @@
     },
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
     "variables": {"$ref": "./typeRegistry.json#/definitions/variables"},
+    "traits": {"$ref": "./typeRegistry.json#/definitions/traits"},
     "triggers": {"$ref": "./typeRegistry.json#/definitions/triggers"},
     "interventions": {"$ref": "./typeRegistry.json#/definitions/interventions"}
   }

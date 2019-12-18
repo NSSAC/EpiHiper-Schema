@@ -1354,8 +1354,7 @@
           "type": "object",
           "required": [
             "id",
-            "enums",
-            "default"
+            "enums"
           ],
           "properties": {
             "id": {"$ref": "#/definitions/uniqueId"},

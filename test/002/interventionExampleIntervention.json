@@ -430,7 +430,7 @@
                 "right": {
                   "value": {
                     "trait": "nodeTrait",
-                    "feature": "treatemnt",
+                    "feature": "treatment",
                     "enum": "true"
                   }
                 }
@@ -575,7 +575,7 @@
                     "right": {
                       "value": {
                         "trait": "nodeTrait",
-                        "feature": "treatemnt",
+                        "feature": "treatment",
                         "enum": "true"
                       }
                     }
