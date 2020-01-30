@@ -7,13 +7,13 @@
       "$id": "#uniqueId",
       "description": "An Id which has to be unique within the containing array.",
       "type": "string",
-      "pattern": "^(_|[0-9]|[a-z]|[A-Z])+$"
+      "pattern": "^((_|[0-9]|[a-z]|[A-Z])+|(^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$))$"
     },
     "uniqueIdRef": {
       "$id": "#uniqueIdRef",
       "description": "An Id which references a existing unique Id.",
       "type": "string",
-      "pattern": "^(_|[0-9]|[a-z]|[A-Z])+$"
+      "pattern": "^((_|[0-9]|[a-z]|[A-Z])+|(^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$))$"
     },
     "label": {
       "$id": "#label",
@@ -304,6 +304,11 @@
               "description": "The time property references the current simulation time.",
               "type": "string",
               "enum": ["time"]
+            },
+            {
+              "description": "The total population is number of nodes as specified in contact network JSON header.",
+              "type": "string",
+              "enum": ["totalPopulation"]
             }
           ]
         }
@@ -470,7 +475,20 @@
             "scope"
           ],
           "properties": {
-            "id": {"$ref": "#/definitions/uniqueId"},
+            "id": {
+              "allOf": [
+                {"$ref": "#/definitions/uniqueId"},
+                {
+                  "type": "string",
+                  "not": {
+                    "enum": [
+                      "time",
+                      "totalPopulation"
+                    ]
+                  } 
+                }
+              ]
+            },
             "initialValue": {"$ref": "#/definitions/nonNegativeNumber"},
             "scope": {"$ref": "#/definitions/scope"},
             "reset": {"$ref": "#/definitions/nonNegativeInteger"}
