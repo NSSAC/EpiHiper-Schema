@@ -61,6 +61,19 @@
       "minimum": 0,
       "multipleOf": 1.0
     },
+    "logLevel": {
+      "description": "The logging level (default warn)",
+      "type": "string",
+      "enum": [
+        "trace",
+        "debug",
+        "info",
+        "warn",
+        "error",
+        "critical",
+        "off"
+      ]
+    },
     "dbName": {
       "description": "The name of the data base",
       "type": "string"
@@ -76,6 +89,10 @@
     "dbPassword": {
       "description": "The password of the DB user",
       "type": "string"
+    },
+    "dbMaxRecords": {
+      "description": "The maximal number of records returned by a single query (0: unlimited)",
+      "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
     }
   }
 }

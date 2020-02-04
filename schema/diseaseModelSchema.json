@@ -109,6 +109,11 @@
           }
         ]
       }
+    },
+    "transmissability": {
+      "description": "The overal transmissability",
+      "default": 1.0,
+      "$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"
     }
   }
 }
