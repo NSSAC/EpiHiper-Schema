@@ -1,6 +1,6 @@
 {
 	"name": "@shoops/epi-hiper-validator",
-	"version": "1.1.9",
+	"version": "1.1.10",
 	"description": "EpiHiper input validation utilities",
 	"bin": {
 		"epiHiperValidateSchema": "./bin/epiHiperValidateSchema",
@@ -11,7 +11,7 @@
 	"author": "Stefan Hoops <shoops@virginia.edu>",
 	"license": "Apache-2.0",
 	"dependencies": {
-		"@shoops/jsontron": ">=0.8.23",
+		"@shoops/jsontron": ">=0.8.24",
 		"ajv": "^6.10.0",
 		"commander": "^2.20.0",
 		"firstline": "^2.0.2",
