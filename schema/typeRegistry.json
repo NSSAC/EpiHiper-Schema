@@ -419,13 +419,15 @@
       "description": "A property of an edge.",
       "oneOf": [
         {
-          "description": "The edge properties: weight and active",
+          "description": "The edge properties: targetId, sourceId, weight and active",
           "type": "object",
           "required": ["property"],
           "properties": {
             "property": {
               "type": "string",
               "enum": [
+                "targetId",
+                "sourceId",
                 "weight",
                 "active"
               ]
@@ -1222,9 +1224,7 @@
       "$id": "#sets",
       "description": "A list of sets",
       "type": "array",
-      "items": [
-        {"$ref": "#/definitions/set"}
-      ]
+      "items": {"$ref": "#/definitions/set"}
     },
     "target": {
       "$id": "#target",
