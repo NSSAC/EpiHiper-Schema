@@ -127,7 +127,7 @@
             "assert": [
               {
                 "id": "ProbabilityCheck_R1_A1",
-                "test": "const Q = '$..transitions[?(@.entryState == \"' + contextNode[0] + '\")].probability';const T = eval(jp.query(documentRoot, Q).join('+')); typeof T === 'undefined' || T == 1",
+                "test": "const Q = '$..transitions[?(@.entryState == \"' + contextNode[0] + '\")].probability';const T = eval(jp.query(documentRoot, Q).join('+')); typeof T === 'undefined' || T.toPrecision(14) == 1",
                 "message": "'State[' + contextNode[0] + ']: The sum of the probability of all exit transitions must be 1.'"
               }
             ]
