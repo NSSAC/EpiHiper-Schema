@@ -686,6 +686,8 @@
               "type": "object",
               "description": "",
               "oneOf": [
+                {"$ref": "#/definitions/observable"},
+                {"$ref": "#/definitions/variableReference"},
                 {
                   "type": "object",
                   "required": ["node"],
