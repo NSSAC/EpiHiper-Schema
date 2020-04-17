@@ -16,7 +16,7 @@
   "properties": {
     "epiHiperSchema": {
       "type": "string",
-      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/mergedSchema.json"]
+      "pattern": "^.*/mergedSchema.json$"
     },
     "diseaseModel": {"$ref": "./diseaseModelSchema.json"},
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},

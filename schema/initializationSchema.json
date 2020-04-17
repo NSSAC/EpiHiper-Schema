@@ -11,7 +11,7 @@
   "properties": {
     "epiHiperSchema": {
       "type": "string",
-      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/initializationSchema.json"]
+      "pattern": "^.*/initializationSchema.json$"
     },
     "sets": {"$ref": "./typeRegistry.json#/definitions/sets"},
     "traits": {"$ref": "./typeRegistry.json#/definitions/traits"},

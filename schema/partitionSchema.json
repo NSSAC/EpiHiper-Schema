@@ -12,7 +12,7 @@
   "properties": {
     "epiHiperSchema": {
       "type": "string",
-      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/partitionSchema.json"]
+      "pattern": "^.*/partitionSchema.json$"
     },
     "contactNetwork": {
       "description": "Filename of the contact network",

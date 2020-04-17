@@ -13,7 +13,7 @@
   "properties": {
     "epiHiperSchema": {
       "type": "string",
-      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/runParametersSchema.json"]
+      "pattern": "^.*/runParametersSchema.json$"
     },
     "modelScenario": {
       "description": "Filename of the disease model in a json file.",

@@ -10,7 +10,7 @@
   "properties": {
     "epiHiperSchema": {
       "type": "string",
-      "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/traitsSchema.json"]
+      "pattern": "^.*/traitsSchema.json$"
     },
     "traits": {"$ref": "./typeRegistry.json#/definitions/traits"}
   }

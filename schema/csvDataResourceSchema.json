@@ -10,7 +10,7 @@
       "properties": {
         "epiHiperSchema": {
           "type": "string",
-          "enum": ["https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/csvDataResourceSchema.json"]
+          "pattern": "^.*/csvDataResourceSchema.json$"
         },
         "facets": {"$ref": "./typeRegistry.json#/definitions/facets"}
       }

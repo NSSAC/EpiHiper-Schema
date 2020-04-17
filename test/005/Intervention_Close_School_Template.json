@@ -1,11 +1,11 @@
 {
   "$schema": "../../../EpiHiper-Schema/schema/templateSchema.json",
-  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/templateSchema.json",
+  "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/templateSchema.json",
   "ann:id": "SchoolClosure",
   "ann:label": "School Closure",
   "ann:description": "School closure for a given time which removes interactions that occur at the school",
   "template": {
-    "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/interventionSchema.json",
+    "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/interventionSchema.json",
     "variables": [
       {
         "id": "schoolClosed",

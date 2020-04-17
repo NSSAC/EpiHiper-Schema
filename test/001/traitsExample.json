@@ -1,6 +1,6 @@
 {
   "$schema": "../../schema/traitsSchema.json",
-  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/traitsSchema.json",
+  "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/traitsSchema.json",
   "traits": [
     {
       "id": "edgeTrait",

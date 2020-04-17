@@ -1,6 +1,6 @@
 {
   "$schema": "../../schema/csvDataResourceSchema.json",
-  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/csvDataResourceSchema.json",
+  "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/csvDataResourceSchema.json",
   "description": "Person trait database for Montgomery County, Va",
   "name": "montgomery_county_va",
   "title": "Montgomery County Virginia Person Trait DB",
