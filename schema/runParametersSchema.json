@@ -96,7 +96,8 @@
     },
     "dbConnectionTimeout": {
       "description": "The maximal number of second to wait for a connection (default: 2)",
-      "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger",
+      "type": "number",
+      "multipleOf": 1,
       "minimum": 2
     },
     "dbConnectionRetries": {
