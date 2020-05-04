@@ -51,6 +51,10 @@
       "description": "The maximal value of the duration field, i.e., the value to divide the duration by to get it relative to the accumulation time",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"
     },
+    "hasLocationIDField": {
+      "description": "Boolean indicating whether the network contains a Location ID (LID) for each edge (Default: false).",
+      "type": "boolean"
+    },
     "hasActiveField": {
       "description": "Boolean indicating whether the network contains an active flag for each edge",
       "type": "boolean"

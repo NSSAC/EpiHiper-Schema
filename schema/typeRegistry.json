@@ -428,6 +428,7 @@
               "enum": [
                 "targetId",
                 "sourceId",
+                "locationId",
                 "weight",
                 "active"
               ]
@@ -487,7 +488,7 @@
                       "time",
                       "totalPopulation"
                     ]
-                  } 
+                  }
                 }
               ]
             },
@@ -752,7 +753,23 @@
                             "type": "object",
                             "required": ["node"],
                             "properties": {
-                              "node": {"$ref": "#/definitions/nodeProperty"}
+                              "node": {
+                                "allOf": [
+                                  {"$ref": "#/definitions/nodeProperty"},
+                                  {
+                                    "type": "object",
+                                    "description": "These properties are read only",
+                                    "properties": {
+                                      "property": {
+                                        "type": "string",
+                                        "not": {
+                                          "enum": ["id"]
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
                             }
                           },
                           {
@@ -764,14 +781,19 @@
                                   {"$ref": "#/definitions/edgeProperty"},
                                   {
                                     "type": "object",
+                                    "description": "These properties are read only",
                                     "properties": {
                                       "property": {
                                         "type": "string",
-                                        "enum": [
-                                          "weight",
-                                          "active",
-                                          "edgeTrait"
-                                        ]
+                                        "not": {
+                                          "enum": [
+                                            "targetId",
+                                            "sourceId",
+                                            "locationId",
+                                            "targetActivity",
+                                            "sourceActivity"
+                                          ]
+                                        }
                                       }
                                     }
                                   }
