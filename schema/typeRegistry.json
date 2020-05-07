@@ -377,6 +377,72 @@
         "selector": {"$ref": "#/definitions/setContent"}
       }
     },
+    "dbSimpleQuery": {
+      "$id": "#dbSimpleQuery",
+      "description": "A db query returning on field base on a simple constraint, i.e., no and and or in the where clause.",
+      "oneOf": [
+        {
+          "description": "A filter selecting nodes from the external person trait database.",
+          "oneOf": [
+            {
+              "description": "A table in the external person trait database.",
+              "type": "object",
+              "required": ["table"],
+              "properties": {
+                "table": {"$ref": "#/definitions/uniqueIdRef"}
+              }
+            },
+            {
+              "description": "A filter returining nodes if the result of comparing left and right values with the operator is true.",
+              "required": [
+                "operator",
+                "left",
+                "right"
+              ],
+              "properties": {
+                "operator": {"$ref": "#/definitions/comparisonOperator"},
+                "left": {"$ref": "#/definitions/dbField"},
+                "right": {
+                  "type": "object",
+                  "description": "",
+                  "oneOf": [
+                    {"$ref": "#/definitions/dbFieldValue"},
+                    {"$ref": "#/definitions/observable"}
+                  ]
+                }
+              }
+            },
+            {
+              "description": "A filter returning nodes if the left field value is or is not in the right list.",
+              "required": [
+                "operator",
+                "left",
+                "right"
+              ],
+              "properties": {
+                "operator": {
+                  "description": "",
+                  "type": "string",
+                  "enum": [
+                    "in",
+                    "not in"
+                  ]
+                },
+                "left": {"$ref": "#/definitions/dbField"},
+                "right": {
+                  "type": "object",
+                  "description": "",
+                  "oneOf": [
+                    {"$ref": "#/definitions/dbFieldValueList"},
+                    {"$ref": "#/definitions/dbFieldValueSelector"}
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
     "nodeProperty": {
       "$id": "#nodeProperty",
       "description": "A property of a node.",
@@ -1009,7 +1075,8 @@
                 },
                 "selector": {"$ref": "#/definitions/setContent"}
               }
-            }
+            },
+            {"$ref": "#/definitions/dbSimpleQuery"}
           ]
         }
       ]
@@ -1097,66 +1164,7 @@
                 "selector": {"$ref": "#/definitions/setContent"}
               }
             },
-            {
-              "description": "A filter selecting nodes from the external person trait database.",
-              "oneOf": [
-                {
-                  "description": "A table in the external person trait database.",
-                  "type": "object",
-                  "required": ["table"],
-                  "properties": {
-                    "table": {"$ref": "#/definitions/uniqueIdRef"}
-                  }
-                },
-                {
-                  "description": "A filter returining nodes if the result of comparing left and right values with the operator is true.",
-                  "required": [
-                    "operator",
-                    "left",
-                    "right"
-                  ],
-                  "properties": {
-                    "operator": {"$ref": "#/definitions/comparisonOperator"},
-                    "left": {"$ref": "#/definitions/dbField"},
-                    "right": {
-                      "type": "object",
-                      "description": "",
-                      "oneOf": [
-                        {"$ref": "#/definitions/dbFieldValue"},
-                        {"$ref": "#/definitions/observable"}
-                      ]
-                    }
-                  }
-                },
-                {
-                  "description": "A filter returning nodes if the left field value is or is not in the right list.",
-                  "required": [
-                    "operator",
-                    "left",
-                    "right"
-                  ],
-                  "properties": {
-                    "operator": {
-                      "description": "",
-                      "type": "string",
-                      "enum": [
-                        "in",
-                        "not in"
-                      ]
-                    },
-                    "left": {"$ref": "#/definitions/dbField"},
-                    "right": {
-                      "type": "object",
-                      "description": "",
-                      "oneOf": [
-                        {"$ref": "#/definitions/dbFieldValueList"},
-                        {"$ref": "#/definitions/dbFieldValueSelector"}
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
+            {"$ref": "#/definitions/dbSimpleQuery"}
           ]
         }
       ]

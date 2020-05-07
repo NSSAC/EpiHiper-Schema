@@ -5,6 +5,9 @@
   "diseaseModel": "self://./interventionExampleDiseaseModel.json",
   "initialization": "self://./interventionExampleInitialization.json",
   "intervention": "self://./interventionExampleIntervention.json",
-  "personTraitDB": ["self://./interventionExamplePersonTraitDB.json"],
+  "personTraitDB": [
+    "self://./interventionExamplePersonTraitDB.json",
+    "self://./interventionExampleLocationTraitDB.json"
+  ],
   "traits": "self://./interventionExampleTraits.json"
 }
