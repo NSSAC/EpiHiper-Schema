@@ -419,7 +419,7 @@
       "description": "A property of an edge.",
       "oneOf": [
         {
-          "description": "The edge properties: targetId, sourceId, weight and active",
+          "description": "The edge properties: targetId, sourceId, locationId, duration, weight and active",
           "type": "object",
           "required": ["property"],
           "properties": {
@@ -429,6 +429,7 @@
                 "targetId",
                 "sourceId",
                 "locationId",
+                "duration",
                 "weight",
                 "active"
               ]
