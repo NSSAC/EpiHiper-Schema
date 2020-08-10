@@ -35,6 +35,14 @@
         {"multipleOf": 1}
       ]
     },
+    "id": {
+      "$id": "#id",
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {"$ref": "#/definitions/nonNegativeInteger"}
+      }
+    },
     "number": {
       "$id": "#number",
       "description": "A number property with a non negative value.",
@@ -204,6 +212,7 @@
                 "boolean": {"type": "boolean"}
               }
             },
+            {"$ref": "#/definitions/id"},
             {"$ref": "#/definitions/number"},
             {"$ref": "#/definitions/healthState"},
             {"$ref": "#/definitions/traitEnum"}
@@ -226,6 +235,16 @@
                 "boolean": {
                   "type": "array",
                   "items": {"type": "boolean"}
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": ["id"],
+              "properties": {
+                "number": {
+                  "type": "array",
+                  "items": {"$ref": "#/definitions/nonNegativeInteger"}
                 }
               }
             },
