@@ -138,7 +138,14 @@
               },
               {"$ref": "./typeRegistry.json#/definitions/edgeProperty"},
               {"$ref": "./typeRegistry.json#/definitions/nodeProperty"},
-              {"$ref": "./typeRegistry.json#/definitions/dbField"}
+              {"$ref": "./typeRegistry.json#/definitions/dbField"},
+              {
+                "type": "object",
+                "required": ["jsonPath"],
+                "properties": {
+                  "jsonPath": {"$ref": "./typeRegistry.json#/definitions/jsonPath"}
+                }
+              }
             ]
           }
         },
