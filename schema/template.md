@@ -65,7 +65,7 @@ __Example:__ Infectious states: ` "validValues": [{"jsonPath": "$.states.[?(@.in
 
 __Requirements__
 
-Note, for backwards compatibility we allow the old syntax but it should be considered deprcated.
+Note, for backwards compatibility we allow the old syntax but it should be considered deprecated.
 ```
   "requirements": {
     "type": "array",
