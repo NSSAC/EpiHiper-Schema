@@ -41,6 +41,42 @@
                       "type": "string",
                       "pattern": "^/template/.+$"
                     }
+                  },
+                  "validValues": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "oneOf": [
+                        {"$ref": "./typeRegistry.json#/definitions/jsonPath"},
+                        {
+                          "type": "object",
+                          "required": ["interval"],
+                          "properties": {
+                            "interval": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {"type": "number"},
+                                "max": {"type": "number"}
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "required": ["enum"],
+                          "properties": {
+                            "enum": {
+                              "type": "array",
+                              "items": {"type": "string"} 
+                            }
+                          }
+                        }
+                      ]
+                    }
                   }
                 }
               },

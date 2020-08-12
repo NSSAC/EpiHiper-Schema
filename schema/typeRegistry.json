@@ -35,6 +35,11 @@
         {"multipleOf": 1}
       ]
     },
+    "jsonPath": {
+      "$id": "#jsonPath",
+      "description": "A valid JSONPath as decribed by: https://support.smartbear.com/readyapi/docs/testing/jsonpath-reference.html#notation",
+      "type": "string" 
+    },
     "id": {
       "$id": "#id",
       "type": "object",
