@@ -128,7 +128,9 @@ Note, for backwards compatibility we allow the old syntax but it should be consi
 
 __Example:__ Activity type college: ` "validValues": [{"jsonPath": "$.activityEncoding.features.[?(@.id == "activityType")].enums.[?(@.id == "college")]"}]`
 ```
+[
   {
     "id": "college"
   }
-]```
+]
+```
