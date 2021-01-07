@@ -47,7 +47,7 @@ let status = {};
 let action = '';
 
 try {
-  status = require(commander.file);
+  status = JSON.parse(fs.readFileSync(commander.file));
   action = 'has not been modified';
 } catch (err) {
   if (!commander.id ||
