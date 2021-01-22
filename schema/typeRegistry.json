@@ -403,7 +403,7 @@
     },
     "dbSimpleQuery": {
       "$id": "#dbSimpleQuery",
-      "description": "A db query returning on field base on a simple constraint, i.e., no and and or in the where clause.",
+      "description": "A db query returning one field based on a simple constraint, i.e., no and and or in the where clause.",
       "oneOf": [
         {
           "description": "A filter selecting nodes from the external person trait database.",
