@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schema/modelScenarioSchema.json",
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/modelScenarioSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/modelScenarioSchema.json",
   "contactNetwork": "self://network",
   "diseaseModel": "self://./diseaseModelExample.json",

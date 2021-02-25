@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schema/traitsSchema.json",
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/traitsSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/traitsSchema.json",
   "traits": [
     {

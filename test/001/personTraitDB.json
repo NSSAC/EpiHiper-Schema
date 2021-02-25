@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/csvDataResourceSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/csvDataResourceSchema.json",
   "description": "Person trait database for Virginia 2017 with age and gender",
   "name": "virginia",

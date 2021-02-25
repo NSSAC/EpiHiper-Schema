@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schema/initializationSchema.json",
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationSchema.json",
   "initializations": [
     {

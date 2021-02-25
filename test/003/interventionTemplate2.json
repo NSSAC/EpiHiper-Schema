@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schema/templateSchema.json",
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/templateSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/templateSchema.json",
   "ann:id": "Treatment",
   "ann:label": "Treatment of Symptomatic Individuals",

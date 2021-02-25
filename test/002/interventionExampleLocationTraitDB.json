@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schema/csvDataResourceSchema.json",
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/csvDataResourceSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/csvDataResourceSchema.json",
   "description": "Location Trait Database Example",
   "name": "location_trait_db_example",

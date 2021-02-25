@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schema/partitionSchema.json",
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/partitionSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/partitionSchema.json",
   "contactNetwork": "self://./contactNetwork",
   "numberOfParts": 8

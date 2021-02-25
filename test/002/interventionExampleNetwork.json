@@ -1,6 +1,6 @@
 {
-  "$schema": "../../schema/networkSchema.json",
-  "epiHiperSchema": "https://github.com/NSSAC/EpiHiper-Schema/blob/master/schema/networkSchema.json",
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/networkSchema.json",
+  "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/networkSchema.json",
   "ann:label": "Montgomery county, VA (2009) - Daily network",
   "encoding": "text",
   "accumulationTime": "24 hours",
