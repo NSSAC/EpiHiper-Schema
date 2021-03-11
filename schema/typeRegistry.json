@@ -951,9 +951,19 @@
               "$id": "#relativeSampling",
               "description": "",
               "type": "object",
-              "required": [
-                "type",
-                "number"
+              "oneOf": [
+                {
+                  "required": [
+                    "type",
+                    "number"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "variable"
+                  ]
+                }
               ],
               "minProperties": 3,
               "additionalProperties": false,
@@ -970,6 +980,13 @@
                   "minimum": 0,
                   "maximum": 100
                 },
+                "variable": {
+                  "type": "object",
+                  "required": ["idRef"],
+                  "properties": {
+                    "idRef": {"$ref": "#/definitions/uniqueIdRef"}
+                  }
+                },
                 "sampled": {"$ref": "#/definitions/actionEnsemble"},
                 "nonsampled": {"$ref": "#/definitions/actionEnsemble"}
               }
@@ -978,9 +995,19 @@
               "$id": "#absoluteSampling",
               "description": "",
               "type": "object",
-              "required": [
-                "type",
-                "number"
+              "oneOf": [
+                {
+                  "required": [
+                    "type",
+                    "number"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "variable"
+                  ]
+                }
               ],
               "minProperties": 3,
               "additionalProperties": false,
@@ -994,7 +1021,14 @@
                   "minimum": 0,
                   "multipleOf": 1.0
                 },
-                "sampled": {"$ref": "#/definitions/actionEnsemble"},
+                "variable": {
+                  "type": "object",
+                  "required": ["idRef"],
+                  "properties": {
+                    "idRef": {"$ref": "#/definitions/uniqueIdRef"}
+                  }
+                },
+                 "sampled": {"$ref": "#/definitions/actionEnsemble"},
                 "nonsampled": {"$ref": "#/definitions/actionEnsemble"}
               }
             }
