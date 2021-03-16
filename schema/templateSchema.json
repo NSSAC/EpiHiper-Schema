@@ -47,7 +47,13 @@
                     "items": {
                       "type": "object",
                       "oneOf": [
-                        {"$ref": "./typeRegistry.json#/definitions/jsonPath"},
+                        {
+                          "type": "object",
+                          "required": ["jsonPath"],
+                          "properties": {
+                            "jsonPath": {"$ref": "./typeRegistry.json#/definitions/jsonPath"}
+                          }
+                        },
                         {
                           "type": "object",
                           "required": ["interval"],
