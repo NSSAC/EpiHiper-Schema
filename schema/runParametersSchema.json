@@ -107,6 +107,50 @@
     "dbConnectionMaxDelay": {
       "description": "The maximal delay in milli seconds for attempting a connection (default: 500)",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+    },
+    "dumpActiveNetwork": {
+      "type": "object",
+      "description": "If present causes regular dumps of the active network",
+      "required": [
+        "output",
+        "threshold"
+      ],
+      "properties": {
+        "output": {
+          "description": "Path + name of the output file",
+          "$ref": "./typeRegistry.json#/definitions/localPath"
+        },
+        "treshhold": {
+          "description": "The threshhold for the weight for which active edges are dumped.",
+          "type": "number",
+          "minimum": 0
+        },
+        "startTick": {
+          "description": "The start tick for the simulation run (default: startTick of simulation).",
+          "type": "number",
+          "minimum": 0,
+          "multipleOf": 1.0
+        },
+        "endTick": {
+          "description": "The start tick for the simulation run (default: endTick of simulation).",
+          "type": "number",
+          "minimum": 0,
+          "multipleOf": 1.0
+        },
+        "tickIncrement": {
+          "description": "The number of ticks between network dumps (default: 1).",
+          "type": "number",
+          "minimum": 0,
+          "multipleOf": 1.0
+        },
+        "encoding": {
+          "description": "The format of the network file (default: text).",
+          "enum": [
+            "text",
+            "binary"
+          ]
+        }
+      }
     }
   }
 }

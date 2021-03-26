@@ -19,7 +19,7 @@
       "$ref": "./typeRegistry.json#/definitions/localPath"
     },
     "numberOfParts": {
-      "description": "The number of part to create.",
+      "description": "The number of parts to create.",
       "type": "number",
       "minimum": 0,
       "multipleOf": 1.0
