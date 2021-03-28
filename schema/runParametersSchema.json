@@ -113,7 +113,7 @@
       "description": "If present causes regular dumps of the active network",
       "required": [
         "output",
-        "threshold"
+        "threshhold"
       ],
       "properties": {
         "output": {
