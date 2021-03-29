@@ -113,15 +113,15 @@
       "description": "If present causes regular dumps of the active network",
       "required": [
         "output",
-        "threshhold"
+        "threshold"
       ],
       "properties": {
         "output": {
           "description": "Path + name of the output file",
           "$ref": "./typeRegistry.json#/definitions/localPath"
         },
-        "treshhold": {
-          "description": "The threshhold for the weight for which active edges are dumped.",
+        "threshold": {
+          "description": "The threshold for the weight for which active edges are dumped.",
           "type": "number",
           "minimum": 0
         },
