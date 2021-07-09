@@ -62,7 +62,7 @@ if (!Array.isArray(files)) {
 const epiHiperAddNoise = new EpiHiperAddNoise(commander);
 
 epiHiperAddNoise
-    .process(files, commander.path, commander.sigma)
+    .process(files)
     .then((result) => {
       process.exit(result ? 0 : 1);
     });
