@@ -5,6 +5,7 @@
   "ann:label": "Initial infections - percentage",
   "ann:description": "Initially infect the specified percentage of the population.",
   "template": {
+    "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationSchema.json",
     "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationSchema.json",
     "initializations": [
       {

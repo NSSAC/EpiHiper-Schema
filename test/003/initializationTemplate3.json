@@ -5,6 +5,7 @@
   "ann:label": "Initial Infections - number",
   "ann:description": "Initially infect the specified number of individuals.",
   "template": {
+    "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationSchema.json",
     "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/initializationSchema.json",
     "initializations": [
       {
