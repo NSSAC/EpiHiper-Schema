@@ -914,7 +914,13 @@
                       }
                     }
                   },
-                  {"$ref": "#/definitions/value"}
+                  {
+                    "oneOf": [
+                      {"$ref": "#/definitions/value"},
+                      {"$ref": "#/definitions/observable"},
+                      {"$ref": "#/definitions/variableReference"}
+                    ]
+                  }
                 ]
               }
             }
