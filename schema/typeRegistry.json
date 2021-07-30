@@ -131,6 +131,9 @@
             },
             {
               "required": ["normal"]
+            },
+            {
+              "required": ["gamma"]
             }
           ],
           "properties": {
@@ -186,6 +189,24 @@
               "properties": {
                 "mean": {"$ref": "#/definitions/nonNegativeNumber"},
                 "standardDeviation": {"$ref": "#/definitions/nonNegativeNumber"}
+              }
+            },
+            "gamma": {
+              "type": "object",
+              "description": "A number is sampled from a Gamma distribution.",
+              "required": [
+                "alpha",
+                "beta"
+              ],
+              "properties": {
+                "alpha": {
+                  "description": "shape parameter",
+                  "$ref": "#/definitions/nonNegativeNumber"
+                },
+                "beta": {
+                  "description": "scale parameter",
+                  "$ref": "#/definitions/nonNegativeNumber"
+                }
               }
             }
           }
