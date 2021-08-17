@@ -38,7 +38,7 @@
     "jsonPath": {
       "$id": "#jsonPath",
       "description": "A valid JSONPath as decribed by: https://support.smartbear.com/readyapi/docs/testing/jsonpath-reference.html#notation",
-      "type": "string" 
+      "type": "string"
     },
     "id": {
       "$id": "#id",
@@ -847,17 +847,20 @@
               }
             },
             "operations": {
-              "description": "",
+              "description": "operations",
               "type": "array",
               "minItems": 1,
               "items": {
-                "description": "",
+                "description": "operation",
                 "allOf": [
                   {"$ref": "#/definitions/annotation"},
                   {
                     "description": "",
                     "type": "object",
-                    "required": ["target"],
+                    "required": [
+                      "target",
+                      "operator"
+                    ],
                     "properties": {
                       "target": {
                         "oneOf": [
@@ -915,14 +918,7 @@
                           },
                           {"$ref": "#/definitions/variableReference"}
                         ]
-                      }
-                    }
-                  },
-                  {
-                    "description": "",
-                    "type": "object",
-                    "required": ["operator"],
-                    "properties": {
+                      },
                       "operator": {
                         "type": "string",
                         "enum": [
@@ -933,7 +929,12 @@
                           "-="
                         ]
                       }
-                    }
+                    },
+                    "patternProperties": {
+                      "^ann:": {},
+                      "value|observable|variable": {}
+                    },
+                    "additionalProperties": false
                   },
                   {
                     "oneOf": [
@@ -992,8 +993,6 @@
                   ]
                 }
               ],
-              "minProperties": 3,
-              "additionalProperties": false,
               "properties": {
                 "type": {
                   "type": "string",
@@ -1015,7 +1014,11 @@
                   }
                 },
                 "sampled": {"$ref": "#/definitions/actionEnsemble"},
-                "nonsampled": {"$ref": "#/definitions/actionEnsemble"}
+                "nonsampled": {"$ref": "#/definitions/actionEnsemble"},
+                "patternProperties": {
+                  "^ann:": {}
+                },
+                "additionalProperties": false
               }
             },
             {
@@ -1036,8 +1039,6 @@
                   ]
                 }
               ],
-              "minProperties": 3,
-              "additionalProperties": false,
               "properties": {
                 "type": {
                   "type": "string",
@@ -1055,8 +1056,12 @@
                     "idRef": {"$ref": "#/definitions/uniqueIdRef"}
                   }
                 },
-                 "sampled": {"$ref": "#/definitions/actionEnsemble"},
-                "nonsampled": {"$ref": "#/definitions/actionEnsemble"}
+                "sampled": {"$ref": "#/definitions/actionEnsemble"},
+                "nonsampled": {"$ref": "#/definitions/actionEnsemble"},
+                "patternProperties": {
+                  "^ann:": {}
+                },
+                "additionalProperties": false
               }
             }
           ]
@@ -1080,7 +1085,13 @@
           "items": {"$ref": "#/definitions/action"}
         },
         "sampling": {"$ref": "#/definitions/sampling"}
-      }
+      },
+      "patternProperties": {
+        "^ann:": {},
+        "^\\$": {},
+        "trigger|target|id": {}
+      },
+      "additionalProperties": false
     },
     "edgeElementSelector": {
       "$id": "#edgeElementSelector",
