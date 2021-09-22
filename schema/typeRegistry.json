@@ -1490,7 +1490,8 @@
       "$id": "#featureEnums",
       "description": "The enumeration values allowed for the feature",
       "type": "array",
-      "items": {"$ref": "#/definitions/featureEnum"}
+      "items": {"$ref": "#/definitions/featureEnum"},
+      "minItems": 1
     },
     "traitFeature": {
       "$id": "#traitFeature",
@@ -1519,7 +1520,8 @@
       "$id": "#traitFeatures",
       "description": "A list of features included in a trait",
       "type": "array",
-      "items": {"$ref": "#/definitions/traitFeature"}
+      "items": {"$ref": "#/definitions/traitFeature"},
+      "minItems": 1
     },
     "trait": {
       "$id": "#trait",
