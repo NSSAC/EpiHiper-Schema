@@ -940,7 +940,8 @@
                     "oneOf": [
                       {"$ref": "#/definitions/value"},
                       {"$ref": "#/definitions/observable"},
-                      {"$ref": "#/definitions/variableReference"}
+                      {"$ref": "#/definitions/variableReference"},
+                      {"$ref": "#/definitions/sizeof"}
                     ]
                   }
                 ]
