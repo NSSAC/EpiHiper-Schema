@@ -342,6 +342,14 @@
                     "absolute",
                     "relative"
                   ]
+                },
+                "subset": {
+                  "type": "string",
+                  "enum": [
+                    "in",
+                    "out",
+                    "current"
+                  ]
                 }
               }
             },
