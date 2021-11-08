@@ -1337,7 +1337,17 @@
           "type": "object",
           "required": ["idRef"],
           "properties": {
-            "idRef": {"$ref": "#/definitions/uniqueIdRef"}
+            "idRef": {
+              "oneOf": [
+                {"$ref": "#/definitions/uniqueIdRef"},
+                {
+                  "type": "string",
+                  "enum": [
+                    "%empty%"
+                  ]
+                }
+              ]
+            }
           }
         }
       }
