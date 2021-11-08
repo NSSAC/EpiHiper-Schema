@@ -35,22 +35,22 @@
       "multipleOf": 1.0
     },
     "output": {
-      "description": "Path + name of the output file",
+      "description": "Path + name of the output file (default: $(pwd)/output.csv).",
       "$ref": "./typeRegistry.json#/definitions/localPath"
     },
     "summaryOutput": {
-      "description": "Path + name of the summary output file",
+      "description": "Path + name of the summary output file(default: $(pwd)/summaryOutput.csv)",
       "$ref": "./typeRegistry.json#/definitions/localPath"
     },
     "status": {
-      "description": "Path + name of the output SciDuct status file",
+      "description": "Path + name of the output SciDuct status file (default: $(pwd)/sciduct.status.json)",
       "allOf": [
         {"$ref": "./typeRegistry.json#/definitions/localPath"},
         {"$ref": "./typeRegistry.json#/definitions/jsonFormat"}
       ]
     },
     "seed": {
-      "description": "The seed for the random number generator",
+      "description": "The seed for the random number generator (default: auto generated)",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
     },
     "replicate": {
@@ -58,11 +58,11 @@
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
     },
     "partitionEdgeLimit": {
-      "description": "The maximum number of network edges which are partitioned on the fly.",
+      "description": "The maximum number of network edges which are partitioned on the fly (default: 100,000,000).",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
     },
     "logLevel": {
-      "description": "The logging level (default warn)",
+      "description": "The logging level (default: warn)",
       "type": "string",
       "enum": [
         "trace",
@@ -75,19 +75,19 @@
       ]
     },
     "dbName": {
-      "description": "The name of the data base",
+      "description": "The name of the data base (default: epihiper_db)",
       "type": "string"
     },
     "dbHost": {
-      "description": "The host of the database (including optional port)",
+      "description": "The host of the database (including optional port) (default: localhost:5432)",
       "type": "string"
     },
     "dbUser": {
-      "description": "The database user",
+      "description": "Read only database user (default: epihiper)",
       "type": "string"
     },
     "dbPassword": {
-      "description": "The password of the DB user",
+      "description": "The password of the DB user (default: empty)",
       "type": "string"
     },
     "dbMaxRecords": {
@@ -105,7 +105,7 @@
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
     },
     "dbConnectionMaxDelay": {
-      "description": "The maximal delay in milli seconds for attempting a connection (default: 500)",
+      "description": "The maximal delay in milliseconds for attempting a connection (default: 500)",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
     },
     "dumpActiveNetwork": {
@@ -132,7 +132,7 @@
           "multipleOf": 1.0
         },
         "endTick": {
-          "description": "The start tick for the simulation run (default: endTick of simulation).",
+          "description": "The end tick for the simulation run (default: endTick of simulation).",
           "type": "number",
           "minimum": 0,
           "multipleOf": 1.0
