@@ -948,7 +948,7 @@
                     },
                     "patternProperties": {
                       "^ann:": {},
-                      "value|observable|variable": {}
+                      "value|observable|variable|sizeof": {}
                     },
                     "additionalProperties": false
                   },
