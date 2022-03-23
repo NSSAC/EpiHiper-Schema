@@ -94,7 +94,7 @@
     },
     "numericOperation": {
       "$id": "#numericOperation",
-      "description": "A numeric operation apllicable to edge waits, susceptibilityFactors, and  infectivityFactors.",
+      "description": "A numeric operation applicable to edge waits, susceptibilityFactors, and  infectivityFactors.",
       "type": "object",
       "required": [
         "operator",
@@ -139,7 +139,7 @@
           "properties": {
             "fixed": {"$ref": "#/definitions/nonNegativeNumber"},
             "discrete": {
-              "description": "A number is sampled from the array with each number having the given propability.",
+              "description": "A number is sampled from the array with each number having the given probability.",
               "type": "array",
               "items": {
                 "type": "object",
@@ -1000,13 +1000,29 @@
                 {
                   "required": [
                     "type",
-                    "number"
+                    "number",
+                    "sampled"
                   ]
                 },
                 {
                   "required": [
                     "type",
-                    "variable"
+                    "variable",
+                    "sampled"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "number",
+                    "nonSampled"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "variable",
+                    "nonSampled"
                   ]
                 }
               ],
@@ -1046,13 +1062,29 @@
                 {
                   "required": [
                     "type",
-                    "number"
+                    "number",
+                    "sampled"
                   ]
                 },
                 {
                   "required": [
                     "type",
-                    "variable"
+                    "variable",
+                    "sampled"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "number",
+                    "nonSampled"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "variable",
+                    "nonSampled"
                   ]
                 }
               ],

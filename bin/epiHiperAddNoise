@@ -26,7 +26,7 @@ commander
     .usage('[options] <file ...>')
     .option('-p --path <path>', 'JSONPath to be modified.')
     .option('-s --sigma <sigma>', 'standard deviation.')
-    .option('-i --integer', 'specify whether the value of type integer.')
+    .option('-i --integer', 'specify whether the value is of type integer.')
     .option('-r --replace', 'replace input files.')
     .option('-n --negative', 'allow negative numbers.')
     .arguments('<files...>')
