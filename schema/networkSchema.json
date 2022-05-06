@@ -130,6 +130,12 @@
           "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
         }
       }
+    },
+    "sourceOnlyNodes": {
+      "type": "array",
+      "items": {
+        "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+      }
     }
   }
 }
