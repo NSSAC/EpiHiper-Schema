@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/networkSchema.json",
   "epiHiperSchema": "https://raw.githubusercontent.com/NSSAC/EpiHiper-Schema/master/schema/networkSchema.json",
   "ann:label": "University of Virginia - Wednesday network",
   "encoding": "text",
@@ -67,6 +68,8 @@
   },
   "hasLocationIDField": true,
   "hasActiveField": false,
-  "hasWeightField": false
+  "hasWeightField": false,
+  "sourceOnlyNodes": [
+    1, 3, 5
+  ]
 }
-targetPID,targetActivity,sourcePID,sourceActivity,duration,LID,edgeTrait

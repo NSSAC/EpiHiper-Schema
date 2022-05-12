@@ -31,8 +31,12 @@
       "$id": "#nonNegativeInteger",
       "description": "A non negative interger l, i.e., 0 <= l",
       "allOf": [
-        {"$ref": "#/definitions/nonNegativeNumber"},
-        {"multipleOf": 1}
+        {
+          "$ref": "#/definitions/nonNegativeNumber"
+        },
+        {
+          "multipleOf": 1
+        }
       ]
     },
     "jsonPath": {
@@ -43,18 +47,26 @@
     "id": {
       "$id": "#id",
       "type": "object",
-      "required": ["id"],
+      "required": [
+        "id"
+      ],
       "properties": {
-        "id": {"$ref": "#/definitions/nonNegativeInteger"}
+        "id": {
+          "$ref": "#/definitions/nonNegativeInteger"
+        }
       }
     },
     "number": {
       "$id": "#number",
       "description": "A number property with a non negative value.",
       "type": "object",
-      "required": ["number"],
+      "required": [
+        "number"
+      ],
       "properties": {
-        "number": {"$ref": "#/definitions/nonNegativeNumber"}
+        "number": {
+          "$ref": "#/definitions/nonNegativeNumber"
+        }
       }
     },
     "traitEnum": {
@@ -84,8 +96,12 @@
     "annotation": {
       "type": "object",
       "properties": {
-        "ann:id": {"$ref": "#/definitions/uniqueIdRef"},
-        "ann:label": {"$ref": "#/definitions/label"},
+        "ann:id": {
+          "$ref": "#/definitions/uniqueIdRef"
+        },
+        "ann:label": {
+          "$ref": "#/definitions/label"
+        },
         "ann:description": {
           "description": "A detailed description of the object using markdown.",
           "type": "string"
@@ -109,35 +125,51 @@
             "/="
           ]
         },
-        "value": {"$ref": "#/definitions/nonNegativeNumber"}
+        "value": {
+          "$ref": "#/definitions/nonNegativeNumber"
+        }
       }
     },
     "distribution": {
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "type": "object",
           "description": "Specify distributions for sampling values.",
           "$comment": "Note: The result may require rounding if necessary.",
           "oneOf": [
             {
-              "required": ["fixed"]
+              "required": [
+                "fixed"
+              ]
             },
             {
-              "required": ["discrete"]
+              "required": [
+                "discrete"
+              ]
             },
             {
-              "required": ["uniform"]
+              "required": [
+                "uniform"
+              ]
             },
             {
-              "required": ["normal"]
+              "required": [
+                "normal"
+              ]
             },
             {
-              "required": ["gamma"]
+              "required": [
+                "gamma"
+              ]
             }
           ],
           "properties": {
-            "fixed": {"$ref": "#/definitions/nonNegativeNumber"},
+            "fixed": {
+              "$ref": "#/definitions/nonNegativeNumber"
+            },
             "discrete": {
               "description": "A number is sampled from the array with each number having the given probability.",
               "type": "array",
@@ -150,11 +182,17 @@
                 "properties": {
                   "probability": {
                     "allOf": [
-                      {"$ref": "#/definitions/nonNegativeNumber"},
-                      {"maximum": 1}
+                      {
+                        "$ref": "#/definitions/nonNegativeNumber"
+                      },
+                      {
+                        "maximum": 1
+                      }
                     ]
                   },
-                  "value": {"$ref": "#/definitions/nonNegativeNumber"}
+                  "value": {
+                    "$ref": "#/definitions/nonNegativeNumber"
+                  }
                 }
               }
             },
@@ -163,7 +201,9 @@
                 {
                   "type": "array",
                   "description": "A number is sampled uniformly from the given values",
-                  "items": {"$ref": "#/definitions/nonNegativeNumber"}
+                  "items": {
+                    "$ref": "#/definitions/nonNegativeNumber"
+                  }
                 },
                 {
                   "type": "object",
@@ -173,8 +213,12 @@
                     "max"
                   ],
                   "properties": {
-                    "min": {"$ref": "#/definitions/nonNegativeNumber"},
-                    "max": {"$ref": "#/definitions/nonNegativeNumber"}
+                    "min": {
+                      "$ref": "#/definitions/nonNegativeNumber"
+                    },
+                    "max": {
+                      "$ref": "#/definitions/nonNegativeNumber"
+                    }
                   }
                 }
               ]
@@ -187,8 +231,12 @@
                 "standardDeviation"
               ],
               "properties": {
-                "mean": {"$ref": "#/definitions/nonNegativeNumber"},
-                "standardDeviation": {"$ref": "#/definitions/nonNegativeNumber"}
+                "mean": {
+                  "$ref": "#/definitions/nonNegativeNumber"
+                },
+                "standardDeviation": {
+                  "$ref": "#/definitions/nonNegativeNumber"
+                }
               }
             },
             "gamma": {
@@ -217,31 +265,49 @@
       "$id": "#healthState",
       "description": "A value referrencing a state within the disease model.",
       "type": "object",
-      "required": ["healthState"],
+      "required": [
+        "healthState"
+      ],
       "properties": {
-        "healthState": {"$ref": "#/definitions/uniqueIdRef"}
+        "healthState": {
+          "$ref": "#/definitions/uniqueIdRef"
+        }
       }
     },
     "value": {
       "$id": "#value",
       "description": "A value used in comparisons and assignments.",
       "type": "object",
-      "required": ["value"],
+      "required": [
+        "value"
+      ],
       "properties": {
         "value": {
           "oneOf": [
             {
               "description": "A boolean property.",
               "type": "object",
-              "required": ["boolean"],
+              "required": [
+                "boolean"
+              ],
               "properties": {
-                "boolean": {"type": "boolean"}
+                "boolean": {
+                  "type": "boolean"
+                }
               }
             },
-            {"$ref": "#/definitions/id"},
-            {"$ref": "#/definitions/number"},
-            {"$ref": "#/definitions/healthState"},
-            {"$ref": "#/definitions/traitEnum"}
+            {
+              "$ref": "#/definitions/id"
+            },
+            {
+              "$ref": "#/definitions/number"
+            },
+            {
+              "$ref": "#/definitions/healthState"
+            },
+            {
+              "$ref": "#/definitions/traitEnum"
+            }
           ]
         }
       }
@@ -250,47 +316,65 @@
       "$id": "#valueList",
       "description": "A list of values used in comparisons and assignments.",
       "type": "object",
-      "required": ["valueList"],
+      "required": [
+        "valueList"
+      ],
       "properties": {
         "valueList": {
           "oneOf": [
             {
               "type": "object",
-              "required": ["boolean"],
+              "required": [
+                "boolean"
+              ],
               "properties": {
                 "boolean": {
                   "type": "array",
-                  "items": {"type": "boolean"}
+                  "items": {
+                    "type": "boolean"
+                  }
                 }
               }
             },
             {
               "type": "object",
-              "required": ["id"],
+              "required": [
+                "id"
+              ],
               "properties": {
                 "number": {
                   "type": "array",
-                  "items": {"$ref": "#/definitions/nonNegativeInteger"}
+                  "items": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                  }
                 }
               }
             },
             {
               "type": "object",
-              "required": ["number"],
+              "required": [
+                "number"
+              ],
               "properties": {
                 "number": {
                   "type": "array",
-                  "items": {"$ref": "#/definitions/nonNegativeNumber"}
+                  "items": {
+                    "$ref": "#/definitions/nonNegativeNumber"
+                  }
                 }
               }
             },
             {
               "type": "object",
-              "required": ["healthState"],
+              "required": [
+                "healthState"
+              ],
               "properties": {
                 "healthState": {
                   "type": "array",
-                  "items": {"$ref": "#/definitions/uniqueIdRef"}
+                  "items": {
+                    "$ref": "#/definitions/uniqueIdRef"
+                  }
                 }
               }
             },
@@ -312,7 +396,9 @@
                 },
                 "enum": {
                   "type": "array",
-                  "items": {"$ref": "#/definitions/uniqueIdRef"}
+                  "items": {
+                    "$ref": "#/definitions/uniqueIdRef"
+                  }
                 }
               }
             }
@@ -324,7 +410,9 @@
       "$id": "#observable",
       "description": "An observable which is always accessible within EpiHiper (time and health state statistics) of the current state of the system.",
       "type": "object",
-      "required": ["observable"],
+      "required": [
+        "observable"
+      ],
       "properties": {
         "observable": {
           "oneOf": [
@@ -335,7 +423,9 @@
                 "type"
               ],
               "properties": {
-                "healthState": {"$ref": "#/definitions/uniqueIdRef"},
+                "healthState": {
+                  "$ref": "#/definitions/uniqueIdRef"
+                },
                 "type": {
                   "type": "string",
                   "enum": [
@@ -356,12 +446,16 @@
             {
               "description": "The time property references the current simulation time.",
               "type": "string",
-              "enum": ["time"]
+              "enum": [
+                "time"
+              ]
             },
             {
               "description": "The total population is number of nodes as specified in contact network JSON header.",
               "type": "string",
-              "enum": ["totalPopulation"]
+              "enum": [
+                "totalPopulation"
+              ]
             }
           ]
         }
@@ -371,22 +465,34 @@
       "$id": "#dbField",
       "description": " A field in a table in the external person trait database.",
       "type": "object",
-      "required": ["field"],
+      "required": [
+        "field"
+      ],
       "properties": {
-        "table": {"$ref": "#/definitions/uniqueIdRef"},
-        "field": {"$ref": "#/definitions/uniqueIdRef"}
+        "table": {
+          "$ref": "#/definitions/uniqueIdRef"
+        },
+        "field": {
+          "$ref": "#/definitions/uniqueIdRef"
+        }
       }
     },
     "dbFieldValue": {
       "$id": "#dbFieldValue",
       "description": "A value for comparisons with field values in the external person trait database.",
       "type": "object",
-      "required": ["value"],
+      "required": [
+        "value"
+      ],
       "properties": {
         "value": {
           "oneOf": [
-            {"type": "number"},
-            {"type": "string"}
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
           ]
         }
       }
@@ -395,17 +501,23 @@
       "$id": "#dbFieldValueList",
       "description": "A list of value for comparisons with field values in the external person trait database.",
       "type": "object",
-      "required": ["valueList"],
+      "required": [
+        "valueList"
+      ],
       "properties": {
         "valueList": {
           "oneOf": [
             {
               "type": "array",
-              "items": {"type": "number"}
+              "items": {
+                "type": "number"
+              }
             },
             {
               "type": "array",
-              "items": {"type": "string"}
+              "items": {
+                "type": "string"
+              }
             }
           ]
         }
@@ -423,11 +535,19 @@
       "properties": {
         "elementType": {
           "type": "string",
-          "enum": ["dbField"]
+          "enum": [
+            "dbField"
+          ]
         },
-        "table": {"$ref": "#/definitions/uniqueIdRef"},
-        "field": {"$ref": "#/definitions/uniqueIdRef"},
-        "selector": {"$ref": "#/definitions/setContent"}
+        "table": {
+          "$ref": "#/definitions/uniqueIdRef"
+        },
+        "field": {
+          "$ref": "#/definitions/uniqueIdRef"
+        },
+        "selector": {
+          "$ref": "#/definitions/setContent"
+        }
       }
     },
     "dbSimpleQuery": {
@@ -440,9 +560,13 @@
             {
               "description": "A table in the external person trait database.",
               "type": "object",
-              "required": ["table"],
+              "required": [
+                "table"
+              ],
               "properties": {
-                "table": {"$ref": "#/definitions/uniqueIdRef"}
+                "table": {
+                  "$ref": "#/definitions/uniqueIdRef"
+                }
               }
             },
             {
@@ -453,14 +577,22 @@
                 "right"
               ],
               "properties": {
-                "operator": {"$ref": "#/definitions/comparisonOperator"},
-                "left": {"$ref": "#/definitions/dbField"},
+                "operator": {
+                  "$ref": "#/definitions/comparisonOperator"
+                },
+                "left": {
+                  "$ref": "#/definitions/dbField"
+                },
                 "right": {
                   "type": "object",
                   "description": "",
                   "oneOf": [
-                    {"$ref": "#/definitions/dbFieldValue"},
-                    {"$ref": "#/definitions/observable"}
+                    {
+                      "$ref": "#/definitions/dbFieldValue"
+                    },
+                    {
+                      "$ref": "#/definitions/observable"
+                    }
                   ]
                 }
               }
@@ -481,13 +613,19 @@
                     "not in"
                   ]
                 },
-                "left": {"$ref": "#/definitions/dbField"},
+                "left": {
+                  "$ref": "#/definitions/dbField"
+                },
                 "right": {
                   "type": "object",
                   "description": "",
                   "oneOf": [
-                    {"$ref": "#/definitions/dbFieldValueList"},
-                    {"$ref": "#/definitions/dbFieldValueSelector"}
+                    {
+                      "$ref": "#/definitions/dbFieldValueList"
+                    },
+                    {
+                      "$ref": "#/definitions/dbFieldValueSelector"
+                    }
                   ]
                 }
               }
@@ -503,7 +641,9 @@
         {
           "description": "The node properties: id, susceptibilityFactor, infectivityFactor, and healthState",
           "type": "object",
-          "required": ["property"],
+          "required": [
+            "property"
+          ],
           "properties": {
             "property": {
               "type": "string",
@@ -526,9 +666,13 @@
           "properties": {
             "property": {
               "type": "string",
-              "enum": ["nodeTrait"]
+              "enum": [
+                "nodeTrait"
+              ]
             },
-            "feature": {"$ref": "#/definitions/uniqueIdRef"}
+            "feature": {
+              "$ref": "#/definitions/uniqueIdRef"
+            }
           }
         }
       ]
@@ -540,7 +684,9 @@
         {
           "description": "The edge properties: targetId, sourceId, locationId, duration, weight and active",
           "type": "object",
-          "required": ["property"],
+          "required": [
+            "property"
+          ],
           "properties": {
             "property": {
               "type": "string",
@@ -571,7 +717,9 @@
                 "edgeTrait"
               ]
             },
-            "feature": {"$ref": "#/definitions/uniqueIdRef"}
+            "feature": {
+              "$ref": "#/definitions/uniqueIdRef"
+            }
           }
         }
       ]
@@ -589,7 +737,9 @@
       "$id": "#variable",
       "description": "A variable",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "type": "object",
           "required": [
@@ -600,7 +750,9 @@
           "properties": {
             "id": {
               "allOf": [
-                {"$ref": "#/definitions/uniqueId"},
+                {
+                  "$ref": "#/definitions/uniqueId"
+                },
                 {
                   "type": "string",
                   "not": {
@@ -612,9 +764,15 @@
                 }
               ]
             },
-            "initialValue": {"$ref": "#/definitions/nonNegativeNumber"},
-            "scope": {"$ref": "#/definitions/scope"},
-            "reset": {"$ref": "#/definitions/nonNegativeInteger"}
+            "initialValue": {
+              "$ref": "#/definitions/nonNegativeNumber"
+            },
+            "scope": {
+              "$ref": "#/definitions/scope"
+            },
+            "reset": {
+              "$ref": "#/definitions/nonNegativeInteger"
+            }
           },
           "patternProperties": {
             "^ann:": {}
@@ -627,24 +785,34 @@
       "$id": "#variables",
       "description": "A list of variables",
       "type": "array",
-      "items": {"$ref": "#/definitions/variable"}
+      "items": {
+        "$ref": "#/definitions/variable"
+      }
     },
     "variableReference": {
       "$id": "#variableReference",
       "description": "A variable reference.",
       "type": "object",
-      "required": ["variable"],
+      "required": [
+        "variable"
+      ],
       "properties": {
         "variable": {
           "type": "object",
-          "required": ["idRef"],
+          "required": [
+            "idRef"
+          ],
           "properties": {
             "idRef": {
               "oneOf": [
-                {"$ref": "#/definitions/uniqueIdRef"},
+                {
+                  "$ref": "#/definitions/uniqueIdRef"
+                },
                 {
                   "type": "string",
-                  "enum": ["%transmissibility%"]
+                  "enum": [
+                    "%transmissibility%"
+                  ]
                 }
               ]
             }
@@ -656,9 +824,13 @@
       "$id": "#sizeof",
       "description": "The count of the elements in a set.",
       "type": "object",
-      "required": ["sizeof"],
+      "required": [
+        "sizeof"
+      ],
       "properties": {
-        "sizeof": {"$ref": "#/definitions/setContent"}
+        "sizeof": {
+          "$ref": "#/definitions/setContent"
+        }
       }
     },
     "boolean": {
@@ -666,28 +838,44 @@
       "description": "A boolean value.",
       "type": "object",
       "oneOf": [
-        {"$ref": "#/definitions/booleanValue"},
-        {"$ref": "#/definitions/booleanNot"},
-        {"$ref": "#/definitions/booleanOperation"},
-        {"$ref": "#/definitions/comparison"}
+        {
+          "$ref": "#/definitions/booleanValue"
+        },
+        {
+          "$ref": "#/definitions/booleanNot"
+        },
+        {
+          "$ref": "#/definitions/booleanOperation"
+        },
+        {
+          "$ref": "#/definitions/comparison"
+        }
       ]
     },
     "booleanValue": {
       "$id": "#booleanValue",
       "description": "A fixed boolean value",
       "type": "object",
-      "required": ["value"],
+      "required": [
+        "value"
+      ],
       "properties": {
-        "value": {"type": "boolean"}
+        "value": {
+          "type": "boolean"
+        }
       }
     },
     "booleanNot": {
       "$id": "#booleanNot",
       "description": "Negates the boolean value",
       "type": "object",
-      "required": ["not"],
+      "required": [
+        "not"
+      ],
       "properties": {
-        "not": {"$ref": "#/definitions/boolean"}
+        "not": {
+          "$ref": "#/definitions/boolean"
+        }
       }
     },
     "booleanOperation": {
@@ -696,21 +884,29 @@
       "type": "object",
       "oneOf": [
         {
-          "required": ["and"],
+          "required": [
+            "and"
+          ],
           "properties": {
             "and": {
               "type": "array",
-              "items": {"$ref": "#/definitions/boolean"}
+              "items": {
+                "$ref": "#/definitions/boolean"
+              }
             }
           },
           "additionalProperties": false
         },
         {
-          "required": ["or"],
+          "required": [
+            "or"
+          ],
           "properties": {
             "or": {
               "type": "array",
-              "items": {"$ref": "#/definitions/boolean"}
+              "items": {
+                "$ref": "#/definitions/boolean"
+              }
             }
           },
           "additionalProperties": false
@@ -743,53 +939,87 @@
             "right"
           ],
           "properties": {
-            "operator": {"$ref": "#/definitions/comparisonOperator"},
+            "operator": {
+              "$ref": "#/definitions/comparisonOperator"
+            },
             "left": {
               "type": "object",
               "description": "",
               "oneOf": [
-                {"$ref": "#/definitions/value"},
-                {"$ref": "#/definitions/observable"},
+                {
+                  "$ref": "#/definitions/value"
+                },
+                {
+                  "$ref": "#/definitions/observable"
+                },
                 {
                   "type": "object",
-                  "required": ["node"],
+                  "required": [
+                    "node"
+                  ],
                   "properties": {
-                    "node": {"$ref": "#/definitions/nodeProperty"}
+                    "node": {
+                      "$ref": "#/definitions/nodeProperty"
+                    }
                   }
                 },
                 {
                   "type": "object",
-                  "required": ["edge"],
+                  "required": [
+                    "edge"
+                  ],
                   "properties": {
-                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                    "edge": {
+                      "$ref": "#/definitions/edgeProperty"
+                    }
                   }
                 },
-                {"$ref": "#/definitions/variableReference"},
-                {"$ref": "#/definitions/sizeof"}
+                {
+                  "$ref": "#/definitions/variableReference"
+                },
+                {
+                  "$ref": "#/definitions/sizeof"
+                }
               ]
             },
             "right": {
               "type": "object",
               "description": "",
               "oneOf": [
-                {"$ref": "#/definitions/value"},
-                {"$ref": "#/definitions/observable"},
+                {
+                  "$ref": "#/definitions/value"
+                },
+                {
+                  "$ref": "#/definitions/observable"
+                },
                 {
                   "type": "object",
-                  "required": ["node"],
+                  "required": [
+                    "node"
+                  ],
                   "properties": {
-                    "node": {"$ref": "#/definitions/nodeProperty"}
+                    "node": {
+                      "$ref": "#/definitions/nodeProperty"
+                    }
                   }
                 },
                 {
                   "type": "object",
-                  "required": ["edge"],
+                  "required": [
+                    "edge"
+                  ],
                   "properties": {
-                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                    "edge": {
+                      "$ref": "#/definitions/edgeProperty"
+                    }
                   }
                 },
-                {"$ref": "#/definitions/variableReference"},
-                {"$ref": "#/definitions/sizeof"}
+                {
+                  "$ref": "#/definitions/variableReference"
+                },
+                {
+                  "$ref": "#/definitions/sizeof"
+                }
               ]
             }
           }
@@ -815,25 +1045,39 @@
               "type": "object",
               "description": "",
               "oneOf": [
-                {"$ref": "#/definitions/observable"},
-                {"$ref": "#/definitions/variableReference"},
+                {
+                  "$ref": "#/definitions/observable"
+                },
+                {
+                  "$ref": "#/definitions/variableReference"
+                },
                 {
                   "type": "object",
-                  "required": ["node"],
+                  "required": [
+                    "node"
+                  ],
                   "properties": {
-                    "node": {"$ref": "#/definitions/nodeProperty"}
+                    "node": {
+                      "$ref": "#/definitions/nodeProperty"
+                    }
                   }
                 },
                 {
                   "type": "object",
-                  "required": ["edge"],
+                  "required": [
+                    "edge"
+                  ],
                   "properties": {
-                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                    "edge": {
+                      "$ref": "#/definitions/edgeProperty"
+                    }
                   }
                 }
               ]
             },
-            "right": {"$ref": "#/definitions/valueList"}
+            "right": {
+              "$ref": "#/definitions/valueList"
+            }
           }
         }
       ]
@@ -842,14 +1086,24 @@
       "$id": "#action",
       "description": "An action to be executed.",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "type": "object",
-          "required": ["operations"],
+          "required": [
+            "operations"
+          ],
           "properties": {
-            "priority": {"$ref": "#/definitions/nonNegativeNumber"},
-            "delay": {"$ref": "#/definitions/nonNegativeNumber"},
-            "condition": {"$ref": "#/definitions/boolean"},
+            "priority": {
+              "$ref": "#/definitions/nonNegativeNumber"
+            },
+            "delay": {
+              "$ref": "#/definitions/nonNegativeNumber"
+            },
+            "condition": {
+              "$ref": "#/definitions/boolean"
+            },
             "checkConditionInterval": {
               "description": "",
               "type": "object",
@@ -858,8 +1112,12 @@
                 "max"
               ],
               "properties": {
-                "min": {"$ref": "#/definitions/nonNegativeNumber"},
-                "max": {"$ref": "#/definitions/nonNegativeNumber"}
+                "min": {
+                  "$ref": "#/definitions/nonNegativeNumber"
+                },
+                "max": {
+                  "$ref": "#/definitions/nonNegativeNumber"
+                }
               }
             },
             "operations": {
@@ -869,7 +1127,9 @@
               "items": {
                 "description": "operation",
                 "allOf": [
-                  {"$ref": "#/definitions/annotation"},
+                  {
+                    "$ref": "#/definitions/annotation"
+                  },
                   {
                     "description": "",
                     "type": "object",
@@ -882,11 +1142,15 @@
                         "oneOf": [
                           {
                             "type": "object",
-                            "required": ["node"],
+                            "required": [
+                              "node"
+                            ],
                             "properties": {
                               "node": {
                                 "allOf": [
-                                  {"$ref": "#/definitions/nodeProperty"},
+                                  {
+                                    "$ref": "#/definitions/nodeProperty"
+                                  },
                                   {
                                     "type": "object",
                                     "description": "These properties are read only",
@@ -894,7 +1158,9 @@
                                       "property": {
                                         "type": "string",
                                         "not": {
-                                          "enum": ["id"]
+                                          "enum": [
+                                            "id"
+                                          ]
                                         }
                                       }
                                     }
@@ -905,11 +1171,15 @@
                           },
                           {
                             "type": "object",
-                            "required": ["edge"],
+                            "required": [
+                              "edge"
+                            ],
                             "properties": {
                               "edge": {
                                 "allOf": [
-                                  {"$ref": "#/definitions/edgeProperty"},
+                                  {
+                                    "$ref": "#/definitions/edgeProperty"
+                                  },
                                   {
                                     "type": "object",
                                     "description": "These properties are read only",
@@ -932,7 +1202,9 @@
                               }
                             }
                           },
-                          {"$ref": "#/definitions/variableReference"}
+                          {
+                            "$ref": "#/definitions/variableReference"
+                          }
                         ]
                       },
                       "operator": {
@@ -954,10 +1226,18 @@
                   },
                   {
                     "oneOf": [
-                      {"$ref": "#/definitions/value"},
-                      {"$ref": "#/definitions/observable"},
-                      {"$ref": "#/definitions/variableReference"},
-                      {"$ref": "#/definitions/sizeof"}
+                      {
+                        "$ref": "#/definitions/value"
+                      },
+                      {
+                        "$ref": "#/definitions/observable"
+                      },
+                      {
+                        "$ref": "#/definitions/variableReference"
+                      },
+                      {
+                        "$ref": "#/definitions/sizeof"
+                      }
                     ]
                   }
                 ]
@@ -975,13 +1255,17 @@
       "$id": "#actions",
       "description": "A list of actions to be executed.",
       "type": "object",
-      "required": ["actions"],
+      "required": [
+        "actions"
+      ],
       "properties": {
         "actions": {
           "description": "",
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/definitions/action"}
+          "items": {
+            "$ref": "#/definitions/action"
+          }
         }
       }
     },
@@ -989,7 +1273,9 @@
       "$id": "#sampling",
       "description": "Sampling within a set with actions for sampled and non-sampled individuals.",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "oneOf": [
             {
@@ -1041,13 +1327,21 @@
                 },
                 "variable": {
                   "type": "object",
-                  "required": ["idRef"],
+                  "required": [
+                    "idRef"
+                  ],
                   "properties": {
-                    "idRef": {"$ref": "#/definitions/uniqueIdRef"}
+                    "idRef": {
+                      "$ref": "#/definitions/uniqueIdRef"
+                    }
                   }
                 },
-                "sampled": {"$ref": "#/definitions/actionEnsemble"},
-                "nonsampled": {"$ref": "#/definitions/actionEnsemble"},
+                "sampled": {
+                  "$ref": "#/definitions/actionEnsemble"
+                },
+                "nonsampled": {
+                  "$ref": "#/definitions/actionEnsemble"
+                },
                 "patternProperties": {
                   "^ann:": {}
                 },
@@ -1091,7 +1385,9 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": ["absolute"]
+                  "enum": [
+                    "absolute"
+                  ]
                 },
                 "number": {
                   "type": "number",
@@ -1100,13 +1396,21 @@
                 },
                 "variable": {
                   "type": "object",
-                  "required": ["idRef"],
+                  "required": [
+                    "idRef"
+                  ],
                   "properties": {
-                    "idRef": {"$ref": "#/definitions/uniqueIdRef"}
+                    "idRef": {
+                      "$ref": "#/definitions/uniqueIdRef"
+                    }
                   }
                 },
-                "sampled": {"$ref": "#/definitions/actionEnsemble"},
-                "nonsampled": {"$ref": "#/definitions/actionEnsemble"},
+                "sampled": {
+                  "$ref": "#/definitions/actionEnsemble"
+                },
+                "nonsampled": {
+                  "$ref": "#/definitions/actionEnsemble"
+                },
                 "patternProperties": {
                   "^ann:": {}
                 },
@@ -1125,15 +1429,21 @@
           "description": "A list of actions to be executed once.",
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/definitions/action"}
+          "items": {
+            "$ref": "#/definitions/action"
+          }
         },
         "foreach": {
           "description": "A list of actions to be executed for each element in the filter.",
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/definitions/action"}
+          "items": {
+            "$ref": "#/definitions/action"
+          }
         },
-        "sampling": {"$ref": "#/definitions/sampling"}
+        "sampling": {
+          "$ref": "#/definitions/sampling"
+        }
       },
       "patternProperties": {
         "^ann:": {},
@@ -1148,11 +1458,15 @@
       "type": "object",
       "allOf": [
         {
-          "required": ["elementType"],
+          "required": [
+            "elementType"
+          ],
           "properties": {
             "elementType": {
               "type": "string",
-              "enum": ["edge"]
+              "enum": [
+                "edge"
+              ]
             }
           }
         },
@@ -1167,15 +1481,23 @@
                 "right"
               ],
               "properties": {
-                "operator": {"$ref": "#/definitions/comparisonOperator"},
+                "operator": {
+                  "$ref": "#/definitions/comparisonOperator"
+                },
                 "left": {
                   "type": "object",
-                  "required": ["edge"],
+                  "required": [
+                    "edge"
+                  ],
                   "properties": {
-                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                    "edge": {
+                      "$ref": "#/definitions/edgeProperty"
+                    }
                   }
                 },
-                "right": {"$ref": "#/definitions/value"}
+                "right": {
+                  "$ref": "#/definitions/value"
+                }
               }
             },
             {
@@ -1190,16 +1512,26 @@
                 "operator": {
                   "description": "",
                   "type": "string",
-                  "enum": ["withPropertyIn"]
+                  "enum": [
+                    "withPropertyIn",
+                    "in",
+                    "not in"
+                  ]
                 },
                 "left": {
                   "type": "object",
-                  "required": ["edge"],
+                  "required": [
+                    "edge"
+                  ],
                   "properties": {
-                    "edge": {"$ref": "#/definitions/edgeProperty"}
+                    "edge": {
+                      "$ref": "#/definitions/edgeProperty"
+                    }
                   }
                 },
-                "right": {"$ref": "#/definitions/valueList"}
+                "right": {
+                  "$ref": "#/definitions/valueList"
+                }
               }
             },
             {
@@ -1218,10 +1550,14 @@
                     "withSourceNodeIn"
                   ]
                 },
-                "selector": {"$ref": "#/definitions/setContent"}
+                "selector": {
+                  "$ref": "#/definitions/setContent"
+                }
               }
             },
-            {"$ref": "#/definitions/dbSimpleQuery"}
+            {
+              "$ref": "#/definitions/dbSimpleQuery"
+            }
           ]
         }
       ]
@@ -1240,7 +1576,9 @@
           "properties": {
             "elementType": {
               "type": "string",
-              "enum": ["node"]
+              "enum": [
+                "node"
+              ]
             },
             "scope": {
               "type": "string",
@@ -1260,15 +1598,23 @@
                 "right"
               ],
               "properties": {
-                "operator": {"$ref": "#/definitions/comparisonOperator"},
+                "operator": {
+                  "$ref": "#/definitions/comparisonOperator"
+                },
                 "left": {
                   "type": "object",
-                  "required": ["node"],
+                  "required": [
+                    "node"
+                  ],
                   "properties": {
-                    "node": {"$ref": "#/definitions/nodeProperty"}
+                    "node": {
+                      "$ref": "#/definitions/nodeProperty"
+                    }
                   }
                 },
-                "right": {"$ref": "#/definitions/value"}
+                "right": {
+                  "$ref": "#/definitions/value"
+                }
               }
             },
             {
@@ -1282,16 +1628,26 @@
                 "operator": {
                   "description": "",
                   "type": "string",
-                  "enum": ["withPropertyIn"]
+                  "enum": [
+                    "withPropertyIn",
+                    "in",
+                    "not in"
+                  ]
                 },
                 "left": {
                   "type": "object",
-                  "required": ["node"],
+                  "required": [
+                    "node"
+                  ],
                   "properties": {
-                    "node": {"$ref": "#/definitions/nodeProperty"}
+                    "node": {
+                      "$ref": "#/definitions/nodeProperty"
+                    }
                   }
                 },
-                "right": {"$ref": "#/definitions/valueList"}
+                "right": {
+                  "$ref": "#/definitions/valueList"
+                }
               }
             },
             {
@@ -1304,12 +1660,18 @@
                 "operator": {
                   "description": "",
                   "type": "string",
-                  "enum": ["withIncomingEdgeIn"]
+                  "enum": [
+                    "withIncomingEdgeIn"
+                  ]
                 },
-                "selector": {"$ref": "#/definitions/setContent"}
+                "selector": {
+                  "$ref": "#/definitions/setContent"
+                }
               }
             },
-            {"$ref": "#/definitions/dbSimpleQuery"}
+            {
+              "$ref": "#/definitions/dbSimpleQuery"
+            }
           ]
         }
       ]
@@ -1318,19 +1680,33 @@
       "$id": "#setContent",
       "description": "The specification of the content of a set.",
       "oneOf": [
-        {"$ref": "#/definitions/edgeElementSelector"},
-        {"$ref": "#/definitions/nodeElementSelector"},
-        {"$ref": "#/definitions/dbFieldValueSelector"},
-        {"$ref": "#/definitions/setOperation"},
-        {"$ref": "#/definitions/setReference"},
+        {
+          "$ref": "#/definitions/edgeElementSelector"
+        },
+        {
+          "$ref": "#/definitions/nodeElementSelector"
+        },
+        {
+          "$ref": "#/definitions/dbFieldValueSelector"
+        },
+        {
+          "$ref": "#/definitions/setOperation"
+        },
+        {
+          "$ref": "#/definitions/setReference"
+        },
         {
           "description": "Either all nodes or all edges",
           "type": "object",
-          "required": ["elementType"],
+          "required": [
+            "elementType"
+          ],
           "properties": {
             "elementType": {
               "type": "string",
-              "enum": ["edge"]
+              "enum": [
+                "edge"
+              ]
             }
           },
           "additionalProperties": false
@@ -1345,7 +1721,9 @@
           "properties": {
             "elementType": {
               "type": "string",
-              "enum": ["node"]
+              "enum": [
+                "node"
+              ]
             },
             "scope": {
               "type": "string",
@@ -1363,15 +1741,21 @@
       "$id": "#setReference",
       "description": "A reference to a set.",
       "type": "object",
-      "required": ["set"],
+      "required": [
+        "set"
+      ],
       "properties": {
         "set": {
           "type": "object",
-          "required": ["idRef"],
+          "required": [
+            "idRef"
+          ],
           "properties": {
             "idRef": {
               "oneOf": [
-                {"$ref": "#/definitions/uniqueIdRef"},
+                {
+                  "$ref": "#/definitions/uniqueIdRef"
+                },
                 {
                   "type": "string",
                   "enum": [
@@ -1388,7 +1772,9 @@
       "$id": "#set",
       "description": "A set of elements.",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "type": "object",
           "required": [
@@ -1397,9 +1783,15 @@
             "scope"
           ],
           "properties": {
-            "id": {"$ref": "#/definitions/uniqueId"},
-            "content": {"$ref": "#/definitions/setContent"},
-            "scope": {"$ref": "#/definitions/scope"}
+            "id": {
+              "$ref": "#/definitions/uniqueId"
+            },
+            "content": {
+              "$ref": "#/definitions/setContent"
+            },
+            "scope": {
+              "$ref": "#/definitions/scope"
+            }
           },
           "patternProperties": {
             "^ann:": {}
@@ -1412,18 +1804,26 @@
       "$id": "#sets",
       "description": "A list of sets",
       "type": "array",
-      "items": {"$ref": "#/definitions/set"}
+      "items": {
+        "$ref": "#/definitions/set"
+      }
     },
     "target": {
       "$id": "#target",
       "description": "Target for set content",
       "type": "object",
-      "required": ["target"],
+      "required": [
+        "target"
+      ],
       "properties": {
         "target": {
           "allOf": [
-            {"$ref": "#/definitions/annotation"},
-            {"$ref": "#/definitions/setContent"}
+            {
+              "$ref": "#/definitions/annotation"
+            },
+            {
+              "$ref": "#/definitions/setContent"
+            }
           ]
         }
       }
@@ -1446,7 +1846,9 @@
         },
         "sets": {
           "type": "array",
-          "items": {"$ref": "#/definitions/setContent"}
+          "items": {
+            "$ref": "#/definitions/setContent"
+          }
         }
       },
       "additionalProperties": false
@@ -1456,14 +1858,22 @@
       "description": "A trigger evaluating to true or false.",
       "type": "object",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
         {
-          "required": ["trigger"],
+          "$ref": "#/definitions/annotation"
+        },
+        {
+          "required": [
+            "trigger"
+          ],
           "properties": {
-            "trigger": {"$ref": "#/definitions/boolean"},
+            "trigger": {
+              "$ref": "#/definitions/boolean"
+            },
             "interventionIds": {
               "type": "array",
-              "items": {"$ref": "#/definitions/uniqueIdRef"},
+              "items": {
+                "$ref": "#/definitions/uniqueIdRef"
+              },
               "uniqueItems": true
             }
           },
@@ -1476,23 +1886,33 @@
     },
     "triggers": {
       "type": "array",
-      "items": {"$ref": "#/definitions/trigger"}
+      "items": {
+        "$ref": "#/definitions/trigger"
+      }
     },
     "assignmentSet": {
       "$id": "#assignmentSet",
       "description": "A set of object with an associated action ensemble",
       "type": "object",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
-        {"$ref": "#/definitions/target"},
-        {"$ref": "#/definitions/actionEnsemble"}
+        {
+          "$ref": "#/definitions/annotation"
+        },
+        {
+          "$ref": "#/definitions/target"
+        },
+        {
+          "$ref": "#/definitions/actionEnsemble"
+        }
       ]
     },
     "initializations": {
       "$id": "#initializations",
       "description": "A list of initializations to be executed before the simulation starts.",
       "type": "array",
-      "items": {"$ref": "#/definitions/assignmentSet"}
+      "items": {
+        "$ref": "#/definitions/assignmentSet"
+      }
     },
     "intervention": {
       "$id": "#intervention",
@@ -1503,40 +1923,58 @@
           "oneOf": [
             {
               "type": "object",
-              "required": ["id"],
+              "required": [
+                "id"
+              ],
               "properties": {
-                "id": {"$ref": "#/definitions/uniqueId"}
+                "id": {
+                  "$ref": "#/definitions/uniqueId"
+                }
               }
             },
             {
               "type": "object",
-              "required": ["trigger"],
+              "required": [
+                "trigger"
+              ],
               "properties": {
-                "trigger": {"$ref": "#/definitions/boolean"}
+                "trigger": {
+                  "$ref": "#/definitions/boolean"
+                }
               }
             }
           ]
         },
-        {"$ref": "#/definitions/assignmentSet"}
+        {
+          "$ref": "#/definitions/assignmentSet"
+        }
       ]
     },
     "interventions": {
       "$id": "#interventions",
       "description": "A list of interventions",
       "type": "array",
-      "items": {"$ref": "#/definitions/intervention"}
+      "items": {
+        "$ref": "#/definitions/intervention"
+      }
     },
     "featureEnum": {
       "$id": "#featureEnum",
       "description": "An enumeration value allowed for a feature",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "description": "An enumeration value",
           "type": "object",
-          "required": ["id"],
+          "required": [
+            "id"
+          ],
           "properties": {
-            "id": {"$ref": "#/definitions/uniqueId"}
+            "id": {
+              "$ref": "#/definitions/uniqueId"
+            }
           },
           "patternProperties": {
             "^ann:": {}
@@ -1549,14 +1987,18 @@
       "$id": "#featureEnums",
       "description": "The enumeration values allowed for the feature",
       "type": "array",
-      "items": {"$ref": "#/definitions/featureEnum"},
+      "items": {
+        "$ref": "#/definitions/featureEnum"
+      },
       "minItems": 1
     },
     "traitFeature": {
       "$id": "#traitFeature",
       "description": "A feature of a trait",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "type": "object",
           "required": [
@@ -1564,9 +2006,15 @@
             "enums"
           ],
           "properties": {
-            "id": {"$ref": "#/definitions/uniqueId"},
-            "enums": {"$ref": "#/definitions/featureEnums"},
-            "default": {"$ref": "#/definitions/uniqueIdRef"}
+            "id": {
+              "$ref": "#/definitions/uniqueId"
+            },
+            "enums": {
+              "$ref": "#/definitions/featureEnums"
+            },
+            "default": {
+              "$ref": "#/definitions/uniqueIdRef"
+            }
           },
           "patternProperties": {
             "^ann:": {}
@@ -1579,14 +2027,18 @@
       "$id": "#traitFeatures",
       "description": "A list of features included in a trait",
       "type": "array",
-      "items": {"$ref": "#/definitions/traitFeature"},
+      "items": {
+        "$ref": "#/definitions/traitFeature"
+      },
       "minItems": 1
     },
     "trait": {
       "$id": "#trait",
       "description": "A trait.",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "description": "A trait",
           "type": "object",
@@ -1595,8 +2047,12 @@
             "features"
           ],
           "properties": {
-            "id": {"$ref": "#/definitions/uniqueId"},
-            "features": {"$ref": "#/definitions/traitFeatures"}
+            "id": {
+              "$ref": "#/definitions/uniqueId"
+            },
+            "features": {
+              "$ref": "#/definitions/traitFeatures"
+            }
           },
           "patternProperties": {
             "^ann:": {}
@@ -1609,12 +2065,18 @@
       "$id": "#traits",
       "description": "The traits array.",
       "type": "array",
-      "items": {"$ref": "#/definitions/trait"}
+      "items": {
+        "$ref": "#/definitions/trait"
+      }
     },
-    "csvDataResource": {"$ref": "./personTraitDB/schemas/dictionary.json#/definitions/tabularDataResource"},
+    "csvDataResource": {
+      "$ref": "./personTraitDB/schemas/dictionary.json#/definitions/tabularDataResource"
+    },
     "csvDataResources": {
       "type": "array",
-      "items": {"$ref": "#/definitions/csvDataResource"}
+      "items": {
+        "$ref": "#/definitions/csvDataResource"
+      }
     },
     "localPath": {
       "type": "string",
@@ -1641,30 +2103,46 @@
       "$id": "#facet",
       "description": "A facet of the object.",
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "type": "object",
-          "required": ["value"],
+          "required": [
+            "value"
+          ],
           "properties": {
             "value": {
               "oneOf": [
-                {"type": "string"},
-                {"type": "number"}
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
               ]
             },
-            "unit": {"type": "string"}
+            "unit": {
+              "type": "string"
+            }
           }
         }
       ]
     },
     "facetGroup": {
       "allOf": [
-        {"$ref": "#/definitions/annotation"},
+        {
+          "$ref": "#/definitions/annotation"
+        },
         {
           "type": "object",
-          "required": ["facets"],
+          "required": [
+            "facets"
+          ],
           "properties": {
-            "facets": {"$ref": "#/definitions/facets"}
+            "facets": {
+              "$ref": "#/definitions/facets"
+            }
           }
         }
       ]
@@ -1673,8 +2151,12 @@
       "type": "array",
       "items": {
         "oneOf": [
-          {"$ref": "#/definitions/facet"},
-          {"$ref": "#/definitions/facetGroup"}
+          {
+            "$ref": "#/definitions/facet"
+          },
+          {
+            "$ref": "#/definitions/facetGroup"
+          }
         ]
       }
     }

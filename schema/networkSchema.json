@@ -66,12 +66,16 @@
     "activityEncoding": {
       "description": "The features and their valid values encoded in the target and source activities",
       "allOf": [
-        {"$ref": "./typeRegistry.json#/definitions/trait"},
+        {
+          "$ref": "./typeRegistry.json#/definitions/trait"
+        },
         {
           "type": "object",
           "properties": {
             "id": {
-              "enum": ["activityTrait"]
+              "enum": [
+                "activityTrait"
+              ]
             }
           }
         }
@@ -84,12 +88,16 @@
     "edgeTraitEncoding": {
       "description": "The features and their valid values encoded in the edge trait",
       "allOf": [
-        {"$ref": "./typeRegistry.json#/definitions/trait"},
+        {
+          "$ref": "./typeRegistry.json#/definitions/trait"
+        },
         {
           "type": "object",
           "properties": {
             "id": {
-              "enum": ["edgeTrait"]
+              "enum": [
+                "edgeTrait"
+              ]
             }
           }
         }
