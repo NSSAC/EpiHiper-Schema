@@ -127,6 +127,7 @@
       }
     }
   ],
+  "applications": ["EpiHiper"],
   "exceads": {
     "requires": {
       "allOf": ["nodeTraits.json"]

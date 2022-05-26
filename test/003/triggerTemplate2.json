@@ -126,6 +126,7 @@
       }
     }
   ],
+  "applications": ["EpiHiper"],
   "exceads": {
     "requires": {
       "allOf": [

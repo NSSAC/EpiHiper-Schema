@@ -149,13 +149,13 @@
               },
               {
                 "set": {"idRef": "nomHomeSourceEdges"}
-              } 
+              }
             ]
           },
           {
             "operation": "intersection",
             "sets": [
-              { 
+              {
                 "scope": "global",
                 "elementType": "edge",
                 "operator": "withTargetNodeIn",
@@ -480,51 +480,53 @@
             "type": "absolute",
             "number": 50,
             "sampled": {
-              "type": "individual",
-              "number": 50,
-              "sampled": {
-                "foreach": [
-                  {
-                    "priority": 1,
-                    "delay": 1,
-                    "operations": [
-                      {
-                        "target": {
-                          "node": {
-                            "property": "nodeTrait",
-                            "feature": "called"
+              "sampling": {
+                "type": "individual",
+                "number": 50,
+                "sampled": {
+                  "foreach": [
+                    {
+                      "priority": 1,
+                      "delay": 1,
+                      "operations": [
+                        {
+                          "target": {
+                            "node": {
+                              "property": "nodeTrait",
+                              "feature": "called"
+                            }
+                          },
+                          "operator": "=",
+                          "value": {
+                            "trait": "nodeTrait",
+                            "feature": "called",
+                            "enum": "participate"
                           }
-                        },
-                        "operator": "=",
-                        "value": {
-                          "trait": "nodeTrait",
-                          "feature": "called",
-                          "enum": "participate"
                         }
-                      }
-                    ]
-                  },
-                  {
-                    "delay": 2,
-                    "priority": 10,
-                    "operations": [
-                      {
-                        "target": {
-                          "node": {
-                            "property": "nodeTrait",
-                            "feature": "called"
+                      ]
+                    },
+                    {
+                      "delay": 2,
+                      "priority": 10,
+                      "operations": [
+                        {
+                          "target": {
+                            "node": {
+                              "property": "nodeTrait",
+                              "feature": "called"
+                            }
+                          },
+                          "operator": "=",
+                          "value": {
+                            "trait": "nodeTrait",
+                            "feature": "called",
+                            "enum": "false"
                           }
-                        },
-                        "operator": "=",
-                        "value": {
-                          "trait": "nodeTrait",
-                          "feature": "called",
-                          "enum": "false"
                         }
-                      }
-                    ]
-                  }
-                ]
+                      ]
+                    }
+                  ]
+                }
               }
             },
             "nonsampled": {
@@ -532,51 +534,53 @@
                 "type": "absolute",
                 "number": 50,
                 "sampled": {
-                  "type": "individual",
-                  "number": 50,
-                  "sampled": {
-                    "foreach": [
-                      {
-                        "priority": 1,
-                        "delay": 2,
-                        "operations": [
-                          {
-                            "target": {
-                              "node": {
-                                "property": "nodeTrait",
-                                "feature": "called"
+                  "sampling": {
+                    "type": "individual",
+                    "number": 50,
+                    "sampled": {
+                      "foreach": [
+                        {
+                          "priority": 1,
+                          "delay": 2,
+                          "operations": [
+                            {
+                              "target": {
+                                "node": {
+                                  "property": "nodeTrait",
+                                  "feature": "called"
+                                }
+                              },
+                              "operator": "=",
+                              "value": {
+                                "trait": "nodeTrait",
+                                "feature": "called",
+                                "enum": "participate"
                               }
-                            },
-                            "operator": "=",
-                            "value": {
-                              "trait": "nodeTrait",
-                              "feature": "called",
-                              "enum": "participate"
                             }
-                          }
-                        ]
-                      },
-                      {
-                        "delay": 3,
-                        "priority": 10,
-                        "operations": [
-                          {
-                            "target": {
-                              "node": {
-                                "property": "nodeTrait",
-                                "feature": "called"
+                          ]
+                        },
+                        {
+                          "delay": 3,
+                          "priority": 10,
+                          "operations": [
+                            {
+                              "target": {
+                                "node": {
+                                  "property": "nodeTrait",
+                                  "feature": "called"
+                                }
+                              },
+                              "operator": "=",
+                              "value": {
+                                "trait": "nodeTrait",
+                                "feature": "called",
+                                "enum": "false"
                               }
-                            },
-                            "operator": "=",
-                            "value": {
-                              "trait": "nodeTrait",
-                              "feature": "called",
-                              "enum": "false"
                             }
-                          }
-                        ]
-                      }
-                    ]
+                          ]
+                        }
+                      ]
+                    }
                   }
                 }
               }

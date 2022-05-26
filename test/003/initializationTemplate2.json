@@ -49,6 +49,7 @@
       "value": {"healthState": "Isymp"}
     }
   ],
+  "applications": ["EpiHiper"],
   "exceads": {
     "requires": {
       "allOf": ["diseaseModelTemplate1.json"]

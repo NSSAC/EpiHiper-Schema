@@ -10,7 +10,8 @@
         "epiHiperSchema",
         "template",
         "userInput",
-        "requirements"
+        "requirements",
+        "applications"
       ],
       "properties": {
         "epiHiperSchema": {
@@ -158,6 +159,16 @@
         "exceads": {
           "description": "Information used within EXCEADS",
           "$ref": "./exceadsSchema.json"
+        },
+        "applications": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "EpiHiper",
+              "PatchSim"
+            ]
+          }
         }
       }
     }

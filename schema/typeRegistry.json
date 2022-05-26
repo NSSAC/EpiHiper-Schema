@@ -2029,8 +2029,7 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/traitFeature"
-      },
-      "minItems": 1
+      }
     },
     "trait": {
       "$id": "#trait",

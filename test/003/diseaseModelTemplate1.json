@@ -215,6 +215,7 @@
     }
   ],
   "requirements": [],
+  "applications": ["EpiHiper"],
   "exceads": {
     "name": "Influenza Disease Model",
     "shortName": "SEIR"

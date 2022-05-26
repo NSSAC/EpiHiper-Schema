@@ -191,6 +191,7 @@
       }
     }
   ],
+  "applications": ["EpiHiper"],
   "exceads": {
     "input": [
       {
@@ -205,7 +206,8 @@
         "exceads": {}
       }
     ],
-    "exceads": {
+     "applications": ["EpiHiper"],
+     "exceads": {
       "requires": {
         "allOf": [
           "interventionTemplate2.json",
