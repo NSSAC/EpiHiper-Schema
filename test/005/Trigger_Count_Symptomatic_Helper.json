@@ -128,7 +128,7 @@
       }
     }
   ],
-  "applications": ["EpiHiper"],
+  "engines": ["EpiHiper"],
   "exceads": {
     "requires": {
       "allOf": ["nodeTraits.json"]

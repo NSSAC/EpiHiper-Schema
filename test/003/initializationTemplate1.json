@@ -163,7 +163,7 @@
       "field": "age_group"
     }
   ],
-  "applications": ["EpiHiper"],
+  "engines": ["EpiHiper"],
   "exceads": {
     "requires": {
       "allOf": ["montgomery_county_va.json"]

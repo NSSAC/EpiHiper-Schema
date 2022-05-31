@@ -160,7 +160,7 @@
           "description": "Information used within EXCEADS",
           "$ref": "./exceadsSchema.json"
         },
-        "applications": {
+        "engines": {
           "type": "array",
           "items": {
             "type": "string",

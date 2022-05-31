@@ -191,7 +191,7 @@
       }
     }
   ],
-  "applications": ["EpiHiper"],
+  "engines": ["EpiHiper"],
   "exceads": {
     "input": [
       {
@@ -206,7 +206,7 @@
         "exceads": {}
       }
     ],
-     "applications": ["EpiHiper"],
+     "engines": ["EpiHiper"],
      "exceads": {
       "requires": {
         "allOf": [

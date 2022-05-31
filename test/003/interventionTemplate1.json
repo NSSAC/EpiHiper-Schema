@@ -148,7 +148,7 @@
       }
     }
   ],
-  "applications": ["EpiHiper"],
+  "engines": ["EpiHiper"],
   "exceads": {
     "requires": {
       "allOff": [

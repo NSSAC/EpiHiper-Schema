@@ -363,7 +363,7 @@
       }
     }
   ],
-  "applications": ["EpiHiper"],
+  "engines": ["EpiHiper"],
   "exceads": {
     "requires": {
       "allOf": ["triggerTemplate1.json"]
