@@ -53,6 +53,23 @@
       "description": "The seed for the random number generator (default: auto generated)",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
     },
+    "reseed": {
+      "type":"array",
+      "items": {
+        "type":"object",
+        "required": ["tick"],
+        "properties": {
+          "tick": {
+            "description": "The tick at which the seed should be changed",
+            "type": "integer"
+          },
+          "seed": {
+            "description": "The seed for the random number generator (default: auto generated)",
+            "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+          }
+        }
+      }
+    },
     "replicate": {
       "description": "The number of the replicate created with the job",
       "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
