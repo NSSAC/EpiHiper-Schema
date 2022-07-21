@@ -1,6 +1,6 @@
 {
 	"name": "@shoops/epi-hiper-validator",
-	"version": "1.4.1",
+	"version": "1.4.2",
 	"description": "EpiHiper input validation and modification utilities",
 	"bin": {
 		"epiHiperValidateSchema": "./bin/epiHiperValidateSchema",
