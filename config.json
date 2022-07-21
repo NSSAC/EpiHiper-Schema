@@ -11,6 +11,7 @@
 		"modelScenarioSchema.json",
 		"networkSchema.json",
 		"partitionSchema.json",
+		"patchSimSchema.json",
 		"personTraitDB/schemas/tabular-data-resource.json",
 		"personTraitDB/schemas/dictionary.json",
 		"runParametersSchema.json",
