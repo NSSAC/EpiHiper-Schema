@@ -24,6 +24,7 @@
             {"$ref": "./interventionSchema.json"},
             {"$ref": "./initializationSchema.json"},
             {"$ref": "./csvDataResourceSchema.json"}
+            {"$ref": "./patchSimSchema.json"}
           ]
         },
         "userInput": {
@@ -160,7 +161,7 @@
           "description": "Information used within EXCEADS",
           "$ref": "./exceadsSchema.json"
         },
-        "engines": {
+        "applications": {
           "type": "array",
           "items": {
             "type": "string",
