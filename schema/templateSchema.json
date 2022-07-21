@@ -23,7 +23,7 @@
             {"$ref": "./diseaseModelSchema.json"},
             {"$ref": "./interventionSchema.json"},
             {"$ref": "./initializationSchema.json"},
-            {"$ref": "./csvDataResourceSchema.json"}
+            {"$ref": "./csvDataResourceSchema.json"},
             {"$ref": "./patchSimSchema.json"}
           ]
         },
