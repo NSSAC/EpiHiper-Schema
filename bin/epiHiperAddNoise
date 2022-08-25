@@ -25,10 +25,13 @@ commander
     .description('EpiHiper Add Noise')
     .usage('[options] <file ...>')
     .option('-p --path <path>', 'JSONPath to be modified.')
-    .option('-s --sigma <sigma>', 'standard deviation.')
-    .option('-i --integer', 'specify whether the value is of type integer.')
-    .option('-r --replace', 'replace input files.')
-    .option('-n --negative', 'allow negative numbers.')
+    .option('-i --integer', 'specify whether the value is of type integer.', false)
+    .option('-r --replace', 'replace input files.', false)
+    .option('-n --negative', 'allow negative numbers.', false)
+    .option('-d --distribution <distribution>', 'distribution to use [normal|uniform]', 'normal')
+    .option('-s --sigma <sigma>', 'standard deviation of normal distribution.', NaN)
+    .option('--min <min>', 'minimum of uniform distribution.', NaN)
+    .option('--max <min>', 'maximum of uniform distribution.', NaN)
     .arguments('<files...>')
     .action(function(_files) {
       files = _files;
@@ -59,10 +62,15 @@ if (!Array.isArray(files)) {
   process.exit(1);
 }
 
-const epiHiperAddNoise = new EpiHiperAddNoise(commander);
+try {
+  const epiHiperAddNoise = new EpiHiperAddNoise(commander);
 
-epiHiperAddNoise
-    .process(files)
-    .then((result) => {
-      process.exit(result ? 0 : 1);
-    });
+  epiHiperAddNoise
+      .process(files)
+      .then((result) => {
+        process.exit(result ? 0 : 1);
+      });
+} catch (err) {
+  console.log(err + '\n');
+  commander.help();
+}
