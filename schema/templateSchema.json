@@ -3,7 +3,9 @@
   "title": "Template Schema",
   "description": "Template for a disease model",
   "allOf": [
-    {"$ref": "./typeRegistry.json#/definitions/annotation"},
+    {
+      "$ref": "./typeRegistry.json#/definitions/annotation"
+    },
     {
       "type": "object",
       "required": [
@@ -20,21 +22,35 @@
         },
         "template": {
           "oneOf": [
-            {"$ref": "./diseaseModelSchema.json"},
-            {"$ref": "./interventionSchema.json"},
-            {"$ref": "./initializationSchema.json"},
-            {"$ref": "./csvDataResourceSchema.json"},
-            {"$ref": "./patchSimSchema.json"}
+            {
+              "$ref": "./diseaseModelSchema.json"
+            },
+            {
+              "$ref": "./interventionSchema.json"
+            },
+            {
+              "$ref": "./initializationSchema.json"
+            },
+            {
+              "$ref": "./csvDataResourceSchema.json"
+            },
+            {
+              "$ref": "./patchSimSchema.json"
+            }
           ]
         },
         "userInput": {
           "type": "array",
           "items": {
             "allOf": [
-              {"$ref": "./typeRegistry.json#/definitions/annotation"},
+              {
+                "$ref": "./typeRegistry.json#/definitions/annotation"
+              },
               {
                 "type": "object",
-                "required": ["value"],
+                "required": [
+                  "value"
+                ],
                 "properties": {
                   "value": {
                     "type": "array",
@@ -51,14 +67,20 @@
                       "oneOf": [
                         {
                           "type": "object",
-                          "required": ["jsonPath"],
+                          "required": [
+                            "jsonPath"
+                          ],
                           "properties": {
-                            "jsonPath": {"$ref": "./typeRegistry.json#/definitions/jsonPath"}
+                            "jsonPath": {
+                              "$ref": "./typeRegistry.json#/definitions/jsonPath"
+                            }
                           }
                         },
                         {
                           "type": "object",
-                          "required": ["interval"],
+                          "required": [
+                            "interval"
+                          ],
                           "properties": {
                             "interval": {
                               "type": "object",
@@ -67,19 +89,27 @@
                                 "max"
                               ],
                               "properties": {
-                                "min": {"type": "number"},
-                                "max": {"type": "number"}
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
                               }
                             }
                           }
                         },
                         {
                           "type": "object",
-                          "required": ["enum"],
+                          "required": [
+                            "enum"
+                          ],
                           "properties": {
                             "enum": {
                               "type": "array",
-                              "items": {"type": "string"} 
+                              "items": {
+                                "type": "string"
+                              }
                             }
                           }
                         }
@@ -106,12 +136,18 @@
             "oneOf": [
               {
                 "type": "object",
-                "required": ["value"],
+                "required": [
+                  "value"
+                ],
                 "properties": {
                   "value": {
                     "oneOf": [
-                      {"$ref": "./typeRegistry.json#/definitions/healthState"},
-                      {"$ref": "./typeRegistry.json#/definitions/traitEnum"}
+                      {
+                        "$ref": "./typeRegistry.json#/definitions/healthState"
+                      },
+                      {
+                        "$ref": "./typeRegistry.json#/definitions/traitEnum"
+                      }
                     ]
                   }
                 }
@@ -120,38 +156,64 @@
                 "type": "object",
                 "oneOf": [
                   {
-                    "required": ["set"]
+                    "required": [
+                      "set"
+                    ]
                   },
                   {
-                    "required": ["variable"]
+                    "required": [
+                      "variable"
+                    ]
                   }
                 ],
                 "properties": {
                   "set": {
                     "type": "object",
-                    "required": ["idRef"],
+                    "required": [
+                      "idRef"
+                    ],
                     "properties": {
-                      "idRef": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"}
+                      "idRef": {
+                        "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+                      }
                     }
                   },
                   "variable": {
                     "type": "object",
-                    "required": ["idRef"],
+                    "required": [
+                      "idRef"
+                    ],
                     "properties": {
-                      "idRef": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"}
+                      "idRef": {
+                        "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+                      }
                     }
                   }
                 },
                 "maxProperties": 1
               },
-              {"$ref": "./typeRegistry.json#/definitions/edgeProperty"},
-              {"$ref": "./typeRegistry.json#/definitions/nodeProperty"},
-              {"$ref": "./typeRegistry.json#/definitions/dbField"},
+              {
+                "$ref": "./typeRegistry.json#/definitions/edgeProperty"
+              },
+              {
+                "$ref": "./typeRegistry.json#/definitions/nodeProperty"
+              },
+              {
+                "$ref": "./typeRegistry.json#/definitions/dbField"
+              },
               {
                 "type": "object",
-                "required": ["jsonPath"],
+                "required": [
+                  "jsonPath",
+                  "errorMessage"
+                ],
                 "properties": {
-                  "jsonPath": {"$ref": "./typeRegistry.json#/definitions/jsonPath"}
+                  "jsonPath": {
+                    "$ref": "./typeRegistry.json#/definitions/jsonPath"
+                  },
+                  "errorMessage": {
+                    "type": "string"
+                  }
                 }
               }
             ]

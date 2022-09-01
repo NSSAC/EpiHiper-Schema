@@ -29,7 +29,7 @@
     },
     "nonNegativeInteger": {
       "$id": "#nonNegativeInteger",
-      "description": "A non negative interger l, i.e., 0 <= l",
+      "description": "A non negative integer l, i.e., 0 <= l",
       "allOf": [
         {
           "$ref": "#/definitions/nonNegativeNumber"
@@ -41,7 +41,7 @@
     },
     "jsonPath": {
       "$id": "#jsonPath",
-      "description": "A valid JSONPath as decribed by: https://support.smartbear.com/readyapi/docs/testing/jsonpath-reference.html#notation",
+      "description": "A valid JSONPath as described by: https://support.smartbear.com/readyapi/docs/testing/jsonpath-reference.html#notation",
       "type": "string"
     },
     "id": {
