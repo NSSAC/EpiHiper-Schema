@@ -168,6 +168,18 @@
           ]
         }
       }
+    },
+    "pluginTransmissionPropensity": {
+      "description": "Path + name of dynamic library providing the function for calculating the transmission propensity.",
+      "$ref": "./typeRegistry.json#/definitions/localPath"
+    },
+    "pluginNextProgression": {
+      "description": "Path + name of dynamic library providing the function for calculating the next progression.",
+      "$ref": "./typeRegistry.json#/definitions/localPath"
+    },
+    "pluginDwellTime": {
+      "description": "Path + name of dynamic library providing the function for calculating the dwell time.",
+      "$ref": "./typeRegistry.json#/definitions/localPath"
     }
   }
 }
