@@ -207,7 +207,7 @@
                 },
                 {
                   "type": "object",
-                  "description": "A number is sampled uniformly in the given intervall [min, max]",
+                  "description": "A number is sampled uniformly in the given interval [min, max]",
                   "required": [
                     "min",
                     "max"
@@ -263,7 +263,7 @@
     },
     "healthState": {
       "$id": "#healthState",
-      "description": "A value referrencing a state within the disease model.",
+      "description": "A value referencing a state within the disease model.",
       "type": "object",
       "required": [
         "healthState"
@@ -2089,7 +2089,7 @@
           "pattern": "^self://([^/]+/)*[^/]+$"
         },
         {
-          "description": "Relative to pressent working directory",
+          "description": "Relative to present working directory",
           "pattern": "^([^/]+/)*[^/]+$"
         }
       ]
