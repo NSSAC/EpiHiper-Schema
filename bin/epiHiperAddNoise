@@ -21,56 +21,48 @@ const EpiHiperAddNoise = require('../lib/epiHiperAddNoise');
 let files;
 
 commander
-    .version(pkg.version)
-    .description('EpiHiper Add Noise')
-    .usage('[options] <file ...>')
-    .option('-p --path <path>', 'JSONPath to be modified.')
-    .option('-i --integer', 'specify whether the value is of type integer.', false)
-    .option('-r --replace', 'replace input files.', false)
-    .option('-n --negative', 'allow negative numbers.', false)
-    .option('-d --distribution <distribution>', 'distribution to use [normal|uniform|fixed]', 'normal')
-    .option('-s --sigma <sigma>', 'standard deviation of normal distribution.', NaN)
-    .option('--min <min>', 'minimum of uniform distribution.', NaN)
-    .option('--max <min>', 'maximum of uniform distribution.', NaN)
-    .option('-v --value <value>', 'value of fixed distribution', NaN)
-    .arguments('<files...>')
-    .action(function(_files) {
-      files = _files;
-    });
+  .version(pkg.version)
+  .description('EpiHiper Add Noise')
+  .usage('[options] <file ...>')
+  .option('-p --path [path]', 'JSONPath to be modified.')
+  .option('-d --distribution [distribution]', 'distribution to use [normal|uniform|fixed]')
+  .option('-s --sigma <sigma>', 'standard deviation of normal distribution.')
+  .option('--min <min>', 'minimum of uniform distribution.')
+  .option('--max <min>', 'maximum of uniform distribution.')
+  .option('-v --value <value>', 'value of fixed distribution.')
+  .option('-i --integer', 'specify whether the value is of type integer.', false)
+  .option('-r --replace', 'replace input files.', false)
+  .option('-n --negative', 'allow negative numbers.', false)
+  .arguments('<files...>')
+  .action(function (_files) {
+    files = _files;
+  });
 
 commander.parse(process.argv);
 
-if (typeof commander.integer === 'undefined') {
-  commander.integer = false;
-} else {
-  commander.integer = true;
-}
-
-if (typeof commander.replace === 'undefined') {
-  commander.replace = false;
-} else {
-  commander.replace = true;
-}
-
-if (typeof commander.negative === 'undefined') {
-  commander.negative = false;
-} else {
-  commander.negative = true;
-}
-
-if (!Array.isArray(files)) {
-  commander.help();
-  process.exit(1);
-}
-
 try {
-  const epiHiperAddNoise = new EpiHiperAddNoise(commander);
+  if (commander.path === undefined) {
+    throw ('Missing option: -p --path [path]  JSONPath to be modified');
+  }
 
-  epiHiperAddNoise
-      .process(files)
-      .then((result) => {
-        process.exit(result ? 0 : 1);
-      });
+  if (commander.distribution === undefined) {
+    throw ('Missing option: -d --distribution [distribution]  distribution to use [normal|uniform|fixed]');
+  }
+
+  if (commander.distribution == 'normal' && isNaN(commander.sigma === undefined)) {
+    throw ('Missing option: -s --sigma <sigma>  standard deviation of normal distribution.');
+  } else if (commander.distribution == 'uniform' && commander.min === undefined) {
+    throw ('Missing option: --min <min>  minimum of uniform distribution.');
+  } else if (commander.distribution == 'uniform' && commander.max === undefined) {
+    throw ('Missing option: --max <min>  maximum of uniform distribution.');
+  } else if (commander.distribution == 'fixed' && commander.value === undefined) {
+    throw ('Missing option: -v --value <value>  value of fixed distribution.');
+  }
+
+  EpiHiperAddNoise.fromCommander(commander).process(files)
+    .then((result) => {
+      process.exit(result ? 0 : 1);
+    });
 } catch (err) {
   console.log(err + '\n');
   commander.help();
