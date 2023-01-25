@@ -1416,6 +1416,153 @@
                 },
                 "additionalProperties": false
               }
+            },
+            {
+              "$id": "#relativeSamplingProbability",
+              "description": "Sampling by given probability",
+              "oneOf": [
+                {
+                  "required": [
+                    "type",
+                    "probability",
+                    "sampled"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "probability",
+                    "nonsampled"
+                  ]
+                }
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "individual",
+                    "group"
+                  ]
+                },
+                "probability": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "required": [
+                        "number"
+                      ],
+                      "properties": {
+                        "number": {
+                          "type": "number",
+                          "minimum": 0.0,
+                          "maximum": 1.0
+                        }
+                      }
+                    },
+                    {
+                      "required": [
+                        "variable"
+                      ],
+                      "properties": {
+                        "variable": {
+                          "type": "object",
+                          "required": [
+                            "idRef"
+                          ],
+                          "properties": {
+                            "idRef": {
+                              "$ref": "#/definitions/uniqueIdRef"
+                            }
+                          }
+                        }
+                      },
+                      "sampled": {
+                        "$ref": "#/definitions/actionEnsemble"
+                      },
+                      "nonsampled": {
+                        "$ref": "#/definitions/actionEnsemble"
+                      },
+                      "patternProperties": {
+                        "^ann:": {}
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$id": "#absoluteSamplingProbability",
+              "description": "Sampling by given count",
+              "oneOf": [
+                {
+                  "required": [
+                    "type",
+                    "count",
+                    "sampled"
+                  ]
+                },
+                {
+                  "required": [
+                    "type",
+                    "count",
+                    "nonsampled"
+                  ]
+                }
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "absolute"
+                  ]
+                }
+              },
+              "count": {
+                "type": "object",
+                "oneOf": [
+                  {
+                    "required": [
+                      "number"
+                    ],
+                    "properties": {
+                      "number": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "multipleOf": 1
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "variable"
+                    ],
+                    "properties": {
+                      "variable": {
+                        "type": "object",
+                        "required": [
+                          "idRef"
+                        ],
+                        "properties": {
+                          "idRef": {
+                            "$ref": "#/definitions/uniqueIdRef"
+                          }
+                        }
+                      },
+                      "sampled": {
+                        "$ref": "#/definitions/actionEnsemble"
+                      },
+                      "nonsampled": {
+                        "$ref": "#/definitions/actionEnsemble"
+                      },
+                      "patternProperties": {
+                        "^ann:": {}
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                ]
+              }
             }
           ]
         }
