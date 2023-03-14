@@ -47,19 +47,59 @@
                 "$ref": "./typeRegistry.json#/definitions/annotation"
               },
               {
-                "type": "object",
-                "required": [
-                  "value"
-                ],
-                "properties": {
-                  "value": {
-                    "type": "array",
-                    "items": {
-                      "description": "A JSON pointer referencing an entity in /template",
-                      "type": "string",
-                      "pattern": "^/template/.+$"
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "description": "A JSON pointer referencing an entity in /template",
+                          "type": "string",
+                          "pattern": "^/template/.+$"
+                        }
+                      }
                     }
                   },
+                  {
+                    "type": "object",
+                    "required": [
+                      "updates"
+                    ],
+                    "properties": {
+                      "updates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "source",
+                            "targets"
+                          ],
+                          "properties": {
+                            "source": {
+                              "type": "string",
+                              "description": "A Java Script expression to calculate the source which will be placed in the targets. Here __input__ denotes the user input"
+                            },
+                            "targets": {
+                              "type": "array",
+                              "items": {
+                                "description": "A JSON path referencing an entity or entities in /template",
+                                "$ref": "./typeRegistry.json#/definitions/jsonPath"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
                   "validValues": {
                     "type": "array",
                     "items": {
