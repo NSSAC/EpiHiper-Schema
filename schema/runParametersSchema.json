@@ -18,8 +18,12 @@
     "modelScenario": {
       "description": "Filename of the disease model in a json file.",
       "allOf": [
-        {"$ref": "./typeRegistry.json#/definitions/localPath"},
-        {"$ref": "./typeRegistry.json#/definitions/jsonFormat"}
+        {
+          "$ref": "./typeRegistry.json#/definitions/localPath"
+        },
+        {
+          "$ref": "./typeRegistry.json#/definitions/jsonFormat"
+        }
       ]
     },
     "startTick": {
@@ -45,19 +49,35 @@
     "status": {
       "description": "Path + name of the output SciDuct status file (default: $(pwd)/sciduct.status.json)",
       "allOf": [
-        {"$ref": "./typeRegistry.json#/definitions/localPath"},
-        {"$ref": "./typeRegistry.json#/definitions/jsonFormat"}
+        {
+          "$ref": "./typeRegistry.json#/definitions/localPath"
+        },
+        {
+          "$ref": "./typeRegistry.json#/definitions/jsonFormat"
+        }
       ]
     },
     "seed": {
       "description": "The seed for the random number generator (default: auto generated)",
-      "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+      "oneOf": [
+        {
+          "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "random"
+          ]
+        }
+      ]
     },
     "reseed": {
-      "type":"array",
+      "type": "array",
       "items": {
-        "type":"object",
-        "required": ["tick"],
+        "type": "object",
+        "required": [
+          "tick"
+        ],
         "properties": {
           "tick": {
             "description": "The tick at which the seed should be changed",
@@ -65,7 +85,17 @@
           },
           "seed": {
             "description": "The seed for the random number generator (default: auto generated)",
-            "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+            "oneOf": [
+              {
+                "$ref": "./typeRegistry.json#/definitions/nonNegativeInteger"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "random"
+                ]
+              }
+            ]
           }
         }
       }
