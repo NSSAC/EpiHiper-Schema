@@ -592,6 +592,9 @@
                     },
                     {
                       "$ref": "#/definitions/observable"
+                    },
+                    {
+                      "$ref": "#/definitions/variableReference"
                     }
                   ]
                 }
@@ -719,6 +722,320 @@
             },
             "feature": {
               "$ref": "#/definitions/uniqueIdRef"
+            }
+          }
+        }
+      ]
+    },
+    "healthStateProperty": {
+      "$id": "#healthStateProperty",
+      "description": "A property of a health state.",
+      "type": "object",
+      "required": [
+        "idRef",
+        "property"
+      ],
+      "properties": {
+        "idRef": {
+          "$ref": "#/definitions/uniqueIdRef"
+        },
+        "property": {
+          "type": "string",
+          "enum": [
+            "id",
+            "susceptibility",
+            "infectivity"
+          ]
+        }
+      }
+    },
+    "transmissionProperty": {
+      "$id": "#transmissionProperty",
+      "description": "A property of a transmission.",
+      "type": "object",
+      "required": [
+        "idRef",
+        "property"
+      ],
+      "properties": {
+        "idRef": {
+          "$ref": "#/definitions/uniqueIdRef"
+        },
+        "property": {
+          "type": "string",
+          "enum": [
+            "id",
+            "entryState",
+            "exitState",
+            "contactState",
+            "transmissibility",
+            "susceptibilityFactorOperation",
+            "infectivityFactorOperation"
+          ]
+        }
+      }
+    },
+    "transitionProperty": {
+      "$id": "#transitionProperty",
+      "description": "A property of a transition.",
+      "type": "object",
+      "required": [
+        "idRef",
+        "property"
+      ],
+      "properties": {
+        "idRef": {
+          "$ref": "#/definitions/uniqueIdRef"
+        },
+        "property": {
+          "type": "string",
+          "enum": [
+            "id",
+            "entryState",
+            "exitState",
+            "propensity",
+            "dwellTime",
+            "susceptibilityFactorOperation",
+            "infectivityFactorOperation"
+          ]
+        }
+      }
+    },
+    "readableEntity": {
+      "$id": "#readableEntity",
+      "description": "All readable entities accessible within EpiHiper",
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/value"
+        },
+        {
+          "$ref": "#/definitions/observable"
+        },
+        {
+          "$ref": "#/definitions/sizeof"
+        },
+        {
+          "$ref": "#/definitions/variableReference"
+        },
+        {
+          "type": "object",
+          "required": [
+            "node"
+          ],
+          "properties": {
+            "node": {
+              "$ref": "#/definitions/nodeProperty"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "edge"
+          ],
+          "properties": {
+            "edge": {
+              "$ref": "#/definitions/edgeProperty"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "healthState"
+          ],
+          "properties": {
+            "healthState": {
+              "$ref": "#/definitions/healthStateProperty"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "transmission"
+          ],
+          "properties": {
+            "transmission": {
+              "$ref": "#/definitions/transmissionProperty"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "transition"
+          ],
+          "properties": {
+            "transition": {
+              "$ref": "#/definitions/transitionProperty"
+            }
+          }
+        }
+      ]
+    },
+    "writableEntity": {
+      "$id": "#writableEntity",
+      "description": "All readable entities accessible within EpiHiper",
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/variableReference"
+        },
+        {
+          "type": "object",
+          "required": [
+            "node"
+          ],
+          "properties": {
+            "node": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/nodeProperty"
+                },
+                {
+                  "type": "object",
+                  "description": "These properties are read only",
+                  "properties": {
+                    "property": {
+                      "type": "string",
+                      "not": {
+                        "enum": [
+                          "id"
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "edge"
+          ],
+          "properties": {
+            "edge": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/edgeProperty"
+                },
+                {
+                  "type": "object",
+                  "description": "These properties are read only",
+                  "properties": {
+                    "property": {
+                      "type": "string",
+                      "not": {
+                        "enum": [
+                          "targetId",
+                          "sourceId",
+                          "locationId",
+                          "targetActivity",
+                          "sourceActivity",
+                          "weight"
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "healthState"
+          ],
+          "properties": {
+            "healthState": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/healthStateProperty"
+                },
+                {
+                  "type": "object",
+                  "description": "These properties are read only",
+                  "properties": {
+                    "property": {
+                      "type": "string",
+                      "not": {
+                        "enum": [
+                          "id"
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "transmission"
+          ],
+          "properties": {
+            "transmission": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/transmissionProperty"
+                },
+                {
+                  "type": "object",
+                  "description": "These properties are read only",
+                  "properties": {
+                    "property": {
+                      "type": "string",
+                      "not": {
+                        "enum": [
+                          "id",
+                          "entryState",
+                          "exitState",
+                          "contactState"
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "transition"
+          ],
+          "properties": {
+            "transition": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/transitionProperty"
+                },
+                {
+                  "type": "object",
+                  "description": "These properties are read only",
+                  "properties": {
+                    "property": {
+                      "type": "string",
+                      "not": {
+                        "enum": [
+                          "id",
+                          "entryState",
+                          "exitState",
+                          "dwellTime"
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -943,84 +1260,10 @@
               "$ref": "#/definitions/comparisonOperator"
             },
             "left": {
-              "type": "object",
-              "description": "",
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/value"
-                },
-                {
-                  "$ref": "#/definitions/observable"
-                },
-                {
-                  "type": "object",
-                  "required": [
-                    "node"
-                  ],
-                  "properties": {
-                    "node": {
-                      "$ref": "#/definitions/nodeProperty"
-                    }
-                  }
-                },
-                {
-                  "type": "object",
-                  "required": [
-                    "edge"
-                  ],
-                  "properties": {
-                    "edge": {
-                      "$ref": "#/definitions/edgeProperty"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/definitions/variableReference"
-                },
-                {
-                  "$ref": "#/definitions/sizeof"
-                }
-              ]
+              "$ref": "#/definitions/readableEntity"
             },
             "right": {
-              "type": "object",
-              "description": "",
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/value"
-                },
-                {
-                  "$ref": "#/definitions/observable"
-                },
-                {
-                  "type": "object",
-                  "required": [
-                    "node"
-                  ],
-                  "properties": {
-                    "node": {
-                      "$ref": "#/definitions/nodeProperty"
-                    }
-                  }
-                },
-                {
-                  "type": "object",
-                  "required": [
-                    "edge"
-                  ],
-                  "properties": {
-                    "edge": {
-                      "$ref": "#/definitions/edgeProperty"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/definitions/variableReference"
-                },
-                {
-                  "$ref": "#/definitions/sizeof"
-                }
-              ]
+              "$ref": "#/definitions/readableEntity"
             }
           }
         },
@@ -1042,38 +1285,7 @@
               ]
             },
             "left": {
-              "type": "object",
-              "description": "",
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/observable"
-                },
-                {
-                  "$ref": "#/definitions/variableReference"
-                },
-                {
-                  "type": "object",
-                  "required": [
-                    "node"
-                  ],
-                  "properties": {
-                    "node": {
-                      "$ref": "#/definitions/nodeProperty"
-                    }
-                  }
-                },
-                {
-                  "type": "object",
-                  "required": [
-                    "edge"
-                  ],
-                  "properties": {
-                    "edge": {
-                      "$ref": "#/definitions/edgeProperty"
-                    }
-                  }
-                }
-              ]
+              "$ref": "#/definitions/readableEntity"
             },
             "right": {
               "$ref": "#/definitions/valueList"
@@ -1126,117 +1338,228 @@
               "minItems": 1,
               "items": {
                 "description": "operation",
-                "allOf": [
+                "oneOf": [
                   {
-                    "$ref": "#/definitions/annotation"
-                  },
-                  {
-                    "description": "",
-                    "type": "object",
-                    "required": [
-                      "target",
-                      "operator"
-                    ],
-                    "properties": {
-                      "target": {
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/annotation"
+                      },
+                      {
+                        "description": "",
+                        "type": "object",
+                        "required": [
+                          "target",
+                          "operator"
+                        ],
+                        "properties": {
+                          "target": {
+                            "$ref": "#/definitions/writableEntity"
+                          },
+                          "operator": {
+                            "type": "string",
+                            "enum": [
+                              "=",
+                              "*=",
+                              "/=",
+                              "+=",
+                              "-="
+                            ]
+                          }
+                        },
+                        "patternProperties": {
+                          "^ann:": {},
+                          "value|observable|variable|sizeof|right": {}
+                        },
+                        "additionalProperties": false
+                      },
+                      {
                         "oneOf": [
                           {
-                            "type": "object",
-                            "required": [
-                              "node"
-                            ],
-                            "properties": {
-                              "node": {
-                                "allOf": [
-                                  {
-                                    "$ref": "#/definitions/nodeProperty"
-                                  },
-                                  {
-                                    "type": "object",
-                                    "description": "These properties are read only",
-                                    "properties": {
-                                      "property": {
-                                        "type": "string",
-                                        "not": {
-                                          "enum": [
-                                            "id"
-                                          ]
-                                        }
-                                      }
-                                    }
-                                  }
-                                ]
-                              }
-                            }
+                            "$ref": "#/definitions/value"
                           },
                           {
-                            "type": "object",
-                            "required": [
-                              "edge"
-                            ],
-                            "properties": {
-                              "edge": {
-                                "allOf": [
-                                  {
-                                    "$ref": "#/definitions/edgeProperty"
-                                  },
-                                  {
-                                    "type": "object",
-                                    "description": "These properties are read only",
-                                    "properties": {
-                                      "property": {
-                                        "type": "string",
-                                        "not": {
-                                          "enum": [
-                                            "targetId",
-                                            "sourceId",
-                                            "locationId",
-                                            "targetActivity",
-                                            "sourceActivity"
-                                          ]
-                                        }
-                                      }
-                                    }
-                                  }
-                                ]
-                              }
-                            }
+                            "$ref": "#/definitions/observable"
                           },
                           {
                             "$ref": "#/definitions/variableReference"
+                          },
+                          {
+                            "$ref": "#/definitions/sizeof"
+                          },
+                          {
+                            "type": "object",
+                            "required": [
+                              "source"
+                            ],
+                            "properties": {
+                              "source": {
+                                "$ref": "#/definitions/readableEntity"
+                              }
+                            }
                           }
                         ]
-                      },
-                      "operator": {
-                        "type": "string",
-                        "enum": [
-                          "=",
-                          "*=",
-                          "/=",
-                          "+=",
-                          "-="
-                        ]
                       }
-                    },
-                    "patternProperties": {
-                      "^ann:": {},
-                      "value|observable|variable|sizeof": {}
-                    },
-                    "additionalProperties": false
+                    ]
                   },
                   {
-                    "oneOf": [
+                    "allOf": [
                       {
-                        "$ref": "#/definitions/value"
+                        "$ref": "#/definitions/annotation"
                       },
                       {
-                        "$ref": "#/definitions/observable"
+                        "description": "The special case of assigning progression dwell time",
+                        "type": "object",
+                        "required": [
+                          "target",
+                          "operator",
+                          "source"
+                        ],
+                        "properties": {
+                          "target": {
+                            "type": "object",
+                            "required": [
+                              "transition"
+                            ],
+                            "properties": {
+                              "transition": {
+                                "type": "object",
+                                "required": [
+                                  "idRef",
+                                  "property"
+                                ],
+                                "properties": {
+                                  "idRef": {
+                                    "$ref": "#/definitions/uniqueIdRef"
+                                  },
+                                  "property": {
+                                    "type": "string",
+                                    "enum": [
+                                      "dwellTime"
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "operator": {
+                            "type": "string",
+                            "enum": [
+                              "="
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/definitions/distribution"
+                          }
+                        },
+                        "patternProperties": {
+                          "^ann:": {}
+                        },
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/annotation"
                       },
                       {
-                        "$ref": "#/definitions/variableReference"
-                      },
-                      {
-                        "$ref": "#/definitions/sizeof"
+                        "description": "The special case of assigning progression or transmission factor operations",
+                        "type": "object",
+                        "required": [
+                          "target",
+                          "operator",
+                          "source"
+                        ],
+                        "properties": {
+                          "target": {
+                            "type": "object",
+                            "oneOf": [
+                              {
+                                "required": [
+                                  "transition"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "transmission"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "edge"
+                                ]
+                              }
+                            ],
+                            "properties": {
+                              "edge": {
+                                "type": "object",
+                                "required": [
+                                  "property"
+                                ],
+                                "properties": {
+                                  "property": {
+                                    "type": "string",
+                                    "enum": [
+                                      "weight"
+                                    ]
+                                  }
+                                }
+                              },
+                              "transition": {
+                                "type": "object",
+                                "required": [
+                                  "idRef",
+                                  "property"
+                                ],
+                                "properties": {
+                                  "idRef": {
+                                    "$ref": "#/definitions/uniqueIdRef"
+                                  },
+                                  "property": {
+                                    "type": "string",
+                                    "enum": [
+                                      "susceptibilityFactorOperation",
+                                      "infectivityFactorOperation"
+                                    ]
+                                  }
+                                }
+                              },
+                              "transmission": {
+                                "type": "object",
+                                "required": [
+                                  "idRef",
+                                  "property"
+                                ],
+                                "properties": {
+                                  "idRef": {
+                                    "$ref": "#/definitions/uniqueIdRef"
+                                  },
+                                  "property": {
+                                    "type": "string",
+                                    "enum": [
+                                      "susceptibilityFactorOperation",
+                                      "infectivityFactorOperation"
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "operator": {
+                            "type": "string",
+                            "enum": [
+                              "="
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/definitions/numericOperation"
+                          }
+                        },
+                        "patternProperties": {
+                          "^ann:": {}
+                        },
+                        "additionalProperties": false
                       }
                     ]
                   }
@@ -1492,7 +1815,7 @@
             "sampled": {
               "allOf": [
                 {
-                  "$ref": "#/definitions/actionEnsemble"                  
+                  "$ref": "#/definitions/actionEnsemble"
                 },
                 {
                   "not": {
@@ -1506,7 +1829,7 @@
             "nonsampled": {
               "allOf": [
                 {
-                  "$ref": "#/definitions/actionEnsemble"                  
+                  "$ref": "#/definitions/actionEnsemble"
                 },
                 {
                   "not": {
@@ -2008,9 +2331,7 @@
         {
           "$ref": "#/definitions/actionEnsemble"
         },
-        {
-          
-        }
+        {}
       ]
     },
     "initializations": {

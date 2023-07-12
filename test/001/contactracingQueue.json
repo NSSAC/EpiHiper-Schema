@@ -313,7 +313,9 @@
       },
       "sampling": {
         "type": "individual",
-        "number": 50,
+        "percent": {
+          "number": 50
+        },
         "sampled": {
           "foreach": [
             {

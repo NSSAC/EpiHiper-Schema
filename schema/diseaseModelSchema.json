@@ -14,14 +14,16 @@
   "properties": {
     "epiHiperSchema": {
       "type": "string",
-      "pattern": "^.*/diseaseModelSchema.json$" 
+      "pattern": "^.*/diseaseModelSchema.json$"
     },
     "states": {
       "type": "array",
       "description": "An array of states",
       "items": {
         "allOf": [
-          {"$ref": "./typeRegistry.json#/definitions/annotation"},
+          {
+            "$ref": "./typeRegistry.json#/definitions/annotation"
+          },
           {
             "type": "object",
             "description": "A disease state",
@@ -31,9 +33,15 @@
               "infectivity"
             ],
             "properties": {
-              "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
-              "susceptibility": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"},
-              "infectivity": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"}
+              "id": {
+                "$ref": "./typeRegistry.json#/definitions/uniqueId"
+              },
+              "susceptibility": {
+                "$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"
+              },
+              "infectivity": {
+                "$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"
+              }
             },
             "patternProperties": {
               "^ann:": {}
@@ -43,13 +51,17 @@
         ]
       }
     },
-    "initialState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
+    "initialState": {
+      "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+    },
     "transmissions": {
       "type": "array",
       "description": "An array listing possible transmissions due to contact with other nodes.",
       "items": {
         "allOf": [
-          {"$ref": "./typeRegistry.json#/definitions/annotation"},
+          {
+            "$ref": "./typeRegistry.json#/definitions/annotation"
+          },
           {
             "type": "object",
             "description": "A transmission",
@@ -61,13 +73,27 @@
               "transmissibility"
             ],
             "properties": {
-              "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
-              "entryState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
-              "exitState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
-              "contactState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
-              "transmissibility": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"},
-              "susceptibilityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"},
-              "infectivityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"}
+              "id": {
+                "$ref": "./typeRegistry.json#/definitions/uniqueId"
+              },
+              "entryState": {
+                "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+              },
+              "exitState": {
+                "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+              },
+              "contactState": {
+                "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+              },
+              "transmissibility": {
+                "$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"
+              },
+              "susceptibilityFactorOperation": {
+                "$ref": "./typeRegistry.json#/definitions/numericOperation"
+              },
+              "infectivityFactorOperation": {
+                "$ref": "./typeRegistry.json#/definitions/numericOperation"
+              }
             },
             "patternProperties": {
               "^ann:": {}
@@ -80,35 +106,102 @@
     "transitions": {
       "type": "array",
       "description": "The transitions specifying the disease progression.",
-      "items": {
-        "allOf": [
-          {"$ref": "./typeRegistry.json#/definitions/annotation"},
-          {
-            "type": "object",
-            "description": "",
-            "required": [
-              "id",
-              "entryState",
-              "exitState",
-              "probability",
-              "dwellTime"
-            ],
-            "properties": {
-              "id": {"$ref": "./typeRegistry.json#/definitions/uniqueId"},
-              "entryState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
-              "exitState": {"$ref": "./typeRegistry.json#/definitions/uniqueIdRef"},
-              "probability": {"$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"},
-              "dwellTime": {"$ref": "./typeRegistry.json#/definitions/distribution"},
-              "susceptibilityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"},
-              "infectivityFactorOperation": {"$ref": "./typeRegistry.json#/definitions/numericOperation"}
-            },
-            "patternProperties": {
-              "^ann:": {}
-            },
-            "additionalProperties": false
+      "oneOf": [
+        {
+          "items": {
+            "allOf": [
+              {
+                "$ref": "./typeRegistry.json#/definitions/annotation"
+              },
+              {
+                "type": "object",
+                "description": "",
+                "required": [
+                  "id",
+                  "entryState",
+                  "exitState",
+                  "probability",
+                  "dwellTime"
+                ],
+                "properties": {
+                  "id": {
+                    "$ref": "./typeRegistry.json#/definitions/uniqueId"
+                  },
+                  "entryState": {
+                    "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+                  },
+                  "exitState": {
+                    "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+                  },
+                  "probability": {
+                    "$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"
+                  },
+                  "dwellTime": {
+                    "$ref": "./typeRegistry.json#/definitions/distribution"
+                  },
+                  "susceptibilityFactorOperation": {
+                    "$ref": "./typeRegistry.json#/definitions/numericOperation"
+                  },
+                  "infectivityFactorOperation": {
+                    "$ref": "./typeRegistry.json#/definitions/numericOperation"
+                  }
+                },
+                "patternProperties": {
+                  "^ann:": {}
+                },
+                "additionalProperties": false
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "items": {
+            "allOf": [
+              {
+                "$ref": "./typeRegistry.json#/definitions/annotation"
+              },
+              {
+                "type": "object",
+                "description": "",
+                "required": [
+                  "id",
+                  "entryState",
+                  "exitState",
+                  "propensity",
+                  "dwellTime"
+                ],
+                "properties": {
+                  "id": {
+                    "$ref": "./typeRegistry.json#/definitions/uniqueId"
+                  },
+                  "entryState": {
+                    "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+                  },
+                  "exitState": {
+                    "$ref": "./typeRegistry.json#/definitions/uniqueIdRef"
+                  },
+                  "propensity": {
+                    "$ref": "./typeRegistry.json#/definitions/nonNegativeNumber"
+                  },
+                  "dwellTime": {
+                    "$ref": "./typeRegistry.json#/definitions/distribution"
+                  },
+                  "susceptibilityFactorOperation": {
+                    "$ref": "./typeRegistry.json#/definitions/numericOperation"
+                  },
+                  "infectivityFactorOperation": {
+                    "$ref": "./typeRegistry.json#/definitions/numericOperation"
+                  }
+                },
+                "patternProperties": {
+                  "^ann:": {}
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      ]
     },
     "transmissibility": {
       "description": "The overal transmissibility",
