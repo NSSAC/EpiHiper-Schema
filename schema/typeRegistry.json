@@ -1553,7 +1553,16 @@
                             ]
                           },
                           "source": {
-                            "$ref": "#/definitions/numericOperation"
+                            "oneOf": [
+                              {
+                                "$ref": "#/definitions/numericOperation"
+                              },
+                              {
+                                "description": "This is used to remove an existing numeric operation",
+                                "type": "object",
+                                "additionalProperties": false
+                              }
+                            ]
                           }
                         },
                         "patternProperties": {
