@@ -131,14 +131,15 @@
       }
     },
     "distribution": {
+      "$id": "#distribution",
+      "description": "Specify distributions for sampling values.",
+      "$comment": "Note: The result may require rounding if necessary.",
       "allOf": [
         {
           "$ref": "#/definitions/annotation"
         },
         {
           "type": "object",
-          "description": "Specify distributions for sampling values.",
-          "$comment": "Note: The result may require rounding if necessary.",
           "oneOf": [
             {
               "required": [
@@ -257,7 +258,11 @@
                 }
               }
             }
-          }
+          },
+          "patternProperties": {
+            "^ann:": {}
+          },
+          "additionalProperties": false
         }
       ]
     },
@@ -996,7 +1001,9 @@
                           "id",
                           "entryState",
                           "exitState",
-                          "contactState"
+                          "contactState",
+                          "susceptibilityFactorOperation",
+                          "infectivityFactorOperation"
                         ]
                       }
                     }
@@ -1028,7 +1035,9 @@
                           "id",
                           "entryState",
                           "exitState",
-                          "dwellTime"
+                          "dwellTime",
+                          "susceptibilityFactorOperation",
+                          "infectivityFactorOperation"
                         ]
                       }
                     }
