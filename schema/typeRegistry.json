@@ -935,8 +935,7 @@
                           "sourceId",
                           "locationId",
                           "targetActivity",
-                          "sourceActivity",
-                          "weight"
+                          "sourceActivity"
                         ]
                       }
                     }
@@ -1484,28 +1483,9 @@
                                 "required": [
                                   "transmission"
                                 ]
-                              },
-                              {
-                                "required": [
-                                  "edge"
-                                ]
                               }
                             ],
                             "properties": {
-                              "edge": {
-                                "type": "object",
-                                "required": [
-                                  "property"
-                                ],
-                                "properties": {
-                                  "property": {
-                                    "type": "string",
-                                    "enum": [
-                                      "weight"
-                                    ]
-                                  }
-                                }
-                              },
                               "transition": {
                                 "type": "object",
                                 "required": [
