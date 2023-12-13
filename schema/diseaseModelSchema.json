@@ -20,13 +20,14 @@
       "type": "array",
       "description": "An array of states",
       "items": {
+        "title": "state",
+        "$$target": [
+          "#/properties/states/items"
+        ],
+        "description": "A state in the contagion model",
         "allOf": [
           {
-            "$ref": "./typeRegistry.json#/definitions/annotation"
-          },
-          {
             "type": "object",
-            "description": "A disease state",
             "required": [
               "id",
               "susceptibility",
@@ -47,6 +48,9 @@
               "^ann:": {}
             },
             "additionalProperties": false
+          },
+          {
+            "$ref": "./typeRegistry.json#/definitions/annotation"
           }
         ]
       }
@@ -58,6 +62,10 @@
       "type": "array",
       "description": "An array listing possible transmissions due to contact with other nodes.",
       "items": {
+        "title": "transmission",
+        "$$target": [
+          "#/properties/transmissions/items"
+        ],
         "allOf": [
           {
             "$ref": "./typeRegistry.json#/definitions/annotation"
@@ -109,6 +117,10 @@
       "oneOf": [
         {
           "items": {
+            "title": "transition",
+            "$$target": [
+              "#/properties/transitions/oneOf/1/items"
+            ],
             "allOf": [
               {
                 "$ref": "./typeRegistry.json#/definitions/annotation"

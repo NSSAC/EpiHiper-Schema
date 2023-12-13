@@ -5,30 +5,54 @@
   "definitions": {
     "uniqueId": {
       "$id": "#uniqueId",
+      "title": "uniqueId",
+      "$$target": [
+        "#/definitions/uniqueId",
+        "./typeRegistry.json#/definitions/uniqueId"
+      ],
       "description": "An Id which has to be unique within the containing array.",
       "type": "string",
       "pattern": "^((_|[0-9]|[a-z]|[A-Z])+|(^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$))$"
     },
     "uniqueIdRef": {
       "$id": "#uniqueIdRef",
+      "title": "uniqueIdRef",
+      "$$target": [
+        "#/definitions/uniqueIdRef",
+        "./typeRegistry.json#/definitions/uniqueIdRef"
+      ],
       "description": "An Id which references a existing unique Id.",
       "type": "string",
       "pattern": "^((_|[0-9]|[a-z]|[A-Z])+|(^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$))$"
     },
     "label": {
       "$id": "#label",
+      "title": "label",
+      "$$target": [
+        "#/definitions/label"
+      ],
       "description": "A human readable label used for user interfaces and reporting. ",
       "type": "string",
       "pattern": "^\\S+(\\W+\\S+)*$"
     },
     "nonNegativeNumber": {
       "$id": "#nonNegativeNumber",
+      "title": "nonNegativeNumber",
+      "$$target": [
+        "#/definitions/nonNegativeNumber",
+        "./typeRegistry.json#/definitions/nonNegativeNumber"
+      ],
       "description": "A non negative number, i.e., 0 <= x",
       "type": "number",
       "minimum": 0
     },
     "nonNegativeInteger": {
       "$id": "#nonNegativeInteger",
+      "title": "nonNegativeInteger",
+      "$$target": [
+        "#/definitions/nonNegativeInteger",
+        "./typeRegistry.json#/definitions/nonNegativeInteger"
+      ],
       "description": "A non negative integer l, i.e., 0 <= l",
       "allOf": [
         {
@@ -42,10 +66,16 @@
     "jsonPath": {
       "$id": "#jsonPath",
       "description": "A valid JSONPath as described by: https://support.smartbear.com/readyapi/docs/testing/jsonpath-reference.html#notation",
-      "type": "string"
+      "type": "string",
+      "format": "jsonpath"
     },
     "id": {
       "$id": "#id",
+      "title": "id",
+      "$$target": [
+        "#/definitions/id"
+      ],
+      "description": "A node or location id.",
       "type": "object",
       "required": [
         "id"
@@ -58,7 +88,11 @@
     },
     "number": {
       "$id": "#number",
-      "description": "A number property with a non negative value.",
+      "title": "number",
+      "$$target": [
+        "#/definitions/number"
+      ],
+      "description": "A real number.",
       "type": "object",
       "required": [
         "number"
@@ -71,6 +105,10 @@
     },
     "traitEnum": {
       "$id": "#traitEnum",
+      "title": "traitEnum",
+      "$$target": [
+        "#/definitions/traitEnum"
+      ],
       "description": "An enumeration value of feature of traits (node traits or edge traits).",
       "type": "object",
       "required": [
@@ -94,6 +132,12 @@
       }
     },
     "annotation": {
+      "$id": "#annotation",
+      "title": "annotation",
+      "$$target": [
+        "#/definitions/annotation",
+        "./typeRegistry.json#/definitions/annotation"
+      ],
       "type": "object",
       "properties": {
         "ann:id": {
@@ -110,6 +154,11 @@
     },
     "numericOperation": {
       "$id": "#numericOperation",
+      "title": "numericOperation",
+      "$$target": [
+        "#/definitions/numericOperation",
+        "./typeRegistry.json#/definitions/numericOperation"
+      ],
       "description": "A numeric operation applicable to edge waits, susceptibilityFactors, and  infectivityFactors.",
       "type": "object",
       "required": [
@@ -132,6 +181,11 @@
     },
     "distribution": {
       "$id": "#distribution",
+      "title": "distribution",
+      "$$target": [
+        "#/definitions/distribution",
+        "./typeRegistry.json#/definitions/distribution"
+      ],
       "description": "Specify distributions for sampling values.",
       "$comment": "Note: The result may require rounding if necessary.",
       "allOf": [
@@ -268,6 +322,10 @@
     },
     "healthState": {
       "$id": "#healthState",
+      "title": "healthState",
+      "$$target": [
+        "#/definitions/healthState"
+      ],
       "description": "A value referencing a state within the disease model.",
       "type": "object",
       "required": [
@@ -281,6 +339,10 @@
     },
     "value": {
       "$id": "#value",
+      "title": "value",
+      "$$target": [
+        "#/definitions/value"
+      ],
       "description": "A value used in comparisons and assignments.",
       "type": "object",
       "required": [
@@ -319,6 +381,10 @@
     },
     "valueList": {
       "$id": "#valueList",
+      "title": "valueList",
+      "$$target": [
+        "#/definitions/valueList"
+      ],
       "description": "A list of values used in comparisons and assignments.",
       "type": "object",
       "required": [
@@ -413,6 +479,10 @@
     },
     "observable": {
       "$id": "#observable",
+      "title": "observable",
+      "$$target": [
+        "#/definitions/observable"
+      ],
       "description": "An observable which is always accessible within EpiHiper (time and health state statistics) of the current state of the system.",
       "type": "object",
       "required": [
@@ -468,6 +538,10 @@
     },
     "dbField": {
       "$id": "#dbField",
+      "title": "dbField",
+      "$$target": [
+        "#/definitions/dbField"
+      ],
       "description": " A field in a table in the external person trait database.",
       "type": "object",
       "required": [
@@ -484,6 +558,10 @@
     },
     "dbFieldValue": {
       "$id": "#dbFieldValue",
+      "title": "dbFieldValue",
+      "$$target": [
+        "#/definitions/dbFieldValue"
+      ],
       "description": "A value for comparisons with field values in the external person trait database.",
       "type": "object",
       "required": [
@@ -504,6 +582,10 @@
     },
     "dbFieldValueList": {
       "$id": "#dbFieldValueList",
+      "title": "dbFieldValueList",
+      "$$target": [
+        "#/definitions/dbFieldValueList"
+      ],
       "description": "A list of value for comparisons with field values in the external person trait database.",
       "type": "object",
       "required": [
@@ -530,6 +612,10 @@
     },
     "dbFieldValueSelector": {
       "$id": "#dbFieldValueSelector",
+      "title": "dbFieldValueSelector",
+      "$$target": [
+        "#/definitions/dbFieldValueSelector"
+      ],
       "description": "A filter returning a list dbFieldValues from the external person trait database.",
       "type": "object",
       "required": [
@@ -557,6 +643,10 @@
     },
     "dbSimpleQuery": {
       "$id": "#dbSimpleQuery",
+      "title": "dbSimpleQuery",
+      "$$target": [
+        "#/definitions/dbSimpleQuery"
+      ],
       "description": "A db query returning one field based on a simple constraint, i.e., no and and or in the where clause.",
       "oneOf": [
         {
@@ -644,6 +734,10 @@
     },
     "nodeProperty": {
       "$id": "#nodeProperty",
+      "title": "nodeProperty",
+      "$$target": [
+        "#/definitions/nodeProperty"
+      ],
       "description": "A property of a node.",
       "oneOf": [
         {
@@ -687,6 +781,10 @@
     },
     "edgeProperty": {
       "$id": "#edgeProperty",
+      "title": "edgeProperty",
+      "$$target": [
+        "#/definitions/edgeProperty"
+      ],
       "description": "A property of an edge.",
       "oneOf": [
         {
@@ -734,6 +832,10 @@
     },
     "healthStateProperty": {
       "$id": "#healthStateProperty",
+      "title": "healthStateProperty",
+      "$$target": [
+        "#/definitions/healthStateProperty"
+      ],
       "description": "A property of a health state.",
       "type": "object",
       "required": [
@@ -756,6 +858,10 @@
     },
     "transmissionProperty": {
       "$id": "#transmissionProperty",
+      "title": "transmissionProperty",
+      "$$target": [
+        "#/definitions/transmissionProperty"
+      ],
       "description": "A property of a transmission.",
       "type": "object",
       "required": [
@@ -782,6 +888,10 @@
     },
     "transitionProperty": {
       "$id": "#transitionProperty",
+      "title": "transitionProperty",
+      "$$target": [
+        "#/definitions/transitionProperty"
+      ],
       "description": "A property of a transition.",
       "type": "object",
       "required": [
@@ -808,6 +918,10 @@
     },
     "readableEntity": {
       "$id": "#readableEntity",
+      "title": "readableEntity",
+      "$$target": [
+        "#/definitions/readableEntity"
+      ],
       "description": "All readable entities accessible within EpiHiper",
       "type": "object",
       "oneOf": [
@@ -882,7 +996,11 @@
     },
     "writableEntity": {
       "$id": "#writableEntity",
-      "description": "All readable entities accessible within EpiHiper",
+      "title": "writableEntity",
+      "$$target": [
+        "#/definitions/writableEntity"
+      ],
+      "description": "The count of the elements in a set.",
       "type": "object",
       "oneOf": [
         {
@@ -1116,6 +1234,10 @@
     },
     "variableReference": {
       "$id": "#variableReference",
+      "title": "variableReference",
+      "$$target": [
+        "#/definitions/variableReference"
+      ],
       "description": "A variable reference.",
       "type": "object",
       "required": [
@@ -1147,6 +1269,10 @@
     },
     "sizeof": {
       "$id": "#sizeof",
+      "title": "sizeof",
+      "$$target": [
+        "#/definitions/sizeof"
+      ],
       "description": "The count of the elements in a set.",
       "type": "object",
       "required": [
@@ -1240,6 +1366,10 @@
     },
     "comparisonOperator": {
       "$id": "#comparisonOperator",
+      "title": "comparisonOperator",
+      "$$target": [
+        "#/definitions/comparisonOperator"
+      ],
       "description": "Comparison operators",
       "type": "string",
       "enum": [
@@ -1324,34 +1454,31 @@
             "condition": {
               "$ref": "#/definitions/boolean"
             },
-            "checkConditionInterval": {
-              "description": "",
-              "type": "object",
-              "required": [
-                "min",
-                "max"
-              ],
-              "properties": {
-                "min": {
-                  "$ref": "#/definitions/nonNegativeNumber"
-                },
-                "max": {
-                  "$ref": "#/definitions/nonNegativeNumber"
-                }
-              }
+            "conditionCheckPolicy": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "scheduleTime",
+                  "incrementTime",
+                  "executionTime"
+                ]
+              },
+              "uniqueItems": true
             },
             "operations": {
               "description": "operations",
               "type": "array",
               "minItems": 1,
               "items": {
-                "description": "operation",
+                "title": "operation",
+                "$$target": [
+                  "#/definitions/action/operations/items"
+                ],
+                "description": "An Operation to be performed on each target.",
                 "oneOf": [
                   {
                     "allOf": [
-                      {
-                        "$ref": "#/definitions/annotation"
-                      },
                       {
                         "description": "",
                         "type": "object",
@@ -1406,6 +1533,9 @@
                             }
                           }
                         ]
+                      },
+                      {
+                        "$ref": "#/definitions/annotation"
                       }
                     ]
                   },
@@ -1847,6 +1977,11 @@
       ]
     },
     "actionEnsemble": {
+      "$id": "#actionEnsemble",
+      "title": "actionEnsemble",
+      "$$target": [
+        "#/definitions/actionEnsemble"
+      ],
       "type": "object",
       "minProperties": 1,
       "properties": {
@@ -1879,6 +2014,10 @@
     },
     "edgeElementSelector": {
       "$id": "#edgeElementSelector",
+      "title": "edgeElementSelector",
+      "$$target": [
+        "#/definitions/edgeElementSelector"
+      ],
       "description": "The specification of edge elements of a set.",
       "type": "object",
       "allOf": [
@@ -1989,6 +2128,10 @@
     },
     "nodeElementSelector": {
       "$id": "#nodeElementSelector",
+      "title": "nodeElementSelector",
+      "$$target": [
+        "#/definitions/nodeElementSelector"
+      ],
       "description": "The specification of node elements of a set.",
       "type": "object",
       "allOf": [
@@ -2103,6 +2246,10 @@
     },
     "setContent": {
       "$id": "#setContent",
+      "title": "setContent",
+      "$$target": [
+        "#/definitions/setContent"
+      ],
       "description": "The specification of the content of a set.",
       "oneOf": [
         {
@@ -2164,6 +2311,10 @@
     },
     "setReference": {
       "$id": "#setReference",
+      "title": "setReference",
+      "$$target": [
+        "#/definitions/setReference"
+      ],
       "description": "A reference to a set.",
       "type": "object",
       "required": [
@@ -2255,6 +2406,10 @@
     },
     "setOperation": {
       "$id": "#setOperation",
+      "title": "setOperation",
+      "$$target": [
+        "#/definitions/setOperation"
+      ],
       "description": "An operation of multiple set which can be an intersection or a union.",
       "type": "object",
       "required": [
