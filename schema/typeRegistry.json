@@ -1169,6 +1169,11 @@
     },
     "scope": {
       "$id": "#scope",
+      "title": "scope",
+      "$$target": [
+        "#/definitions/scope",
+        "./typeRegistry.json#/definitions/scope"
+      ],
       "description": "The context in which the value is computed",
       "type": "string",
       "enum": [
@@ -1178,6 +1183,11 @@
     },
     "variable": {
       "$id": "#variable",
+      "title": "variable",
+      "$$target": [
+        "#/definitions/variable",
+        "./typeRegistry.json#/definitions/variable"
+      ],
       "description": "A variable",
       "allOf": [
         {
@@ -1286,6 +1296,11 @@
     },
     "boolean": {
       "$id": "#boolean",
+      "title": "boolean",
+      "$$target": [
+        "#/definitions/boolean",
+        "./typeRegistry.json#/definitions/boolean"
+      ],
       "description": "A boolean value.",
       "type": "object",
       "oneOf": [
@@ -1305,6 +1320,11 @@
     },
     "booleanValue": {
       "$id": "#booleanValue",
+      "title": "booleanValue",
+      "$$target": [
+        "#/definitions/booleanValue",
+        "./typeRegistry.json#/definitions/booleanValue"
+      ],
       "description": "A fixed boolean value",
       "type": "object",
       "required": [
@@ -1318,6 +1338,11 @@
     },
     "booleanNot": {
       "$id": "#booleanNot",
+      "title": "booleanNot",
+      "$$target": [
+        "#/definitions/booleanNot",
+        "./typeRegistry.json#/definitions/booleanNot"
+      ],
       "description": "Negates the boolean value",
       "type": "object",
       "required": [
@@ -1331,6 +1356,11 @@
     },
     "booleanOperation": {
       "$id": "#booleanOperation",
+      "title": "booleanOperation",
+      "$$target": [
+        "#/definitions/booleanOperation",
+        "./typeRegistry.json#/definitions/booleanOperation"
+      ],
       "description": "A Boolean operation applied to multiple Boolean values which can be 'and' or 'or'.",
       "type": "object",
       "oneOf": [
@@ -1383,6 +1413,11 @@
     },
     "comparison": {
       "$id": "#comparison",
+      "title": "comparison",
+      "$$target": [
+        "#/definitions/comparison",
+        "./typeRegistry.json#/definitions/comparison"
+      ],
       "description": "A comparison used in evaluating triggers and action conditions.",
       "oneOf": [
         {
@@ -1434,6 +1469,11 @@
     },
     "action": {
       "$id": "#action",
+      "title": "action",
+      "$$target": [
+        "#/definitions/action",
+        "./typeRegistry.json#/definitions/action"
+      ],
       "description": "An action to be executed.",
       "allOf": [
         {
@@ -1704,6 +1744,11 @@
     },
     "actions": {
       "$id": "#actions",
+      "title": "actions",
+      "$$target": [
+        "#/definitions/actions",
+        "./typeRegistry.json#/definitions/actions"
+      ],
       "description": "A list of actions to be executed.",
       "type": "object",
       "required": [
@@ -1722,6 +1767,11 @@
     },
     "sampling": {
       "$id": "#sampling",
+      "title": "sampling",
+      "$$target": [
+        "#/definitions/sampling",
+        "./typeRegistry.json#/definitions/sampling"
+      ],
       "description": "Sampling within a set with actions for sampled and non-sampled individuals.",
       "allOf": [
         {
@@ -1980,7 +2030,8 @@
       "$id": "#actionEnsemble",
       "title": "actionEnsemble",
       "$$target": [
-        "#/definitions/actionEnsemble"
+        "#/definitions/actionEnsemble",
+        "./typeRegistry.json#/definitions/actionEnsemble"
       ],
       "type": "object",
       "minProperties": 1,
@@ -2346,6 +2397,11 @@
     },
     "set": {
       "$id": "#set",
+      "title": "set",
+      "$$target": [
+        "#/definitions/set",
+        "./typeRegistry.json#/definitions/set"
+      ],
       "description": "A set of elements.",
       "allOf": [
         {
@@ -2541,6 +2597,11 @@
     },
     "featureEnum": {
       "$id": "#featureEnum",
+      "title": "featureEnum",
+      "$$target": [
+        "#/definitions/featureEnum",
+        "./typeRegistry.json#/definitions/featureEnum"
+      ],
       "description": "An enumeration value allowed for a feature",
       "allOf": [
         {
@@ -2566,6 +2627,11 @@
     },
     "featureEnums": {
       "$id": "#featureEnums",
+      "title": "featureEnums",
+      "$$target": [
+        "#/definitions/featureEnums",
+        "./typeRegistry.json#/definitions/featureEnums"
+      ],
       "description": "The enumeration values allowed for the feature",
       "type": "array",
       "items": {
@@ -2575,6 +2641,11 @@
     },
     "traitFeature": {
       "$id": "#traitFeature",
+      "title": "traitFeature",
+      "$$target": [
+        "#/definitions/traitFeature",
+        "./typeRegistry.json#/definitions/traitFeature"
+      ],
       "description": "A feature of a trait",
       "allOf": [
         {
@@ -2606,6 +2677,11 @@
     },
     "traitFeatures": {
       "$id": "#traitFeatures",
+      "title": "traitFeatures",
+      "$$target": [
+        "#/definitions/traitFeatures",
+        "./typeRegistry.json#/definitions/traitFeatures"
+      ],
       "description": "A list of features included in a trait",
       "type": "array",
       "items": {
@@ -2614,6 +2690,11 @@
     },
     "trait": {
       "$id": "#trait",
+      "title": "trait",
+      "$$target": [
+        "#/definitions/trait",
+        "./typeRegistry.json#/definitions/trait"
+      ],
       "description": "A trait.",
       "allOf": [
         {
@@ -2643,6 +2724,11 @@
     },
     "traits": {
       "$id": "#traits",
+      "title": "traits",
+      "$$target": [
+        "#/definitions/traits",
+        "./typeRegistry.json#/definitions/traits"
+      ],
       "description": "The traits array.",
       "type": "array",
       "items": {
