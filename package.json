@@ -1,14 +1,14 @@
 {
 	"name": "@shoops/epi-hiper-validator",
-	"version": "1.6.0",
+	"version": "1.8.2",
 	"description": "EpiHiper input validation and modification utilities",
 	"bin": {
-		"epiHiperValidateSchema": "./bin/epiHiperValidateSchema",
-		"epiHiperValidateRules": "./bin/epiHiperValidateRules",
-		"epiHiperMerge": "./bin/epiHiperMerge",
-		"epiHiperStatus": "./bin/epiHiperStatus",
-		"epiHiperAddNoise": "./bin/epiHiperAddNoise",
-		"epiHiperUpdateConfigs": "./bin/epiHiperUpdateConfigs"
+		"epiHiperValidateSchema": "bin/epiHiperValidateSchema",
+		"epiHiperValidateRules": "bin/epiHiperValidateRules",
+		"epiHiperMerge": "bin/epiHiperMerge",
+		"epiHiperStatus": "bin/epiHiperStatus",
+		"epiHiperAddNoise": "bin/epiHiperAddNoise",
+		"epiHiperUpdateConfigs": "bin/epiHiperUpdateConfigs"
 	},
 	"author": "Stefan Hoops <shoops@virginia.edu>",
 	"license": "Apache-2.0",

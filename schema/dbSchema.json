@@ -5,7 +5,7 @@
   "description": "This is a schema which describes tables within a database",
   "definitions": {
     "table": {
-      "$id": "#traitFeatures",
+      "$id": "#table",
       "description": "A table.",
       "allOf": [
         {
