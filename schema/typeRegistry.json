@@ -66,8 +66,7 @@
     "jsonPath": {
       "$id": "#jsonPath",
       "description": "A valid JSONPath as described by: https://support.smartbear.com/readyapi/docs/testing/jsonpath-reference.html#notation",
-      "type": "string",
-      "format": "jsonpath"
+      "type": "string"
     },
     "id": {
       "$id": "#id",
