@@ -1,0 +1,64 @@
+{
+  "parameters": [
+    {
+      "name": "transmissibility",
+      "min": 0.01,
+      "max": 2.0,
+      "targets": [
+        {
+          "file": "diseaseModel",
+          "path": "$.transmissibility",
+          "integer": false
+        }
+      ]
+    },
+    {
+      "name": "asian",
+      "min": 0.5,
+      "max": 2.0,
+      "targets": [
+        {
+          "file": "diseaseModel",
+          "path": "$.transmissions[?(@.entryState.match(/.*_a/))].transmissibility",
+          "integer": false
+        }
+      ]
+    },
+    {
+      "name": "black",
+      "min": 0.5,
+      "max": 2.0,
+      "targets": [
+        {
+          "file": "diseaseModel",
+          "path": "$.transmissions[?(@.entryState.match(/.*_b/))].transmissibility",
+          "integer": false
+        }
+      ]
+    },
+    {
+      "name": "latino",
+      "min": 0.5,
+      "max": 2.0,
+      "targets": [
+        {
+          "file": "diseaseModel",
+          "path": "$.transmissions[?(@.entryState.match(/.*_l/))].transmissibility",
+          "integer": false
+        }
+      ]
+    },
+    {
+      "name": "other",
+      "min": 0.5,
+      "max": 2.0,
+      "targets": [
+        {
+          "file": "diseaseModel",
+          "path": "$.transmissions[?(@.entryState.match(/.*_o/))].transmissibility",
+          "integer": false
+        }
+      ]
+    }
+  ]
+}
