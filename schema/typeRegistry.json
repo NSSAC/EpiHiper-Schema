@@ -2144,7 +2144,14 @@
                   }
                 },
                 "right": {
-                  "$ref": "#/definitions/valueList"
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/valueList"
+                    },
+                    {
+                      "$ref": "#/definitions/setContent"
+                    }
+                  ]
                 }
               }
             },
@@ -2264,7 +2271,14 @@
                   }
                 },
                 "right": {
-                  "$ref": "#/definitions/valueList"
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/valueList"
+                    },
+                    {
+                      "$ref": "#/definitions/setContent"
+                    }
+                  ]
                 }
               }
             },

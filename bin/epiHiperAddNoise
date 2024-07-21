@@ -33,6 +33,7 @@ commander
   .option('-i --integer', 'specify whether the value is of type integer.', false)
   .option('-r --replace', 'replace input files.', false)
   .option('-n --negative', 'allow negative numbers.', false)
+  .option('-V --validate', 'validate the the file.', false)
   .arguments('<files...>')
   .action(function (_files) {
     files = _files;
