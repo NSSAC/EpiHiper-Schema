@@ -199,17 +199,13 @@
         }
       }
     },
-    "pluginTransmissionPropensity": {
-      "description": "Path + name of dynamic library providing the function for calculating the transmission propensity.",
-      "$ref": "./typeRegistry.json#/definitions/localPath"
-    },
-    "pluginNextProgression": {
-      "description": "Path + name of dynamic library providing the function for calculating the next progression.",
-      "$ref": "./typeRegistry.json#/definitions/localPath"
-    },
-    "pluginDwellTime": {
-      "description": "Path + name of dynamic library providing the function for calculating the dwell time.",
-      "$ref": "./typeRegistry.json#/definitions/localPath"
+    "plugins": {
+      "type": "array",
+      "description": "A list of dynamic link libraries providing custom functions for: transmission propensity, next progression, dwell time, and incrementing tick",
+      "items": {
+        "description": "Path + name of dynamic library providing any of the customizable functions.",
+        "$ref": "./typeRegistry.json#/definitions/localPath"
+      }
     }
   }
 }
